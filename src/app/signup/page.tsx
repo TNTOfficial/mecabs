@@ -8,22 +8,6 @@ import login from "../dashboard/images/login.jpg";
 import dashboard from "../dashboard/images/dashboard.png";
 import Image from "next/image";
 
-const Login = () => {
-  const [data, setData] = useState({
-    name:"",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [users, setUsers] = useState([]);
-
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
-  };
 
 
 
@@ -59,7 +43,7 @@ const page = () => {
                         Your Full Name
                       </label>
                       <input
-                      onChange={onChange}
+                      
                         type="{name}"
                         id="text"
                         className="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
@@ -75,7 +59,7 @@ const page = () => {
                         Your email
                       </label>
                       <input
-                       onChange={onChange}
+                      
                         type="{email}"
                         id="email"
                         className="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
@@ -91,7 +75,7 @@ const page = () => {
                         Enter password
                       </label>
                       <input
-                       onChange={onChange}
+                      
                         type="{password}"
                         id="password"
                         className="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
@@ -115,7 +99,7 @@ const page = () => {
                     <div className="flex items-start mb-5">
                       <div className="flex items-center h-5">
                         <input
-                         onChange={onChange}
+                         
                           id="terms"
                           type="checkbox"
                           value=""
