@@ -6,7 +6,7 @@ import { LuUsers } from 'react-icons/lu'
 export default function TabComponents() {
     const [activeTab, setActiveTab] = useState(0);
 
-    const handleTabClick = (index) => {
+    const handleTabClick = (index: number) => {
         setActiveTab(index);
     };
 
