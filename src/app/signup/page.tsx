@@ -5,11 +5,28 @@ import user2 from "../dashboard/images/user2.jpg";
 import user3 from "../dashboard/images/user3.jpg";
 import user4 from "../dashboard/images/user4.jpg";
 import login from "../dashboard/images/login.jpg";
-import dashboard from "../dashboard/images/dashboard.png"
+import dashboard from "../dashboard/images/dashboard.png";
 import Image from "next/image";
 
+const Login = () => {
+  const [data, setData] = useState({
+    name:"",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [users, setUsers] = useState([]);
 
-//Login
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
+
+
 
 
 const page = () => {
@@ -42,6 +59,7 @@ const page = () => {
                         Your Full Name
                       </label>
                       <input
+                      onChange={onChange}
                         type="{name}"
                         id="text"
                         className="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
@@ -57,6 +75,7 @@ const page = () => {
                         Your email
                       </label>
                       <input
+                       onChange={onChange}
                         type="{email}"
                         id="email"
                         className="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
@@ -72,6 +91,7 @@ const page = () => {
                         Enter password
                       </label>
                       <input
+                       onChange={onChange}
                         type="{password}"
                         id="password"
                         className="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
@@ -95,6 +115,7 @@ const page = () => {
                     <div className="flex items-start mb-5">
                       <div className="flex items-center h-5">
                         <input
+                         onChange={onChange}
                           id="terms"
                           type="checkbox"
                           value=""
@@ -116,6 +137,7 @@ const page = () => {
                       </label>
                     </div>
                     <button
+                    
                       type="submit"
                       className="text-white w-full bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-800 dark:focus:ring-gray-800"
                     >
@@ -179,7 +201,6 @@ const page = () => {
                     href="#"
                     className="text-gray-500 dark:text-white text-[3rem] no-underline"
                   >
-                    <i className="ph-thin ph-arrow-circle-up-right"></i>
                   </a>
                 </div>
               </div>
@@ -191,7 +212,7 @@ const page = () => {
                     className="rounded-2xl h-full w-full object-cover"
                   />
 
-<Image
+                  <Image
                     src={dashboard}
                     className="max-w-[1100px] h-[400px] z-20 dark:hidden rounded-xl absolute bottom-0 left-[20%] drop-shadow-xl"
                     alt=""
