@@ -216,7 +216,7 @@ const AdminDashboard = () => {
                     />
                   </td>
                   <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    iMac 27"
+                    iMac 27
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center">

@@ -212,7 +212,7 @@ const page = () => {
                       <p className="text-white text-[1rem] font-normal">
                         Personalized, updated daily, and beautifully presented.
                         Create account to find your dream new home and get full
-                        access to platform's functionality.
+                        access to platform functionality.
                       </p>
                     </div>
                   </div>
