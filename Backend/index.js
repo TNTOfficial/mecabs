@@ -15,7 +15,7 @@ server.get("/backend", (req, res) => {
   res.send("Hello, Welcome to Express js");
 });
 
-server.use(cors);
+server.use(router);
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT} 🚀`);
 });
