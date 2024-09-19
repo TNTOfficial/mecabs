@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useState } from "react";
-import GoogleMapComponent from '../components/GoogleMap'
 import CountryCode from '../components/CountryCode'
 import banner1 from '@/public/banner1.jpg'
 
@@ -173,7 +172,6 @@ export default function BookingForm() {
 
                         </div>
                         <div className="w-[calc(100%_/_2_-_20px)]">
-                            <GoogleMapComponent />
                         </div>
                     </div>
                 </div>
