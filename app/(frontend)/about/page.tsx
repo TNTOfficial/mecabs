@@ -39,7 +39,7 @@ export default function About() {
       <section className='py-[100px] bg-white dark:bg-gray-400'>
         <div className="container">
           <div className="flex flex-wrap justify-center gap-5 items-stretch">
-            <div className="w-[calc(100%_/_2_-_20px)]">
+            <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
               <div className="text">
                 <h4 className='text-black mb-5 dark:text-white text-[1.5rem] font-medium '>
                   For over a dozen years we have been providing the best transport services. We offer bus, passenger transport and limousine rental.
@@ -65,15 +65,15 @@ export default function About() {
                 </ul>
               </div>
             </div>
-            <div className="w-[calc(100%_/_2_-_20px)]">
+            <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
               <div className="image h-full w-full">
                 <Image src={car3} alt='image' className='w-full h-full object-cover' />
               </div>
             </div>
           </div>
 
-          <div className="counter flex flex-wrap gap-5 divide-x mt-10">
-            <div className="w-[calc(100%_/_4_-_20px)]">
+          <div className="counter flex flex-wrap justify-center items-center  gap-5 mt-10">
+            <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
               <div className="card_circle h-[190px] w-[190px] rounded-full border border-gray-300 drak:border-blue-500 mx-auto flex justify-center items-center relative">
                 <div className="absolute top-2 right-1 h-12 w-12 flex justify-center items-center bg-gray-100 dark:bg-white rounded-full">
                   <IoCheckmark className='text-gray-500 text-[1.5rem]' />
@@ -84,7 +84,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="w-[calc(100%_/_4_-_20px)]">
+            <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
               <div className="card_circle h-[190px] w-[190px] rounded-full border border-gray-300 drak:border-blue-500 mx-auto flex justify-center items-center relative">
                 <div className="absolute top-2 right-1 h-12 w-12 flex justify-center items-center bg-gray-100 dark:bg-white rounded-full">
                   <IoCheckmark className='text-gray-500 text-[1.5rem]' />
@@ -95,7 +95,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="w-[calc(100%_/_4_-_20px)]">
+            <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
               <div className="card_circle h-[190px] w-[190px] rounded-full border border-gray-300 drak:border-blue-500 mx-auto flex justify-center items-center relative">
                 <div className="absolute top-2 right-1 h-12 w-12 flex justify-center items-center bg-gray-100 dark:bg-white rounded-full">
                   <IoCheckmark className='text-gray-500 text-[1.5rem]' />
@@ -106,7 +106,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="w-[calc(100%_/_4_-_20px)]">
+            <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
               <div className="card_circle h-[190px] w-[190px] rounded-full border border-gray-300 drak:border-blue-500 mx-auto flex justify-center items-center relative">
                 <div className="absolute top-2 right-1 h-12 w-12 flex justify-center items-center bg-gray-100 dark:bg-white rounded-full">
                   <IoCheckmark className='text-gray-500 text-[1.5rem]' />
@@ -124,13 +124,13 @@ export default function About() {
 
       {/* About Us Second section Start */}
       <section className="bg-gray-100 dark:bg-gray-600">
-        <div className="flex flex-wrap justify-between gap-5 items-center">
-          <div className="w-[calc(100%_/_2_-_20px)]">
+        <div className="flex flex-wrap justify-center lg:justify-between gap-5 items-center">
+          <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
             <div className="image h-full w-full">
               <Image src={car2} alt='image' className='w-full h-full object-cover' />
             </div>
           </div>
-          <div className="w-[calc(100%_/_2_-_20px)]">
+          <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
             <div className="text py-10">
               <h4 className="text-black mb-5 dark:text-white text-[1.5rem] font-medium">
                 For over a dozen years we have been providing the best transport services. We offer bus, passenger transport and limousine rental.
@@ -162,8 +162,8 @@ export default function About() {
 
       {/* Services steps section Start */}
       <section className='bg-white dark:bg-gray-500'>
-        <div className="counter flex flex-wrap items-stretch gap-5 divide-x">
-          <div className="w-[calc(100%_/_4_-_20px)]">
+        <div className="counter flex flex-wrap items-stretch justify-center md:justify-between gap-5 divide-x">
+          <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
             <div className="card bg-[#556677]  px-16 py-16 relative h-full">
               <div className="absolute top-10 right-10 text-gray-400 text-[1.5rem]  flex justify-center items-center">
                 01
@@ -176,7 +176,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="w-[calc(100%_/_4_-_20px)]">
+          <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
             <div className="card bg-[#556677]  px-16 py-16 relative h-full">
               <div className="absolute top-10 right-10 text-gray-400 text-[1.5rem]  flex justify-center items-center">
                 02
@@ -189,7 +189,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="w-[calc(100%_/_4_-_20px)]">
+          <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
             <div className="card bg-[#556677]  px-16 py-16 relative h-full">
               <div className="absolute top-10 right-10 text-gray-400 text-[1.5rem]  flex justify-center items-center">
                 03
@@ -202,7 +202,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="w-[calc(100%_/_4_-_20px)]">
+          <div className="xl:w-[calc(100%_/_4_-_20px)] md:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
             <div className="card bg-[#556677]  px-16 py-16 relative h-full">
               <div className="absolute top-10 right-10 text-gray-400 text-[1.5rem]  flex justify-center items-center">
                 04

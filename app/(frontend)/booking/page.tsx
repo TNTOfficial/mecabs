@@ -42,7 +42,7 @@ export default function BookingForm() {
             <section className="py-[100px] bg-gray-100">
                 <div className="container">
                     <div className="flex flex-wrap gap-5 justify-center items-stretch">
-                        <div className="w-[calc(100%_/_2_-_20px)]">
+                        <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
 
                             <div className="card shadow transition-all duration-300 bg-white dark:bg-gray-600">
                                 <div>
@@ -171,7 +171,7 @@ export default function BookingForm() {
                             </div>
 
                         </div>
-                        <div className="w-[calc(100%_/_2_-_20px)]">
+                        <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
                         </div>
                     </div>
                 </div>

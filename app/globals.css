@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -26,7 +32,7 @@
   @apply mx-auto
 }
 html {
-  font-size: clamp(13px, 2vw, 16px);
+  font-size: clamp(12px, 3vw, 16px);
 }
 body {
   color: rgb(var(--foreground-rgb));

@@ -34,7 +34,7 @@ export default function ServicesPage() {
             <section className='bg-white dark:bg-gray-600 py-[100px]'>
                 <div className="container">
                     <div className="flex flex-wrap gap-5 justify-center items-center">
-                        <div className="w-[calc(100%_/_2_-_20px)]">
+                        <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
                             <div className="text">
                                 <h3 className='text-[2rem] mb-5 font-normal text-black dark:text-whinte'>MeCabs Services</h3>
                                 <p className='text-[1.4rem] font-light text-gray-500 dark:text-gray-100'>
@@ -42,7 +42,7 @@ export default function ServicesPage() {
                                 </p>
                             </div>
                         </div>
-                        <div className="w-[calc(100%_/_2_-_20px)]">
+                        <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
                             <div className="text-[1.8rem] text-gray-500 dark:text-gray-100 font-normal">
                                 <p>
                                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, minima iure praesentium itaque fugiat sequi, ullam eum cupiditate, pariatur perspiciatis neque ad at eius natus! Iste, dicta!
@@ -80,7 +80,7 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="flex flex-wrap justify-center items-center gap-5 mb-10">
-                        <div className="w-[calc(100%_/_3_-20px)]">
+                        <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
                             <div className="card bg-white p-8 flex flex-col justify-center items-center">
                                 <div className="circle_icon border border-gray-300 rounded-full w-[150px] h-[150px] flex justify-center items-center mb-3">
                                     <PiAirplaneInFlightThin className='text-[4rem] text-blue-500' />
@@ -88,7 +88,7 @@ export default function ServicesPage() {
                                 <h4 className='text-[1rem] text-gray-500 font-bold'> Airport Transfers</h4>
                             </div>
                         </div>
-                        <div className="w-[calc(100%_/_3_-20px)]">
+                        <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
                             <div className="card bg-white p-8 flex flex-col justify-center items-center">
                                 <div className="circle_icon border border-gray-300 rounded-full w-[150px] h-[150px] flex justify-center items-center mb-3">
                                     <PiCarProfileThin className='text-[4rem] text-blue-500' />
@@ -96,7 +96,7 @@ export default function ServicesPage() {
                                 <h4 className='text-[1rem] text-gray-500 font-bold'> Taxi Service</h4>
                             </div>
                         </div>
-                        <div className="w-[calc(100%_/_3_-20px)]">
+                        <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
                             <div className="card bg-white p-8 flex flex-col justify-center items-center">
                                 <div className="circle_icon border border-gray-300 rounded-full w-[150px] h-[150px] flex justify-center items-center mb-3">
                                     <PiRoadHorizonThin className='text-[4rem] text-blue-500' />
@@ -116,7 +116,7 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="flex flex-wrap justify-center items-center gap-5">
-                        <div className="w-[calc(100%_/_3_-20px)]">
+                        <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
                             <div className="card bg-white p-8 flex flex-col justify-center items-center">
                                 <div className="circle_icon border border-gray-300 rounded-full w-[150px] h-[150px] flex justify-center items-center mb-3">
                                     <PiAirplaneThin className='text-[4rem] text-blue-500' />
@@ -124,7 +124,7 @@ export default function ServicesPage() {
                                 <h4 className='text-[1rem] text-gray-500 font-bold'> Melbourne Airport Transfers</h4>
                             </div>
                         </div>
-                        <div className="w-[calc(100%_/_3_-20px)]">
+                        <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
                             <div className="card bg-white p-8 flex flex-col justify-center items-center">
                                 <div className="circle_icon border border-gray-300 rounded-full w-[150px] h-[150px] flex justify-center items-center mb-3">
                                     <PiDoorOpenThin className='text-[4rem] text-blue-500' />
@@ -132,7 +132,7 @@ export default function ServicesPage() {
                                 <h4 className='text-[1rem] text-gray-500 font-bold'> Airport Inside Pickup</h4>
                             </div>
                         </div>
-                        <div className="w-[calc(100%_/_3_-20px)]">
+                        <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
                             <div className="card bg-white p-8 flex flex-col justify-center items-center">
                                 <div className="circle_icon border border-gray-300 rounded-full w-[150px] h-[150px] flex justify-center items-center mb-3">
                                     <PiWifiHighThin className='text-[4rem] text-blue-500' />
