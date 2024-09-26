@@ -8,8 +8,12 @@ import { IoCheckmark } from 'react-icons/io5';
 import { AiOutlineSafetyCertificate } from 'react-icons/ai';
 import { BsLuggageFill } from 'react-icons/bs';
 import { MdWorkspacePremium } from 'react-icons/md';
+import { fetchRevenue } from '@/app/lib/data';
 
-export default function About() {
+export default async function About() {
+  const revenue = await fetchRevenue();
+  console.log(revenue);
+  
   return (
     <>
       {/* About Page Landing section Start */}

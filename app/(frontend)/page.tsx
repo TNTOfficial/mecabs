@@ -14,6 +14,7 @@ import { LuSliders } from "react-icons/lu";
 import { PiChatsThin } from "react-icons/pi";
 import { GiLighthouse } from "react-icons/gi";
 import { TbUser } from "react-icons/tb";
+
 export default function Home() {
   return (
     <>
@@ -129,7 +130,11 @@ export default function Home() {
       </section>
       <section className="bg-[#f6f6f6] dark:bg-gray-600">
         <div className="flex flex-wrap justify-center items-stretch">
-          <Image src={card3} className="z-0 w-full lg:w-[calc(100%_/_2)] " alt="" />
+          <Image
+            src={card3}
+            className="z-0 w-full lg:w-[calc(100%_/_2)] "
+            alt=""
+          />
 
           <div className="w-full lg:w-[calc(100%_/_2)] p-12 max-md:p-7">
             <div className="">
