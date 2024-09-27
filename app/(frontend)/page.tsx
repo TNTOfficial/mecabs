@@ -7,6 +7,7 @@ import card3 from "@/public/03.jpg";
 import car1 from "@/public/car1.jpg";
 import car2 from "@/public/car2.jpg";
 import car3 from "@/public/car3.jpg";
+import bgshap from "@/public/bgshap.png";
 import calender from "@/public/calendar.png";
 import TabComponents from "./components/tabs";
 import Image from "next/image";
@@ -17,6 +18,7 @@ import "aos/dist/aos.css";
 import {
   IoAirplaneOutline,
   IoCalendar,
+  IoCarOutline,
   IoCarSportOutline,
   IoMailUnreadOutline,
 } from "react-icons/io5";
@@ -30,6 +32,7 @@ import { GiLighthouse } from "react-icons/gi";
 import { TbUser } from "react-icons/tb";
 import LandingSlider from "./components/landingSlider";
 import { AiOutlineSafety } from "react-icons/ai";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 export default function Home() {
   // useEffect(() => {
   //   AOS.init({
@@ -38,6 +41,24 @@ export default function Home() {
   //     duration: 1000,
   //   });
   // }, []);
+
+  const makeTrip = [
+    {
+      title: "Safety First",
+      icon: AiOutlineSafety,
+      para: "Both you and your shipments will travel with professionaldrivers. Always with the highest quality standards.",
+    },
+    {
+      title: "Prices With No Surprises",
+      icon: RiMoneyDollarCircleLine,
+      para: "Both you and your shipments will travel with professional drivers. Always with the highest quality standards.",
+    },
+    {
+      title: "Private Travel Solutions",
+      icon: IoCarOutline,
+      para: "Both you and your shipments will travel with professional drivers. Always with the highest quality standards.",
+    },
+  ];
 
   return (
     <>
@@ -163,16 +184,69 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="flex justify-center items-center gap-5 pt-10">
-            <div className="lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
-              <div className="card text-center">
-                <div className="card_icon  mx-auto bg-zinc-100 h-16 w-16 mb-5 rounded-full flex justify-center items-end">
-                  <AiOutlineSafety className="text-zinc-950 text-[2.5rem]" />
-                </div>
+          <div className="flex justify-center items-center gap-10 pt-10">
+            {makeTrip.map((trip) => {
+              return (
+                <div
+                  className="lg:w-[calc(100%_/_4_-_40px)] md:w-[calc(100%_/_2_-_40px)] w-[calc(100%_/_1_-_40px)]"
+                  key={trip.title}
+                >
+                  <div className="card text-center cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                    <div className="card_icon  mx-auto bg-zinc-100 h-16 w-16 mb-6 rounded-full flex justify-center items-end">
+                      <trip.icon className="text-zinc-600 text-[2.5rem]" />
+                    </div>
 
-                <h3 className="text-[1.5rem] text-zinc-800 font-semibold">
-                  Safety First
-                </h3>
+                    <h3 className="text-[1.3rem] text-zinc-800 font-semibold mb-4">
+                      {trip.title}
+                    </h3>
+                    <p className="text-[1rem] text-zinc-800 font-medium">
+                      {trip.para}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="pt-20">
+            <div className="bg-blue-700 pb-10 px-5 rounded-md">
+              <div
+                className="max-w-screen-lg mx-auto bg-no-repeat bg-center bg-cover pt-20 pb-10 flex justify-center items-center gap-5"
+                style={{ backgroundImage: ` url(${bgshap.src})` }}
+              >
+                <div className="w-[calc(100%_/_2_-_20px)]">
+                  <h2 className="text-[3rem] text-white font-bold">
+                    Showcase some impressive numbers.
+                  </h2>
+                </div>
+                <div className="w-[calc(100%_/_2_-_20px)]">
+                  <div className="flex justify-around items-center">
+                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                      <h3 className="text-[3rem] text-white font-semibold">
+                        285 +
+                      </h3>
+                      <h5 className="text-[1.3rem] text-white font-medium">
+                        Vehicles
+                      </h5>
+                    </div>
+                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                      <h3 className="text-[3rem] text-white font-semibold">
+                        97
+                      </h3>
+                      <h5 className="text-[1.3rem] text-white font-medium">
+                        Awards
+                      </h5>
+                    </div>
+                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                      <h3 className="text-[3rem] text-white font-semibold">
+                        13 k
+                      </h3>
+                      <h5 className="text-[1.3rem] text-white font-medium">
+                        Happy Customer
+                      </h5>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -182,18 +256,10 @@ export default function Home() {
 
       <section className="py-20 bg-white dark:bg-[#f6f6f6]">
         <div className="container">
-          <h5
-            data-aos="fade-up"
-            data-aos-duration="800"
-            className=" text-center font-bold text-[1.125rem] text-[var(--theme)]"
-          >
+          <h5 className=" text-center font-bold text-[1.125rem] text-[var(--theme)]">
             WHAT WE DO
           </h5>
-          <h4
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            className="text-[2.5rem] font-light text-center text-black"
-          >
+          <h4 className="text-[2.5rem] font-light text-center text-black">
             The Car and Limousine Service
           </h4>
 
