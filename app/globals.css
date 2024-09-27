@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -28,8 +28,8 @@
   }
 }
 
-.container{
-  @apply mx-auto
+.container {
+  @apply mx-auto;
 }
 html {
   font-size: clamp(12px, 3vw, 16px);
@@ -51,25 +51,52 @@ body {
   }
 }
 
-.show{
+.show {
   animation: show 0.2s 1 forwards;
 }
 @keyframes show {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
-.hide{
-  animation: hide 0.2s 1 forwards;
+.hide {
+  animation: hide 3s 1 forwards;
 }
 @keyframes hide {
-  0%{
+  0% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
+}
+/* 
+.swiper-slide h4, .swiper-slide h1  {
+  transform: scale(0);
+  transition: all 1s 0.5s;
+  transform-origin: center
+}
+.swiper-slide h1 {
+  transition: all 1s 1s;
+}
+.swiper-slide.swiper-slide-active h4,
+.swiper-slide.swiper-slide-active h1 {
+  transform: scale(1);
+} */
+
+.slideSwiper {
+  @apply bg-no-repeat bg-cover bg-center relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0 h-full;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: var(--bgImg) no-repeat center/contain;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
 }

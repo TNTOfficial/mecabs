@@ -1,57 +1,205 @@
+"use client";
+
 import { BsBuildings, BsBusFront, BsLuggage } from "react-icons/bs";
-import bg1 from "@/public/bg_slide1.jpg";
 import card1 from "@/public/01.jpg";
 import card2 from "@/public/02.jpg";
 import card3 from "@/public/03.jpg";
 import car1 from "@/public/car1.jpg";
 import car2 from "@/public/car2.jpg";
 import car3 from "@/public/car3.jpg";
-import BookingFormTabs from "./components/bookingFormTabs";
+import calender from "@/public/calendar.png";
 import TabComponents from "./components/tabs";
 import Image from "next/image";
-import { IoAirplaneOutline, IoCarSportOutline } from "react-icons/io5";
+import { useEffect } from "react";
+import AOS from "aos";
+
+import "aos/dist/aos.css";
+import {
+  IoAirplaneOutline,
+  IoCalendar,
+  IoCarSportOutline,
+  IoMailUnreadOutline,
+} from "react-icons/io5";
 import { LuSliders } from "react-icons/lu";
-import { PiChatsThin } from "react-icons/pi";
+import {
+  PiArrowUUpLeftFill,
+  PiArrowUUpRightFill,
+  PiChatsThin,
+} from "react-icons/pi";
 import { GiLighthouse } from "react-icons/gi";
 import { TbUser } from "react-icons/tb";
+import LandingSlider from "./components/landingSlider";
+import { AiOutlineSafety } from "react-icons/ai";
 export default function Home() {
+  // useEffect(() => {
+  //   AOS.init({
+  //     once: true,
+  //     easing: "ease-out-quad",
+  //     duration: 1000,
+  //   });
+  // }, []);
+
   return (
     <>
-      <section
-        style={{ backgroundImage: ` url(${bg1.src})` }}
-        className="landing_area py-[100px] bg-no-repeat bg-cover bg-center relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0"
-      >
-        <div className="container mx-auto px-5">
-          <div className="flex min-h-[calc(100vh_-_118px)] gap-5 flex-wrap justify-end items-center ">
-            <div className="xl:w-[calc(70%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] w-full px-3">
-              <div className="text">
-                <h5 className="text-[1.3rem] font-semibold dark:text-white text-white">
-                  BOOKING NOW
-                </h5>
-                <h1 className="xl:text-[4rem] lg:text-[3rem]  text-[2rem] font-extrabold dark:text-white text-white">
-                  Easy airport transfers to and from your accommodation.
-                </h1>
+      <section className="landing_area relative z-0">
+        <LandingSlider />
+
+        <div className="max-w-screen-xl w-full px-3 mx-auto lg:absolute lg:bottom-[100px] left-[50%] max-lg:mt-[50px] lg:translate-x-[-50%] z-10">
+          <div className="continueForm bg-white rounded-[50px] w-full px-5 py-5  shadow-lg border-t">
+            <form
+              action=""
+              className="flex lg:justify-center md:justify-start items-center flex-wrap gap-5"
+            >
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <IoMailUnreadOutline className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div className="field flex flex-col w-[80%]">
+                    <label
+                      htmlFor="mail"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Maild
+                    </label>
+                    <input
+                      id="mail"
+                      type="email"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="example@gmail.com"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="xl:w-[calc(30%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] w-full">
-              <BookingFormTabs />
-            </div>
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <IoCalendar className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div
+                    className="field flex flex-col w-[80%]"
+                    style={{ ["--bgImg" as string]: `url(${calender.src})` }}
+                  >
+                    <label
+                      htmlFor="date"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Date
+                    </label>
+                    <input
+                      type="date"
+                      id="date"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="example@gmail.com"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <PiArrowUUpRightFill className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div className="field flex flex-col w-[80%]">
+                    <label
+                      htmlFor="pickup"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Pickup Location
+                    </label>
+                    <input
+                      type="text"
+                      id="pickup"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="London City Airport"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <PiArrowUUpLeftFill className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div className="field flex flex-col w-[80%]">
+                    <label
+                      htmlFor="drop"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Drop Location
+                    </label>
+                    <input
+                      type="text"
+                      id="drop"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="London City Blackheath"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="w-[calc(15%_-_20px)] text-end">
+                <button
+                  type="submit"
+                  className="text-white bg-black py-3 px-4 border-none rounded-3xl"
+                >
+                  Continue
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
 
+      {/* Make your trip Start */}
+      <section className="makeTrip pt-[100px]">
+        <div className="container">
+          <div className="sectionHeading text-center">
+            <h2 className="capitalize text-zinc-800 text-[2.3rem] font-bold">
+              Make your trip your way with us
+            </h2>
+          </div>
+
+          <div className="flex justify-center items-center gap-5 pt-10">
+            <div className="lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
+              <div className="card text-center">
+                <div className="card_icon  mx-auto bg-zinc-100 h-16 w-16 mb-5 rounded-full flex justify-center items-end">
+                  <AiOutlineSafety className="text-zinc-950 text-[2.5rem]" />
+                </div>
+
+                <h3 className="text-[1.5rem] text-zinc-800 font-semibold">
+                  Safety First
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Make your trip end */}
+
       <section className="py-20 bg-white dark:bg-[#f6f6f6]">
         <div className="container">
-          <h5 className=" text-center font-bold text-[1.125rem] text-[var(--theme)]">
+          <h5
+            data-aos="fade-up"
+            data-aos-duration="800"
+            className=" text-center font-bold text-[1.125rem] text-[var(--theme)]"
+          >
             WHAT WE DO
           </h5>
-          <h4 className="text-[2.5rem] font-light text-center text-black">
+          <h4
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="text-[2.5rem] font-light text-center text-black"
+          >
             The Car and Limousine Service
           </h4>
 
           <div className="flex flex-wrap items-stretch justify-start pt-20">
             <div className="lg:w-4/12 md:w-6/12 w-full p-5">
-              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full">
+              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full rounded-xl overflow-hidden">
                 <div className="relative z-0">
                   <Image src={card1} className="w-full z-0 " alt="" />
                   <div className="absolute z-10 top-1/2 left-1/2 -translate-y-3/4 -translate-x-1/2 w-36 h-20 border-2 border-b-0 border-white rounded-t-full"></div>
@@ -75,7 +223,7 @@ export default function Home() {
             </div>
             {/* <!-- col-end --> */}
             <div className="lg:w-4/12 md:w-6/12 w-full p-5">
-              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full">
+              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full rounded-xl overflow-hidden">
                 <div className="relative z-0">
                   <Image src={card2} className="w-full z-0 " alt="" />
 
@@ -100,7 +248,7 @@ export default function Home() {
             </div>
             {/* <!-- col-end --> */}
             <div className="lg:w-4/12 md:w-6/12 w-full p-5">
-              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full">
+              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full rounded-xl overflow-hidden">
                 <div className="relative z-0">
                   <Image src={card3} className="w-full z-0 " alt="" />
 
@@ -129,7 +277,11 @@ export default function Home() {
       </section>
       <section className="bg-[#f6f6f6] dark:bg-gray-600">
         <div className="flex flex-wrap justify-center items-stretch">
-          <Image src={card3} className="z-0 w-full lg:w-[calc(100%_/_2)] " alt="" />
+          <Image
+            src={card3}
+            className="z-0 w-full lg:w-[calc(100%_/_2)] "
+            alt=""
+          />
 
           <div className="w-full lg:w-[calc(100%_/_2)] p-12 max-md:p-7">
             <div className="">
