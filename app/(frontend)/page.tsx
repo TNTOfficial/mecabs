@@ -65,7 +65,7 @@ export default function Home() {
       <section className="landing_area relative z-0">
         <LandingSlider />
 
-        <div className="max-w-screen-xl w-full px-3 mx-auto lg:absolute lg:bottom-[100px] left-[50%] max-lg:mt-[50px] lg:translate-x-[-50%] z-10">
+        <div className="max-w-screen-xl w-full px-3 mx-auto md:absolute 2xl:bottom-[100px] md:bottom-[40px] left-[50%] max-md:mt-[50px] md:translate-x-[-50%] z-10">
           <div className="continueForm bg-white rounded-[50px] w-full px-5 py-5  shadow-lg border-t">
             <form
               action=""
@@ -184,11 +184,11 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="flex justify-center items-center gap-10 pt-10">
+          <div className="flex justify-center items-center flex-wrap gap-10 pt-10">
             {makeTrip.map((trip) => {
               return (
                 <div
-                  className="lg:w-[calc(100%_/_4_-_40px)] md:w-[calc(100%_/_2_-_40px)] w-[calc(100%_/_1_-_40px)]"
+                  className="xl:w-[calc(100%_/_4_-_40px)] md:w-[calc(100%_/_2_-_40px)] w-[calc(100%_/_1_-_40px)]"
                   key={trip.title}
                 >
                   <div className="card text-center cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
@@ -211,15 +211,15 @@ export default function Home() {
           <div className="pt-20">
             <div className="bg-blue-700 pb-10 px-5 rounded-md">
               <div
-                className="max-w-screen-lg mx-auto bg-no-repeat bg-center bg-cover pt-20 pb-10 flex justify-center items-center gap-5"
+                className="max-w-screen-lg mx-auto bg-no-repeat bg-center bg-cover pt-20 pb-10 flex flex-wrap justify-center items-center gap-5"
                 style={{ backgroundImage: ` url(${bgshap.src})` }}
               >
-                <div className="w-[calc(100%_/_2_-_20px)]">
+                <div className="lg:w-[calc(100%_/_2_-_20px)] w-[calc(100%_-_20px)]">
                   <h2 className="text-[3rem] text-white font-bold">
                     Showcase some impressive numbers.
                   </h2>
                 </div>
-                <div className="w-[calc(100%_/_2_-_20px)]">
+                <div className="lg:w-[calc(100%_/_2_-_20px)] w-[calc(100%_-_20px)]">
                   <div className="flex justify-around items-center">
                     <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
                       <h3 className="text-[3rem] text-white font-semibold">
@@ -263,7 +263,7 @@ export default function Home() {
             The Car and Limousine Service
           </h4>
 
-          <div className="flex flex-wrap items-stretch justify-start pt-20">
+          <div className="flex flex-wrap items-stretch justify-center pt-20">
             <div className="lg:w-4/12 md:w-6/12 w-full p-5">
               <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full rounded-xl overflow-hidden">
                 <div className="relative z-0">

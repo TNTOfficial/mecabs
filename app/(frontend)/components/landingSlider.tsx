@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 
 import bg1 from "@/public/bg_slide1.jpg";
 import bg2 from "@/public/bg_slide2.jpg";
@@ -24,7 +24,7 @@ import SwiperCore from "swiper";
 SwiperCore.use([Parallax]);
 
 const LandingSlider = () => {
-  const swiperRef = React.useRef(null);
+  const swiperRef = useRef(null);
 
   const slideContent = [
     {
@@ -65,17 +65,18 @@ const LandingSlider = () => {
         disableOnInteraction: false,
       }}
       modules={[Autoplay, Pagination]}
-      className="h-full"
+      className="h-full text-white"
     >
       {slideContent.map((slide) => {
         return (
           <SwiperSlide
+          key={slide.title}
             style={{ backgroundImage: ` url(${slide.bgImg.src})` }}
-            className="slideSwiper slide-bg"
+            className=" bg-no-repeat bg-cover bg-left relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0 h-full slide-bg"
             data-swiper-parallax="1152"
           >
             <div className="container">
-              <div className="max-w-screen-xl px-3 mx-auto h-[calc(90dvh_-_64px)] py-[100px] flex justify-center items-start flex-col">
+              <div className="max-w-screen-xl px-3 mx-auto h-[calc(90dvh_-_64px)] py-[100px] flex justify-evelnly items-start flex-col">
                 <div className="sectionHeading pb-[100px] w-full max-w-[525px]">
                   <div className="flex gap-3 mb-10">
                     <div
