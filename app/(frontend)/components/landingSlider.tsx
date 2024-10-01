@@ -8,8 +8,6 @@ import bg3 from "@/public/bg_slide3.jpg";
 // Swiper components, modules and styles
 import {
   Autoplay,
-  Navigation,
-  EffectFade,
   Pagination,
   Parallax,
 } from "swiper/modules";
