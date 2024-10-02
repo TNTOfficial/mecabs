@@ -1,6 +1,8 @@
 "use client";
+import React from "react";
 import { useState } from "react";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 // import Image from "next/image";
 // import Logo from "../../../../public/logo.png";
 
@@ -29,6 +31,7 @@ export default function Navbar() {
     { name: "Services", href: "/services" },
     { name: "Booking", href: "/booking" },
   ];
+  const { data: session }: any = useSession();
 
   const toggleClass = () => {
     setDisplay(!display);
@@ -53,7 +56,7 @@ export default function Navbar() {
               id="navbar-default"
             >
               <ul className="font-medium flex max-lg:w-full flex-col p-4 lg:p-0 lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-600">
-                {links.map((link) => {
+                {links.map((link)=> {
                   return (
                     <li key={link.name}>
                       <Link
@@ -94,18 +97,35 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex justify-center items-center gap-3 max-lg:w-full">
-                  <Link
-                    href="/"
+                {!session ? (
+            <>  <Link
+                    href="/login"
                     className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
                   >
                     Login
                   </Link>
                   <Link
-                    href="/"
+                    href="/register"
                     className="bg-white border border-[#2e2e2e] text-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
                   >
                     SignUp
                   </Link>
+                  </>
+          ) : (
+            <>
+              {session.user?.name}
+              <li>
+                <button
+                  onClick={() => {
+                    signOut();
+                  }}
+                  className="p-2 px-5 -mt-1 bg-blue-800 rounded-full"
+                >
+                  Logout
+                </button>
+                </li>
+            </>
+          )}
                 </div>
               </div>
             </div>

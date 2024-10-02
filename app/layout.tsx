@@ -1,6 +1,11 @@
+// "use client"
 import type { Metadata } from "next";
 import "./globals.css";
 import { DM_Sans } from "next/font/google";
+import SessionProvider from "@/app/SessionProvider"
+
+// import { NextAuthOptions } from 'next-auth'
+// import { getServerSession } from 'next-auth'
 
 const dm = DM_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,7 +29,9 @@ export default function RootLayout({
         suppressHydrationWarning={true}
         className="font-body bg-white dark:bg-gray-500 text-black dark:text-white"
       >
+        <SessionProvider>
         {children}
+        </SessionProvider>
       </body>
     </html>
   );

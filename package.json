@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^3.5.3",
     "@react-google-maps/api": "^2.19.3",
     "@types/swiper": "^6.0.0",
     "aos": "^2.3.4",
