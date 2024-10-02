@@ -1,315 +1,704 @@
-import { BsBuildings, BsBusFront, BsLuggage } from "react-icons/bs";
-import bg1 from "@/public/bg_slide1.jpg";
-import card1 from "@/public/01.jpg";
-import card2 from "@/public/02.jpg";
-import card3 from "@/public/03.jpg";
-import car1 from "@/public/car1.jpg";
-import car2 from "@/public/car2.jpg";
-import car3 from "@/public/car3.jpg";
-import BookingFormTabs from "./components/bookingFormTabs";
-import TabComponents from "./components/tabs";
+"use client";
+
+import React, { useRef } from "react";
+
 import Image from "next/image";
-import { IoAirplaneOutline, IoCarSportOutline } from "react-icons/io5";
-import { LuSliders } from "react-icons/lu";
-import { PiChatsThin } from "react-icons/pi";
-import { GiLighthouse } from "react-icons/gi";
-import { TbUser } from "react-icons/tb";
+import { BsLuggageFill } from "react-icons/bs";
+import car1 from "@/public/car1.png";
+import car2 from "@/public/car2.png";
+import car3 from "@/public/car3.png";
+import car4 from "@/public/car4.png";
+import car5 from "@/public/car5.png";
+import car6 from "@/public/car6.png";
+import s1 from "@/public/01.jpg";
+import s2 from "@/public/02.jpg";
+import s3 from "@/public/03.jpg";
+import s4 from "@/public/04.jpg";
+import s5 from "@/public/05.jpg";
+import bg4 from "@/public/bg4.png";
+import bg5 from "@/public/bg5.jpg";
+import bgshap from "@/public/bgshap.png";
+import calender from "@/public/calendar.png";
+
+// import { useEffect } from "react";
+// import AOS from "aos";
+
+import "aos/dist/aos.css";
+import { IoCalendar, IoCarOutline, IoMailUnreadOutline } from "react-icons/io5";
+import {
+  PiArrowUUpLeftFill,
+  PiArrowUUpRightFill,
+  PiUsersDuotone,
+} from "react-icons/pi";
+import LandingSlider from "./components/landingSlider";
+import { AiOutlineSafety } from "react-icons/ai";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import { LuArrowUpRightFromCircle } from "react-icons/lu";
+import { CiCirclePlus } from "react-icons/ci";
 
 export default function Home() {
+  // useEffect(() => {
+  //   AOS.init({
+  //     once: true,
+  //     easing: "ease-out-quad",
+  //     duration: 1000,
+  //   });
+  // }, []);
+
+  const makeTrip = [
+    {
+      title: "Safety First",
+      icon: AiOutlineSafety,
+      para: "Both you and your shipments will travel with professionaldrivers. Always with the highest quality standards.",
+    },
+    {
+      title: "Prices With No Surprises",
+      icon: RiMoneyDollarCircleLine,
+      para: "Both you and your shipments will travel with professional drivers. Always with the highest quality standards.",
+    },
+    {
+      title: "Private Travel Solutions",
+      icon: IoCarOutline,
+      para: "Both you and your shipments will travel with professional drivers. Always with the highest quality standards.",
+    },
+  ];
+
+  const carPost = [
+    {
+      title: "The BMW 7 Series Sedan",
+      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      carImage: car1,
+      passenger: 4,
+      luggage: 3,
+    },
+    {
+      title: "The BMW 7 Series Sedan",
+      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      carImage: car2,
+      passenger: 4,
+      luggage: 3,
+    },
+
+    {
+      title: "The BMW 7 Series Sedan",
+      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      carImage: car3,
+      passenger: 4,
+      luggage: 3,
+    },
+
+    {
+      title: "The BMW 7 Series Sedan",
+      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      carImage: car4,
+      passenger: 4,
+      luggage: 3,
+    },
+
+    {
+      title: "The BMW 7 Series Sedan",
+      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      carImage: car5,
+      passenger: 4,
+      luggage: 3,
+    },
+
+    {
+      title: "The BMW 7 Series Sedan",
+      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      carImage: car6,
+      passenger: 4,
+      luggage: 3,
+    },
+  ];
+
+  const servicePost = [
+    {
+      title: "The BMW 7 Series Sedan",
+      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      serviceImage: s1,
+    },
+    {
+      title: "The BMW 7 Series Sedan",
+      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      serviceImage: s2,
+    },
+
+    {
+      title: "The BMW 7 Series Sedan",
+      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      serviceImage: s3,
+    },
+
+    {
+      title: "The BMW 7 Series Sedan",
+      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      serviceImage: s4,
+    },
+
+    {
+      title: "The BMW 7 Series Sedan",
+      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      serviceImage: s5,
+    },
+  ];
+
   return (
     <>
-      <section
-        style={{ backgroundImage: ` url(${bg1.src})` }}
-        className="landing_area py-[100px] bg-no-repeat bg-cover bg-center relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0"
-      >
-        <div className="container mx-auto px-5">
-          <div className="flex min-h-[calc(100vh_-_118px)] gap-5 flex-wrap justify-end items-center ">
-            <div className="xl:w-[calc(70%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] w-full px-3">
-              <div className="text">
-                <h5 className="text-[1.3rem] font-semibold dark:text-white text-white">
-                  BOOKING NOW
-                </h5>
-                <h1 className="xl:text-[4rem] lg:text-[3rem]  text-[2rem] font-extrabold dark:text-white text-white">
-                  Easy airport transfers to and from your accommodation.
-                </h1>
+      <section id="top" className="landing_area relative z-0">
+        <LandingSlider />
+
+        <div className="max-w-screen-xl w-full px-3 mx-auto md:absolute 2xl:bottom-[100px] md:bottom-[40px] left-[50%] max-md:mt-[50px] md:translate-x-[-50%] z-10">
+          <div className="continueForm bg-white rounded-[50px] w-full px-5 py-5  shadow-lg border-t">
+            <form
+              action=""
+              className="flex lg:justify-center md:justify-start items-center flex-wrap gap-5"
+            >
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <IoMailUnreadOutline className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div className="field flex flex-col w-[80%]">
+                    <label
+                      htmlFor="mail"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Maild
+                    </label>
+                    <input
+                      id="mail"
+                      type="email"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="example@gmail.com"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="xl:w-[calc(30%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] w-full">
-              <BookingFormTabs />
-            </div>
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <IoCalendar className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div
+                    className="field flex flex-col w-[80%]"
+                    style={{ ["--bgImg" as string]: `url(${calender.src})` }}
+                  >
+                    <label
+                      htmlFor="date"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Date
+                    </label>
+                    <input
+                      type="date"
+                      id="date"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="example@gmail.com"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <PiArrowUUpRightFill className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div className="field flex flex-col w-[80%]">
+                    <label
+                      htmlFor="pickup"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Pickup Location
+                    </label>
+                    <input
+                      type="text"
+                      id="pickup"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="London City Airport"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
+                <div className="inputField flex justify-start items-center gap-3">
+                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
+                    <PiArrowUUpLeftFill className="text-zinc-500 text-[1.5rem]" />
+                  </div>
+
+                  <div className="field flex flex-col w-[80%]">
+                    <label
+                      htmlFor="drop"
+                      className="text-zinc-900 font-bold text-[1rem]"
+                    >
+                      Drop Location
+                    </label>
+                    <input
+                      type="text"
+                      id="drop"
+                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
+                      placeholder="London City Blackheath"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="w-[calc(15%_-_20px)] text-end">
+                <button
+                  type="submit"
+                  className="text-white bg-black py-3 px-4 border-none rounded-3xl"
+                >
+                  Continue
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-white dark:bg-[#f6f6f6]">
+      {/* Make your trip Start */}
+      <section className="makeTrip pt-[100px]">
         <div className="container">
-          <h5 className=" text-center font-bold text-[1.125rem] text-[var(--theme)]">
-            WHAT WE DO
-          </h5>
-          <h4 className="text-[2.5rem] font-light text-center text-black">
-            The Car and Limousine Service
-          </h4>
-
-          <div className="flex flex-wrap items-stretch justify-start pt-20">
-            <div className="lg:w-4/12 md:w-6/12 w-full p-5">
-              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full">
-                <div className="relative z-0">
-                  <Image src={card1} className="w-full z-0 " alt="" />
-                  <div className="absolute z-10 top-1/2 left-1/2 -translate-y-3/4 -translate-x-1/2 w-36 h-20 border-2 border-b-0 border-white rounded-t-full"></div>
-                  <BsBuildings className=" absolute z-10 top-1/2 left-1/2  -translate-x-1/2  text-white dark:text-white text-6xl" />
-                  <div className="absolute w-full h-full bg-[rgba(133,140,146,0.4)] z-[1px] top-0 left-0"></div>
-                </div>
-                <div className="p-10 text-center">
-                  <a
-                    href=""
-                    className="block text-xl text-[var(--theme)] dark:text-white font-bold mb-5 "
-                  >
-                    CORPORATE TRAVEL
-                  </a>
-                  <p className="text-gray-600 dark:text-white font-light text-[1.125rem]">
-                    We provide business services and our own vehicle fleet so
-                    that you can reach your destination safely, in comfort and
-                    always on time
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* <!-- col-end --> */}
-            <div className="lg:w-4/12 md:w-6/12 w-full p-5">
-              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full">
-                <div className="relative z-0">
-                  <Image src={card2} className="w-full z-0 " alt="" />
-
-                  <div className="absolute z-10 top-1/2 left-1/2 -translate-y-3/4 -translate-x-1/2 w-36 h-20 border-2 border-b-0 border-white rounded-t-full"></div>
-                  <IoAirplaneOutline className=" absolute z-10 top-1/2 left-1/2  -translate-x-1/2  text-white dark:text-white text-6xl" />
-                  <div className="absolute w-full h-full bg-[rgba(133,140,146,0.4)] z-[1px] top-0 left-0"></div>
-                </div>
-                <div className="p-10 text-center">
-                  <a
-                    href=""
-                    className="block text-xl text-[var(--theme)] dark:text-white font-bold mb-5 "
-                  >
-                    AIRPORT TRANSFER
-                  </a>
-                  <p className="text-gray-600 dark:text-white font-light text-[1.125rem]">
-                    We provide airport transfers to and from all the major
-                    airports. Our service is the perfect option for when you are
-                    travelling for business or pleasure
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* <!-- col-end --> */}
-            <div className="lg:w-4/12 md:w-6/12 w-full p-5">
-              <div className="bg-white shadow-md text-black dark:bg-gray-600 dark:text-white h-full">
-                <div className="relative z-0">
-                  <Image src={card3} className="w-full z-0 " alt="" />
-
-                  <div className="absolute z-10 top-1/2 left-1/2 -translate-y-3/4 -translate-x-1/2 w-36 h-20 border-2 border-b-0 border-white rounded-t-full"></div>
-                  <LuSliders className="absolute z-10 top-1/2 left-1/2  -translate-x-1/2  text-white dark:text-white text-6xl" />
-                  <div className="absolute w-full h-full bg-[rgba(133,140,146,0.4)] z-[1px] top-0 left-0"></div>
-                </div>
-                <div className="p-10 text-center">
-                  <a
-                    href=""
-                    className="block text-xl text-[var(--theme)] dark:text-white font-bold mb-5 "
-                  >
-                    EVENT SERVICE
-                  </a>
-                  <p className="text-gray-600 dark:text-white font-light text-[1.125rem]">
-                    Whether it is a short shopping trip or a long-distance
-                    journey, we will get you there in comfort plus we will
-                    handle the entire event efficiently
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* <!-- col-end --> */}
+          <div className="sectionHeading text-center">
+            <h2 className="capitalize text-zinc-800 text-[2.3rem] font-bold">
+              Make your trip your way with us
+            </h2>
           </div>
+
+          <div className="flex justify-center items-center flex-wrap gap-10 pt-10">
+            {makeTrip.map((trip) => {
+              return (
+                <div
+                  className="xl:w-[calc(100%_/_4_-_40px)] md:w-[calc(100%_/_2_-_40px)] w-[calc(100%_/_1_-_40px)]"
+                  key={trip.title}
+                >
+                  <div className="card text-center cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                    <div className="card_icon  mx-auto bg-zinc-100 h-16 w-16 mb-6 rounded-full flex justify-center items-end">
+                      <trip.icon className="text-zinc-600 text-[2.5rem]" />
+                    </div>
+
+                    <h3 className="text-[1.3rem] text-zinc-800 font-semibold mb-4">
+                      {trip.title}
+                    </h3>
+                    <p className="text-[1rem] text-zinc-800 font-medium">
+                      {trip.para}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="pt-20">
+            <div className="bg-blue-700 pb-10 px-5 rounded-md">
+              <div
+                className="max-w-screen-lg mx-auto bg-no-repeat bg-center bg-cover pt-20 pb-10 flex flex-wrap justify-center items-center gap-5"
+                style={{ backgroundImage: ` url(${bgshap.src})` }}
+              >
+                <div className="lg:w-[calc(100%_/_2_-_20px)] w-[calc(100%_-_20px)]">
+                  <h2 className="text-[3rem] text-white font-bold">
+                    Showcase some impressive numbers.
+                  </h2>
+                </div>
+                <div className="lg:w-[calc(100%_/_2_-_20px)] w-[calc(100%_-_20px)]">
+                  <div className="flex justify-around items-center">
+                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                      <h3 className="text-[3rem] text-white font-semibold">
+                        285 +
+                      </h3>
+                      <h5 className="text-[1.3rem] text-white font-medium">
+                        Vehicles
+                      </h5>
+                    </div>
+                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                      <h3 className="text-[3rem] text-white font-semibold">
+                        97
+                      </h3>
+                      <h5 className="text-[1.3rem] text-white font-medium">
+                        Awards
+                      </h5>
+                    </div>
+                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                      <h3 className="text-[3rem] text-white font-semibold">
+                        13 k
+                      </h3>
+                      <h5 className="text-[1.3rem] text-white font-medium">
+                        Happy Customer
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Make your trip end */}
+
+      {/* Our fleet Start */}
+      <section className="ourFleet py-[100px] relative overflow-hidden z-0">
+        <div className="circle absolute bottom-[-40%] left-[-10%] border-[1px] border-blue-700 h-full z-[-1] w-[40%] rounded-[50%] scale-125"></div>
+
+        <div className="container xl:max-w-screen-2xl xl:ms-auto xl:me-0">
+          <div className="section_title">
+            <h3 className="text-[2.8rem] mb-5 text-zinc-800 font-semibold">
+              Our Fleet
+            </h3>
+          </div>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            speed={1000}
+            mousewheel={true}
+            modules={[Pagination, Mousewheel]}
+            breakpoints={{
+              639: {
+                slidesPerView: 2,
+              },
+              1023: {
+                slidesPerView: 3,
+              },
+              1400: {
+                slidesPerView: 4,
+              },
+            }}
+            className="mySwiper"
+          >
+            {carPost.map((car) => {
+              return (
+                <SwiperSlide key={car.title} className="pb-16 cursor-grab">
+                  <div className="card border border-zinc-400 rounded-lg py-8 px-4 bg-white hover:bg-zinc-50">
+                    <div className="card_titles">
+                      <h4 className="text-[1.2rem] font-semibold text-zinc-800 mb-3">
+                        {car.title}
+                      </h4>
+                      <p className="text-[0.9rem] text-zinc-700 font-normal">
+                        {car.subTitle}
+                      </p>
+                    </div>
+
+                    <div className="card_img w-full h-[200px]">
+                      <Image
+                        src={car.carImage}
+                        className="w-full h-full object-contain "
+                        alt="Car Image"
+                      />
+                    </div>
+                    <div className="icons flex justify-between items-center">
+                      <div className="persons flex justify-center items-center gap-2 w-[50%]">
+                        <div className="icon h-12 w-12 rounded-full bg-zinc-100 flex justify-center items-center">
+                          <PiUsersDuotone className="text-zinc-900 text-[1.2rem]" />
+                        </div>
+                        <span className="text-zinc-800 font-normal text-[1rem]">
+                          Passengers <span>{car.passenger}</span>
+                        </span>
+                      </div>
+                      <div className="luggages flex justify-center items-center gap-2 w-[50%]">
+                        <div className="icon h-12 w-12 rounded-full bg-zinc-100 flex justify-center items-center">
+                          <BsLuggageFill className="text-zinc-900 text-[1.2rem]" />
+                        </div>
+                        <span className="text-zinc-800 font-normal text-[1rem]">
+                          Luggage <span>{car.luggage}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </section>
-      <section className="bg-[#f6f6f6] dark:bg-gray-600">
-        <div className="flex flex-wrap justify-center items-stretch">
-          <Image
-            src={card3}
-            className="z-0 w-full lg:w-[calc(100%_/_2)] "
-            alt=""
-          />
+      {/* Our fleet End */}
 
-          <div className="w-full lg:w-[calc(100%_/_2)] p-12 max-md:p-7">
-            <div className="">
-              <h5 className=" text-center font-bold text-[1.125rem] text-[var(--theme)] dark:text-white">
-                WHY CHOOSE US
-              </h5>
-              <h4 className="text-[2.5rem] font-light text-center text-black dark:text-white mb-14">
-                Service Tailored to You
-              </h4>
-              <p className="text-[#778591]  dark:text-white font-light text-[1.375rem] text-center mb-14">
-                When organizing a special event you and your family or friends
-                might want to have a good time and not worry about driving. Our
-                experienced chauffeurs will guide you through what every city
-                you are in.
-              </p>
-
-              <div className="flex flex-wrap justify-around items-center">
-                <div className="w-3/12">
-                  <div className="w-12 h-12 rounded-full  bg-white dark:bg-gray-500 relative mx-auto block">
-                    <IoCarSportOutline className="text-6xl text-[var(--theme)] dark:text-white absolute bottom-1 right-1" />
-                  </div>
-                  <h6 className="font-bold text-[1.125rem] text-[#2C3E50] dark:text-white mt-8 text-center">
-                    Safety First
-                  </h6>
-                </div>
-                <div className="w-3/12">
-                  <div className="w-12 h-12 rounded-full  bg-white dark:bg-gray-500 relative mx-auto block">
-                    <BsBusFront className="text-6xl text-[var(--theme)] dark:text-white absolute bottom-1 right-1" />
-                  </div>
-                  <h6 className="font-bold text-[1.125rem] text-[#2C3E50] dark:text-white  mt-8 text-center">
-                    Coach Buses
-                  </h6>
-                </div>
-                <div className="w-3/12">
-                  <div className="w-12 h-12 rounded-full  bg-white dark:bg-gray-500  relative mx-auto block">
-                    <GiLighthouse className="text-6xl text-[var(--theme)] dark:text-white absolute bottom-1 right-1" />
-                  </div>
-                  <h6 className="font-bold text-[1.125rem] text-[#2C3E50] dark:text-white mt-8 text-center">
-                    Safe Haven
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-wrap items-stretch bg-[#f6f6f6] dark:bg-gray-600">
-          <div className="w-full lg:w-[calc(100%_/_2)] py-12 px-28 max-md:px-14 max-sm:px-5  flex flex-col justify-center items-stretch text-center">
-            <div className="w-12 h-12 rounded-full  bg-[#fff] dark:bg-gray-500  relative mx-auto block mb-10">
-              <PiChatsThin className="text-6xl text-[var(--theme)] dark:text-white absolute bottom-1 right-1" />
-            </div>
-            <p className="text-[#778591] dark:text-white font-light text-[1.375rem] text-center mb-14">
-              I couldn’t be happier with the transport you did. It was great and
-              your car was amazing. Thank you for your great service and I will
-              continue to refer friends and family to you all.
-            </p>
-
-            <h6 className="text-center uppercase tracking-[.125rem] text-[.875rem] dark:text-gray-200 text-[#778591]">
-              Betty Finsen
-            </h6>
-          </div>
-          <Image src={card1} className="w-full lg:w-[calc(100%_/_2)]" alt="" />
-        </div>
-      </section>
-      <TabComponents />
-      <section className="py-[100px]">
+      {/* How It Works Start */}
+      <section className="how py-[100px] bg-black">
         <div className="container">
-          <div className="flex flex-wrap gap-5 justify-center items-center">
-            <div className="lg:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
-              <div className="card shadow-sm">
-                <div className="card_img w-full h-[250px] relative">
-                  <Image
-                    src={car1}
-                    alt="Cars"
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="card_text absolute top-0 start-0 h-full w-full bg-black bg-opacity-10 flex justify-end items-start flex-col p-3">
-                    <button className="bg-white bg-opacity-70 border border-gray-400 py-2 px-3 text-[0.8rem] text-black font-bold mb-3">
-                      SEDAN
-                    </button>
+          <div className="section_title">
+            <h3 className="text-[2.8rem] text-white font-bold mb-5">
+              How It Works
+            </h3>
 
-                    <span className="card_name text-gray-300 font-bold text-[1.5rem]">
-                      AUDI
-                    </span>
-                  </div>
+            <div className="flex flex-wrap gap-5 justify-center items-stretch">
+              <div className="2xl:w-[calc(30%_-_20px)] lg:w-[calc(40%_-_20px)] w-[calc(100%_-_20px)]">
+                <div className="text-start mb-8">
+                  <h4 className="text-white text-[1.5rem] font-medium mb-3">
+                    Create Your Route
+                  </h4>
+                  <p className="text-white text-[1rem] font-normal">
+                    Enter your pickup & dropoff locations or the number of hours
+                    you wish to book a car and driver for
+                  </p>
                 </div>
-                <div className="card_body bg-white dark:bg-gray-600 py-3 flex justify-center items-center gap-5">
-                  <div className="seats_person text-black dark:text-white flex justify-center items-center gap-4">
-                    <TbUser className="text-[1.5rem]  text-gray-600 dark:text-white" />
-                    <span className="rounded-full w-7 h-7 border border-gray-300 font-normal text-[1rem] flex justify-center items-center leading-[1rem]">
-                      4
-                    </span>
-                  </div>
-                  <div className="seats_person text-black dark:text-white flex justify-center items-center gap-4">
-                    <BsLuggage className="text-[1.5rem] text-gray-600 dark:text-white" />
-                    <span className="rounded-full w-7 h-7 border border-gray-300 font-normal text-[1rem] flex justify-center items-center leading-[1rem]">
-                      6
-                    </span>
-                  </div>
-                  <div className="boot_space"></div>
+
+                <div className="text-start mb-8">
+                  <h4 className="text-white text-[1.5rem] font-medium mb-3">
+                    Choose Vehicle For You
+                  </h4>
+                  <p className="text-white text-[1rem] font-normal">
+                    Enter your pickup & dropoff locations or the number of hours
+                    you wish to book a car and driver for
+                  </p>
+                </div>
+
+                <div className="text-start mb-8">
+                  <h4 className="text-white text-[1.5rem] font-medium mb-3">
+                    Enjoy The Journey
+                  </h4>
+                  <p className="text-white text-[1rem] font-normal">
+                    Enter your pickup & dropoff locations or the number of hours
+                    you wish to book a car and driver for
+                  </p>
                 </div>
               </div>
-            </div>
-            <div className="lg:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
-              <div className="card shadow-sm">
-                <div className="card_img w-full h-[250px] relative">
-                  <Image
-                    src={car2}
-                    alt="Cars"
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="card_text absolute top-0 start-0 h-full w-full bg-black bg-opacity-10 flex justify-end items-start flex-col p-3">
-                    <button className="bg-white bg-opacity-70 border border-gray-400 py-2 px-3 text-[0.8rem] text-black font-bold mb-3">
-                      SEDAN
-                    </button>
-
-                    <span className="card_name text-gray-300 font-bold text-[1.5rem]">
-                      BMW
-                    </span>
+              <div
+                style={{ backgroundImage: ` url(${bg5.src})` }}
+                className="2xl:w-[calc(70%_-_20px)] lg:w-[calc(60%_-_20px)] w-[calc(100%_-_20px)] py-[100px] px-4 flex justify-center items-center  bg-no-repeat bg-center bg-fixed bg-cover relative z-0 after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-50 after:z-[-1]"
+              >
+                <div className="icons w-full flex justify-between relative z-0 before:z-[-1] before:absolute before:left-0 before:top-[50%] before:translate-y-[-50%] before:bg-white before:w-full before:h-1">
+                  <div className="circle_short h-8 w-8 rounded-full bg-gray-400 flex justify-center items-center">
+                    <div className="small h-4 w-4 rounded-full bg-white"></div>
                   </div>
-                </div>
-                <div className="card_body bg-white dark:bg-gray-600 py-3 flex justify-center items-center gap-5">
-                  <div className="seats_person text-black dark:text-white flex justify-center items-center gap-4">
-                    <TbUser className="text-[1.5rem]  text-gray-600 dark:text-white" />
-                    <span className="rounded-full w-7 h-7 border border-gray-300 font-normal text-[1rem] flex justify-center items-center leading-[1rem]">
-                      4
-                    </span>
+                  <div className="circle_short h-8 w-8 rounded-full bg-gray-400 flex justify-center items-center">
+                    <div className="small h-4 w-4 rounded-full bg-white"></div>
                   </div>
-                  <div className="seats_person text-black dark:text-white flex justify-center items-center gap-4">
-                    <BsLuggage className="text-[1.5rem] text-gray-600 dark:text-white" />
-                    <span className="rounded-full w-7 h-7 border border-gray-300 font-normal text-[1rem] flex justify-center items-center leading-[1rem]">
-                      6
-                    </span>
+                  <div className="circle_short h-8 w-8 rounded-full bg-gray-400 flex justify-center items-center">
+                    <div className="small h-4 w-4 rounded-full bg-white"></div>
                   </div>
-                  <div className="boot_space"></div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
-              <div className="card shadow-sm">
-                <div className="card_img w-full h-[250px] relative">
-                  <Image
-                    src={car3}
-                    alt="Cars"
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="card_text absolute top-0 start-0 h-full w-full bg-black bg-opacity-10 flex justify-end items-start flex-col p-3">
-                    <button className="bg-white bg-opacity-70 border border-gray-400 py-2 px-3 text-[0.8rem] text-black font-bold mb-3">
-                      SEDAN
-                    </button>
-
-                    <span className="card_name text-gray-300 font-bold text-[1.5rem]">
-                      MERCEDES
-                    </span>
+                  <div className="button">
+                    <a
+                      href="#top"
+                      className="no-underline text-[1rem] text-black bg-white rounded-3xl py-3 px-5"
+                    >
+                      Continue Now
+                    </a>
                   </div>
-                </div>
-                <div className="card_body bg-white dark:bg-gray-600 py-3 flex justify-center items-center gap-5">
-                  <div className="seats_person text-black dark:text-white flex justify-center items-center gap-4">
-                    <TbUser className="text-[1.5rem]  text-gray-600 dark:text-white" />
-                    <span className="rounded-full w-7 h-7 border border-gray-300 font-normal text-[1rem] flex justify-center items-center leading-[1rem]">
-                      4
-                    </span>
-                  </div>
-                  <div className="seats_person text-black dark:text-white flex justify-center items-center gap-4">
-                    <BsLuggage className="text-[1.5rem] text-gray-600 dark:text-white" />
-                    <span className="rounded-full w-7 h-7 border border-gray-300 font-normal text-[1rem] flex justify-center items-center leading-[1rem]">
-                      6
-                    </span>
-                  </div>
-                  <div className="boot_space"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      {/* How It Works End */}
+
+      {/* Our Service Start */}
+      <section className="ourService py-[100px] relative overflow-hidden z-0">
+        <div className="circle absolute bottom-[-40%] right-[-10%] border-[1px] border-blue-700 h-full z-[-1] w-[40%] rounded-[50%] scale-125"></div>
+
+        <div className="xl:max-w-screen-2xl me-auto px-4">
+          <div className="section_title">
+            <h3 className="text-[2.8rem] text-end mb-5 text-zinc-800 font-semibold">
+              Our Services
+            </h3>
+          </div>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            speed={1000}
+            mousewheel={true}
+            loop={true}
+            modules={[Pagination, Mousewheel]}
+            className="mySwiper pb-12"
+            breakpoints={{
+              639: {
+                slidesPerView: 2,
+              },
+              1023: {
+                slidesPerView: 3,
+              },
+              1400: {
+                slidesPerView: 4,
+              },
+            }}
+          >
+            {servicePost.map((service) => {
+              return (
+                <SwiperSlide key={service.title} className="pb-16">
+                  <div className="relative z-0 overflow-hidden rounded-2xl [&_.cardBody]:hover:bottom-0 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-blue-700 before:to-[#0000ff11] before:hover:top-0 before:hover:opacity-100 before:transition-all  before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-25 after:z-[8]">
+                    <div className="card_img w-full h-[400px] rounded-2xl overflow-hidden">
+                      <Image
+                        src={service.serviceImage}
+                        className="w-full h-full object-cover "
+                        alt="Car Image"
+                      />
+                    </div>
+                    <div className="cardBody bg-transparent p-5 flex flex-col justify-end items-start absolute z-30 bottom-[-30%] left-0 w-full transition-all duration-300">
+                      <h3 className="text-white mb-5 text-[1.7rem]">
+                        Intercity Rides
+                      </h3>
+                      <p className="text-white mb-4">
+                        At the heart Of Wedding Class is a commitment to
+                        personalized service.
+                      </p>
+
+                      <a href="#" className=" text-white">
+                        <LuArrowUpRightFromCircle className="text-[2.5rem]" />
+                      </a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      </section>
+      {/* Our Service End */}
+
+      {/* News Start */}
+      <section className="news bg-black py-[100px]">
+        <div className="container max-w-screen-xl">
+          <div className="sectionHeading mb-6">
+            <h3 className="text-white text-[2.8rem] font-semibold">
+              Latest From News
+            </h3>
+          </div>
+
+          <div className="flex flex-wrap justify-center items-center gap-5">
+            <div className="lg:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
+              <div className="card p-2 [&_img]:hover:scale-110 cursor-pointer [&_.cardImage]:hover:before:top-0 [&_.cardImage]:hover:before:opacity-100">
+                <div className="cardImage w-full h-[300px] rounded-xl overflow-hidden relative z-0 before:z-10 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-[#00f4] before:to-[#0000ff11]  before:transition-all  before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-25 after:z-[8]">
+                  <Image
+                    src={s2}
+                    alt="s1"
+                    className="w-full h-full object-cover transition-all duration-300"
+                  />
+                  <h2 className="text-[3rem] text-white font-normal flex flex-col absolute z-20 top-3 left-3">
+                    <strong className="leading-none">18.</strong>
+                    <span className="text-[1rem]">April, 2024</span>
+                  </h2>
+                </div>
+
+                <div className="cardBody pt-5 px-1">
+                  <h4 className="cardTitle text-[0.9rem] text-white font-normal mb-3">
+                    Car Rent
+                  </h4>
+
+                  <p className="text-white font-semibold text-[1.5rem] mb-4">
+                    Escaping London for a relaxing long weekend
+                  </p>
+
+                  <p className="text-white font-normal text-[1rem] mb-4">
+                    Explore the picturesque countryside of England, such as the
+                    Cotswolds, Lake District, or Peak District.
+                  </p>
+                  <a href="#" className=" text-white">
+                    <LuArrowUpRightFromCircle className="text-[2.5rem]" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="lg:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
+              <div className="card p-2 [&_img]:hover:scale-110 cursor-pointer [&_.cardImage]:hover:before:top-0 [&_.cardImage]:hover:before:opacity-100">
+                <div className="cardImage w-full h-[300px] rounded-xl overflow-hidden relative z-0 before:z-10 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-[#00f4] before:to-[#0000ff11]  before:transition-all  before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-25 after:z-[8]">
+                  <Image
+                    src={s5}
+                    alt="s1"
+                    className="w-full h-full object-cover transition-all duration-300"
+                  />
+                  <h2 className="text-[3rem] text-white font-normal flex flex-col absolute z-20 top-3 left-3">
+                    <strong className="leading-none">18.</strong>
+                    <span className="text-[1rem]">April, 2024</span>
+                  </h2>
+                </div>
+
+                <div className="cardBody pt-5 px-1">
+                  <h4 className="cardTitle text-[0.9rem] text-white font-normal mb-3">
+                    Car Rent
+                  </h4>
+
+                  <p className="text-white font-semibold text-[1.5rem] mb-4">
+                    Escaping London for a relaxing long weekend
+                  </p>
+
+                  <p className="text-white font-normal text-[1rem] mb-4">
+                    Explore the picturesque countryside of England, such as the
+                    Cotswolds, Lake District, or Peak District.
+                  </p>
+                  <a href="#" className=" text-white">
+                    <LuArrowUpRightFromCircle className="text-[2.5rem]" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="lg:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
+              <div className="card p-2 [&_img]:hover:scale-110 cursor-pointer [&_.cardImage]:hover:before:top-0 [&_.cardImage]:hover:before:opacity-100">
+                <div className="cardImage w-full h-[300px] rounded-xl overflow-hidden relative z-0 before:z-10 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-[#00f4] before:to-[#0000ff11]  before:transition-all  before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-25 after:z-[8]">
+                  <Image
+                    src={s4}
+                    alt="s1"
+                    className="w-full h-full object-cover transition-all duration-300"
+                  />
+                  <h2 className="text-[3rem] text-white font-normal flex flex-col absolute z-20 top-3 left-3">
+                    <strong className="leading-none">18.</strong>
+                    <span className="text-[1rem]">April, 2024</span>
+                  </h2>
+                </div>
+
+                <div className="cardBody pt-5 px-1">
+                  <h4 className="cardTitle text-[0.9rem] text-white font-normal mb-3">
+                    Car Rent
+                  </h4>
+
+                  <p className="text-white font-semibold text-[1.5rem] mb-4">
+                    Escaping London for a relaxing long weekend
+                  </p>
+
+                  <p className="text-white font-normal text-[1rem] mb-4">
+                    Explore the picturesque countryside of England, such as the
+                    Cotswolds, Lake District, or Peak District.
+                  </p>
+                  <a href="#" className=" text-white">
+                    <LuArrowUpRightFromCircle className="text-[2.5rem]" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* News end */}
+
+      {/* FAQ Start */}
+      <section className="faq py-[100px] border-t border-zinc-300">
+        <div className="container">
+          <div className="max-w-screen-md mx-auto">
+            <div className="section_title text-center mb-14">
+              <h3 className="text-[3rem] text-black font-medium">
+                Frequently Asked Questions
+              </h3>
+            </div>
+            <div className="acordians">
+              <ul className="list-none">
+                <li className="pb-6 border-b border-zinc-400">
+                  <h3 className="text-black text-[1.5rem] font-semibold flex justify-between items-center">
+                    <span>How do I create an account?</span> <CiCirclePlus className="text-black text-[1.5rem]" />
+                  </h3>
+                  <p className="text-[1rem] text-black font-normal pt-3">
+                    Serenity Is Multi-Faceted Blockchain Based Ecosystem, Energy
+                    Retailer For The People, Focusing On The Promotion Of
+                    Sustainable Living, Renewable Energy Production And Smart
+                    Energy Grid Utility Services.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* FAQ End */}
     </>
   );
 }

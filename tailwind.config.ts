@@ -12,6 +12,17 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      container: {
+        center: true,
+        padding: '2rem',
+      },
+      fontFamily: {
+        sans: ["ui-sans-serif", "system-ui"],
+        serif: ["ui-serif", "Georgia"],
+        mono: ["ui-monospace", "SFMono-Regular"],
+        display: ['"DM Sans", sans-serif'],
+        body: ['"DM Sans", sans-serif'],
+      },
     },
   },
   plugins: [],
