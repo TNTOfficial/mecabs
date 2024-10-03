@@ -6,6 +6,7 @@ import client from "@/lib/db"
 
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  secret: process.env.AUTH_SECRET,
   adapter: MongoDBAdapter(client),
   providers: [Google, GitHub],   
 })

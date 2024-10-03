@@ -1,184 +1,404 @@
-
 "use client";
 
 import React, { useState } from "react";
-import CountryCode from '../components/CountryCode'
-import banner1 from '@/public/banner1.jpg'
+import CountryCode from "../components/CountryCode";
+import banner1 from "@/public/banner1.jpg";
+import { PiArrowUUpLeftFill, PiArrowUUpRightFill } from "react-icons/pi";
+import { IoCalendar, IoMailUnreadOutline } from "react-icons/io5";
+import calender from "@/public/calendar.png";
 
 export default function BookingForm() {
-    const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(0);
 
-    const handleTabClick = (index: number) => {
-        setActiveTab(index);
-    };
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+  };
 
-    return (
-        <>
-            {/* Booking Page Landing section Start */}
-            <section
-                style={{ backgroundImage: ` url(${banner1.src})` }}
-                className="landing_area bg-no-repeat bg-cover bg-center relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0"
-            >
-                <div className="container mx-auto px-5">
-                    <div className="flex min-h-[40vh] justify-start items-center ">
-                        <div className="w-full px-3">
-                            <div className="text">
-                                <h1 className="text-[3rem] font-normal mb-5 dark:text-white text-white">
-                                    Booking Now
-                                </h1>
-                                <h5 className="text-[1.3rem] font-normal dark:text-white text-white">
-                                    HOME - Booking Now
-                                </h5>
+  return (
+    <>
+      {/* Booking form All types Start */}
+      <section className="bg-gray-100">
+        <div className="flex flex-wrap justify-start items-stretch min-h-[calc(100vh_-_70px)]">
+          <div className="lg:w-[400px] w-full ">
+            <div className="continueForm bg-white h-full w-full px-0 py-2  shadow-lg border-t">
+              <div className="px-6">
+                <ul className="list-none mb-2 shadow flex justify-between rounded-lg items-center w-full overflow-hidden  border-b-2 dark:bg-gray-600">
+                  <li
+                    className={`text-[1rem] px-1 py-2 w-[calc(100%_/_3)] rounded-s-lg text-center ${
+                      activeTab === 0
+                        ? "bg-white text-black font-bold"
+                        : "bg-blue-500 text-white font-normal"
+                    }`}
+                    onClick={() => handleTabClick(0)}
+                  >
+                    Booking
+                  </li>
+                  <li
+                    className={`text-[1rem] px-1 py-2 w-[calc(100%_/_3)] text-center ${
+                      activeTab === 1
+                        ? "bg-white text-black font-bold"
+                        : "bg-blue-500 text-white font-normal"
+                    }`}
+                    onClick={() => handleTabClick(1)}
+                  >
+                    Hourly
+                  </li>
+                  <li
+                    className={`text-[1rem] px-1 py-2 w-[calc(100%_/_3)] rounded-e-lg text-center ${
+                      activeTab === 2
+                        ? "bg-white text-black font-bold"
+                        : "bg-blue-500 text-white font-normal"
+                    }`}
+                    onClick={() => handleTabClick(2)}
+                  >
+                    Parcel
+                  </li>
+                </ul>
+                <div className="card_body pt-2">
+                  <div
+                    className={`${
+                      activeTab === 0 ? "block show" : "hidden hide"
+                    }`}
+                  >
+                    <form
+                      action=""
+                      className="flex lg:justify-center md:justify-start items-center flex-wrap gap-2"
+                    >
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <IoMailUnreadOutline className="text-zinc-500 text-[1.5rem]" />
+                          </div>
 
-                            </div>
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="mail"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Maild
+                            </label>
+                            <input
+                              id="mail"
+                              type="email"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="example@gmail.com"
+                            />
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <IoCalendar className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div
+                            className="field flex flex-col w-[80%]"
+                            style={{
+                              ["--bgImg" as string]: `url(${calender.src})`,
+                            }}
+                          >
+                            <label
+                              htmlFor="date"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Date
+                            </label>
+                            <input
+                              type="date"
+                              id="date"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="example@gmail.com"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <PiArrowUUpRightFill className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="pickup"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Pickup Location
+                            </label>
+                            <input
+                              type="text"
+                              id="pickup"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="London City Airport"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <PiArrowUUpLeftFill className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="drop"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Drop Location
+                            </label>
+                            <input
+                              type="text"
+                              id="drop"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="London City Blackheath"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full text-center">
+                        <button
+                          type="submit"
+                          className="text-white bg-black py-3 px-4 w-full border-none rounded-3xl"
+                        >
+                          Continue
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div
+                    className={`${
+                      activeTab === 1 ? "block show" : "hidden hide"
+                    }`}
+                  >
+                    <form
+                      action=""
+                      className="flex lg:justify-center md:justify-start items-center flex-wrap gap-2"
+                    >
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <IoMailUnreadOutline className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="mail"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Maild
+                            </label>
+                            <input
+                              id="mail"
+                              type="email"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="example@gmail.com"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <IoCalendar className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div
+                            className="field flex flex-col w-[80%]"
+                            style={{
+                              ["--bgImg" as string]: `url(${calender.src})`,
+                            }}
+                          >
+                            <label
+                              htmlFor="date"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Date
+                            </label>
+                            <input
+                              type="date"
+                              id="date"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="example@gmail.com"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <PiArrowUUpRightFill className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="pickup"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Pickup Location
+                            </label>
+                            <input
+                              type="text"
+                              id="pickup"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="London City Airport"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <PiArrowUUpLeftFill className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="drop"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Drop Location
+                            </label>
+                            <input
+                              type="text"
+                              id="drop"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="London City Blackheath"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full text-center">
+                        <button
+                          type="submit"
+                          className="text-white bg-black py-3 px-4 w-full border-none rounded-3xl"
+                        >
+                          Continue
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div
+                    className={`${
+                      activeTab === 2 ? "block show" : "hidden hide"
+                    }`}
+                  >
+                    <form
+                      action=""
+                      className="flex lg:justify-center md:justify-start items-center flex-wrap gap-2"
+                    >
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <IoMailUnreadOutline className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="mail"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Maild
+                            </label>
+                            <input
+                              id="mail"
+                              type="email"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="example@gmail.com"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <IoCalendar className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div
+                            className="field flex flex-col w-[80%]"
+                            style={{
+                              ["--bgImg" as string]: `url(${calender.src})`,
+                            }}
+                          >
+                            <label
+                              htmlFor="date"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Date
+                            </label>
+                            <input
+                              type="date"
+                              id="date"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="example@gmail.com"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <PiArrowUUpRightFill className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="pickup"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Pickup Location
+                            </label>
+                            <input
+                              type="text"
+                              id="pickup"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="London City Airport"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full">
+                        <div className="inputField flex justify-start items-center gap-3 bg-zinc-100 rounded-xl p-2">
+                          <div className="icon h-10 min-w-10 max-w-10 w-full flex justify-center items-center rounded-full bg-white">
+                            <PiArrowUUpLeftFill className="text-zinc-500 text-[1.5rem]" />
+                          </div>
+
+                          <div className="field flex flex-col w-[80%]">
+                            <label
+                              htmlFor="drop"
+                              className="text-zinc-900 font-bold text-[1rem]"
+                            >
+                              Drop Location
+                            </label>
+                            <input
+                              type="text"
+                              id="drop"
+                              className="text-zinc-700 font-semibold bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-400"
+                              placeholder="London City Blackheath"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full text-center">
+                        <button
+                          type="submit"
+                          className="text-white bg-black py-3 px-4 w-full border-none rounded-3xl"
+                        >
+                          Continue
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-            </section>
-            {/* Booking Page Landing section End */}
+              </div>
+            </div>
+          </div>
 
-
-            {/* Booking form All types Start */}
-            <section className="py-[100px] bg-gray-100">
-                <div className="container">
-                    <div className="flex flex-wrap gap-5 justify-center items-stretch">
-                        <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
-
-                            <div className="card shadow transition-all duration-300 bg-white dark:bg-gray-600">
-                                <div>
-                                    <ul className="list-none flex justify-between items-center w-full bg-white border-b-2 dark:bg-gray-600">
-                                        <li
-                                            className={`tab-button ${activeTab === 0
-                                                ? "active px-3 py-3 rounded-ee-md cursor-pointer text-blue-500 transition-all text-center dark:text-white duration-300 font-bold border border-blue-500 w-1/2"
-                                                : "transition-all duration-300 px-3 py-3 cursor-pointer text-center text-black font-bold dark:text-white w-1/2 border border-transparent"
-                                                }`}
-                                            onClick={() => handleTabClick(0)}
-                                        >
-                                            Booking
-                                        </li>
-                                        <li
-                                            className={`tab-button ${activeTab === 1
-                                                ? "active px-3 py-3 rounded-b-md cursor-pointer text-blue-500 transition-all text-center dark:text-white duration-300 font-bold border border-blue-500 w-1/2"
-                                                : "transition-all duration-300 px-3 py-3 cursor-pointer text-center text-black font-bold dark:text-white w-1/2 border border-transparent"
-                                                }`}
-                                            onClick={() => handleTabClick(1)}
-                                        >
-
-                                            Hourly
-                                        </li>
-                                        <li
-                                            className={`tab-button ${activeTab === 2
-                                                ? "active px-3 py-3 rounded-es-md cursor-pointer text-blue-500 transition-all text-center dark:text-white duration-300 font-bold border border-blue-500 w-1/2"
-                                                : "transition-all duration-300 px-3 py-3 cursor-pointer text-center text-black font-bold dark:text-white w-1/2 border border-transparent"
-                                                }`}
-                                            onClick={() => handleTabClick(2)}
-                                        >
-                                            Parcel
-                                        </li>
-                                    </ul>
-                                    <div className="card_body">
-                                        <div className={`${activeTab === 0 ? "block show" : "hidden hide"}`}>
-                                            <form action="#">
-                                                <div className="flex flex-wrap justify-between items-stretch">
-                                                    <div className="w-[calc(100%_/_2_-_2px)] px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="date" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Date</label>
-                                                        <input id="date" type="date" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="v_divider w-[1px] bg-gray-300"></div>
-                                                    <div className="w-[calc(100%_/_2_-_2px)] px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="time" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Time</label>
-                                                        <input id="time" type="time" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="pickupLocation" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Location</label>
-                                                        <input id="pickupLocation" placeholder="Enter a location" type="text" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="dropOffLocation" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Drop-Off Location</label>
-                                                        <input id="dropOffLocation" placeholder="Enter a location" type="text" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <CountryCode />
-                                                    </div>
-                                                    <div className="w-full px-0 pt-0 pb-0">
-                                                        <input type="submit" className="bg-blue-500 text-white cursor-pointer transition-all duration-300 hover:bg-blue-700 w-full py-3 ps-7 pe-5 font-medium text-[0.9rem] flex justify-center items-center gap-2" />
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div className={`${activeTab === 1 ? "block show" : "hidden hide"}`}>
-                                            <form action="#">
-                                                <div className="flex flex-wrap justify-between items-stretch">
-                                                    <div className="w-[calc(100%_/_2_-_2px)] px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="date" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Date</label>
-                                                        <input id="date" type="date" className=" bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="v_divider w-[1px] bg-gray-300"></div>
-                                                    <div className="w-[calc(100%_/_2_-_2px)] px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="time" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Time</label>
-                                                        <input id="time" type="time" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="pickupLocation" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Location</label>
-                                                        <input id="pickupLocation" placeholder="Enter a location" type="text" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="dropOffLocation" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Drop-Off Location</label>
-                                                        <input id="dropOffLocation" placeholder="Enter a location" type="text" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <CountryCode />
-                                                    </div>
-                                                    <div className="w-full px-0 pt-0 pb-0">
-                                                        <input type="submit" className="bg-blue-500 text-white cursor-pointer transition-all duration-300 hover:bg-blue-700 w-full py-3 ps-7 pe-5 font-medium text-[0.9rem] flex justify-center items-center gap-2" />
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div className={`${activeTab === 2 ? "block show" : "hidden hide"}`}>
-                                            <form action="#">
-                                                <div className="flex flex-wrap justify-between items-stretch">
-                                                    <div className="w-[calc(100%_/_2_-_2px)] px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="date" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Date</label>
-                                                        <input id="date" type="date" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="v_divider w-[1px] bg-gray-300"></div>
-                                                    <div className="w-[calc(100%_/_2_-_2px)] px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="time" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Time</label>
-                                                        <input id="time" type="time" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="pickupLocation" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Pickup Location</label>
-                                                        <input id="pickupLocation" placeholder="Enter a location" type="text" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <label htmlFor="dropOffLocation" className="block mb-0 text-xs font-normal  text-gray-700 dark:text-white text-nowrap uppercase">Drop-Off Location</label>
-                                                        <input id="dropOffLocation" placeholder="Enter a location" type="text" className="bg-white border-0 text-gray-900 outline-none text-[1.1rem] focus:ring-yellow-300 focus:border-yellow-300 block w-full px-25 pb-6 pt-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
-                                                    </div>
-                                                    <div className="w-full px-4 pt-3 pb-0 border-b-[1px]">
-                                                        <CountryCode />
-                                                    </div>
-                                                    <div className="w-full px-0 pt-0 pb-0">
-                                                        <input type="submit" className="bg-blue-500 text-white cursor-pointer transition-all duration-300 hover:bg-blue-700 w-full py-3 ps-7 pe-5 font-medium text-[0.9rem] flex justify-center items-center gap-2" />
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </>
-    )
+          <div className="w-[calc(100%_-_400px)] bg-gray-300"></div>
+        </div>
+      </section>
+    </>
+  );
 }
-
-

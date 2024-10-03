@@ -16,7 +16,7 @@ import { FaXTwitter } from 'react-icons/fa6'
 export default function Footer() {
     return (
         <>
-            <footer className='bg-[#eaecee] '>
+            <footer className='bg-zinc-50 '>
                 <div className="max-w-screen-2xl mx-auto px-6 py-[60px]">
                     <div className="upper_footer mb-16 flex flex-wrap justify-center lg:justify-between gap-x-5 gap-y-7">
                         <div className="lg:w-[calc(100%_/_3_-_15px)] sm:w-[calc(100%_/_2_-_15px)] w-[calc(100%_-_15px)]">

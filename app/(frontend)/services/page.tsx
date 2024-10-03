@@ -1,14 +1,5 @@
 import React from "react";
-import banner2 from "@/public/banner2.jpg";
 import banner3 from "@/public/banner3.jpg";
-import {
-  PiAirplaneInFlightThin,
-  PiAirplaneThin,
-  PiCarProfileThin,
-  PiDoorOpenThin,
-  PiRoadHorizonThin,
-  PiWifiHighThin,
-} from "react-icons/pi";
 import Image from "next/image";
 import s1 from "@/public/01.jpg";
 import s2 from "@/public/02.jpg";
