@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import CountryCode from "../components/CountryCode";
-import banner1 from "@/public/banner1.jpg";
+import gmap from "@/public/map.png";
 import { PiArrowUUpLeftFill, PiArrowUUpRightFill } from "react-icons/pi";
 import { IoCalendar, IoMailUnreadOutline } from "react-icons/io5";
 import calender from "@/public/calendar.png";
+import Image from "next/image";
 
 export default function BookingForm() {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,8 +19,8 @@ export default function BookingForm() {
       {/* Booking form All types Start */}
       <section className="bg-gray-100">
         <div className="flex flex-wrap justify-start items-stretch min-h-[calc(100vh_-_70px)]">
-          <div className="lg:w-[400px] w-full ">
-            <div className="continueForm bg-white h-full w-full px-0 py-2  shadow-lg border-t">
+          <div className="lg:w-[400px] w-full max-lg:order-2  ">
+            <div className="continueForm bg-white h-full w-full px-0 py-2 max-lg:pt-10  shadow-lg border-t">
               <div className="px-6">
                 <ul className="list-none mb-2 shadow flex justify-between rounded-lg items-center w-full overflow-hidden  border-b-2 dark:bg-gray-600">
                   <li
@@ -396,7 +396,9 @@ export default function BookingForm() {
             </div>
           </div>
 
-          <div className="w-[calc(100%_-_400px)] bg-gray-300"></div>
+          <div className="lg:w-[calc(100%_-_400px)] w-full max-lg:order-1 min-h-[200px] max-lg:max-h-[300px] bg-gray-300">
+            <Image src={gmap} alt="map" className="w-full h-full object-cover object-left-top" />
+          </div>
         </div>
       </section>
     </>
