@@ -34,6 +34,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import { CiCirclePlus } from "react-icons/ci";
+import Link from "next/link";
+import { FiPhoneCall } from "react-icons/fi";
 
 export default function Home() {
   // useEffect(() => {
@@ -147,8 +149,24 @@ export default function Home() {
       <section id="top" className="landing_area relative z-0">
         <LandingSlider />
 
-        <div className="max-w-screen-xl w-full px-3 mx-auto md:absolute 2xl:bottom-[100px] md:bottom-[40px] left-[50%] max-md:mt-[50px] md:translate-x-[-50%] z-10">
-          <div className="continueForm bg-white rounded-[50px] w-full px-5 py-5  shadow-lg border-t"></div>
+        <div className="max-w-screen-xl w-full px-3 mx-auto absolute 2xl:bottom-[100px] bottom-[40px] left-[50%] translate-x-[-50%] z-10">
+          <div className="continueForm bg-white rounded-[50px] w-full px-16 py-3  shadow-lg border-t flex md:justify-between justify-center items-center flex-wrap gap-4">
+            <h3 className="text-[1.6rem] font-bold">Start Your Journey</h3>
+            <Link
+              href="/booking"
+              className="text-white bg-black py-4 px-16 hover:scale-95 transition-all duration-300 hover:shadow-sm shadow-none hover:shadow-blue-700 inline-block text-nowrap border-none rounded-[50px]"
+            >Book Now</Link>
+
+            <Link
+              href="tel: +91 0000000000"
+              className="no-underline text-black flex justify-center items-center gap-2"
+            >
+              <FiPhoneCall className="text-black text-[1rem]" />{" "}
+              <span className="font-extrabold text-black text-[0.9rem]">
+                +91 00000XXXXX
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -11,7 +11,6 @@ import { MdMenuOpen } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { FiPhoneCall, FiSearch } from "react-icons/fi";
-import { IoCarSportOutline } from "react-icons/io5";
 import Image from "next/image";
 export default function Navbar() {
   const pathname = usePathname();

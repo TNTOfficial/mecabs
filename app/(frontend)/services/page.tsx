@@ -72,7 +72,7 @@ export default function ServicesPage() {
       {/* Services Page Landing section End */}
 
       {/* Service details Section Start */}
-      <section className="bg-white dark:bg-gray-600 py-[100px]">
+      <section className="bg-white dark:bg-gray-600 pt-[100px]">
         <div className="container">
           <div className="flex flex-wrap gap-5 justify-center items-center">
             <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
