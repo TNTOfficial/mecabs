@@ -104,12 +104,6 @@ export default function Navbar() {
                   >
                     Login
                   </Link>
-                  <Link
-                    href="/register"
-                    className="bg-white border border-[#2e2e2e] text-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
-                  >
-                    SignUp
-                  </Link>
                   </>
           ) : (
             <>
