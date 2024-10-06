@@ -1,8 +1,9 @@
 import { signIn } from "@/auth";
-
 export default function SignIn() {
   return (
-    <>      
+    <>
+
+
       <form
         action={async () => {
           "use server";
@@ -27,7 +28,6 @@ export default function SignIn() {
       >
         <button type="submit">Continue with Facebook</button>
       </form>
-      
     </>
   );
 }

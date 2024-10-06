@@ -14,7 +14,6 @@ export default function LoginForm({
           <span onClick={() => setCustomCLogin(false)}>Back</span>
           <h2>Continue with your email</h2>
           <form>
-
           </form>
         </>
       ) : (
