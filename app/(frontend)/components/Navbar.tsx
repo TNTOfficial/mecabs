@@ -3,25 +3,15 @@ import React from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import logo from "@/public/logo.png"
 // import Image from "next/image";
 // import Logo from "../../../../public/logo.png";
 
-import {
-  IoCarSportOutline,
-  IoMapOutline,
-  IoPhonePortraitOutline,
-  IoTimeOutline,
-  IoLogoFacebook,
-  IoLogoInstagram,
-  IoLogoWhatsapp,
-  IoSearchOutline,
-} from "react-icons/io5";
-import { FaXTwitter } from "react-icons/fa6";
 import { MdMenuOpen } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { IoIosSearch } from "react-icons/io";
 import { FiPhoneCall, FiSearch } from "react-icons/fi";
+import Image from "next/image";
 export default function Navbar() {
   const pathname = usePathname();
   const [display, setDisplay] = useState(false);
@@ -38,13 +28,10 @@ export default function Navbar() {
   };
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-600 border-t border-transparent dark:border-white">
+      <nav className="bg-white border-gray-200 dark:bg-gray-600 border-t border-transparent dark:border-white sticky top-0 z-50 shadow-sm shadow-zinc-200">
         <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href="/" className="flex gap-3 items-center">
-            <IoCarSportOutline className="self-center text-[3rem] text-[var(--theme)] font-semibold whitespace-nowrap dark:text-gray-200" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
-              ME CABS
-            </span>
+          <Image src={logo} alt="" className="min-w-[150px] max-w-[180px] h-full " />
           </Link>
           <div className="lg:w-[82%]">
             <div
@@ -107,17 +94,18 @@ export default function Navbar() {
                   </>
           ) : (
             <>
-              {session.user?.name}
-              <li>
+           
+              <div className="flex justify-center items-center gap-3">
+                <span className="font-bold italic underline decoration-wavy decoration-1 cursor-pointer">{session.user?.name}</span>
                 <button
                   onClick={() => {
                     signOut();
                   }}
-                  className="p-2 px-5 -mt-1 bg-blue-800 rounded-full"
-                >
+                  className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
+                  >
                   Logout
                 </button>
-                </li>
+                </div>
             </>
           )}
                 </div>

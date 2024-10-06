@@ -24,6 +24,7 @@ async function getUser(email: string): Promise<User | undefined> {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
+  secret: process.env.AUTH_SECRET,
   adapter: MongoDBAdapter(client),
   providers: [
     Google,

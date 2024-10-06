@@ -15,21 +15,15 @@ import s2 from "@/public/02.jpg";
 import s3 from "@/public/03.jpg";
 import s4 from "@/public/04.jpg";
 import s5 from "@/public/05.jpg";
-import bg4 from "@/public/bg4.png";
 import bg5 from "@/public/bg5.jpg";
 import bgshap from "@/public/bgshap.png";
-import calender from "@/public/calendar.png";
 
 // import { useEffect } from "react";
 // import AOS from "aos";
 
 import "aos/dist/aos.css";
-import { IoCalendar, IoCarOutline, IoMailUnreadOutline } from "react-icons/io5";
-import {
-  PiArrowUUpLeftFill,
-  PiArrowUUpRightFill,
-  PiUsersDuotone,
-} from "react-icons/pi";
+import { IoCarOutline } from "react-icons/io5";
+import { PiUsersDuotone } from "react-icons/pi";
 import LandingSlider from "./components/landingSlider";
 import { AiOutlineSafety } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
@@ -40,6 +34,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import { CiCirclePlus } from "react-icons/ci";
+import Link from "next/link";
+import { FiPhoneCall } from "react-icons/fi";
 
 export default function Home() {
   // useEffect(() => {
@@ -153,112 +149,23 @@ export default function Home() {
       <section id="top" className="landing_area relative z-0">
         <LandingSlider />
 
-        <div className="max-w-screen-xl w-full px-3 mx-auto md:absolute 2xl:bottom-[100px] md:bottom-[40px] left-[50%] max-md:mt-[50px] md:translate-x-[-50%] z-10">
-          <div className="continueForm bg-white rounded-[50px] w-full px-5 py-5  shadow-lg border-t">
-            <form
-              action=""
-              className="flex lg:justify-center md:justify-start items-center flex-wrap gap-5"
+        <div className="max-w-screen-xl w-full px-3 mx-auto absolute 2xl:bottom-[100px] bottom-[40px] left-[50%] translate-x-[-50%] z-10">
+          <div className="continueForm bg-white rounded-[50px] w-full px-16 py-3  shadow-lg border-t flex md:justify-between justify-center items-center flex-wrap gap-4">
+            <h3 className="text-[1.6rem] font-bold">Start Your Journey</h3>
+            <Link
+              href="/booking"
+              className="text-white bg-black py-4 px-16 hover:scale-95 transition-all duration-300 hover:shadow-sm shadow-none hover:shadow-blue-700 inline-block text-nowrap border-none rounded-[50px]"
+            >Book Now</Link>
+
+            <Link
+              href="tel: +91 0000000000"
+              className="no-underline text-black flex justify-center items-center gap-2"
             >
-              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
-                <div className="inputField flex justify-start items-center gap-3">
-                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
-                    <IoMailUnreadOutline className="text-zinc-500 text-[1.5rem]" />
-                  </div>
-
-                  <div className="field flex flex-col w-[80%]">
-                    <label
-                      htmlFor="mail"
-                      className="text-zinc-900 font-bold text-[1rem]"
-                    >
-                      Maild
-                    </label>
-                    <input
-                      id="mail"
-                      type="email"
-                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
-                      placeholder="example@gmail.com"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
-                <div className="inputField flex justify-start items-center gap-3">
-                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
-                    <IoCalendar className="text-zinc-500 text-[1.5rem]" />
-                  </div>
-
-                  <div
-                    className="field flex flex-col w-[80%]"
-                    style={{ ["--bgImg" as string]: `url(${calender.src})` }}
-                  >
-                    <label
-                      htmlFor="date"
-                      className="text-zinc-900 font-bold text-[1rem]"
-                    >
-                      Date
-                    </label>
-                    <input
-                      type="date"
-                      id="date"
-                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
-                      placeholder="example@gmail.com"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
-                <div className="inputField flex justify-start items-center gap-3">
-                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
-                    <PiArrowUUpRightFill className="text-zinc-500 text-[1.5rem]" />
-                  </div>
-
-                  <div className="field flex flex-col w-[80%]">
-                    <label
-                      htmlFor="pickup"
-                      className="text-zinc-900 font-bold text-[1rem]"
-                    >
-                      Pickup Location
-                    </label>
-                    <input
-                      type="text"
-                      id="pickup"
-                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
-                      placeholder="London City Airport"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="lg:w-[calc(85%_/_4_-_20px)] md:w-[calc(100%_/_2_-_20px)] sm:w-fit w-full">
-                <div className="inputField flex justify-start items-center gap-3">
-                  <div className="icon h-14 min-w-14 max-w-14 w-full flex justify-center items-center rounded-full bg-zinc-100">
-                    <PiArrowUUpLeftFill className="text-zinc-500 text-[1.5rem]" />
-                  </div>
-
-                  <div className="field flex flex-col w-[80%]">
-                    <label
-                      htmlFor="drop"
-                      className="text-zinc-900 font-bold text-[1rem]"
-                    >
-                      Drop Location
-                    </label>
-                    <input
-                      type="text"
-                      id="drop"
-                      className="text-zinc-500 bg-transparent border-none focus:outline-none text-[0.9rem] placeholder-zinc-700"
-                      placeholder="London City Blackheath"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="w-[calc(15%_-_20px)] text-end">
-                <button
-                  type="submit"
-                  className="text-white bg-black py-3 px-4 border-none rounded-3xl"
-                >
-                  Continue
-                </button>
-              </div>
-            </form>
+              <FiPhoneCall className="text-black text-[1rem]" />{" "}
+              <span className="font-extrabold text-black text-[0.9rem]">
+                +91 00000XXXXX
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -684,7 +591,8 @@ export default function Home() {
               <ul className="list-none">
                 <li className="pb-6 border-b border-zinc-400">
                   <h3 className="text-black text-[1.5rem] font-semibold flex justify-between items-center">
-                    <span>How do I create an account?</span> <CiCirclePlus className="text-black text-[1.5rem]" />
+                    <span>How do I create an account?</span>{" "}
+                    <CiCirclePlus className="text-black text-[1.5rem]" />
                   </h3>
                   <p className="text-[1rem] text-black font-normal pt-3">
                     Serenity Is Multi-Faceted Blockchain Based Ecosystem, Energy

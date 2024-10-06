@@ -1,14 +1,5 @@
 import React from "react";
-import banner2 from "@/public/banner2.jpg";
 import banner3 from "@/public/banner3.jpg";
-import {
-  PiAirplaneInFlightThin,
-  PiAirplaneThin,
-  PiCarProfileThin,
-  PiDoorOpenThin,
-  PiRoadHorizonThin,
-  PiWifiHighThin,
-} from "react-icons/pi";
 import Image from "next/image";
 import s1 from "@/public/01.jpg";
 import s2 from "@/public/02.jpg";
@@ -81,7 +72,7 @@ export default function ServicesPage() {
       {/* Services Page Landing section End */}
 
       {/* Service details Section Start */}
-      <section className="bg-white dark:bg-gray-600 py-[100px]">
+      <section className="bg-white dark:bg-gray-600 pt-[100px]">
         <div className="container">
           <div className="flex flex-wrap gap-5 justify-center items-center">
             <div className="w-[calc(100%_-_20px)] lg:w-[calc(100%_/_2_-_20px)] ">
