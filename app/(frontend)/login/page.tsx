@@ -3,11 +3,13 @@ import LoginForm from "../components/login-form";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { IoMailOutline } from "react-icons/io5";
-import { FaApple, FaCheck, FaFacebookF } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 import { AiOutlineGithub } from "react-icons/ai";
 import { CiCircleCheck } from "react-icons/ci";
 import signbg from "@/public/singbg.jpg"
-import signcard from "@/public/singcard2.jpg"
+import signcard from "@/public/signcard4.jpg"
+import user1 from "@/public/user1.jpg"
+import user2 from "@/public/user3.jpg"
 import Image from "next/image";
 import { IoIosArrowRoundBack, IoMdCheckmark } from "react-icons/io";
 export default function LoginPage() {
@@ -19,8 +21,8 @@ export default function LoginPage() {
           <div className="flex  justify-center h-full items-stretch rounded-3xl bg-white overflow-hidden">
             <div className="w-[calc(100%_/_2)]">
               <div className="card h-full relative z-0">
-                <Image src={signcard} alt="" className="h-full w-full object-cover" />
-                <div className="card_body bg-black bg-opacity-40 absolute top-0 start-0 h-full w-full px-14 pb-14 pt-[70px] flex justify-center items-start flex-col">
+                <Image src={signcard} alt="" className="h- max-h-[85vh] min-h-[30vh] w-full object-cover" />
+                <div className="card_body bg-black bg-opacity-40 absolute top-0 start-0 h-full w-full px-14 pb-14 pt-[70px] flex justify-start items-start flex-col">
                   <h1 className="text-white text-[3rem] font-bold text-center">Success starts here</h1>
                   <ul className="list-none mt-10">
                     <li className="flex justify-start items-start gap-3 text-white text-[1.2rem] font-medium mb-5">
@@ -130,8 +132,8 @@ export default function LoginPage() {
           <div className="flex  justify-center h-full items-stretch rounded-3xl bg-white overflow-hidden">
             <div className="w-[calc(100%_/_2)]">
               <div className="card h-full relative z-0">
-                <Image src={signcard} alt="" className="h-full w-full object-cover" />
-                <div className="card_body bg-black bg-opacity-40 absolute top-0 start-0 h-full w-full px-14 pb-14 pt-[70px] flex justify-center items-start flex-col">
+                <Image src={signcard} alt="" className="h- max-h-[85vh] min-h-[30vh] w-full object-cover" />
+                <div className="card_body bg-black bg-opacity-40 absolute top-0 start-0 h-full w-full px-14 pb-14 pt-[70px] flex justify-start items-start flex-col">
                   <h1 className="text-white text-[3rem] font-bold text-center">Success starts here</h1>
                   <ul className="list-none mt-10">
                     <li className="flex justify-start items-start gap-3 text-white text-[1.2rem] font-medium mb-5">
@@ -153,10 +155,10 @@ export default function LoginPage() {
             <div className="w-[calc(100%_/_2)]">
               <div className="flex flex-col h-full items-stretch justify-between py-[70px] px-14">
                 <div className="formCheck ">
-                    <button className="text-black bg-transparent border-none mb-5 flex justify-srart items-center -ml-5">
-                      <IoIosArrowRoundBack className="text-[2.3rem] text-black" />
-                      <span className="text-[1.3rem]">Back</span>
-                    </button>
+                  <button className="text-black bg-transparent border-none mb-5 flex justify-srart items-center -ml-5">
+                    <IoIosArrowRoundBack className="text-[2.3rem] text-black" />
+                    <span className="text-[1.3rem]">Back</span>
+                  </button>
                   <h2 className="text-[2rem] text-black font-bold mb-5">
                     Continue with your email
                   </h2>
@@ -240,33 +242,30 @@ export default function LoginPage() {
           <div className="flex  justify-center h-full items-stretch rounded-3xl bg-white overflow-hidden">
             <div className="w-[calc(100%_/_2)]">
               <div className="card h-full relative z-0">
-                <Image src={signcard} alt="" className="h-full w-full object-cover" />
-                <div className="card_body bg-black bg-opacity-40 absolute top-0 start-0 h-full w-full px-14 pb-14 pt-[70px] flex justify-center items-start flex-col">
-                  <h1 className="text-white text-[3rem] font-bold text-center">Success starts here</h1>
-                  <ul className="list-none mt-10">
-                    <li className="flex justify-start items-start gap-3 text-white text-[1.2rem] font-medium mb-5">
-                      <IoMdCheckmark className="text-[1.4rem]" />
-                      <span className="text-[1.6rem]">Over 700 categories</span>
-                    </li>
-                    <li className="flex justify-start items-start gap-3 text-white text-[1.2rem] font-medium mb-5">
-                      <IoMdCheckmark className="text-[1.4rem]" />
-                      <span className="text-[1.6rem]">Quality work done faster</span>
-                    </li>
-                    <li className="flex justify-start items-start gap-3 text-white text-[1.2rem] font-medium mb-5">
-                      <IoMdCheckmark className="text-[1.4rem]" />
-                      <span className="text-[1.6rem]">Access to talent and businesses across the globe</span>
-                    </li>
-                  </ul>
+                <Image src={signcard} alt="" className="h- max-h-[85vh] min-h-[30vh] w-full object-cover" />
+                <div className="card_body bg-black bg-opacity-40 absolute top-0 start-0 h-full w-full px-14 pb-14 pt-[70px] flex justify-start items-start flex-col">
+                <div className="profile w-full">
+                    <div className="user1 mb-4 w-fit bg-white rounded-[50px] px-3 py-2 border border-gray-300 flex justify-start items-center gap-3">
+                      <Image src={user1} alt="user1" className="h-14 min-w-14 max-w-14 w-full rounded-full object-cover" />
+                      <span className="text-[1.1rem] text-black font-semibold px-2">Prince Riar</span>
+                      <IoMdCheckmark className="text-[2rem] text-green-600" / >
+                    </div>
+                    <div className="user1 w-fit mx-auto bg-white rounded-[50px] px-3 py-2 border border-gray-300 flex justify-start items-center gap-3">
+                      <Image src={user2} alt="user1" className="h-14 min-w-14 max-w-14 w-full rounded-full object-cover" />
+                      <span className="text-[1.1rem] text-black font-semibold px-2">liza</span>
+                      <IoMdCheckmark className="text-[2rem] text-green-600" / >
+                    </div>
+                </div>
                 </div>
               </div>
             </div>
             <div className="w-[calc(100%_/_2)]">
               <div className="flex flex-col h-full items-stretch justify-between py-[70px] px-14">
                 <div className="formCheck ">
-                    <button className="text-black bg-transparent border-none mb-5 flex justify-srart items-center -ml-5">
-                      <IoIosArrowRoundBack className="text-[2.3rem] text-black" />
-                      <span className="text-[1.3rem]">Back</span>
-                    </button>
+                  <button className="text-black bg-transparent border-none mb-5 flex justify-srart items-center -ml-5">
+                    <IoIosArrowRoundBack className="text-[2.3rem] text-black" />
+                    <span className="text-[1.3rem]">Back</span>
+                  </button>
                   <h2 className="text-[2rem] text-black font-bold mb-2">
                     Get your profile started
                   </h2>
