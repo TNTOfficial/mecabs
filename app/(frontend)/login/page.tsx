@@ -16,7 +16,7 @@ export default function LoginPage() {
   return (
     <>
       <section
-        style={{ backgroundImage: ` url(${signbg.src})` }} className="bg-zinc-100 w-full py-[100px] min-h-[calc(100vh_-_71px)] bg-no-repeat bg-center bg-cover relative z-0 after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-50 after:z-[-1]">
+        style={{ backgroundImage: ` url(${signbg.src})` }} className="bg-zinc-100 w-full py-[100px] min-h-[calc(100vh_-_71px)] bg-no-repeat bg-center bg-cover relative z-0 after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-15 after:z-[-1]">
         <div className="container max-w-screen-xl h-full">
           <div className="flex  justify-center h-full items-stretch rounded-3xl bg-white overflow-hidden">
             <div className="w-[calc(100%_/_2)]">
@@ -127,7 +127,7 @@ export default function LoginPage() {
         </div>
       </section>
       <section
-        style={{ backgroundImage: ` url(${signbg.src})` }} className="bg-zinc-100 w-full py-[100px] min-h-[calc(100vh_-_71px)] bg-no-repeat bg-center bg-cover relative z-0 after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-50 after:z-[-1]">
+        style={{ backgroundImage: ` url(${signbg.src})` }} className="bg-zinc-100 w-full py-[100px] min-h-[calc(100vh_-_71px)] bg-no-repeat bg-center bg-cover relative z-0 after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-15 after:z-[-1]">
         <div className="container max-w-screen-xl h-full">
           <div className="flex  justify-center h-full items-stretch rounded-3xl bg-white overflow-hidden">
             <div className="w-[calc(100%_/_2)]">
@@ -237,7 +237,7 @@ export default function LoginPage() {
       </section>
 
       <section
-        style={{ backgroundImage: ` url(${signbg.src})` }} className="bg-zinc-100 w-full py-[100px] min-h-[calc(100vh_-_71px)] bg-no-repeat bg-center bg-cover relative z-0 after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-50 after:z-[-1]">
+        style={{ backgroundImage: ` url(${signbg.src})` }} className="bg-zinc-100 w-full py-[100px] min-h-[calc(100vh_-_71px)] bg-no-repeat bg-center bg-cover relative z-0 after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-15 after:z-[-1]">
         <div className="container max-w-screen-xl h-full">
           <div className="flex  justify-center h-full items-stretch rounded-3xl bg-white overflow-hidden">
             <div className="w-[calc(100%_/_2)]">
