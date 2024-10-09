@@ -1,10 +1,6 @@
 import SignIn from "../components/sign-in";
 import LoginForm from "../components/login-form";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { IoMailOutline } from "react-icons/io5";
-import { FaFacebookF } from "react-icons/fa";
-import { AiOutlineGithub } from "react-icons/ai";
 import { CiCircleCheck } from "react-icons/ci";
 import signbg from "@/public/singbg.jpg"
 import signcard from "@/public/signcard4.jpg"
@@ -43,71 +39,11 @@ export default function LoginPage() {
             </div>
             <div className="w-[calc(100%_/_2)]">
               <div className="flex flex-col h-full items-stretch justify-between pb-14 pt-[70px] px-14">
-                <div className="formCheck ">
-                  <h2 className="text-[2rem] text-black font-bold">
-                    Sign in to your account
-                  </h2>
-                  <h5 className="text-[1.2rem] text-black font-normal">
-                    Don’t have an account?
-                    <Link className="font-medium underline px-3" href="">
-                      Sign Up.
-                    </Link>
-                  </h5>
-
-                  <div className="pt-10">
-                    <button
-                      type="button"
-                      className="flex justify-between items-center w-full px-10 py-3 border rounded-xl mb-3"
-                    >
-                      <div className="icon w-[15%] text-center">
-                        <FcGoogle className="text-[1.8rem] " />
-                      </div>
-                      <span className="text-[1.2rem] font-semibold w-[80%] text-center text-nowrap">
-                        Continue with Google
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="flex justify-between items-center w-full px-10 py-3 border rounded-xl"
-                    >
-                      <div className="icon w-[15%] text-center">
-                        <IoMailOutline className="text-[1.8rem] text-black " />
-                      </div>
-                      <span className="text-[1.2rem] font-semibold w-[80%] text-center text-nowrap">
-                        Continue with email/username
-                      </span>
-                    </button>
-
-                    <p className="text-[1.1rem] text-zinc-500 text-center font-semibold py-5">
-                      OR
-                    </p>
-                    <div className="flex gap-5">
-                      <button
-                        type="button"
-                        className="flex justify-between items-center w-[50%] px-10 py-3 border rounded-xl"
-                      >
-                        <div className="icon w-[15%] text-center">
-                          <AiOutlineGithub className="text-[1.8rem] text-black" />
-                        </div>
-                        <span className="text-[1.2rem] font-semibold w-[80%] text-center text-nowrap">
-                          GitHub
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        className="flex justify-between items-center w-[50%] px-10 py-3 border rounded-xl"
-                      >
-                        <div className="icon w-[15%] text-center">
-                          <FaFacebookF className="text-[1.3rem] text-blue-700" />
-                        </div>
-                        <span className="text-[1.2rem] font-semibold w-[80%] text-center text-nowrap">
-                          Facebook
-                        </span>
-                      </button>
-                    </div>
-                  </div>
+                <div className="formCheck ">                  
+                  {/* <LoginForm>
+                    <SignIn></SignIn>
+                  </LoginForm> */}
+                  
                 </div>
 
                 <p className="text-[1.1rem] font-medium">
@@ -316,13 +252,6 @@ export default function LoginPage() {
           </div>
         </div>
       </section>
-      <main className="flex items-center justify-center md:h-screen">
-        <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
-          <LoginForm>
-            <SignIn></SignIn>
-          </LoginForm>
-        </div>
-      </main>
     </>
   );
 }
