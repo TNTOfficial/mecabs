@@ -80,7 +80,6 @@ body {
   transform: scale(1);
 } */
 
-
 input[type="date"]::-webkit-calendar-picker-indicator {
   color: rgba(0, 0, 0, 0);
   opacity: 1;
@@ -90,7 +89,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 20px;
   border-width: thin;
 }
-
 
 @layer base {
   :root {
@@ -148,7 +146,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -159,6 +156,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-.activeBarTab:hover{
-  @apply bg-blue-600 text-white w-[150px] ps-3 [&_svg]:text-white [&_.cirdle]:outline-white [&_.cirdle]:border-white
+@keyframes shake {
+  0% {
+      transform: rotate(-15deg)
+  }
+
+  4% {
+      transform: rotate(15deg)
+  }
+
+  8%,24% {
+      transform: rotate(-18deg)
+  }
+
+  12%,28% {
+      transform: rotate(18deg)
+  }
+
+  16% {
+      transform: rotate(-22deg)
+  }
+
+  20% {
+      transform: rotate(22deg)
+  }
+
+  32% {
+      transform: rotate(-12deg)
+  }
+
+  36% {
+      transform: rotate(12deg)
+  }
+
+  40%,to {
+      transform: rotate(0deg)
+  }
 }

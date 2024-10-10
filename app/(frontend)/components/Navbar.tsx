@@ -37,8 +37,8 @@ export default function Navbar() {
             <div
               className={
                 display
-                  ? "w-full transition-all duration-300 max-lg:w-[300px] max-lg:fixed z-[1599] max-lg:top-0 max-lg:h-[100dvh] lg:w-auto flex max-lg:flex-col justify-between items-center p-4 lg:p-0 max-lg:bg-gray-50 max-lg:start-0"
-                  : "transition-all duration-300 max-lg:w-[300px] max-lg:fixed z-[1599] max-lg:top-0 max-lg:h-[100dvh] lg:w-auto flex max-lg:flex-col justify-between items-center p-4 lg:p-0 max-lg:bg-gray-50 max-lg:start-[-300px] "
+                  ? "w-full transition-all duration-300 max-lg:w-[300px] max-lg:fixed z-[1599] max-lg:top-0 max-lg:pb-[100px] max-lg:h-[100dvh] lg:w-auto flex max-lg:flex-col justify-between items-center p-4 lg:p-0 max-lg:bg-gray-50 max-lg:start-0"
+                  : "transition-all duration-300 max-lg:w-[300px] max-lg:fixed z-[1599] max-lg:top-0  max-lg:pb-[100px] max-lg:h-[100dvh] lg:w-auto flex max-lg:flex-col justify-between items-center p-4 lg:p-0 max-lg:bg-gray-50 max-lg:start-[-300px] "
               }
               id="navbar-default"
             >
