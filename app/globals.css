@@ -159,3 +159,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
+.activeBarTab:hover{
+  @apply bg-blue-600 text-white w-[150px] ps-3 [&_svg]:text-white [&_.cirdle]:outline-white [&_.cirdle]:border-white
+}

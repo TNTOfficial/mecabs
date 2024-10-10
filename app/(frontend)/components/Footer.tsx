@@ -25,10 +25,10 @@ export default function Footer() {
   ];
   return (
     <>
-      <footer className=" bg-[linear-gradient(139deg,_rgba(250,250,250,1)_0%_34%,_rgba(234,234,234,1)_34%_43%,_rgba(250,250,250,1)_43%_100%)]">
+      <footer className=" bg-[linear-gradient(139deg,_rgba(250,250,250,1)_0%_34%,_rgba(234,234,234,1)_34%_43%,_rgba(250,250,250,1)_43%_100%)] max-lg:pb-[90px]">
         <div className="container">
           <div className="flex xl:justify-between justify-start gap-y-10 flex-wrap items-end py-[50px] border-b border-zinc-200">
-            <div className="logo flex justify-start items-end gap-6 xl:w-[calc(100%_/_3_-_20px)] w-full">
+            <div className="logo flex justify-start max-sm:justify-center items-end flex-wrap gap-6 xl:w-[calc(100%_/_3_-_20px)] w-full">
               <Image
                 src={WhiteLogo}
                 alt="Logo"
@@ -49,7 +49,7 @@ export default function Footer() {
               <strong className="text-nowrap text-[1.1rem] w-full inline-block">
                 Payment with:{" "}
               </strong>
-              <div className="flex gap-4 justify-start items-center flex-nowrap">
+              <div className="flex gap-4 justify-start max-sm:justify-center items-center flex-nowrap max-sm:flex-wrap">
                 <Image
                   src={CabCharge}
                   alt="payment"
@@ -72,7 +72,7 @@ export default function Footer() {
                 />
               </div>
             </div>
-            <div className="social text-black flex justify-end items-center gap-2 xl:w-[calc(100%_/_3_-_20px)] w-full">
+            <div className="social text-black flex justify-end max-sm:justify-center items-center gap-2 xl:w-[calc(100%_/_3_-_20px)] w-full">
               <strong className="text-[1.3rem] font-bold text-whtie">
                 Follow Us:{" "}
               </strong>
@@ -87,14 +87,14 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center py-6 px-3 border-t border-zinc-300">
-            <div className="footerNav flex gap-4 items-center justify-start">
-              <div className="copyrigh flex gap-2 items-center justify-start">
+          <div className="flex justify-between items-center flex-wrap max-sm:justify-center py-6 px-3 border-t border-zinc-300">
+            <div className="footerNav flex gap-4 max-sm:flex-col items-start justify-start max-sm:justify-center">
+              <div className="copyrigh flex gap-2 items-start justify-start max-sm:justify-center max-sm:text-center">
                 <CgCopyright className="text-black text-[1.2rem]" />
-                <span className="text-black text-[1rem]">2024 MeCabs</span>
+                <span className="text-black text-[1rem] text-nowrap">2024 MeCabs</span>
               </div>
 
-              <ul className="flex list-none flex-wrap">
+              <ul className="flex list-none max-sm:justify-center flex-wrap min-w-[300px]">
                 {links.map((link, index) => {
                   return (
                     <li key={index}>
@@ -118,7 +118,7 @@ export default function Footer() {
                 })}
               </ul>
             </div>
-            <div className="develop">
+            <div className="develop text-center">
               <span className="text-black">
                 Developed By:{" "}
                 <Link
