@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { registerUser } from "@/actions/register";
+import { registerUser } from "@/actions/auth/register";
 
 export default function LoginForm({ children }: { children: React.ReactNode }) {
   const [customLogin, setCustomCLogin] = useState(false);

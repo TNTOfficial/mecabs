@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import logo from "@/public/logo.png"
+import logo from "@/public/logo.png";
 // import Image from "next/image";
 // import Logo from "../../../../public/logo.png";
 
@@ -12,6 +12,8 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { FiPhoneCall, FiSearch } from "react-icons/fi";
 import Image from "next/image";
+import { LoginButton } from "@/features/auth/components/login-button";
+import { Button } from "@/components/ui/button";
 export default function Navbar() {
   const pathname = usePathname();
   const [display, setDisplay] = useState(false);
@@ -31,7 +33,11 @@ export default function Navbar() {
       <nav className="bg-white border-gray-200 dark:bg-gray-600 border-t border-transparent dark:border-white sticky top-0 z-50 shadow-sm shadow-zinc-200">
         <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href="/" className="flex gap-3 items-center">
-          <Image src={logo} alt="" className="min-w-[150px] max-w-[180px] h-full " />
+            <Image
+              src={logo}
+              alt=""
+              className="min-w-[150px] max-w-[180px] h-full "
+            />
           </Link>
           <div className="lg:w-[82%]">
             <div
@@ -43,7 +49,7 @@ export default function Navbar() {
               id="navbar-default"
             >
               <ul className="font-medium flex max-lg:w-full flex-col p-4 lg:p-0 lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-600">
-                {links.map((link)=> {
+                {links.map((link) => {
                   return (
                     <li key={link.name}>
                       <Link
@@ -84,30 +90,42 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex justify-center items-center gap-3 max-lg:w-full">
-                {!session ? (
-            <>  <Link
-                    href="/login"
-                    className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
-                  >
-                    Login
-                  </Link>
-                  </>
-          ) : (
-            <>
-           
-              <div className="flex justify-center items-center gap-3">
-                <span className="font-bold italic underline decoration-wavy decoration-1 cursor-pointer">{session.user?.name}</span>
-                <button
-                  onClick={() => {
-                    signOut();
-                  }}
-                  className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
-                  >
-                  Logout
-                </button>
-                </div>
-            </>
-          )}
+                  {!session ? (
+                    <>
+                      {/* <Link
+                        href="/login"
+                        className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
+                      >
+                        Login
+                      </Link> */}
+                      <LoginButton mode="modal" formType="login" asChild>
+                        <Button className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold">
+                          Sign In
+                        </Button>
+                      </LoginButton>
+                      <LoginButton mode="modal" formType="register" asChild>
+                        <Button className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold">
+                          Sign Up
+                        </Button>
+                      </LoginButton>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-center items-center gap-3">
+                        <span className="font-bold italic underline decoration-wavy decoration-1 cursor-pointer">
+                          {session.user?.name}
+                        </span>
+                        <button
+                          onClick={() => {
+                            signOut();
+                          }}
+                          className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
