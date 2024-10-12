@@ -12,18 +12,19 @@ export const Header = ({
   changeFormType,
 }: HeaderProps) => {
   return (
-    <div className="w-full flex flex-col gap-y-4 items-center justify-center">
-      <h1 className="text-3xl font-semibold">{mainLabel}</h1>
-      <p className="font-normal w-full size-sm">{subLabel}</p>
+    <div className="w-full flex flex-col gap-y-2 items-center justify-center mb-4">
+      <h1 className="text-3xl font-semibold text-center">{mainLabel}</h1>
+      <p className="font-normal w-full size-sm text-center">{subLabel}
       <Button
         variant="link"
-        className="font-normal w-full size-sm"
+        className="font-normal size-sm h-auto p-0 inline ps-3 underline"
         onClick={changeFormType}
       >
         {mainLabel === "Sign in to your account"
           ? "Create a new account"
           : "Sign In"}
       </Button>
+      </p>
     </div>
   );
 };

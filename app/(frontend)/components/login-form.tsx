@@ -65,7 +65,6 @@ export default function LoginForm({ children }: { children: React.ReactNode }) {
                       <FormControl>
                         <Input placeholder="test@gmail.com" {...field} />
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}

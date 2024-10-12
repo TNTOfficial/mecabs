@@ -40,37 +40,41 @@ export const CardWrapper = ({
     (provider) => provider !== "google"
   );
   return (
-    <Card className="w-[600px] shadow-md">
-      <CardHeader>
-        <Header
-          mainLabel={headerMainLabel}
-          subLabel={headerSubLabel}
-          changeFormType={changeFormType}
-        />
-        {!showFields && googleProvider && (
-          <div className="flex flex-col space-y-2 w-[600px]">
-            {googleProvider.map((provider) => (
+    <Card className="border-none shadow-none px-5 flex flex-col justify-between items-stretch  py-10 h-full ">
+      <div className="headerBodyWrapper">
+        <CardHeader>
+          <Header
+            mainLabel={headerMainLabel}
+            subLabel={headerSubLabel}
+            changeFormType={changeFormType}
+          />
+          {!showFields && googleProvider && (
+            <div className="flex flex-col gap-3">
+              {googleProvider.map((provider) => (
+                <Social key={provider} showField={provider} />
+              ))}
+            </div>
+          )}
+        </CardHeader>
+
+        <CardContent>{children}</CardContent>
+        <p className="text-muted-foreground text-xl flex items-center justify-center my-3">
+          or
+        </p>
+
+        {!showFields && otherProviders && (
+          <div className="flex gap-5 flex-col justify-center">
+            {otherProviders.map((provider) => (
               <Social key={provider} showField={provider} />
             ))}
           </div>
         )}
-      </CardHeader>
-
-      <CardContent>{children}</CardContent>
-      <p className="text-muted-foreground text-xl flex items-center justify-center">
-        or
-      </p>
-
-      {!showFields && otherProviders && (
-        <div className="flex space-x-4 justify-center">
-          {otherProviders.map((provider) => (
-            <Social key={provider} showField={provider} />
-          ))}
-        </div>
-      )}
-      {/* <CardFooter>
-        <BackButton label={backButtonLabel} href={backButtonHref} />
-      </CardFooter> */}
+      </div>
+      <CardFooter>
+        <p>
+          By joining, you agree to the Fiverr Terms of Service and to occasionally receive emails from us. Please read our Privacy Policy to learn how we use your personal data.
+        </p>
+      </CardFooter>
     </Card>
   );
 };

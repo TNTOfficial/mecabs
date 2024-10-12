@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { login } from "@/actions/auth/login";
 import { register } from "@/actions/auth/register";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 interface LoginFormProps {
   formType?: "login" | "register";
@@ -118,22 +119,23 @@ export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
               setShowFields(false);
             }}
           >
+            <IoIosArrowRoundBack className="text-[1.4rem]" />
             Back
           </Button>
 
           <div>
-            <p className="text-xl">Continue with your email</p>
+            <p className="text-xl text-center font-semibold">Continue with your email</p>
           </div>
         </>
       )}
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-4">
           <div className="space-y-4">
             {!showFields && (
               <Button
                 size="lg"
-                className="w-full mb-5"
+                className="w-full"
                 variant="outline"
                 onClick={() => {
                   setShowFields(true);
@@ -155,6 +157,7 @@ export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
                       <FormControl>
                         <Input
                           {...field}
+                          
                           disabled={isPending}
                           placeholder="Your Name"
                           type="text"
