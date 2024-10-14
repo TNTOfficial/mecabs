@@ -53,22 +53,22 @@ export default function Footer() {
                 <Image
                   src={CabCharge}
                   alt="payment"
-                  className="w-[100px] object-contain h-[50px]"
+                  className="lg:w-[100px] w-[50px] object-contain h-[50px]"
                 />
                 <Image
                   src={McLogo}
                   alt="payment"
-                  className="w-[100px] object-contain h-[50px]"
+                  className="lg:w-[100px] w-[50px] object-contain h-[50px]"
                 />
                 <Image
                   src={VisaLogo}
                   alt="payment"
-                  className="w-[100px] object-contain h-[50px]"
+                  className="lg:w-[100px] w-[50px] object-contain h-[50px]"
                 />
                 <Image
                   src={AmericanExp}
                   alt="payment"
-                  className="w-[100px] object-contain h-[50px]"
+                  className="lg:w-[100px] w-[50px] object-contain h-[50px]"
                 />
               </div>
             </div>
