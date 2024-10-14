@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import path from "path";
+// import path from "path";
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -18,19 +18,17 @@ const getBaseEmailTemplate = (content: string) => `
   <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
     <h1 style="color: #4a4a4a;">Welcome to Me cabs!</h1>
     ${content}
-    <img src="cid:logo" alt="Your App Logo" style="max-width: 200px;" />
-  
   </body>
 </html>
 `;
 
-const getDefaultAttachment = () => [
-  {
-    filename: "logo.png",
-    path: path.join(process.cwd(), "public", "logo.png"),
-    cid: "logo",
-  },
-];
+// const getDefaultAttachment = () => [
+//   {
+//     filename: "logo.png",
+//     path: path.join( "./public/logo.png"),
+//     cid: "logo",
+//   },
+// ];
 
 const sendEmail = async (to: string, subject: string, htmlContent: string) => {
   await transporter.sendMail({
@@ -38,7 +36,7 @@ const sendEmail = async (to: string, subject: string, htmlContent: string) => {
     to,
     subject,
     html: getBaseEmailTemplate(htmlContent),
-    attachments: getDefaultAttachment(),
+    // attachments: getDefaultAttachment(),
   });
 };
 
