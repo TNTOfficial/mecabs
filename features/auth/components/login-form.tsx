@@ -32,7 +32,7 @@ import { reset } from "@/actions/auth/reset";
 
 interface LoginFormProps {
   formType?: "login" | "register";
-  onCloseDialog: () => void;
+  onCloseDialog?: () => void;
 }
 
 export const LoginForm = ({
@@ -165,7 +165,7 @@ export const LoginForm = ({
       reset(values).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
-        if (data?.success) {
+        if (data?.success && onCloseDialog) {
           setTimeout(() => {
             onCloseDialog();
           }, 5000);
