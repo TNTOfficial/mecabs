@@ -84,7 +84,7 @@ export const LoginForm = ({
       const timer = setTimeout(() => {
         setError(undefined);
         setSuccess(undefined);
-      }, 300000);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
