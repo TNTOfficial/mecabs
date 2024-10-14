@@ -6,7 +6,7 @@ import signcard from "@/public/signcard4.jpg";
 const LoginPage = () => {
   return (
     <>
-      <section className="py-[100px]">
+      <section className="py-[50px] flex justify-center items-center min-h-screen">
         <div className="flex m-auto flex-wrap justify-center items-stretch rounded-3xl lg:min-h-[730px] shadow-md border-t bg-white overflow-hidden lg:max-w-screen-lg  max-w-full ">
           <div className="lg:w-[calc(100%_/_2)] w-[calc(100%_/_1)] max-lg:hidden">
             <div

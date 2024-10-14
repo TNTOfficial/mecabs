@@ -54,40 +54,49 @@ export const NewPasswordForm = () => {
   };
 
   return (
-    <CardWrapper
-      headerMainLabel="Enter a new password"
-      backButtonLabel="Back to login"
-      backButtonHref="/auth/login"
-    >
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-6">
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="******"
-                      type="password"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <Button type="submit" className="w-full" disabled={isPending}>
-            Reset password
-          </Button>
-        </form>
-      </Form>
-    </CardWrapper>
+    <>
+      <section className="flex justify-center items-center min-h-screen">
+        <div className="w-full max-w-[400px] card border-t shadow-lg rounded-2xl  ">
+          <CardWrapper
+            headerMainLabel="Enter a new password"
+            backButtonLabel="Back to login"
+            backButtonHref="/auth/login"
+          >
+
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem className="relative">
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="******"
+                            type="password"
+                          />
+                        </FormControl>
+                        <FormMessage className="absolute top-[90%] left-0" />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormError message={error} />
+                <FormSuccess message={success} />
+                <Button type="submit" className="w-full" disabled={isPending}>
+                  Reset password
+                </Button>
+              </form>
+            </Form>
+
+          </CardWrapper>
+        </div>
+      </section>
+    </>
+
   );
 };

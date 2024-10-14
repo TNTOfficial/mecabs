@@ -8,7 +8,7 @@ import { getAccountByUserId } from "./data/account";
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(db),
   pages: {
-    signIn: "/login",
+    signIn: "/auth/login",
   },
   events: {
     async linkAccount({ user }) {
