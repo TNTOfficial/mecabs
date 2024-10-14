@@ -27,7 +27,7 @@ const getBaseEmailTemplate = (content: string) => `
 const getDefaultAttachment = () => [
   {
     filename: "logo.png",
-    path: path.join(process.cwd(), "public", "logo.png"),
+    path: path.join( "./public/logo.png"),
     cid: "logo",
   },
 ];
