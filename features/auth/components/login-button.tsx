@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LoginForm } from "./login-form";
 import { IoMdCheckmark } from "react-icons/io";
 
-import signcard from "@/public/signcard4.jpg";
+import signcard from "@/public/signcard5.jpg";
 import { useState } from "react";
 interface LoginButtonProps {
   children: React.ReactNode;
@@ -38,7 +38,7 @@ export const LoginButton = ({
                 className="card h-full relative z-0  bg-no-repeat bg-center bg-cover"
                 style={{ backgroundImage: ` url(${signcard.src})` }}
               >
-                <div className="card_body bg-black bg-opacity-50  h-full w-full md:px-14 md:pb-14 p-10 md:pt-[70px] flex justify-start items-start flex-col">
+                <div className="card_body bg-black bg-opacity-50  h-full w-full md:px-14 md:pb-14 p-10 md:pt-[70px] flex justify-center items-start flex-col">
                   <h1 className="text-white text-[2rem] font-bold text-center">
                     Success starts here
                   </h1>
