@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import logo from "@/public/logo.png";
 // import Image from "next/image";
 // import Logo from "../../../../public/logo.png";
@@ -10,20 +10,21 @@ import logo from "@/public/logo.png";
 import { MdMenuOpen } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { FiPhoneCall, FiSearch } from "react-icons/fi";
+import { FiPhoneCall } from "react-icons/fi";
 import Image from "next/image";
 import { LoginButton } from "@/features/auth/components/login-button";
 import { Button } from "@/components/ui/button";
+import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
 export default function Navbar() {
   const pathname = usePathname();
   const [display, setDisplay] = useState(false);
   const links = [
     { name: "Home", href: "/" },
+    { name: "Booking", href: "/booking" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Booking", href: "/booking" },
   ];
-  const { data: session }: any = useSession();
+  const user = useCurrentUser();
 
   const toggleClass = () => {
     setDisplay(!display);
@@ -74,9 +75,6 @@ export default function Navbar() {
 
               <div className="nav_contact max-lg:w-full  max-lg:flex-col flex justify-center items-center gap-3 max-lg:gap-y-9">
                 <div className="flex justify-center items-center gap-3 max-lg:w-full">
-                  <button className="border-none bg-none">
-                    <FiSearch className="text-black text-[1.5rem]" />
-                  </button>
                   <Link
                     href="tel: +91 0000000000"
                     className="no-underline text-black flex justify-center items-center gap-2"
@@ -90,14 +88,8 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex justify-center items-center gap-3 max-lg:w-full">
-                  {!session ? (
+                  {!user ? (
                     <>
-                      {/* <Link
-                        href="/login"
-                        className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
-                      >
-                        Login
-                      </Link> */}
                       <LoginButton mode="modal" formType="login" asChild>
                         <Button className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold">
                           Sign In
@@ -112,8 +104,8 @@ export default function Navbar() {
                   ) : (
                     <>
                       <div className="flex justify-center items-center gap-3">
-                        <span className="font-bold italic underline decoration-wavy decoration-1 cursor-pointer">
-                          {session.user?.name}
+                        <span className="font-bold italic decoration-1 cursor-pointer">
+                          {user?.name}
                         </span>
                         <button
                           onClick={() => {

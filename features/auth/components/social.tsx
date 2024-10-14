@@ -1,18 +1,18 @@
 "use client";
 
 import { FcGoogle } from "react-icons/fc";
-import { FaXTwitter } from "react-icons/fa6";
+// import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { Button } from "@/components/ui/button";
 
 interface ShowSocialProps {
-  showField: "google" | "twitter" | "facebook";
+  showField: "google" | "facebook";
 }
 
 export const Social = ({ showField }: ShowSocialProps) => {
-  const onClick = (provider: "google" | "facebook" | "twitter") => {
+  const onClick = (provider: "google" | "facebook") => {
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT,
     });
@@ -29,7 +29,6 @@ export const Social = ({ showField }: ShowSocialProps) => {
         }}
       >
         {showField === "google" && <FcGoogle className="h-5 w-5" />}
-        {showField === "twitter" && <FaXTwitter className="h-5 w-5" />}
         {showField === "facebook" && <FaFacebookF className="h-5 w-5" />}
         <p className="p-2">Continue with {showField}</p>
       </Button>

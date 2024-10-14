@@ -6,7 +6,6 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { BackButton } from "./back-button";
 import { Header } from "./Header";
 import { Social } from "./social";
 
@@ -14,21 +13,19 @@ interface CardWrapperProps {
   children: React.ReactNode;
   headerMainLabel?: string;
   headerSubLabel?: string;
-  backButtonLabel: string;
-  backButtonHref: string;
-  showSocial?: ("google" | "twitter" | "facebook")[];
+  backButtonLabel?: string;
+  backButtonHref?: string;
+  showSocial?: ("google" | "facebook")[];
   showFields?: boolean;
-  changeFormType: () => void;
+  changeFormType?: () => void;
 }
 
 export const CardWrapper = ({
   children,
   headerMainLabel,
   headerSubLabel,
-  backButtonHref,
-  backButtonLabel,
   showSocial,
-  showFields, // Added showFields prop
+  showFields,
   changeFormType,
 }: CardWrapperProps) => {
   // seperating providers
@@ -58,9 +55,11 @@ export const CardWrapper = ({
         </CardHeader>
 
         <CardContent>{children}</CardContent>
-        <p className="text-muted-foreground text-xl flex items-center justify-center my-3">
-          or
-        </p>
+        {!showFields && (
+          <p className="text-muted-foreground text-xl flex items-center justify-center my-3">
+            or
+          </p>
+        )}
 
         {!showFields && otherProviders && (
           <div className="flex gap-5 flex-col justify-center">
@@ -72,7 +71,9 @@ export const CardWrapper = ({
       </div>
       <CardFooter>
         <p>
-          By joining, you agree to the Fiverr Terms of Service and to occasionally receive emails from us. Please read our Privacy Policy to learn how we use your personal data.
+          By joining, you agree to the Fiverr Terms of Service and to
+          occasionally receive emails from us. Please read our Privacy Policy to
+          learn how we use your personal data.
         </p>
       </CardFooter>
     </Card>

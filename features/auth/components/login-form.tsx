@@ -1,7 +1,7 @@
 "use client";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,54 +13,94 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useSearchParams } from "next/navigation";
-import { LoginSchema, RegisterSchema } from "@/schemas/schema";
+import {
+  LoginSchema,
+  RegisterSchema,
+  ResetSchema,
+  VerificationSchema,
+} from "@/schemas/schema";
 import { CardWrapper } from "./card-wrapper";
 import { FormError } from "@/components/form-error";
 import { CiMail } from "react-icons/ci";
 import { FormSuccess } from "@/components/form-success";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { login } from "@/actions/auth/login";
 import { register } from "@/actions/auth/register";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { newVerification } from "@/actions/auth/new-verification";
+import { reset } from "@/actions/auth/reset";
 
 interface LoginFormProps {
   formType?: "login" | "register";
+  onCloseDialog: () => void;
 }
 
-export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
+export const LoginForm = ({
+  formType = "login",
+  onCloseDialog,
+}: LoginFormProps) => {
   const [currentFormType, setCurrentFormType] = useState<"login" | "register">(
     formType
   );
   const [error, setError] = useState<string | undefined>("");
   const [showFields, setShowFields] = useState<boolean>(false);
+  const [showVerification, setShowVerification] = useState<boolean>(false);
+  const [showReset, setShowReset] = useState<boolean>(false);
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
+  // const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different provider!"
       : "";
 
-  // Define the schema based on formType
-  const Schema = currentFormType ? RegisterSchema : LoginSchema;
+  const Schema = currentFormType === "register" ? RegisterSchema : LoginSchema;
 
   const form = useForm<z.infer<typeof Schema>>({
     resolver: zodResolver(Schema),
+    defaultValues:
+      currentFormType === "register"
+        ? { email: "", password: "", name: "" }
+        : { email: "", password: "" },
+  });
+
+  const verificationForm = useForm<z.infer<typeof VerificationSchema>>({
+    resolver: zodResolver(VerificationSchema),
     defaultValues: {
-      email: "",
-      password: "",
-      ...(currentFormType && { name: "" }), // Add 'name' field for register form
+      token: "",
     },
   });
+
+  const ResetForm = useForm<z.infer<typeof ResetSchema>>({
+    resolver: zodResolver(ResetSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  useEffect(() => {
+    if (error || success) {
+      const timer = setTimeout(() => {
+        setError(undefined);
+        setSuccess(undefined);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [error, success]);
 
   const onSubmit = (values: z.infer<typeof Schema>) => {
     setError("");
     setSuccess("");
     startTransition(() => {
       if (currentFormType === "register") {
-        register(values)
+        const registerValues = {
+          email: values.email,
+          password: values.password,
+          name: values.name || "",
+        };
+        register(registerValues)
           .then((data) => {
             if (data?.error) {
               form.reset();
@@ -71,10 +111,18 @@ export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
               form.reset();
               setSuccess(data.success);
             }
+
+            if (data.verification) {
+              setShowVerification(true);
+            }
           })
           .catch(() => setError("Something went wrong during registration"));
       } else {
-        login(values)
+        const loginValues = {
+          email: values.email,
+          password: values.password,
+        };
+        login(loginValues)
           .then((data) => {
             if (data?.error) {
               form.reset();
@@ -91,10 +139,46 @@ export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
     });
   };
 
+  const onVerificationSubmit = (values: z.infer<typeof VerificationSchema>) => {
+    setError("");
+    setSuccess("");
+    startTransition(() => {
+      newVerification(values.token)
+        .then((data) => {
+          if (data.error) {
+            setError(data.error);
+          }
+          if (data.success) {
+            setSuccess(data.success);
+            setShowVerification(false);
+            setCurrentFormType("login");
+          }
+        })
+        .catch(() => setError("Something went wrong during verification"));
+    });
+  };
+
+  const onResetSubmit = (values: z.infer<typeof ResetSchema>) => {
+    setError("");
+    setSuccess("");
+    startTransition(() => {
+      reset(values).then((data) => {
+        setError(data?.error);
+        setSuccess(data?.success);
+        if (data?.success) {
+          setTimeout(() => {
+            onCloseDialog();
+          }, 5000);
+        }
+      });
+    });
+  };
   return (
     <CardWrapper
       headerMainLabel={
-        currentFormType === "login"
+        showReset
+          ? "Forgot your password?"
+          : currentFormType === "login"
           ? "Sign in to your account"
           : "Create a new account"
       }
@@ -105,10 +189,12 @@ export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
       }
       changeFormType={() => {
         setCurrentFormType(currentFormType === "login" ? "register" : "login");
+        setShowReset(false);
+        setShowVerification(false);
       }}
       backButtonLabel="Don't have an account?"
       backButtonHref="/login"
-      showSocial={["google", "facebook", "twitter"]}
+      showSocial={["google", "facebook"]}
       showFields={showFields}
     >
       {showFields && (
@@ -117,6 +203,8 @@ export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
             variant="link"
             onClick={() => {
               setShowFields(false);
+              setShowVerification(false);
+              setShowReset(false);
             }}
           >
             <IoIosArrowRoundBack className="text-[1.4rem]" />
@@ -124,110 +212,186 @@ export const LoginForm = ({ formType = "login" }: LoginFormProps) => {
           </Button>
 
           <div>
-            <p className="text-xl text-center font-semibold">Continue with your email</p>
+            <p className="text-xl text-center font-semibold">
+              Continue with your email
+            </p>
           </div>
         </>
       )}
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-4">
-          <div className="space-y-4">
-            {!showFields && (
-              <Button
-                size="lg"
-                className="w-full"
-                variant="outline"
-                onClick={() => {
-                  setShowFields(true);
-                }}
-              >
-                <CiMail className="h-5 w-5" />
-                <p className="p-2">Continue with email</p>
+      {!showVerification && !showReset && (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 pt-4"
+          >
+            <div className="space-y-4">
+              {!showFields && (
+                <Button
+                  size="lg"
+                  className="w-full"
+                  variant="outline"
+                  onClick={() => {
+                    setShowFields(true);
+                  }}
+                >
+                  <CiMail className="h-5 w-5" />
+                  <p className="p-2">Continue with email</p>
+                </Button>
+              )}
+
+              {currentFormType === "register" && showFields && (
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="Your Name"
+                            type="text"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              )}
+
+              {showFields && (
+                <>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="john.doe@example.com"
+                            type="email"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="******"
+                            type="password"
+                          />
+                        </FormControl>
+                        <Button
+                          size="sm"
+                          variant="link"
+                          asChild
+                          className="px-0 font-normal"
+                          onClick={() => {
+                            setShowReset(true);
+                          }}
+                        >
+                          <p>Forgot password?</p>
+                        </Button>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </>
+              )}
+            </div>
+            <FormError message={error || urlError} />
+            <FormSuccess message={success} />
+            {showFields && (
+              <Button disabled={isPending} type="submit" className="w-full">
+                {currentFormType === "login" ? "Login" : "Register"}
               </Button>
             )}
-
-            {currentFormType === "register" && showFields && (
-              <div>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          
-                          disabled={isPending}
-                          placeholder="Your Name"
-                          type="text"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            )}
-
-            {showFields && (
-              <>
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="john.doe@example.com"
-                          type="email"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="******"
-                          type="password"
-                        />
-                      </FormControl>
-                      <Button
-                        size="sm"
-                        variant="link"
-                        asChild
-                        className="px-0 font-normal"
-                      >
-                        <Link href="/auth/reset">Forgot password?</Link>
-                      </Button>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </>
-            )}
-          </div>
-          <FormError message={error || urlError} />
-          <FormSuccess message={success} />
-          {showFields && (
+          </form>
+        </Form>
+      )}
+      {showVerification && !showReset && (
+        <Form {...verificationForm}>
+          <form
+            onSubmit={verificationForm.handleSubmit(onVerificationSubmit)}
+            className="space-y-6"
+          >
+            <FormField
+              control={verificationForm.control}
+              name="token"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Verification Code</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      placeholder="Enter verification code"
+                      type="text"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormError message={error} />
+            <FormSuccess message={success} />
             <Button disabled={isPending} type="submit" className="w-full">
-              {currentFormType === "login" ? "Login" : "Register"}
+              Verify
             </Button>
-          )}
-        </form>
-      </Form>
+          </form>
+        </Form>
+      )}
+
+      {showReset && (
+        <Form {...ResetForm}>
+          <form
+            onSubmit={ResetForm.handleSubmit(onResetSubmit)} // <-- Use ResetForm instead of form
+            className="space-y-6"
+          >
+            <div className="space-y-6">
+              <FormField
+                control={ResetForm.control} // <-- Also make sure to use ResetForm here
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="test@gmail.com"
+                        type="email"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormError message={error} />
+            <FormSuccess message={success} />
+            <Button type="submit" className="w-full" disabled={isPending}>
+              Send reset email
+            </Button>
+          </form>
+        </Form>
+      )}
     </CardWrapper>
   );
 };

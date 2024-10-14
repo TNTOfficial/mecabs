@@ -43,16 +43,27 @@ const sendEmail = async (to: string, subject: string, htmlContent: string) => {
 };
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${domain}/new-verification?token=${token}`;
   const htmlContent = `
   <p>Thank you for signing up. Please confirm your email address to get started.</p>
   <p>
-    <a href="${confirmLink}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
-      Confirm Email
-    </a>
+   ${token}
   </p>
   <p>If you're having trouble clicking the button, copy and paste this URL into your web browser:</p>
-  <p>${confirmLink}</p>
 `;
   await sendEmail(email, "Confirm your email", htmlContent);
+};
+
+export const sendPasswordResetEmail = async (email: string, token: string) => {
+  const resetLink = `${domain}/auth/new-password?token=${token}`;
+  const htmlContent = `
+    <p>Reset your password</p>
+    <p>
+      <a href="${resetLink}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+        Reset Password
+      </a>
+    </p>
+    <p>If you're having trouble clicking the button, copy and paste this URL into your web browser:</p>
+    <p>${resetLink}</p>
+  `;
+  await sendEmail(email, "Reset your password", htmlContent);
 };

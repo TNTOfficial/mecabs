@@ -10,10 +10,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/login",
   },
-  session: {
-    strategy: "jwt",
+  events: {
+    async linkAccount({ user }) {
+      await db.user.update({
+        where: { id: user.id },
+        data: { emailVerified: new Date() },
+      });
+    },
   },
+
   callbacks: {
+    async signIn({ user, account }) {
+      // allowing oAuth without email verification
+      if (account?.provider !== "credentials") return true;
+
+      // preventing sign In without email verification
+      const existingUser = await getUserById(user.id!);
+      console.log(existingUser);
+
+      if (!existingUser || !existingUser.emailVerified) {
+        return false;
+      }
+      return true;
+    },
     session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
@@ -26,7 +45,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.email = token.email!;
         session.user.isOAuth = token.isOAuth as boolean;
       }
-      console.log(session);
 
       return session;
     },
@@ -46,6 +64,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       token.role = existingUser.role;
       return token;
     },
+  },
+  session: {
+    strategy: "jwt",
   },
   ...authConfig,
 });
