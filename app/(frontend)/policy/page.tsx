@@ -2,7 +2,11 @@ import React from "react";
 
 import banner4 from "@/public/banner4.jpg";
 const page = () => {
-  const policy = [
+  const policy: {
+    title: string;
+    para?: string;
+    list?: { listItem: string; titleLi?: string }[];
+  }[] = [
     {
       title: "Introduction",
       para: "ME Cabs is dedicated to safeguarding the privacy of its users and customers. This privacy policy elucidates how we gather, utilize, reveal, and safeguard personal information obtained through our taxi service in Melbourne.",
@@ -106,7 +110,7 @@ const page = () => {
                         key={index}
                         className="text-[1rem] text-black font-normal"
                       >
-                        <strong>{item.titleLi}</strong>
+                        {item.titleLi && <strong>{item?.titleLi}</strong>}
                         <span>{item.listItem}</span>
                       </li>
                     );
