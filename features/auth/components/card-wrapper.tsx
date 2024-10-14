@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Header } from "./Header";
 import { Social } from "./social";
+import Link from "next/link";
 
 interface CardWrapperProps {
   children: React.ReactNode;
@@ -71,8 +72,8 @@ export const CardWrapper = ({
       </div>
       <CardFooter>
         <p>
-          By joining, you agree to the Fiverr Terms of Service and to
-          occasionally receive emails from us. Please read our Privacy Policy to
+          By joining, you agree to the MeCabs <Link href="/terms">Terms and Conditions</Link> and to
+          occasionally receive emails from us. Please read our <Link href="/policy">Privacy Policy</Link> to
           learn how we use your personal data.
         </p>
       </CardFooter>

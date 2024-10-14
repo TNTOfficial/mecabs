@@ -31,9 +31,9 @@ export const LoginButton = ({
     return (
       <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
-        <DialogContent className="p-0 bg-transparent border-none h-full max-lg:p-[120px] max-md:p-[30px] max-md:pb-[100px] max-h-screen min-h-screen flex justify-center items-center overflow-y-auto">
-          <div className="flex m-auto flex-wrap justify-center items-stretch rounded-3xl min-h-[730px] bg-white overflow-hidden lg:max-w-screen-lg  max-w-full ">
-            <div className="lg:w-[calc(100%_/_2)] w-[calc(100%_/_1)]">
+        <DialogContent className="p-0 bg-transparent border-0  flex justify-center items-center overflow-y-auto h-fit shadow-none">
+          <div className="flex m-auto flex-wrap justify-center items-stretch rounded-3xl lg:min-h-[730px] bg-white overflow-hidden lg:max-w-screen-lg  max-w-full ">
+            <div className="lg:w-[calc(100%_/_2)] w-[calc(100%_/_1)] max-lg:hidden">
               <div
                 className="card h-full relative z-0  bg-no-repeat bg-center bg-cover"
                 style={{ backgroundImage: ` url(${signcard.src})` }}
@@ -63,7 +63,7 @@ export const LoginButton = ({
                 </div>
               </div>
             </div>
-            <div className="lg:w-[calc(100%_/_2)] w-[calc(100%_/_1)]">
+            <div className="lg:w-[calc(100%_/_2)] w-full">
               <LoginForm
                 formType={formType}
                 onCloseDialog={() => {
@@ -77,8 +77,14 @@ export const LoginButton = ({
     );
   }
   return (
-    <span onClick={onClick} className="cursor-pointer">
-      {children}
-    </span>
+    <>
+      <span onClick={onClick} className="cursor-pointer">
+        {children}
+      </span>
+
+
+    </>
+
+
   );
 };

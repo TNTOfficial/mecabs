@@ -179,8 +179,8 @@ export const LoginForm = ({
         showReset
           ? "Forgot your password?"
           : currentFormType === "login"
-          ? "Sign in to your account"
-          : "Create a new account"
+            ? "Sign in to your account"
+            : "Create a new account"
       }
       headerSubLabel={
         currentFormType === "login"
@@ -297,17 +297,21 @@ export const LoginForm = ({
                             type="password"
                           />
                         </FormControl>
-                        <Button
-                          size="sm"
-                          variant="link"
-                          asChild
-                          className="px-0 font-normal"
-                          onClick={() => {
-                            setShowReset(true);
-                          }}
-                        >
-                          <p>Forgot password?</p>
-                        </Button>
+                        {
+                          currentFormType === "login" && (
+                            <Button
+                              size="sm"
+                              variant="link"
+                              asChild
+                              className="px-0 font-normal"
+                              onClick={() => {
+                                setShowReset(true);
+                              }}
+                            >
+                              <p>Forgot password?</p>
+                            </Button>
+                          )
+                        }
                         <FormMessage />
                       </FormItem>
                     )}
