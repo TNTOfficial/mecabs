@@ -53,7 +53,7 @@ const config: Config = {
         },
       },
       container: {
-        center: "true",
+        center: true,
         padding: "2rem",
       },
       fontFamily: {
@@ -70,6 +70,7 @@ const config: Config = {
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 };
 export default config;
