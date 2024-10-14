@@ -90,7 +90,7 @@ export default function Navbar() {
                 <div className="flex justify-center items-center gap-3 max-lg:w-full">
                   {!user ? (
                     <>
-                      <LoginButton formType="login" >
+                      <LoginButton mode="modal" formType="login" asChild>
                         <Button className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold">
                           Sign In
                         </Button>

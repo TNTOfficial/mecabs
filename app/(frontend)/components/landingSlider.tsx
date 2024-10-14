@@ -6,11 +6,7 @@ import bg1 from "@/public/bg_slide1.jpg";
 import bg2 from "@/public/bg_slide2.jpg";
 import bg3 from "@/public/bg_slide3.jpg";
 // Swiper components, modules and styles
-import {
-  Autoplay,
-  Pagination,
-  Parallax,
-} from "swiper/modules";
+import { Autoplay, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -18,11 +14,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { HiMiniArrowSmallLeft, HiMiniArrowSmallRight } from "react-icons/hi2";
 import SwiperCore from "swiper";
-
+import { Swiper as SwiperType } from "swiper";
 SwiperCore.use([Parallax]);
 
 const LandingSlider = () => {
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   const slideContent = [
     {
@@ -45,7 +41,9 @@ const LandingSlider = () => {
   ];
   return (
     <Swiper
-      ref={swiperRef}
+      onSwiper={(swiper) => {
+        swiperRef.current = swiper;
+      }}
       pagination={{ type: "fraction", clickable: false }}
       centeredSlides={true}
       speed={1000}
@@ -59,7 +57,7 @@ const LandingSlider = () => {
         }
       }}
       autoplay={{
-        delay: 250000,
+        delay: 2000,
         disableOnInteraction: false,
       }}
       modules={[Autoplay, Pagination]}
@@ -68,7 +66,7 @@ const LandingSlider = () => {
       {slideContent.map((slide) => {
         return (
           <SwiperSlide
-          key={slide.title}
+            key={slide.title}
             style={{ backgroundImage: ` url(${slide.bgImg.src})` }}
             className=" bg-no-repeat bg-cover bg-left relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0 h-full slide-bg"
             data-swiper-parallax="1152"
@@ -78,13 +76,13 @@ const LandingSlider = () => {
                 <div className="sectionHeading pb-[100px] w-full max-w-[525px]">
                   <div className="flex gap-3 mb-10">
                     <div
-                      onClick={() => swiperRef?.current?.swiper?.slidePrev()}
+                      onClick={() => swiperRef.current?.slidePrev()}
                       className="rounded-full h-10 w-10 bg-zinc-700 bg-opacity-30 flex justify-center items-center cursor-pointer"
                     >
                       <HiMiniArrowSmallLeft className="text-white text-[1.5rem]" />
                     </div>
                     <div
-                      onClick={() => swiperRef?.current?.swiper?.slideNext()}
+                      onClick={() => swiperRef.current?.slideNext()}
                       className="rounded-full h-10 w-10 bg-zinc-700 bg-opacity-30 flex justify-center items-center cursor-pointer"
                     >
                       <HiMiniArrowSmallRight className="text-white text-[1.5rem]" />
@@ -108,83 +106,6 @@ const LandingSlider = () => {
           </SwiperSlide>
         );
       })}
-
-      {/* <SwiperSlide
-        style={{ backgroundImage: ` url(${bg2.src})` }}
-        className="slideSwiper slide-bg"
-        data-swiper-parallax="1152"
-      >
-        <div className="container">
-          <div className="max-w-screen-xl px-3 mx-auto h-[calc(90dvh_-_64px)] py-[100px] flex justify-center items-start flex-col">
-            <div className="sectionHeading pb-[100px]">
-              <div className="flex gap-3 mb-10">
-                <div
-                  onClick={() => swiperRef?.current?.swiper?.slidePrev()}
-                  className="rounded-full h-10 w-10 bg-zinc-700 bg-opacity-30 flex justify-center items-center cursor-pointer"
-                >
-                  <HiMiniArrowSmallLeft className="text-white text-[1.5rem]" />
-                </div>
-                <div
-                  onClick={() => swiperRef?.current?.swiper?.slideNext()}
-                  className="rounded-full h-10 w-10 bg-zinc-700 bg-opacity-30 flex justify-center items-center cursor-pointer"
-                >
-                  <HiMiniArrowSmallRight className="text-white text-[1.5rem]" />
-                </div>
-              </div>
-              <h4
-                data-swiper-parallax="-1000"
-                className="text-white text-[1.3rem] font-bold"
-              >
-                Where Wd You Like To Go?
-              </h4>
-              <h1
-                data-swiper-parallax="-2000"
-                className="text-white text-[3rem] font-extrabold"
-              >
-                ploring the Essence <br /> Of Chauffeur Services
-              </h1>
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide
-        style={{ backgroundImage: ` url(${bg3.src})` }}
-        className="slideSwiper slide-bg"
-        data-swiper-parallax="1152"
-      >
-        <div className="container">
-          <div className="max-w-screen-xl px-3 mx-auto h-[calc(90dvh_-_64px)] py-[100px] flex justify-center items-start flex-col">
-            <div className="sectionHeading pb-[100px]">
-              <div className="flex gap-3 mb-10">
-                <div
-                  onClick={() => swiperRef?.current?.swiper?.slidePrev()}
-                  className="rounded-full h-10 w-10 bg-zinc-700 bg-opacity-30 flex justify-center items-center cursor-pointer"
-                >
-                  <HiMiniArrowSmallLeft className="text-white text-[1.5rem]" />
-                </div>
-                <div
-                  onClick={() => swiperRef?.current?.swiper?.slideNext()}
-                  className="rounded-full h-10 w-10 bg-zinc-700 bg-opacity-30 flex justify-center items-center cursor-pointer"
-                >
-                  <HiMiniArrowSmallRight className="text-white text-[1.5rem]" />
-                </div>
-              </div>
-              <h4
-                data-swiper-parallax="-1000"
-                className="text-white text-[1.3rem] font-bold"
-              >
-                Where Wd You Like To Go?
-              </h4>
-              <h1
-                data-swiper-parallax="-2000"
-                className="text-white text-[3rem] font-extrabold"
-              >
-                ploring the Essence <br /> Of Chauffeur Services
-              </h1>
-            </div>
-          </div>
-        </div>
-      </SwiperSlide> */}
     </Swiper>
   );
 };

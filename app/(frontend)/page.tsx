@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 
 import Image from "next/image";
 import { BsLuggageFill } from "react-icons/bs";
@@ -155,7 +155,9 @@ export default function Home() {
             <Link
               href="/booking"
               className="text-white bg-black py-4 px-16 hover:scale-95 transition-all duration-300 hover:shadow-sm shadow-none hover:shadow-blue-700 inline-block text-nowrap border-none rounded-[50px]"
-            >Book Now</Link>
+            >
+              Book Now
+            </Link>
 
             <Link
               href="tel: +91 0000000000"
