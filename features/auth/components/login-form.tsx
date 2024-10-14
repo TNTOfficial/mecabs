@@ -84,7 +84,7 @@ export const LoginForm = ({
       const timer = setTimeout(() => {
         setError(undefined);
         setSuccess(undefined);
-      }, 3000);
+      }, 300000);
 
       return () => clearTimeout(timer);
     }
@@ -246,7 +246,7 @@ export const LoginForm = ({
                     control={form.control}
                     name="name"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="relative">
                         <FormLabel>Name</FormLabel>
                         <FormControl>
                           <Input
@@ -256,7 +256,7 @@ export const LoginForm = ({
                             type="text"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="absolute top-[90%] left-0"  />
                       </FormItem>
                     )}
                   />
@@ -269,7 +269,7 @@ export const LoginForm = ({
                     control={form.control}
                     name="email"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="relative">
                         <FormLabel>Email</FormLabel>
                         <FormControl>
                           <Input
@@ -279,7 +279,7 @@ export const LoginForm = ({
                             type="email"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="absolute top-[90%] left-0" />
                       </FormItem>
                     )}
                   />
@@ -287,7 +287,7 @@ export const LoginForm = ({
                     control={form.control}
                     name="password"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="relative">
                         <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
@@ -312,7 +312,7 @@ export const LoginForm = ({
                             </Button>
                           )
                         }
-                        <FormMessage />
+                        <FormMessage  className="absolute top-[90%] left-0"  />
                       </FormItem>
                     )}
                   />
@@ -339,7 +339,7 @@ export const LoginForm = ({
               control={verificationForm.control}
               name="token"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="relative">
                   <FormLabel>Verification Code</FormLabel>
                   <FormControl>
                     <Input
@@ -349,7 +349,7 @@ export const LoginForm = ({
                       type="text"
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage  className="absolute top-[90%] left-0"  />
                 </FormItem>
               )}
             />
@@ -373,7 +373,7 @@ export const LoginForm = ({
                 control={ResetForm.control} // <-- Also make sure to use ResetForm here
                 name="email"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="relative">
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
@@ -383,7 +383,7 @@ export const LoginForm = ({
                         type="email"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="absolute top-[90%] left-0"  />
                   </FormItem>
                 )}
               />
