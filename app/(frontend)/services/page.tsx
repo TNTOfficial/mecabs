@@ -132,7 +132,10 @@ export default function ServicesPage() {
           <div className="flex flex-wrap justify-center items-center gap-5 mb-10">
             {service1Post.map((service1) => {
               return (
-                <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
+                <div
+                  key={service1.title}
+                  className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]"
+                >
                   <div className="relative z-0 overflow-hidden rounded-2xl [&_.cardBody]:hover:bottom-0 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-blue-700 before:to-[#0000ff11] before:hover:top-0 before:hover:opacity-100 before:transition-all  before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-50 after:z-[8]">
                     <div className="card_img w-full h-[400px] rounded-2xl overflow-hidden">
                       <Image
@@ -145,9 +148,7 @@ export default function ServicesPage() {
                       <h3 className="text-white mb-5 text-[1.7rem]">
                         {service1.title}
                       </h3>
-                      <p className="text-white mb-4">
-                        {service1.para}
-                      </p>
+                      <p className="text-white mb-4">{service1.para}</p>
 
                       <a href="#" className=" text-white">
                         <LuArrowUpRightFromCircle className="text-[2.5rem]" />
@@ -176,7 +177,10 @@ export default function ServicesPage() {
           <div className="flex flex-wrap justify-center items-center gap-5">
             {service2Post.map((service2) => {
               return (
-                <div className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]">
+                <div
+                  key={service2.title}
+                  className=" lg:w-[calc(100%_/_3_-_20px)] md:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]"
+                >
                   <div className="relative z-0 overflow-hidden rounded-2xl [&_.cardBody]:hover:bottom-0 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-blue-700 before:to-[#0000ff11] before:hover:top-0 before:hover:opacity-100 before:transition-all  before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-50 after:z-[8]">
                     <div className="card_img w-full h-[400px] rounded-2xl overflow-hidden">
                       <Image

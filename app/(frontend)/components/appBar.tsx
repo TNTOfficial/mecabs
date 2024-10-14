@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { BsBookmarkPlusFill } from 'react-icons/bs'
-import { CiBookmarkCheck } from 'react-icons/ci'
 import { FaRoad } from 'react-icons/fa'
-import { HiOutlineArrowUturnRight } from 'react-icons/hi2'
 import { IoMdCall } from 'react-icons/io'
 
 const AppBar = () => {
