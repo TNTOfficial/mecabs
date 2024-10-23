@@ -49,7 +49,7 @@ export const LoginForm = ({
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get("callbackUrl");
+  const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different provider!"
@@ -122,7 +122,7 @@ export const LoginForm = ({
           email: values.email,
           password: values.password,
         };
-        login(loginValues)
+        login(loginValues, callbackUrl)
           .then((data) => {
             if (data?.error) {
               form.reset();
@@ -179,8 +179,8 @@ export const LoginForm = ({
         showReset
           ? "Forgot your password?"
           : currentFormType === "login"
-            ? "Sign in to your account"
-            : "Create a new account"
+          ? "Sign in to your account"
+          : "Create a new account"
       }
       headerSubLabel={
         currentFormType === "login"
@@ -256,7 +256,7 @@ export const LoginForm = ({
                             type="text"
                           />
                         </FormControl>
-                        <FormMessage className="absolute top-[90%] left-0"  />
+                        <FormMessage className="absolute top-[90%] left-0" />
                       </FormItem>
                     )}
                   />
@@ -297,22 +297,20 @@ export const LoginForm = ({
                             type="password"
                           />
                         </FormControl>
-                        {
-                          currentFormType === "login" && (
-                            <Button
-                              size="sm"
-                              variant="link"
-                              asChild
-                              className="px-0 font-normal"
-                              onClick={() => {
-                                setShowReset(true);
-                              }}
-                            >
-                              <p>Forgot password?</p>
-                            </Button>
-                          )
-                        }
-                        <FormMessage  className="absolute top-[90%] left-0"  />
+                        {currentFormType === "login" && (
+                          <Button
+                            size="sm"
+                            variant="link"
+                            asChild
+                            className="px-0 font-normal"
+                            onClick={() => {
+                              setShowReset(true);
+                            }}
+                          >
+                            <p>Forgot password?</p>
+                          </Button>
+                        )}
+                        <FormMessage className="absolute top-[90%] left-0" />
                       </FormItem>
                     )}
                   />
@@ -349,7 +347,7 @@ export const LoginForm = ({
                       type="text"
                     />
                   </FormControl>
-                  <FormMessage  className="absolute top-[90%] left-0"  />
+                  <FormMessage className="absolute top-[90%] left-0" />
                 </FormItem>
               )}
             />
@@ -383,7 +381,7 @@ export const LoginForm = ({
                         type="email"
                       />
                     </FormControl>
-                    <FormMessage className="absolute top-[90%] left-0"  />
+                    <FormMessage className="absolute top-[90%] left-0" />
                   </FormItem>
                 )}
               />

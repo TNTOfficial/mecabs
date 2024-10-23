@@ -13,17 +13,18 @@ enum UserRole {
 }
 
 model User {
-  id                    String                 @id @default(auto()) @map("_id") @db.ObjectId
-  name                  String?
-  email                 String?                @unique
-  password              String?
-  emailVerified         DateTime?
-  role                  UserRole               @default(USER)
-  image                 String?
-  accounts              Account[]              @relation("UserAccounts")
-  isTwoFactorEnabled    Boolean                @default(false)
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  name               String?
+  email              String?   @unique
+  password           String?
+  emailVerified      DateTime?
+  role               UserRole  @default(USER)
+  image              String?
+  accounts           Account[] @relation("UserAccounts")
+  isTwoFactorEnabled Boolean   @default(false)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  Booking            Booking[]
 }
 
 model Account {
@@ -66,3 +67,71 @@ model PasswordResetToken {
   @@index([email, token])
 }
 
+model Booking {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String        @db.ObjectId
+  user        User          @relation(fields: [userId], references: [id])
+  bookingType BookingTypes
+  bookingMode BookingMode   @default(now)
+  status      BookingStatus @default(active)
+
+  // Customer details
+  passengerName String
+  phoneNumber   String
+  recipientName String? // For parcel bookings
+
+  // Location details
+  pickupLocation     String
+  pickupCoordinates  Json // { lat: number, lng: number }
+  dropoffLocation    String?
+  dropoffCoordinates Json? // { lat: number, lng: number }
+
+  // Booking details
+  pickupDateTime DateTime
+  hours          Int? // For hourly bookings
+  vehicleType    String // "sedan" | "suv" | "van"
+  babySeat       Boolean  @default(false)
+  flightNumber   String?
+
+  // Payment details
+  price           Float?
+  paymentMethod   String?
+  paymentStatus   String?
+  paymentIntentId String? 
+
+  // Additional details
+  notes   String?
+  remarks String?
+
+  // Related bookings 
+  isReturnBooking Boolean   @default(false)
+  parentBookingId String?   @db.ObjectId
+  parentBooking   Booking?  @relation("ReturnBookings", fields: [parentBookingId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  returnBookings  Booking[] @relation("ReturnBookings")
+
+  // Metadata
+
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([bookingType])
+  @@index([pickupDateTime])
+}
+
+enum BookingTypes {
+  booking
+  hourly
+  parcel
+}
+
+enum BookingMode {
+  now
+  later
+}
+
+enum BookingStatus {
+  active
+  completed
+  cancelled
+}

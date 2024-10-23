@@ -9,6 +9,8 @@ export const publicRoutes = [
   "/services",
   "/policy",
   "/terms",
+  "/google-map",
+  "/test",
 ];
 
 /**

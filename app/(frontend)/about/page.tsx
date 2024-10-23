@@ -10,13 +10,11 @@ import {
 import { AiOutlineSafety, AiOutlineSafetyCertificate } from "react-icons/ai";
 import { BsLuggageFill } from "react-icons/bs";
 import { MdWorkspacePremium } from "react-icons/md";
-// import { fetchRevenue } from "@/app/lib/data";
 import bgshap from "@/public/bgshap.png";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 export default async function About() {
-  // const revenue = await fetchRevenue();
-  // console.log(revenue);
+
   const makeTrip = [
     {
       title: "Safety First",
