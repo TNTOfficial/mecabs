@@ -38,8 +38,7 @@ import { Map } from "./map";
 import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
-import { Select, SelectItem, SelectValue } from "@/components/ui/select";
-import { SelectContent, SelectTrigger } from "@radix-ui/react-select";
+import { Select, SelectItem, SelectValue, SelectContent, SelectTrigger } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { FormError } from "@/components/form-error";
@@ -397,7 +396,7 @@ export const BookingForm: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full max-lg:min-h-[calc(100dvh_-_70.52px)] min-h-full h-[calc(100dvh_-_70.52px)]">
       <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
       <SuccessModal
         isOpen={showSuccessModal}
@@ -428,12 +427,12 @@ export const BookingForm: React.FC = () => {
 
       <div
         className={cn(
-          "absolute top-4 left-4 bg-white rounded-lg shadow-lg transition-all duration-300",
-          isFormMinimized ? "w-12" : "w-[400px]"
+          "lg:absolute top-4 left-4 bg-white rounded-lg lg:w-[400px] w-full lg:shadow-lg transition-all duration-100 lg:overflow-x-hidden lg:overflow-y-auto",
+          isFormMinimized ? "h-16" : "h-[96%]"
         )}
       >
         <div className="flex justify-between items-center p-4">
-          <h2 className={cn("font-semibold", isFormMinimized && "hidden")}>
+          <h2 className="font-semibold">
             Book a Ride
           </h2>
           <Button
@@ -446,7 +445,7 @@ export const BookingForm: React.FC = () => {
         </div>
 
         {!isFormMinimized && (
-          <div className="p-4">
+          <div className="p-4 pt-0">
             <Tabs
               defaultValue={bookingTypes.BOOKING}
               onValueChange={(v) => handleTabChange(v as BookingType)}
@@ -566,8 +565,8 @@ export const BookingForm: React.FC = () => {
                 )}
                 {(activeTab === bookingTypes.HOURLY ||
                   form.watch("bookingMode") === "later") && (
-                  <>
-                    {/* <FormField
+                    <>
+                      {/* <FormField
                         control={form.control}
                         name="pickupDateTime"
                         render={({ field }) => (
@@ -611,34 +610,34 @@ export const BookingForm: React.FC = () => {
                           </FormItem>
                         )}
                       /> */}
-                    <FormField
-                      control={form.control}
-                      name="pickupDateTime"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Pickup Date & Time</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="datetime-local"
-                              value={
-                                field.value
-                                  ? format(field.value, "yyyy-MM-dd'T'HH:mm")
-                                  : ""
-                              }
-                              onChange={(e) => {
-                                const value = e.target.value
-                                  ? new Date(e.target.value)
-                                  : null;
-                                field.onChange(value);
-                              }}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </>
-                )}
+                      <FormField
+                        control={form.control}
+                        name="pickupDateTime"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Pickup Date & Time</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="datetime-local"
+                                value={
+                                  field.value
+                                    ? format(field.value, "yyyy-MM-dd'T'HH:mm")
+                                    : ""
+                                }
+                                onChange={(e) => {
+                                  const value = e.target.value
+                                    ? new Date(e.target.value)
+                                    : null;
+                                  field.onChange(value);
+                                }}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  )}
 
                 {activeTab === bookingTypes.HOURLY && (
                   <FormField
@@ -686,23 +685,39 @@ export const BookingForm: React.FC = () => {
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
-                            <SelectTrigger className="w-full">
+                            <SelectTrigger className="w-full px-2 py-0 border rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary ">
                               <SelectValue placeholder="Select vehicle">
-                                {vehicleTypes.find(
-                                  (v) => v.value === field.value
-                                )?.type || "Select vehicle"}
+                                <div className="flex gap-3">
+                                  <div className="w-6 h-6 relative">
+                                    <Image
+                                      src={vehicleTypes.find(
+                                        (v) => v.value === field.value
+                                      )?.imageUrl || "Select vehicle"}
+                                      alt={vehicleTypes.find(
+                                        (v) => v.value === field.value
+                                      )?.imageUrl || "Select vehicle"}
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                  <span>        {vehicleTypes.find(
+                                    (v) => v.value === field.value
+                                  )?.type || "Select vehicle"}
+                                  </span>
+                                </div>
+
                               </SelectValue>
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="z-[999] bg-white w-full">
                               {vehicleTypes
                                 .filter((vehicle) => !vehicle.hidden)
                                 .map((vehicle) => (
                                   <SelectItem
                                     key={vehicle.value}
                                     value={vehicle.value}
-                                    className="flex items-center gap-2 p-2"
+                                    className="flex items-center w-full gap-2 p-2"
                                   >
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center gap-2 w-full">
                                       <div className="w-6 h-6 relative">
                                         <Image
                                           src={vehicle.imageUrl}
@@ -860,15 +875,8 @@ export const BookingForm: React.FC = () => {
                 </Button>
               </form>
             </Form>
-            <p className="text-sm font-semibold text-muted-foreground">
-              I have read and agreed to the
-              <Button variant="link">
-                <Link href="/policy">Privacy Policy</Link>
-              </Button>
-              and
-              <Button variant="link">
-                <Link href="/terms">Terms and Conditions</Link>
-              </Button>
+            <p className="text-sm font-semibold text-muted-foreground mt-4">
+              I have read and agreed to the <Link href="/policy" className="underline">Privacy Policy</Link> and <Link href="/terms" className="underline">Terms and Conditions</Link>
             </p>
           </div>
         )}

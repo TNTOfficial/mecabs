@@ -231,7 +231,7 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
 
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full lg:h-full h-[400px]">
       <GoogleMap
         mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID}
         center={center}
@@ -239,6 +239,7 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
         disableDefaultUI={true}
         // options={mapOptions}
         style={{ width: "100%", height: "100%" }}
+
       >
         <AdvancedMarkers pickup={pickup} dropoff={dropoff} />
         {route && pickup && dropoff && (
