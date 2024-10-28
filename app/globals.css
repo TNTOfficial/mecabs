@@ -193,3 +193,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       transform: rotate(0deg)
   }
 }
+
+
+@layer utilities {
+  /* Thin scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  /* Gray track/bar */
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-e-lg;
+  }
+
+  /* Darker-gray handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-lg;
+  }
+
+  /* Darker-gray handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-blue-600;
+  }
+}
