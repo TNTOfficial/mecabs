@@ -262,7 +262,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                     <TableCell>
                       {booking.price ? (
                         <span className="font-medium">
-                          ${booking.price.toFixed(2)}
+                          ${booking?.price?.toFixed(2)}
                         </span>
                       ) : (
                         "TBD"
