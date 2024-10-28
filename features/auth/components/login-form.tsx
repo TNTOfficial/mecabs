@@ -29,15 +29,18 @@ import { register } from "@/actions/auth/register";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { newVerification } from "@/actions/auth/new-verification";
 import { reset } from "@/actions/auth/reset";
+import { useSession } from "next-auth/react";
 
 interface LoginFormProps {
   formType?: "login" | "register";
   onCloseDialog?: () => void;
+  isModal?: boolean;
 }
 
 export const LoginForm = ({
   formType = "login",
   onCloseDialog,
+  isModal,
 }: LoginFormProps) => {
   const [currentFormType, setCurrentFormType] = useState<"login" | "register">(
     formType
@@ -50,6 +53,7 @@ export const LoginForm = ({
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
+  const { update: updateSession } = useSession();
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different provider!"
@@ -122,8 +126,10 @@ export const LoginForm = ({
           email: values.email,
           password: values.password,
         };
-        login(loginValues, callbackUrl)
+        login(loginValues, callbackUrl, isModal)
           .then((data) => {
+            console.log(data);
+
             if (data?.error) {
               form.reset();
               setError(data.error);
@@ -132,6 +138,18 @@ export const LoginForm = ({
             if (data?.success) {
               form.reset();
               setSuccess(data.success);
+            }
+
+            // If it's modal login and successful, close the dialog
+            if (isModal && data === undefined && onCloseDialog) {
+              updateSession();
+              setTimeout(() => {
+                onCloseDialog();
+              }, 1000); // Giving the user time to see the success message.
+            }
+
+            if (!isModal) {
+              updateSession();
             }
           })
           .catch(() => setError("Something went wrong during login"));

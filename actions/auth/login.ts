@@ -12,7 +12,8 @@ import { AuthError } from "next-auth";
 
 export const login = async (
   values: z.infer<typeof LoginSchema>,
-  callbackUrl?: string | null
+  callbackUrl?: string | null,
+  isModal: boolean = false
 ) => {
   const validatedFields = LoginSchema.safeParse(values);
   if (!validatedFields.success) {
@@ -44,11 +45,19 @@ export const login = async (
   }
 
   try {
+    //For modal login we dont't want to redirect
+    const redirectTo = isModal
+      ? undefined
+      : callbackUrl || DEFAULT_LOGIN_REDIRECT;
     await signIn("credentials", {
       email,
       password,
-      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirectTo: redirectTo,
     });
+
+    if (isModal) {
+      return { success: "Logged in successfully!" };
+    }
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

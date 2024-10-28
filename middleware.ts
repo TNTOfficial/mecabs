@@ -6,6 +6,7 @@ import {
   authRoutes,
   publicRoutes,
 } from "@/routes";
+import { NextResponse } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 export default auth((req) => {
@@ -16,29 +17,32 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
+  //Handling api auth routes
   if (isApiAuthRoute) {
-    return undefined;
+    return NextResponse.next();
   }
 
+  // Handling auth routes
   if (isAuthRoute) {
     if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT));
+      return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT));
     }
-    return undefined;
+    return NextResponse.next();
   }
 
+  // Handling protected routes
   if (!isLoggedIn && !isPublicRoute) {
     let callbackUrl = nextUrl.pathname;
     if (nextUrl.search) {
       callbackUrl += nextUrl.search;
     }
     const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-    return Response.redirect(
+    return NextResponse.redirect(
       new URL(`/auth/login?${encodedCallbackUrl}`, nextUrl)
     );
   }
 
-  return;
+  return NextResponse.next(); // Passing the control to the next fn by calling next method
 });
 
 // Optionally, don't invoke Middleware on some paths

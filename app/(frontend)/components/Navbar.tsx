@@ -2,10 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
 import logo from "@/public/logo.png";
-// import Image from "next/image";
-// import Logo from "../../../../public/logo.png";
 
 import { MdMenuOpen } from "react-icons/md";
 import { usePathname } from "next/navigation";
@@ -15,6 +12,7 @@ import Image from "next/image";
 import { LoginButton } from "@/features/auth/components/login-button";
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
+import { UserButton } from "@/features/auth/components/user-button";
 export default function Navbar() {
   const pathname = usePathname();
   const [display, setDisplay] = useState(false);
@@ -24,7 +22,7 @@ export default function Navbar() {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
   ];
-  const user = useCurrentUser();
+  const { user } = useCurrentUser();
 
   const toggleClass = () => {
     setDisplay(!display);
@@ -103,19 +101,7 @@ export default function Navbar() {
                     </>
                   ) : (
                     <>
-                      <div className="flex justify-center items-center gap-3">
-                        <span className="font-bold italic decoration-1 cursor-pointer">
-                          {user?.name}
-                        </span>
-                        <button
-                          onClick={() => {
-                            signOut();
-                          }}
-                          className="border border-transparent text-white bg-[#2e2e2e] px-5 py-2 rounded-3xl text-[0.9rem] font-semibold"
-                        >
-                          Logout
-                        </button>
-                      </div>
+                      <UserButton />
                     </>
                   )}
                 </div>

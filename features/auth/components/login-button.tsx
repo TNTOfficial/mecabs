@@ -65,6 +65,7 @@ export const LoginButton = ({
             </div>
             <div className="lg:w-[calc(100%_/_2)] w-full">
               <LoginForm
+                isModal={true}
                 formType={formType}
                 onCloseDialog={() => {
                   setDialogOpen(false);
@@ -82,7 +83,5 @@ export const LoginButton = ({
         {children}
       </span>
     </>
-
-
   );
 };

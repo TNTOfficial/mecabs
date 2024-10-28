@@ -7,7 +7,10 @@ import signbg from "@/public/signbg.jpg";
 const LoginPage = () => {
   return (
     <>
-      <section style={{backgroundImage: `url(${signbg.src})`}}  className="py-[50px] flex justify-center items-center min-h-screen bg-center bg-cover bg-no-repeat relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0">
+      <section
+        style={{ backgroundImage: `url(${signbg.src})` }}
+        className="py-[50px] flex justify-center items-center min-h-screen bg-center bg-cover bg-no-repeat relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0"
+      >
         <div className="flex m-auto flex-wrap justify-center items-stretch rounded-3xl lg:min-h-[730px] shadow-md border-t bg-white overflow-hidden lg:max-w-screen-lg  max-w-full ">
           <div className="lg:w-[calc(100%_/_2)] w-[calc(100%_/_1)] max-lg:hidden">
             <div
@@ -40,15 +43,11 @@ const LoginPage = () => {
             </div>
           </div>
           <div className="lg:w-[calc(100%_/_2)] w-full">
-
             <LoginForm />
           </div>
         </div>
       </section>
     </>
-
-
-
   );
 };
 

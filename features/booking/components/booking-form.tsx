@@ -87,7 +87,7 @@ export const BookingForm: React.FC = () => {
     dropoffCoordinates
   );
   const [isPending, startTransition] = useTransition();
-  const user = useCurrentUser();
+  const { user } = useCurrentUser();
 
   const form = useForm<z.infer<typeof BookingSchema>>({
     resolver: zodResolver(BookingSchema),
@@ -422,7 +422,14 @@ export const BookingForm: React.FC = () => {
             setSkipLogin(true);
           }}
         >
-          <LoginForm formType="login" />
+          <LoginForm
+            formType="login"
+            isModal={true}
+            onCloseDialog={() => {
+              setShowLoginModal(false);
+              setSkipLogin(true);
+            }}
+          />
         </Modal>
       )}
 

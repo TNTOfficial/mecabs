@@ -1,17 +1,21 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import AppBar from './components/appBar'
+import React from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import AppBar from "./components/appBar";
+import { Toaster } from "@/components/ui/sonner";
 interface LayoutProps {
-    children: React.ReactNode
+  children: React.ReactNode;
 }
 const Layout = ({ children }: LayoutProps) => {
-    return <>
-        <Navbar />
-        {children}
-        <Footer />
-        <AppBar />
+  return (
+    <>
+      <Navbar />
+      <Toaster />
+      {children}
+      <Footer />
+      <AppBar />
     </>
-}
+  );
+};
 
-export default Layout
+export default Layout;

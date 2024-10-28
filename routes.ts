@@ -6,13 +6,18 @@ export const publicRoutes = [
   "/",
   "/about",
   "/booking",
-  "/services",
   "/policy",
   "/terms",
   "/google-map",
   "/test",
 ];
 
+export const protectedRoutes = [
+  "/settings",
+  "/dashboard",
+  "/dashboard/user-bookings",
+  // ... other protected routes
+];
 /**
  * An array of routes that are accessible to the public. These routes  require authentication.
  * These routes will redirect logged in users  to /settings
@@ -38,4 +43,4 @@ export const apiAuthPrefix = "/api/auth";
  * The default redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/settings";
+export const DEFAULT_LOGIN_REDIRECT = "/";
