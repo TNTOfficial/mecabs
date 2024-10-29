@@ -9,9 +9,9 @@ interface DashbaordLayoutProps {
 }
 const DashbaordLayout: React.FC<DashbaordLayoutProps> = ({ children }) => {
   return (
-    <div className="bg-muted h-screen flex">
+    <div className="bg-muted flex">
       <Sidebar />
-      <div className="flex-1 flex flex-col">
+      <div className="w-full pl-[300px]">
         <Navbar />
         <main className="bg-white flex-1 overflow-auto p-8 lg:rounded-tl-2xl">
           <Toaster />

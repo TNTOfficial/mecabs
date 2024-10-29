@@ -49,25 +49,26 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-stretch space-x-2">
           <Input
             placeholder="Search..."
             value={filters.search || ""}
             onChange={(e) => handleFilterChange("search", e.target.value)}
           />
           <Button
+            className="h-auto flex justify-center items-center"
             variant="outline"
             size="sm"
             onClick={() => setShowFilters(!showFilters)}
           >
-            <Filter className="h-4 w-4 mr-2" />
+            <Filter className="h-4 w-4" />
           </Button>
         </div>
       </div>
 
       {showFilters && (
         <Card>
-          <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
+          <CardContent className="grid grid-cols-1 md:grid-cols-3 w-full gap-4 p-4">
             {config.map((filter) => {
               if (filter.type === "select" && filter.options) {
                 return (

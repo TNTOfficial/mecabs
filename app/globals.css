@@ -155,45 +155,46 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 }
 
-
 @keyframes shake {
   0% {
-      transform: rotate(-15deg)
+    transform: rotate(-15deg);
   }
 
   4% {
-      transform: rotate(15deg)
+    transform: rotate(15deg);
   }
 
-  8%,24% {
-      transform: rotate(-18deg)
+  8%,
+  24% {
+    transform: rotate(-18deg);
   }
 
-  12%,28% {
-      transform: rotate(18deg)
+  12%,
+  28% {
+    transform: rotate(18deg);
   }
 
   16% {
-      transform: rotate(-22deg)
+    transform: rotate(-22deg);
   }
 
   20% {
-      transform: rotate(22deg)
+    transform: rotate(22deg);
   }
 
   32% {
-      transform: rotate(-12deg)
+    transform: rotate(-12deg);
   }
 
   36% {
-      transform: rotate(12deg)
+    transform: rotate(12deg);
   }
 
-  40%,to {
-      transform: rotate(0deg)
+  40%,
+  to {
+    transform: rotate(0deg);
   }
 }
-
 
 @layer utilities {
   /* Thin scrollbar */
@@ -215,4 +216,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-blue-600;
   }
+}
+
+th,
+td {
+  text-wrap: nowrap;
 }
