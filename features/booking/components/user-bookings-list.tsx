@@ -178,7 +178,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
             initialFilters={filters}
           />
           <Button
-          className="h-auto py-3"
+          className="h-auto py-3 mx-4"
             variant="outline"
             onClick={() => {
               setFilters({
@@ -191,8 +191,8 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
           >
             Reset Filter
           </Button>
-        <Card className="p-4 border-b-0 border-e-0 border-l-0 shadow-md overflow-x-auto w-full">
-          <CardHeader>
+        <Card className="py-4 border-0 rounded overflow-x-auto w-full">
+          <CardHeader className="px-4">
             <CardTitle>Bookings ({totalItems})</CardTitle>
           </CardHeader>
           <CardContent className="w-full overflow-x-auto">

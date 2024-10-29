@@ -9,11 +9,11 @@ interface DashbaordLayoutProps {
 }
 const DashbaordLayout: React.FC<DashbaordLayoutProps> = ({ children }) => {
   return (
-    <div className="bg-muted flex">
+    <div className="bg-zinc-50 min-h-screen flex">
       <Sidebar />
       <div className="w-full pl-[300px]">
         <Navbar />
-        <main className="bg-white flex-1 overflow-auto p-8 lg:rounded-tl-2xl">
+        <main className="flex-1 overflow-auto p-8">
           <Toaster />
           <RoleGuard allowedRoles={["ADMIN", "USER"]}>{children}</RoleGuard>
         </main>

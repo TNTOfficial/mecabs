@@ -28,7 +28,7 @@ export const UserButton = () => {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="outline-none">
-        <div className="flex items-center gap-2 bg-white hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">
+        <div className="flex items-center gap-2 bg-white hover:bg-gray-300 rounded-3xl px-5 py-2 border  transition-all duration-100">
           <Avatar className="h-8 w-8">
             <AvatarImage alt={name!} src={imageUrl || ""} />
             <AvatarFallback className="bg-blue-700 text-sm text-white">

@@ -19,8 +19,8 @@ interface UserBookingsProps {
 export const UserBookings: React.FC<UserBookingsProps> = ({ initialData }) => {
   return (
     <div className="mx-auto py-10">
-      <Card className="p-4 border-b-0 border-e-0 border-l-0 shadow-md">
-        <CardHeader>
+      <Card className="py-4 border-0 rounded">
+        <CardHeader className="px-4">
           <CardTitle className="text-[1.4rem]">My Bookings</CardTitle>
           <CardDescription className="text-[1rem]">View and manage your bookings</CardDescription>
         </CardHeader>
