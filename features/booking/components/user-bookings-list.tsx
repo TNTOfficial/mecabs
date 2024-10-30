@@ -172,29 +172,30 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
   return (
     <>
       <div className="space-y-4">
-        <DataFilters
-          config={filterConfig}
-          onFilterChange={handleFilterChange}
-          initialFilters={filters}
-        />
-        <Button
-          variant="outline"
-          onClick={() => {
-            setFilters({
-              search: "",
-              status: undefined,
-              vehicleType: undefined,
-              bookingType: undefined,
-            });
-          }}
-        >
-          Reset Filter
-        </Button>
-        <Card>
-          <CardHeader>
+          <DataFilters
+            config={filterConfig}
+            onFilterChange={handleFilterChange}
+            initialFilters={filters}
+          />
+          <Button
+          className="h-auto py-3 mx-4"
+            variant="outline"
+            onClick={() => {
+              setFilters({
+                search: "",
+                status: undefined,
+                vehicleType: undefined,
+                bookingType: undefined,
+              });
+            }}
+          >
+            Reset Filter
+          </Button>
+        <Card className="py-4 border-0 rounded overflow-x-auto w-full">
+          <CardHeader className="px-4">
             <CardTitle>Bookings ({totalItems})</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="w-full overflow-x-auto">
             <Table>
               {/* Table header and body remain the same */}
               <TableHeader>
@@ -229,25 +230,25 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                     <TableCell>
                       <div className="space-y-1">
                         <div className="flex items-center space-x-2">
-                          <Calendar className="h-4 w-4" />
+                          <Calendar className="h-5 w-5 text-blue-500" />
                           <span className="text-sm">
                             {format(new Date(booking.pickupDateTime), "PPP")}
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Clock className="h-4 w-4" />
+                          <Clock className="h-4 w-4 text-orange-500" />
                           <span className="text-sm">
                             {format(new Date(booking.pickupDateTime), "p")}
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <MapPin className="h-4 w-4" />
+                          <MapPin className="h-4 w-4 text-green-500" />
                           <span className="text-sm">
                             {booking.pickupLocation}
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <MapPin className="h-4 w-4" />
+                          <MapPin className="h-4 w-4 text-red-500" />
                           <span className="text-sm">
                             {booking.dropoffLocation}
                           </span>
@@ -333,7 +334,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
           open={!!selectedBooking}
           onOpenChange={() => setSelectedBooking(null)}
         >
-          <DialogContent className="max-w-3xl">
+          <DialogContent className="max-w-3xl max-h-screen  overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Booking Details</DialogTitle>
               <DialogDescription>
@@ -342,32 +343,32 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
             </DialogHeader>
 
             {selectedBooking && (
-              <div className="grid grid-cols-2 gap-4">
-                <Card>
+              <div className="flex justify-center items-stretch max-lg:flex-wrap lg:gap-4">
+                <Card className="w-full p-4 border-b-0 border-e-0 border-l-0 shadow">
                   <CardHeader>
-                    <CardTitle>Main Booking</CardTitle>
+                    <CardTitle className="text-[1.3rem]">Main Booking</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold mb-2">
+                    <div className="border-b pb-3 rounded-b-xl px-3">
+                      <h4 className="font-semibold mb-2 text-gray-700">
                         Passenger Information
                       </h4>
                       <p>{selectedBooking.passengerName}</p>
                     </div>
 
-                    <div>
-                      <h4 className="font-semibold mb-2">Vehicle Details</h4>
+                    <div className="border-b pb-3 rounded-b-xl px-3">
+                      <h4 className="font-semibold mb-2 text-gray-700">Vehicle Details</h4>
                       <p>
                         {selectedBooking.vehicleType} -{" "}
                         {selectedBooking.bookingType}
                       </p>
                     </div>
 
-                    <div>
-                      <h4 className="font-semibold mb-2">Pickup Details</h4>
+                    <div className="border-b pb-3 rounded-b-xl px-3">
+                      <h4 className="font-semibold mb-2 text-gray-700">Pickup Details</h4>
                       <div className="space-y-2">
                         <div className="flex items-center space-x-2">
-                          <Calendar className="h-4 w-4" />
+                          <Calendar className="h-5 w-5 text-blue-500" />
                           <span>
                             {format(
                               new Date(selectedBooking.pickupDateTime),
@@ -376,7 +377,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Clock className="h-4 w-4" />
+                          <Clock className="h-4 w-4 text-orange-500" />
                           <span>
                             {format(
                               new Date(selectedBooking.pickupDateTime),
@@ -385,18 +386,18 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <MapPin className="h-4 w-4" />
+                          <MapPin className="h-4 w-4 text-green-500" />
                           <span>{selectedBooking.pickupLocation}</span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <MapPin className="h-4 w-4" />
+                          <MapPin className="h-4 w-4 text-red-500" />
                           <span>{selectedBooking.dropoffLocation}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div>
-                      <h4 className="font-semibold mb-2">Status & Price</h4>
+                    <div className="border-b pb-3 rounded-b-xl px-3">
+                      <h4 className="font-semibold mb-2 text-gray-700">Status & Price</h4>
                       <div className="flex items-center justify-between">
                         {getStatusBadge(selectedBooking.status)}
                         <span className="font-medium">
@@ -406,8 +407,8 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                     </div>
 
                     {selectedBooking.notes && (
-                      <div>
-                        <h4 className="font-semibold mb-2">Additional Notes</h4>
+                      <div className="border-b pb-3 rounded-b-xl px-3">
+                        <h4 className="font-semibold mb-2 text-gray-700">Additional Notes</h4>
                         <p className="text-sm text-muted-foreground">
                           {selectedBooking.notes}
                         </p>
@@ -418,20 +419,20 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
 
                 {selectedBooking.returnBookings &&
                   selectedBooking.returnBookings.length > 0 && (
-                    <Card>
+                    <Card className="w-full p-4 border-b-0 border-e-0 border-l-0 shadow">
                       <CardHeader>
-                        <CardTitle>Return Booking</CardTitle>
+                        <CardTitle className="text-[1.3rem]">Return Booking</CardTitle>
                       </CardHeader>
-                      <CardContent className="space-y-4">
+                      <CardContent className="space-y-3">
                         {selectedBooking.returnBookings.map((returnBooking) => (
                           <div key={returnBooking.id} className="space-y-4">
-                            <div>
-                              <h4 className="font-semibold mb-2">
+                            <div className="border-b pb-3 rounded-b-xl px-3">
+                              <h4 className="font-semibold mb-2 text-gray-700">
                                 Pickup Details
                               </h4>
                               <div className="space-y-2">
                                 <div className="flex items-center space-x-2">
-                                  <Calendar className="h-4 w-4" />
+                                  <Calendar className="h-5 w-5 text-blue-500" />
                                   <span>
                                     {format(
                                       new Date(returnBooking.pickupDateTime),
@@ -440,7 +441,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                                   </span>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <Clock className="h-4 w-4" />
+                                  <Clock className="h-4 w-4 text-orange-500" />
                                   <span>
                                     {format(
                                       new Date(returnBooking.pickupDateTime),
@@ -449,11 +450,11 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                                   </span>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <MapPin className="h-4 w-4" />
+                                  <MapPin className="h-4 w-4 text-green-500" />
                                   <span>{returnBooking.pickupLocation}</span>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <MapPin className="h-4 w-4" />
+                                  <MapPin className="h-4 w-4 text-red-500" />
                                   <span className="text-sm">
                                     {returnBooking.dropoffLocation}
                                   </span>
@@ -461,8 +462,8 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                               </div>
                             </div>
 
-                            <div>
-                              <h4 className="font-semibold mb-2">
+                            <div className="border-b pb-3 rounded-b-xl px-3">
+                              <h4 className="font-semibold mb-2 text-gray-700">
                                 Status & Price
                               </h4>
                               <div className="flex items-center justify-between">
@@ -474,8 +475,8 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                             </div>
 
                             {returnBooking.notes && (
-                              <div>
-                                <h4 className="font-semibold mb-2">
+                              <div className="border-b pb-3 rounded-b-xl px-3">
+                                <h4 className="font-semibold mb-2 text-gray-700">
                                   Additional Notes
                                 </h4>
                                 <p className="text-sm text-muted-foreground">
@@ -484,7 +485,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                               </div>
                             )}
                             <DropdownMenu>
-                              <DropdownMenuTrigger>
+                              <DropdownMenuTrigger className="p-2 px-3 text-[0.9rem] bg-red-100 rounded-xl font-semibold border-none outline-none">
                                 Cancel return booking
                               </DropdownMenuTrigger>
                               <DropdownMenuContent>
