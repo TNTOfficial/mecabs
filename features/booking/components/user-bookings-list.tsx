@@ -172,25 +172,12 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
   return (
     <>
       <div className="space-y-4">
-          <DataFilters
-            config={filterConfig}
-            onFilterChange={handleFilterChange}
-            initialFilters={filters}
-          />
-          <Button
-          className="h-auto py-3 mx-4"
-            variant="outline"
-            onClick={() => {
-              setFilters({
-                search: "",
-                status: undefined,
-                vehicleType: undefined,
-                bookingType: undefined,
-              });
-            }}
-          >
-            Reset Filter
-          </Button>
+        <DataFilters
+          config={filterConfig}
+          onFilterChange={handleFilterChange}
+          initialFilters={filters}
+        />
+
         <Card className="py-4 border-0 rounded overflow-x-auto w-full">
           <CardHeader className="px-4">
             <CardTitle>Bookings ({totalItems})</CardTitle>
@@ -346,7 +333,9 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
               <div className="flex justify-center items-stretch max-lg:flex-wrap lg:gap-4">
                 <Card className="w-full p-4 border-b-0 border-e-0 border-l-0 shadow">
                   <CardHeader>
-                    <CardTitle className="text-[1.3rem]">Main Booking</CardTitle>
+                    <CardTitle className="text-[1.3rem]">
+                      Main Booking
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="border-b pb-3 rounded-b-xl px-3">
@@ -357,7 +346,9 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                     </div>
 
                     <div className="border-b pb-3 rounded-b-xl px-3">
-                      <h4 className="font-semibold mb-2 text-gray-700">Vehicle Details</h4>
+                      <h4 className="font-semibold mb-2 text-gray-700">
+                        Vehicle Details
+                      </h4>
                       <p>
                         {selectedBooking.vehicleType} -{" "}
                         {selectedBooking.bookingType}
@@ -365,7 +356,9 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                     </div>
 
                     <div className="border-b pb-3 rounded-b-xl px-3">
-                      <h4 className="font-semibold mb-2 text-gray-700">Pickup Details</h4>
+                      <h4 className="font-semibold mb-2 text-gray-700">
+                        Pickup Details
+                      </h4>
                       <div className="space-y-2">
                         <div className="flex items-center space-x-2">
                           <Calendar className="h-5 w-5 text-blue-500" />
@@ -397,7 +390,9 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                     </div>
 
                     <div className="border-b pb-3 rounded-b-xl px-3">
-                      <h4 className="font-semibold mb-2 text-gray-700">Status & Price</h4>
+                      <h4 className="font-semibold mb-2 text-gray-700">
+                        Status & Price
+                      </h4>
                       <div className="flex items-center justify-between">
                         {getStatusBadge(selectedBooking.status)}
                         <span className="font-medium">
@@ -408,7 +403,9 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
 
                     {selectedBooking.notes && (
                       <div className="border-b pb-3 rounded-b-xl px-3">
-                        <h4 className="font-semibold mb-2 text-gray-700">Additional Notes</h4>
+                        <h4 className="font-semibold mb-2 text-gray-700">
+                          Additional Notes
+                        </h4>
                         <p className="text-sm text-muted-foreground">
                           {selectedBooking.notes}
                         </p>
@@ -421,7 +418,9 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                   selectedBooking.returnBookings.length > 0 && (
                     <Card className="w-full p-4 border-b-0 border-e-0 border-l-0 shadow">
                       <CardHeader>
-                        <CardTitle className="text-[1.3rem]">Return Booking</CardTitle>
+                        <CardTitle className="text-[1.3rem]">
+                          Return Booking
+                        </CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         {selectedBooking.returnBookings.map((returnBooking) => (

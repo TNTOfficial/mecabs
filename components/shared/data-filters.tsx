@@ -46,6 +46,20 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
     onFilterChange(newFilters);
   };
 
+  const handleFiltersReset = () => {
+    const defaultFilters: BookingFilters = {
+      search: "",
+      status: undefined,
+      vehicleType: "",
+      bookingType: undefined,
+    };
+
+    //updating the local state
+    setFilters(defaultFilters);
+
+    //notifying the parent component
+    onFilterChange(defaultFilters);
+  };
   return (
     <div className="space-y-4 px-4">
       <div className="flex items-center justify-between">
@@ -62,6 +76,13 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
             onClick={() => setShowFilters(!showFilters)}
           >
             <Filter className="h-4 w-4" />
+          </Button>
+          <Button
+            className="h-auto py-3 mx-4"
+            variant="outline"
+            onClick={handleFiltersReset}
+          >
+            Reset Filter
           </Button>
         </div>
       </div>
