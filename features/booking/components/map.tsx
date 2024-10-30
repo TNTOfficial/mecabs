@@ -9,19 +9,13 @@ interface MapProps {
   dropoff: google.maps.LatLngLiteral | null;
 }
 
-const SIDEBAR_WIDTH = 400;
+// Constants for map configuration
 const MIN_ZOOM = 11;
 const MAX_ZOOM = 15;
-const DEFAULT_ZOOM = 12;
-const NAVBAR_HEIGHT = 80;
+const DEFAULT_ZOOM = 14; // Reduced from 20 for better initial view
+const PADDING_PERCENTAGE = 20; // Percentage of viewport to use as padding
 
-const PADDING = {
-  top: 120,
-  right: SIDEBAR_WIDTH + 150,
-  bottom: 120,
-  left: 150,
-};
-
+// Component for markers
 const AdvancedMarkers: React.FC<{
   pickup: google.maps.LatLngLiteral | null;
   dropoff: google.maps.LatLngLiteral | null;
@@ -38,6 +32,11 @@ const AdvancedMarkers: React.FC<{
         map,
         position: pickup,
         title: "Pickup Location",
+        icon: {
+          url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+          scaledSize: new google.maps.Size(40, 40),
+        },
+        animation: google.maps.Animation.DROP,
       });
       markers.push(pickupMarker);
     }
@@ -47,18 +46,22 @@ const AdvancedMarkers: React.FC<{
         map,
         position: dropoff,
         title: "Dropoff Location",
+        icon: {
+          url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+          scaledSize: new google.maps.Size(40, 40),
+        },
+        animation: google.maps.Animation.DROP,
       });
       markers.push(dropoffMarker);
     }
 
-    return () => {
-      markers.forEach((marker) => marker.setMap(null));
-    };
+    return () => markers.forEach((marker) => marker.setMap(null));
   }, [map, pickup, dropoff]);
 
   return null;
 };
 
+// Component for route visualization
 const RoutePolyline: React.FC<{
   path: google.maps.LatLng[];
   pickup: google.maps.LatLngLiteral | null;
@@ -90,6 +93,7 @@ const RoutePolyline: React.FC<{
       `,
     });
 
+    // Add hover effects for the route
     polyline.addListener(
       "mouseover",
       (e: { latLng: google.maps.LatLngLiteral }) => {
@@ -116,130 +120,102 @@ const RoutePolyline: React.FC<{
   return null;
 };
 
-const calculateOptimalView = (
+// Improved bounds calculation function
+const calculateOptimalBounds = (
   points: google.maps.LatLngLiteral[],
-  mapWidth: number,
-  mapHeight: number
+  map: google.maps.Map
 ) => {
   const bounds = new google.maps.LatLngBounds();
   points.forEach((point) => bounds.extend(point));
 
-  const center = bounds.getCenter();
+  // Get map dimensions
+  const mapDiv = map.getDiv();
+  const mapWidth = mapDiv.offsetWidth;
+  const mapHeight = mapDiv.offsetHeight;
+
+  // Calculate padding based on viewport size
+  const paddingX = (mapWidth * PADDING_PERCENTAGE) / 100;
+  const paddingY = (mapHeight * PADDING_PERCENTAGE) / 100;
+
+  // Apply padding to bounds
   const ne = bounds.getNorthEast();
   const sw = bounds.getSouthWest();
+  const latSpan = ne.lat() - sw.lat();
+  const lngSpan = ne.lng() - sw.lng();
 
-  const boundsWidth = ne.lng() - sw.lng();
-  const boundsHeight = ne.lat() - sw.lat();
-
-  const horizontalOffsetRatio = (SIDEBAR_WIDTH / mapWidth) * 1.5;
-  const verticalOffsetRatio = (NAVBAR_HEIGHT / mapHeight) * 1.5;
-
-  const offsetLng = Math.max(boundsWidth * horizontalOffsetRatio, 0.06);
-  const offsetLat = Math.max(boundsHeight * verticalOffsetRatio, 0.02);
-
-  const adjustedCenter = new google.maps.LatLng(
-    center.lat() - offsetLat,
-    center.lng() + offsetLng
+  // Extend bounds with calculated padding
+  bounds.extend(
+    new google.maps.LatLng(
+      ne.lat() + latSpan * (paddingY / mapHeight),
+      ne.lng() + lngSpan * (paddingX / mapWidth)
+    )
+  );
+  bounds.extend(
+    new google.maps.LatLng(
+      sw.lat() - latSpan * (paddingY / mapHeight),
+      sw.lng() - lngSpan * (paddingX / mapWidth)
+    )
   );
 
-  return {
-    bounds,
-    adjustedCenter,
-    boundsWidth,
-    boundsHeight,
-  };
+  return bounds;
 };
 
+// Main Map component
 export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
-  const center = useMemo(() => {
-    return { lat: -37.8136, lng: 144.9631 };
-  }, []);
-
+  const defaultCenter = useMemo(() => ({ lat: -37.8136, lng: 144.9631 }), []);
   const { route, distance, duration, error } = useDirections(pickup, dropoff);
   const map = useMap();
 
   const updateMapView = useCallback(() => {
-    if (!map) return;
+    if (!map || !pickup || !dropoff) return;
 
-    const mapDiv = map.getDiv();
-    const mapWidth = mapDiv.offsetWidth;
-    const mapHeight = mapDiv.offsetHeight;
+    // Collect all relevant points
+    const points = [pickup, dropoff];
+    if (route) {
+      route.forEach((point) =>
+        points.push({ lat: point.lat(), lng: point.lng() })
+      );
+    }
 
-    if (pickup && dropoff) {
-      const points = [pickup, dropoff];
-      if (route) {
-        route.forEach((point) =>
-          points.push({ lat: point.lat(), lng: point.lng() })
-        );
-      }
+    // Calculate and apply optimal bounds
+    const bounds = calculateOptimalBounds(points, map);
+    map.fitBounds(bounds);
 
-      const { bounds, adjustedCenter, boundsWidth, boundsHeight } =
-        calculateOptimalView(points, mapWidth, mapHeight);
-
-      const dynamicPadding = {
-        ...PADDING,
-        right: PADDING.right + (boundsWidth > 0.1 ? 200 : 100),
-        top: PADDING.top + (boundsHeight > 0.1 ? 100 : 50),
-        bottom: PADDING.bottom + (boundsHeight > 0.1 ? 100 : 50),
-        left: PADDING.left + (boundsWidth > 0.1 ? 100 : 50),
-      };
-
-      map.fitBounds(bounds, dynamicPadding);
-
-      setTimeout(() => {
-        map.panTo(adjustedCenter);
-        const currentZoom = map.getZoom();
-        if (currentZoom) {
-          const zoomAdjustment = boundsWidth > 0.2 ? 1 : 0.5;
-          const newZoom = Math.min(
-            Math.max(currentZoom - zoomAdjustment, MIN_ZOOM),
-            MAX_ZOOM
-          );
+    // Apply zoom constraints after a short delay to ensure bounds are set
+    setTimeout(() => {
+      const currentZoom = map.getZoom();
+      if (currentZoom) {
+        const newZoom = Math.min(Math.max(currentZoom, MIN_ZOOM), MAX_ZOOM);
+        if (newZoom !== currentZoom) {
           map.setZoom(newZoom);
         }
-      }, 200);
-    } else if (pickup) {
-      const adjustedCenter = {
-        lat: pickup.lat - 0.01,
-        lng: pickup.lng + (0.06 * mapWidth) / SIDEBAR_WIDTH,
-      };
-      map.setCenter(adjustedCenter);
-      map.setZoom(13);
-    } else {
-      const adjustedCenter = {
-        lat: center.lat - 0.01,
-        lng: center.lng + (0.06 * mapWidth) / SIDEBAR_WIDTH,
-      };
-      map.setCenter(adjustedCenter);
-      map.setZoom(DEFAULT_ZOOM);
-    }
-  }, [map, pickup, dropoff, route, center]);
+      }
+    }, 100);
+  }, [map, pickup, dropoff, route]);
 
+  // Update view when locations or route changes
   useEffect(() => {
     updateMapView();
   }, [updateMapView]);
 
+  // Handle window resizing
   useEffect(() => {
-    const handleResize = () => {
-      updateMapView();
-    };
-
+    const handleResize = () => updateMapView();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [updateMapView]);
-
-
 
   return (
     <div className="relative w-full lg:h-full h-[400px]">
       <GoogleMap
         mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID}
-        center={center}
+        defaultCenter={defaultCenter}
         defaultZoom={DEFAULT_ZOOM}
         disableDefaultUI={true}
-        // options={mapOptions}
-        style={{ width: "100%", height: "100%" }}
-
+        // streetViewControl={false}
+        // zoomControl={true}
+        // mapTypeControl={true}
+        // fullscreenControl={true}
       >
         <AdvancedMarkers pickup={pickup} dropoff={dropoff} />
         {route && pickup && dropoff && (
@@ -254,7 +230,7 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
       </GoogleMap>
 
       {distance && duration && (
-        <Card className="absolute top-20 right-4 p-4 bg-white shadow-lg">
+        <Card className="absolute top-4 right-4 p-4 bg-white/90 backdrop-blur shadow-lg">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <Navigation2 className="w-4 h-4" />
@@ -269,7 +245,7 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
       )}
 
       {error && (
-        <Card className="absolute top-20 left-4 p-4 bg-red-50 text-red-600">
+        <Card className="absolute top-4 left-4 p-4 bg-red-50 text-red-600">
           <p className="text-sm">{error}</p>
         </Card>
       )}
