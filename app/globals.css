@@ -222,3 +222,8 @@ th,
 td {
   text-wrap: nowrap;
 }
+
+
+.gm-style-iw-chr{
+  @apply hidden !important;
+}

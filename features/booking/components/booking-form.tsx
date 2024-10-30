@@ -395,23 +395,9 @@ export const BookingForm: React.FC = () => {
     }
   };
 
-  return (
-    <div className="relative w-full max-lg:min-h-[calc(100dvh_-_70.52px)] min-h-full h-[calc(100dvh_-_70.52px)]">
-      <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
-      <SuccessModal
-        isOpen={showSuccessModal}
-        onClose={() => {
-          setShowSuccessModal(false);
-        }}
-        bookingType={activeTab}
-        onReturnBooking={() => {
-          handleReturnBooking(parentBookingId!);
-        }}
-        pickupLocation={form.getValues("pickupLocation")!}
-        dropoffLocation={form.getValues("dropoffLocation")!}
-        isReturnBooking={isReturnBooking}
-        onReset={resetForm}
-      />
+  return ( 
+    <div className="relative z-0 w-full max-lg:min-h-[calc(100dvh_-_70.52px)] max-lg:h-full min-h-full h-[calc(100dvh_-_70.52px)]">
+  
 
       {showLoginModal && (
         <Modal
@@ -434,7 +420,7 @@ export const BookingForm: React.FC = () => {
 
       <div
         className={cn(
-          "lg:absolute top-4 left-4 bg-white rounded-lg lg:w-[400px] w-full lg:shadow-lg transition-all duration-100 lg:overflow-x-hidden lg:overflow-y-auto",
+          "lg:absolute z-10 top-4 left-4 bg-white rounded-lg lg:w-[400px] w-full lg:shadow-lg transition-all duration-100 lg:overflow-x-hidden lg:overflow-y-auto",
           isFormMinimized ? "h-16" : "h-[96%]"
         )}
       >
@@ -444,6 +430,7 @@ export const BookingForm: React.FC = () => {
           </h2>
           <Button
             variant="ghost"
+            className="max-lg:hidden"
             size="sm"
             onClick={() => setIsFormMinimized(!isFormMinimized)}
           >
@@ -888,6 +875,22 @@ export const BookingForm: React.FC = () => {
           </div>
         )}
       </div>
+
+      <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => {
+          setShowSuccessModal(false);
+        }}
+        bookingType={activeTab}
+        onReturnBooking={() => {
+          handleReturnBooking(parentBookingId!);
+        }}
+        pickupLocation={form.getValues("pickupLocation")!}
+        dropoffLocation={form.getValues("dropoffLocation")!}
+        isReturnBooking={isReturnBooking}
+        onReset={resetForm}
+      />
     </div>
   );
 };

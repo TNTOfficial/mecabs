@@ -77,9 +77,9 @@ const RoutePolyline: React.FC<{
     const polyline = new google.maps.Polyline({
       path,
       geodesic: true,
-      strokeColor: "#4285F4",
+      strokeColor: "#0000ff",
       strokeOpacity: 1.0,
-      strokeWeight: 7,
+      strokeWeight: 7, 
       draggable: false,
     });
 
@@ -87,7 +87,14 @@ const RoutePolyline: React.FC<{
       content: `
         <div class="p-2">
           <div class="flex items-center gap-2">
-            <span>${distance}</span> • <span>${duration}</span>
+          <div>
+            <h6 class="text-[0.9rem] text-black font-semibold mb-2">Distance</h6>
+           <span class="font-bold block py-2 px-3 rounded bg-green-200">${distance}</span>
+          </div>
+          •
+          <div>
+           <h6 class="text-[0.9rem] text-black font-semibold mb-2">Time</h6>
+           <span class="font-bold block py-2 px-3 rounded bg-red-200">${duration}</span></div>
           </div>
         </div>
       `,
@@ -212,10 +219,10 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
         defaultCenter={defaultCenter}
         defaultZoom={DEFAULT_ZOOM}
         disableDefaultUI={true}
-        // streetViewControl={false}
-        // zoomControl={true}
-        // mapTypeControl={true}
-        // fullscreenControl={true}
+      // streetViewControl={false}
+      // zoomControl={true}
+      // mapTypeControl={true}
+      // fullscreenControl={true}
       >
         <AdvancedMarkers pickup={pickup} dropoff={dropoff} />
         {route && pickup && dropoff && (
@@ -233,11 +240,11 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
         <Card className="absolute top-4 right-4 p-4 bg-white/90 backdrop-blur shadow-lg">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <Navigation2 className="w-4 h-4" />
+              <Navigation2 className="w-5 h-5 text-green-500" />
               <span className="text-sm font-medium">{distance}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4" />
+              <Clock className="w-5 h-5 text-red-500" />
               <span className="text-sm font-medium">{duration}</span>
             </div>
           </div>
