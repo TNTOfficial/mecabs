@@ -37,7 +37,7 @@ export default async function About() {
       {/* About Page Landing section Start */}
       <section
         style={{ backgroundImage: ` url(${banner1.src})` }}
-        className="landing_area bg-no-repeat bg-cover bg-center relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0"
+        className="landing_area bg-no-repeat bg-cover bg-center relative z-0 before:h-full before:w-full before:bg-slate-950 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0"
       >
         <div className="container mx-auto px-5">
           <div className="flex min-h-[40vh] justify-start items-center ">
