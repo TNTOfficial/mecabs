@@ -27,6 +27,7 @@ export async function getUserBookings(
       limit,
       filters,
       userId: user.id,
+      phoneNumber: user.phoneNumber,
     });
 
     return result;

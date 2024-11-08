@@ -1,16 +1,7 @@
-import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { Dashboard } from "@/features/dashboard/components/dashboard";
 
 const DashboardHomePage = () => {
-  return (
-    <>
-      <RoleGuard allowedRoles={["ADMIN"]}>
-        <div>I am Admin</div>
-      </RoleGuard>
-      <RoleGuard allowedRoles={["USER"]}>
-        <div>I am user</div>
-      </RoleGuard>
-    </>
-  );
+  return <Dashboard/>
 };
 
 export default DashboardHomePage;

@@ -5,16 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,16 +23,31 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { format } from "date-fns";
-import { Calendar, Clock, MapPin, MoreHorizontal } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  MoreHorizontal,
+  TimerIcon,
+} from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { DataFilters, FilterConfig } from "@/components/shared/data-filters";
 import { getUserBookings } from "@/actions/bookings/get-user-bookings";
 import { Pagination } from "@/components/shared/pagination";
 import { BookingStatus, BookingTypes } from "@prisma/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { cancelBooking } from "@/actions/bookings/cancel-bookings";
 import { toast } from "sonner";
-import { Booking, BookingFilters, BookingsResponse } from "../types";
+import {
+  Booking,
+  BookingAction,
+  BookingFilters,
+  BookingsResponse,
+} from "../types";
+import { handleBooking } from "@/actions/bookings/handle-booking";
+import { BookingActionModal } from "./booking-action-modal";
+import { EditBookingForm } from "./edit-booking-form";
+import { MobileIcon } from "@radix-ui/react-icons";
+import { RoleGuard } from "@/features/auth/guard/role-guard";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -63,7 +69,9 @@ const filterConfig: FilterConfig[] = [
     options: [
       { label: "Sedan", value: "sedan" },
       { label: "SUV", value: "suv" },
-      { label: "Van", value: "van" },
+      { label: "Any Available", value: "anyavailable" },
+      { label: "Premium", value: "premium" },
+      { label: "Maxi Taxi", value: "maxi" },
     ],
   },
   {
@@ -86,18 +94,21 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
   initialData,
 }) => {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [editSelectedBooking, setEditSelectedBooking] =
+    useState<Booking | null>(null);
   const [bookings, setBookings] = useState<Booking[]>(
     initialData.success ? initialData.bookings : []
   );
   const [totalItems, setTotalItems] = useState(initialData.total);
   const [totalPages, setTotalPages] = useState(initialData.totalPages);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoadingId, setIsLoadingId] = useState<string | null>(null);
-  const [showCancelDialog, setShowCancelDialog] = useState<boolean>(false);
-  const [selectedBookingForCancel, setSelectedBookingForCancel] = useState<
-    string | null
-  >(null);
-
+  const [actionType, setActionType] = useState<BookingAction>("cancel");
+  const [showActionDialog, setShowActionDialog] = useState<boolean>(false);
+  const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(
+    null
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filters, setFilters] = useState<BookingFilters>({
     search: "",
     status: undefined,
@@ -125,29 +136,31 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
     }
   }, [currentPage, filters]);
 
-  const handleCancelBooking = async () => {
-    if (!selectedBookingForCancel) return;
+  const handleBookingAction = async (remarks?: string) => {
+    if (!selectedBookingId || !actionType) return;
 
     try {
-      setIsLoadingId(selectedBookingForCancel);
-      console.log(selectedBookingForCancel);
+      setIsLoading(true);
+      const result = await handleBooking({
+        bookingId: selectedBookingId,
+        action: actionType,
+        remarks,
+      });
 
-      const result = await cancelBooking(selectedBookingForCancel);
       if (result.success) {
         toast.success(result.message);
         setSelectedBooking(null);
         await fetchBookings();
-      } else if (result.error) {
-        toast.error(result.message);
+      } else {
+        toast.error(result.error);
       }
     } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+      toast.error(error instanceof Error ? error.message : "An error occurred");
     } finally {
-      setIsLoadingId(null);
-      setShowCancelDialog(false);
-      setSelectedBookingForCancel(null);
+      setIsLoading(false);
+      setShowActionDialog(false);
+      setSelectedBookingId(null);
+      setActionType("cancel");
     }
   };
 
@@ -165,6 +178,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
       [BookingStatus.active]: "bg-green-100 text-green-800",
       [BookingStatus.completed]: "bg-blue-100 text-blue-800",
       [BookingStatus.cancelled]: "bg-red-100 text-red-800",
+      [BookingStatus.dismissed]: "bg-red-100 text-red-800",
     };
     return <Badge className={variants[status]}>{status}</Badge>;
   };
@@ -202,7 +216,8 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                       <div className="space-y-1">
                         <p className="font-medium">{booking.passengerName}</p>
                         <p className="text-sm text-muted-foreground">
-                          {booking.vehicleType} • {booking.bookingType}
+                          {booking.vehicleType} • {booking.bookingType} •
+                          {booking.bookingMode}
                         </p>
                         {booking.returnBookings &&
                           booking.returnBookings.length > 0 && (
@@ -234,12 +249,28 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                             {booking.pickupLocation}
                           </span>
                         </div>
+                        {booking.dropoffLocation ? (
+                          <div className="flex items-center space-x-2">
+                            <MapPin className="h-4 w-4 text-red-500" />
+                            <span className="text-sm">
+                              {booking.dropoffLocation}
+                            </span>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                         <div className="flex items-center space-x-2">
-                          <MapPin className="h-4 w-4 text-red-500" />
-                          <span className="text-sm">
-                            {booking.dropoffLocation}
-                          </span>
+                          <MobileIcon className="h-4 w-4 text-red-500" />
+                          <span className="text-sm">{booking.phoneNumber}</span>
                         </div>
+                        {booking.bookingType === "hourly" && (
+                          <div className="flex items-center space-x-2">
+                            <TimerIcon className="h-4 w-4 text-red-500" />
+                            <span className="text-sm">
+                              {booking.hours} hours
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </TableCell>
 
@@ -271,16 +302,53 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                           >
                             View Details
                           </DropdownMenuItem>
-                          {booking.status === BookingStatus.active && (
+                          {!["completed", "cancelled", "dismissed"].includes(
+                            booking.status
+                          ) && (
                             <DropdownMenuItem
                               onClick={() => {
-                                setSelectedBookingForCancel(booking.id);
-                                setShowCancelDialog(true);
+                                setEditSelectedBooking(booking);
+                                setShowEditDialog(true);
                               }}
-                              className="text-red-500"
                             >
-                              Cancel Booking
+                              Edit Booking
                             </DropdownMenuItem>
+                          )}
+                          {booking.status === BookingStatus.active && (
+                            <>
+                              <DropdownMenuItem
+                                onClick={() => {
+                                  setSelectedBookingId(booking.id);
+                                  setActionType("cancel");
+                                  setShowActionDialog(true);
+                                }}
+                                className="text-red-500"
+                              >
+                                Cancel Booking
+                              </DropdownMenuItem>
+                              <RoleGuard allowedRoles={["ADMIN"]}>
+                                <DropdownMenuItem
+                                  onClick={() => {
+                                    setSelectedBookingId(booking.id);
+                                    setActionType("complete");
+                                    setShowActionDialog(true);
+                                  }}
+                                  className="text-green-500"
+                                >
+                                  Complete Booking
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() => {
+                                    setSelectedBookingId(booking.id);
+                                    setActionType("dismiss");
+                                    setShowActionDialog(true);
+                                  }}
+                                  className="text-orange-500"
+                                >
+                                  Dismiss Booking
+                                </DropdownMenuItem>
+                              </RoleGuard>
+                            </>
                           )}
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -291,30 +359,6 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
             </Table>
           </CardContent>
         </Card>
-
-        {/* Cancel Booking Dialog */}
-        <AlertDialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Cancel Booking</AlertDialogTitle>
-              <AlertDialogDescription>
-                Are you sure you want to cancel this booking? This action cannot
-                be undone.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel onClick={() => setShowCancelDialog(false)}>
-                No, keep it
-              </AlertDialogCancel>
-              <AlertDialogAction
-                onClick={handleCancelBooking}
-                disabled={isLoadingId === selectedBookingForCancel}
-              >
-                Yes, cancel it
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
 
         {/* Booking Details Dialog */}
         <Dialog
@@ -386,6 +430,10 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                           <MapPin className="h-4 w-4 text-red-500" />
                           <span>{selectedBooking.dropoffLocation}</span>
                         </div>
+                        <div className="flex items-center space-x-2">
+                          <MobileIcon className="h-4 w-4 text-red-500" />
+                          <span>{selectedBooking.phoneNumber}</span>
+                        </div>
                       </div>
                     </div>
 
@@ -396,7 +444,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                       <div className="flex items-center justify-between">
                         {getStatusBadge(selectedBooking.status)}
                         <span className="font-medium">
-                          ${selectedBooking!.price!.toFixed(2)}
+                          ${selectedBooking?.price?.toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -468,7 +516,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                               <div className="flex items-center justify-between">
                                 {getStatusBadge(returnBooking.status)}
                                 <span className="font-medium">
-                                  ${returnBooking!.price!.toFixed(2)}
+                                  ${returnBooking?.price?.toFixed(2)}
                                 </span>
                               </div>
                             </div>
@@ -483,25 +531,21 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                                 </p>
                               </div>
                             )}
-                            <DropdownMenu>
-                              <DropdownMenuTrigger className="p-2 px-3 text-[0.9rem] bg-red-100 rounded-xl font-semibold border-none outline-none">
-                                Cancel return booking
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent>
-                                <DropdownMenuItem
-                                  key={returnBooking.id}
+
+                            {returnBooking.status !== "cancelled" &&
+                              returnBooking.status !== "dismissed" && (
+                                <Button
+                                  className="p-2 px-3 text-[0.9rem] bg-red-100 rounded-xl font-semibold border-none outline-none"
+                                  variant="destructive"
                                   onClick={() => {
-                                    setSelectedBookingForCancel(
-                                      returnBooking.id
-                                    );
-                                    setShowCancelDialog(true);
+                                    setSelectedBookingId(returnBooking.id);
+                                    setActionType("cancel");
+                                    setShowActionDialog(true);
                                   }}
-                                  className="text-red-500"
                                 >
                                   Cancel return booking
-                                </DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
+                                </Button>
+                              )}
                           </div>
                         ))}
                       </CardContent>
@@ -512,6 +556,28 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
           </DialogContent>
         </Dialog>
 
+        {editSelectedBooking && (
+          <EditBookingForm
+            booking={editSelectedBooking}
+            isOpen={showEditDialog}
+            onClose={() => {
+              setShowEditDialog(false);
+              setEditSelectedBooking(null);
+            }}
+            onSuccess={fetchBookings}
+          />
+        )}
+        <BookingActionModal
+          isOpen={showActionDialog}
+          onClose={() => {
+            setShowActionDialog(false);
+            setSelectedBookingId(null);
+            setActionType("cancel");
+          }}
+          onConfirm={handleBookingAction}
+          action={actionType}
+          isLoading={isLoading}
+        />
         <div className="mt-4">
           <Pagination
             currentPage={currentPage}

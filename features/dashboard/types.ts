@@ -15,6 +15,7 @@ export const BookingStatus = z.enum([
   "active",
   "completed",
   "cancelled",
+  "dismissed",
 ]);
 export type BookingStatus = z.infer<typeof BookingStatus>;
 

@@ -18,6 +18,7 @@ model User {
   email              String?   @unique
   password           String?
   emailVerified      DateTime?
+  phoneNumber        String?
   role               UserRole  @default(USER)
   image              String?
   accounts           Account[] @relation("UserAccounts")
@@ -69,8 +70,8 @@ model PasswordResetToken {
 
 model Booking {
   id          String        @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String        @db.ObjectId
-  user        User          @relation(fields: [userId], references: [id])
+  userId      String?       @db.ObjectId
+  user        User?         @relation(fields: [userId], references: [id])
   bookingType BookingTypes
   bookingMode BookingMode   @default(now)
   status      BookingStatus @default(active)
@@ -89,15 +90,15 @@ model Booking {
   // Booking details
   pickupDateTime DateTime
   hours          Int? // For hourly bookings
-  vehicleType    String // "sedan" | "suv" | "van"
-  babySeat       Boolean  @default(false)
+  vehicleType    VehicleType
+  babySeat       Boolean     @default(false)
   flightNumber   String?
 
   // Payment details
   price           Float?
   paymentMethod   String?
   paymentStatus   String?
-  paymentIntentId String? 
+  paymentIntentId String?
 
   // Additional details
   notes   String?
@@ -110,13 +111,34 @@ model Booking {
   returnBookings  Booking[] @relation("ReturnBookings")
 
   // Metadata
-
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Leads     Leads?
 
   @@index([userId])
   @@index([status])
   @@index([bookingType])
   @@index([pickupDateTime])
+}
+
+model Leads {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  phoneNumber        String   @unique
+  email              String?
+  assciatedBookingId String   @unique @db.ObjectId
+  associatedBooking  Booking  @relation(fields: [assciatedBookingId], references: [id])
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model AuditLog {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  action     String
+  entityId   String
+  entityType String
+  userId     String?  @db.ObjectId
+  details    Json
+  createdAt  DateTime @default(now())
 }
 
 enum BookingTypes {
@@ -134,4 +156,14 @@ enum BookingStatus {
   active
   completed
   cancelled
+  dismissed
+}
+
+enum VehicleType {
+  sedan
+  premium
+  maxi
+  suv
+  wheelchair
+  anyavailable
 }

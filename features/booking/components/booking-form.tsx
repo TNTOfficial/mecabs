@@ -1,3 +1,5 @@
+"semi working booking page code";
+
 "use client";
 
 import React, {
@@ -38,7 +40,13 @@ import { Map } from "./map";
 import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
-import { Select, SelectItem, SelectValue, SelectContent, SelectTrigger } from "@/components/ui/select";
+import {
+  Select,
+  SelectItem,
+  SelectValue,
+  SelectContent,
+  SelectTrigger,
+} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { FormError } from "@/components/form-error";
@@ -48,10 +56,14 @@ import "react-phone-number-input/style.css";
 import Image from "next/image";
 import { createBooking } from "@/actions/bookings/create-booking";
 import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
-import { Modal } from "@/components/modal";
-import { LoginForm } from "@/features/auth/components/login-form";
+// import { Modal } from "@/components/modal";
+// import { LoginForm } from "@/features/auth/components/login-form";
 import { SuccessModal } from "./success-modal";
 import Link from "next/link";
+import { Booking } from "../types";
+import { updateBooking } from "@/actions/bookings/update-booking";
+import { EmailModal } from "./email-modal";
+import { updateLeadEmail } from "@/actions/leads/update-lead-email";
 
 const bookingTypes = {
   BOOKING: "booking",
@@ -61,9 +73,20 @@ const bookingTypes = {
 
 type BookingType = (typeof bookingTypes)[keyof typeof bookingTypes];
 
-export const BookingForm: React.FC = () => {
+interface BookingFormProps {
+  isEditBooking?: boolean;
+  booking?: Booking;
+  onEditSuccess?: () => void;
+}
+export const BookingForm: React.FC<BookingFormProps> = ({
+  isEditBooking,
+  booking,
+  onEditSuccess,
+}) => {
   const [isFormMinimized, setIsFormMinimized] = useState(false);
-  const [activeTab, setActiveTab] = useState<BookingType>(bookingTypes.BOOKING);
+  const [activeTab, setActiveTab] = useState<BookingType>(() => {
+    return booking?.bookingType || bookingTypes.BOOKING;
+  });
   const { isLoading, getCurrentLocation } = useGeolocation();
   const [pickupCoordinates, setPickupCoordinates] =
     useState<google.maps.LatLngLiteral | null>(null);
@@ -73,15 +96,18 @@ export const BookingForm: React.FC = () => {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
-  const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
+  // const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
   const [parentBookingId, setParentBookingId] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
+  const [leadId, setLeadId] = useState<string | undefined>("");
+
   const [isReturnBooking, setIsReturnBooking] = useState<boolean>(false);
 
-  const [skipLogin, setSkipLogin] = useState<boolean>(false);
+  // const [skipLogin, setSkipLogin] = useState<boolean>(false);
   const pickupInputRef = useRef<AutoCompleteInputRef>(null);
   const dropoffInputRef = useRef<AutoCompleteInputRef>(null);
-  const { distance, duration, resetDirections } = useDirections(
+  const { distance, resetDirections } = useDirections(
     pickupCoordinates,
     dropoffCoordinates
   );
@@ -94,17 +120,21 @@ export const BookingForm: React.FC = () => {
       bookingType: activeTab,
       bookingMode: "now",
       babySeat: false,
-      vehicleType: activeTab === "parcel" ? "" : "sedan",
+      vehicleType: activeTab === "parcel" ? "anyavailable" : "sedan",
       pickupLocation: "",
       dropoffLocation: "",
       pickupDateTime: new Date(),
       notes: "",
       passengerName: "",
       phoneNumber: "",
-      hours: null,
+      hours: booking?.hours || null,
       recipientName: "",
       isReturnBooking: false,
       parentBookingId: null,
+      price: null,
+      status: "active",
+      pickupCoordinates: undefined,
+      dropoffCoordinates: undefined,
     },
   });
 
@@ -116,6 +146,14 @@ export const BookingForm: React.FC = () => {
       sitting: "1 - 4 seater",
       selected: true,
       value: "sedan",
+      qualityFactor: 1.0,
+    },
+    {
+      type: "Any Available",
+      imageUrl: "/sedan_icon.png",
+      sitting: "1 - 4 seater",
+      selected: true,
+      value: "anyavailable",
       qualityFactor: 1.0,
     },
     {
@@ -153,7 +191,63 @@ export const BookingForm: React.FC = () => {
     },
   ];
 
+  // useEffect(() => {
+  //   if (booking && isEditBooking) {
+  //     form.reset({
+  //       ...booking,
+  //       dropoffLocation: booking.dropoffLocation || undefined,
+  //       pickupDateTime: new Date(booking.pickupDateTime),
+  //     });
+  //     if (booking.bookingType) {
+  //       setActiveTab(booking.bookingType);
+  //     }
+  //     form.setValue("hours", booking.hours);
+  //     console.log(form.getValues("hours"));
+
+  //     // Set coordinates
+  //     if (booking.pickupCoordinates) {
+  //       setPickupCoordinates(booking.pickupCoordinates);
+  //     }
+  //     if (booking.dropoffCoordinates) {
+  //       setDropoffCoordinates(booking.dropoffCoordinates);
+  //     }
+  //     //setting initial locations for the autocomplete input
+  //     if (pickupInputRef.current) {
+  //       pickupInputRef.current.setValue(booking.pickupLocation);
+  //     }
+  //     if (dropoffInputRef.current && booking.dropoffLocation) {
+  //       dropoffInputRef.current.setValue(booking.dropoffLocation);
+  //     }
+  //   }
+  // }, [booking, isEditBooking, form, activeTab]);
+
   // Update your handleReturnBooking function
+
+  // Initialize form with booking data if in edit mode
+  useEffect(() => {
+    if (booking && isEditBooking) {
+      form.reset({
+        ...booking,
+        dropoffLocation: booking.dropoffLocation || undefined,
+
+        pickupDateTime: new Date(booking.pickupDateTime),
+      });
+
+      if (booking.pickupCoordinates) {
+        setPickupCoordinates(booking.pickupCoordinates);
+      }
+      if (booking.dropoffCoordinates) {
+        setDropoffCoordinates(booking.dropoffCoordinates);
+      }
+
+      if (pickupInputRef.current) {
+        pickupInputRef.current.setValue(booking.pickupLocation);
+      }
+      if (dropoffInputRef.current && booking.dropoffLocation) {
+        dropoffInputRef.current.setValue(booking.dropoffLocation);
+      }
+    }
+  }, [booking, isEditBooking, form]);
   const handleReturnBooking = (bookingId: string) => {
     // Get current values
     const pickupValue = pickupInputRef.current?.getValue() || "";
@@ -208,7 +302,7 @@ export const BookingForm: React.FC = () => {
       }
       return approxPrice;
     },
-    [vehicleTypes, form]
+    [form, vehicleTypes]
   );
 
   // Calculating hourly price
@@ -223,15 +317,15 @@ export const BookingForm: React.FC = () => {
   );
 
   useEffect(() => {
-    if (!user && !skipLogin) {
-      setShowLoginModal(true);
-    }
+    // if (!user && !skipLogin) {
+    //   setShowLoginModal(true);
+    // }
 
     if (error || success) {
       const timer = setTimeout(() => {
         setError(undefined);
         setSuccess(undefined);
-      }, 3000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
     if (activeTab === bookingTypes.HOURLY) {
@@ -258,7 +352,7 @@ export const BookingForm: React.FC = () => {
     distance,
     form,
     user,
-    skipLogin,
+    // skipLogin,
     activeTab,
     calculateHourlyPrice,
     estimatedPrice,
@@ -267,7 +361,9 @@ export const BookingForm: React.FC = () => {
   ]);
 
   // Update your resetForm function
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
+    console.log("inside the reset form");
+
     form.reset({
       bookingType: activeTab,
       bookingMode: "now",
@@ -296,12 +392,73 @@ export const BookingForm: React.FC = () => {
     // Reset input refs
     pickupInputRef.current?.reset();
     dropoffInputRef.current?.reset();
-  };
+  }, [activeTab, form, resetDirections]);
+
+  // const handleTabChange = (newTab: BookingType) => {
+  //   console.log("Handletab is getting called");
+
+  //   console.log("new tab", newTab);
+  //   setActiveTab(newTab);
+  //   console.log("new active tab", activeTab);
+
+  //   resetForm();
+  //   console.log("calling reset form");
+  // };
 
   const handleTabChange = (newTab: BookingType) => {
+    // First update the active tab
     setActiveTab(newTab);
-    form.setValue("bookingType", newTab); // Update the bookingType in form
-    resetForm();
+
+    if (booking && isEditBooking) {
+      // Reset form with new tab-specific values
+      form.reset({
+        bookingType: booking?.bookingType || activeTab,
+        bookingMode: booking?.bookingMode || "now",
+        babySeat: booking?.babySeat || false,
+        vehicleType:
+          booking?.vehicleType || activeTab === "parcel"
+            ? "anyavailable"
+            : "sedan",
+        pickupLocation: booking?.pickupLocation || "",
+        dropoffLocation: booking?.dropoffLocation || "",
+        pickupDateTime: booking?.pickupDateTime
+          ? new Date(booking.pickupDateTime)
+          : new Date(),
+        notes: booking?.notes || "",
+        passengerName: booking?.passengerName || "",
+        // phoneNumber: booking?.phoneNumber || "",
+        hours: Number(booking?.hours) || null,
+        recipientName: booking?.recipientName || "",
+        isReturnBooking: booking?.isReturnBooking || false,
+        parentBookingId: booking?.parentBookingId || null,
+        price: booking?.price || null,
+        status: booking?.status || "active",
+        pickupCoordinates: booking?.pickupCoordinates || undefined,
+        dropoffCoordinates: booking?.dropoffCoordinates || undefined,
+        phoneNumber: booking?.phoneNumber || "",
+      });
+      // setPickupCoordinates(null);
+      // setDropoffCoordinates(null);
+      // Reset other state
+      // setEstimatedPrice(null);
+      setError(undefined);
+      setSuccess(undefined);
+      // setIsReturnBooking(false);
+      // setParentBookingId(null);
+    } else {
+      // Reset coordinates and maps
+      setPickupCoordinates(null);
+      setDropoffCoordinates(null);
+      resetDirections();
+
+      // Reset input refs
+      if (pickupInputRef.current) {
+        pickupInputRef.current.reset();
+      }
+      if (dropoffInputRef.current) {
+        dropoffInputRef.current.reset();
+      }
+    }
   };
 
   const handlePlaceSelect = (
@@ -364,40 +521,119 @@ export const BookingForm: React.FC = () => {
       setError("");
       setSuccess("");
 
-      let pickupDateTimeUTC = null;
-      if (data.pickupDateTime) {
-        pickupDateTimeUTC = new Date(data.pickupDateTime.toUTCString());
-      }
-
+      const pickupDateTimeUTC = data?.pickupDateTime
+        ? new Date(data.pickupDateTime.toUTCString())
+        : null;
+      const modeWatcher = form.watch("bookingMode");
       const submissionData = {
         ...data,
         bookingType: activeTab,
-        pickupDateTime: pickupDateTimeUTC,
-        isReturnBooking: isReturnBooking,
-        parentBookingId: parentBookingId,
+        pickupDateTime:
+          modeWatcher === "now"
+            ? new Date(new Date().toUTCString())
+            : pickupDateTimeUTC,
+        babySeat: modeWatcher === "later" ? true : false,
+        dropoffCoordinates: activeTab === "hourly" ? null : dropoffCoordinates,
+        hours: activeTab === "hourly" ? data.hours : null,
       };
 
-      startTransition(() => {
-        createBooking(submissionData).then((response) => {
-          if (response?.error) {
-            setError(response.error);
-          }
-
-          if (response?.success) {
-            setSuccess(response.success);
-            setParentBookingId(response.bookingId);
-            setShowSuccessModal(true);
-          }
+      if (isEditBooking && booking?.id) {
+        startTransition(() => {
+          updateBooking(booking!.id, submissionData)
+            .then((response) => {
+              if (response?.error) {
+                setError(response?.error);
+              }
+              if (response?.success) {
+                setSuccess(response.success);
+                onEditSuccess?.();
+              }
+            })
+            .catch((err) => {
+              setError(err.message || "Failed to update booking");
+            });
         });
-      });
+        return;
+      }
+      // Only create new booking if not in edit mode
+      if (!isEditBooking) {
+        startTransition(() => {
+          createBooking(submissionData).then((response) => {
+            if (response?.error) {
+              setError(response.error);
+            }
+            if (response?.success) {
+              setSuccess(response.success);
+              setParentBookingId(response.bookingId);
+              //Showing email modal if there is leadId
+              if (response.leadId) {
+                console.log(response);
+                setLeadId(response.leadId);
+                setShowEmailModal(true);
+              } else {
+                setShowSuccessModal(true);
+              }
+            }
+          });
+        });
+      }
     } catch {
       setError("Failed to submit booking. Please try again.");
     }
   };
 
+  // Fixed vehicle type selection with proper image handling
+  const renderVehicleSelectValue = (selectedValue: string) => {
+    const selectedVehicle = vehicleTypes.find((v) => v.value === selectedValue);
+    if (!selectedVehicle) {
+      return <span>Select vehicle</span>;
+    }
+
+    return (
+      <div className="flex gap-3">
+        <div className="w-6 h-6 relative">
+          <Image
+            src={selectedVehicle.imageUrl}
+            alt={selectedVehicle.type}
+            fill
+            className="object-contain"
+          />
+        </div>
+        <span>{selectedVehicle.type}</span>
+      </div>
+    );
+  };
+
+  // const handleLeadEmailUpdate = async (values: z.infer<typeof LeadSchema>) => {
+  //   console.log(values, "Im getting called");
+
+  //   startTransition(() => {
+  //     updateLeadEmail({
+  //       email: values.email,
+  //       leadId: leadId!,
+  //     }).then((response) => {
+  //       if (response.error) {
+  //         setError(response.error);
+  //       }
+  //       if (response.success) {
+  //         setShowEmailModal(false);
+  //         setShowSuccessModal(true);
+  //       }
+  //     });
+  //   });
+  // };
   return (
-    <div className="relative w-full max-lg:min-h-[calc(100dvh_-_70.52px)] min-h-full h-[calc(100dvh_-_70.52px)]">
-      <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
+    <div
+      className={cn(
+        "relative w-full",
+        isEditBooking
+          ? "min-h-full p-4"
+          : "max-lg:min-h-[calc(100dvh_-_70.52px)] min-h-full h-[calc(100dvh_-_70.52px)]"
+      )}
+    >
+      {!isEditBooking && (
+        <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
+      )}
       <SuccessModal
         isOpen={showSuccessModal}
         onClose={() => {
@@ -413,7 +649,35 @@ export const BookingForm: React.FC = () => {
         onReset={resetForm}
       />
 
-      {showLoginModal && (
+      {showEmailModal && (
+        <EmailModal
+          isOpen={showEmailModal}
+          onClose={() => {
+            setShowEmailModal(false);
+          }}
+          isLoading={isPending}
+          onSkip={() => {
+            setShowEmailModal(false);
+            setShowSuccessModal(true);
+          }}
+          onSubmit={async (email) => {
+            startTransition(async () => {
+              const response = await updateLeadEmail({
+                email,
+                leadId: leadId,
+              });
+
+              if (response.success) {
+                setShowEmailModal(false);
+                setShowSuccessModal(true);
+              } else {
+                setError(response.error);
+              }
+            });
+          }}
+        />
+      )}
+      {/* {showLoginModal && (
         <Modal
           open={showLoginModal}
           onOpenChange={(value) => {
@@ -430,7 +694,7 @@ export const BookingForm: React.FC = () => {
             }}
           />
         </Modal>
-      )}
+      )} */}
 
       <div
         className={cn(
@@ -440,37 +704,53 @@ export const BookingForm: React.FC = () => {
       >
         <div className="flex justify-between items-center p-4">
           <h2 className="font-semibold">
-            Book a Ride
+            {isEditBooking ? "Edit Booking" : "Book a Ride"}
           </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsFormMinimized(!isFormMinimized)}
-          >
-            <X className="h-4 w-4" />
-          </Button>
+
+          {!isEditBooking && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsFormMinimized(!isFormMinimized)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
         </div>
 
         {!isFormMinimized && (
           <div className="p-4 pt-0">
             <Tabs
-              defaultValue={bookingTypes.BOOKING}
+              defaultValue={activeTab}
               onValueChange={(v) => handleTabChange(v as BookingType)}
-              className="mb-4"
+              className="mb-4 "
             >
               <TabsList className="w-full">
-                <TabsTrigger value={bookingTypes.BOOKING} className="flex-1">
+                <TabsTrigger
+                  value={bookingTypes.BOOKING}
+                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white"
+                >
                   Booking
                 </TabsTrigger>
-                <TabsTrigger value={bookingTypes.HOURLY} className="flex-1">
+                <TabsTrigger
+                  value={bookingTypes.HOURLY}
+                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white"
+                >
                   Hourly
                 </TabsTrigger>
-                <TabsTrigger value={bookingTypes.PARCEL} className="flex-1">
+                <TabsTrigger
+                  value={bookingTypes.PARCEL}
+                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white"
+                >
                   Parcel
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-
+            {isEditBooking && (
+              <div className=" h-[200px] w-[200px]">
+                <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
+              </div>
+            )}
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -572,8 +852,8 @@ export const BookingForm: React.FC = () => {
                 )}
                 {(activeTab === bookingTypes.HOURLY ||
                   form.watch("bookingMode") === "later") && (
-                    <>
-                      {/* <FormField
+                  <>
+                    {/* <FormField
                         control={form.control}
                         name="pickupDateTime"
                         render={({ field }) => (
@@ -617,34 +897,34 @@ export const BookingForm: React.FC = () => {
                           </FormItem>
                         )}
                       /> */}
-                      <FormField
-                        control={form.control}
-                        name="pickupDateTime"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Pickup Date & Time</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="datetime-local"
-                                value={
-                                  field.value
-                                    ? format(field.value, "yyyy-MM-dd'T'HH:mm")
-                                    : ""
-                                }
-                                onChange={(e) => {
-                                  const value = e.target.value
-                                    ? new Date(e.target.value)
-                                    : null;
-                                  field.onChange(value);
-                                }}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </>
-                  )}
+                    <FormField
+                      control={form.control}
+                      name="pickupDateTime"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Pickup Date & Time</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="datetime-local"
+                              value={
+                                field.value
+                                  ? format(field.value, "yyyy-MM-dd'T'HH:mm")
+                                  : ""
+                              }
+                              onChange={(e) => {
+                                const value = e.target.value
+                                  ? new Date(e.target.value)
+                                  : null;
+                                field.onChange(value);
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </>
+                )}
 
                 {activeTab === bookingTypes.HOURLY && (
                   <FormField
@@ -657,9 +937,14 @@ export const BookingForm: React.FC = () => {
                           onValueChange={(value) =>
                             field.onChange(parseInt(value))
                           }
+                          value={field.value?.toString()} // Add this line to fix the value binding
                         >
                           <SelectTrigger>
-                            <SelectValue placeholder="Select duration" />
+                            <SelectValue placeholder="Select duration">
+                              {field.value
+                                ? `${field.value} hours`
+                                : "Select duration"}
+                            </SelectValue>
                           </SelectTrigger>
                           <SelectContent>
                             {Array.from({ length: 24 }, (_, i) => i + 3).map(
@@ -692,27 +977,9 @@ export const BookingForm: React.FC = () => {
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
-                            <SelectTrigger className="w-full px-2 py-0 border rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary ">
-                              <SelectValue placeholder="Select vehicle">
-                                <div className="flex gap-3">
-                                  <div className="w-6 h-6 relative">
-                                    <Image
-                                      src={vehicleTypes.find(
-                                        (v) => v.value === field.value
-                                      )?.imageUrl || "Select vehicle"}
-                                      alt={vehicleTypes.find(
-                                        (v) => v.value === field.value
-                                      )?.imageUrl || "Select vehicle"}
-                                      fill
-                                      className="object-contain"
-                                    />
-                                  </div>
-                                  <span>        {vehicleTypes.find(
-                                    (v) => v.value === field.value
-                                  )?.type || "Select vehicle"}
-                                  </span>
-                                </div>
-
+                            <SelectTrigger className="w-full px-2 py-0 border rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                              <SelectValue>
+                                {renderVehicleSelectValue(field.value)}
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent className="z-[999] bg-white w-full">
@@ -856,7 +1123,7 @@ export const BookingForm: React.FC = () => {
                     </FormItem>
                   )}
                 />
-                {distance && duration && (
+                {/* {distance && duration && (
                   <div className="mt-4 p-4 bg-muted rounded-lg space-y-2">
                     <p className="text-sm text-gray-600">
                       Estimated Distance: {distance}
@@ -870,7 +1137,7 @@ export const BookingForm: React.FC = () => {
                       </p>
                     )}
                   </div>
-                )}
+                )} */}
 
                 {/* Add rest of the form fields... */}
 
@@ -878,12 +1145,23 @@ export const BookingForm: React.FC = () => {
                 <FormSuccess message={success} />
 
                 <Button type="submit" className="w-full" disabled={isPending}>
-                  {isPending ? "Submitting..." : "Request Booking"}
+                  {isPending
+                    ? "Submitting..."
+                    : isEditBooking
+                    ? "Update Booking"
+                    : "Request Booking"}
                 </Button>
               </form>
             </Form>
             <p className="text-sm font-semibold text-muted-foreground mt-4">
-              I have read and agreed to the <Link href="/policy" className="underline">Privacy Policy</Link> and <Link href="/terms" className="underline">Terms and Conditions</Link>
+              I have read and agreed to the{" "}
+              <Link href="/policy" className="underline">
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link href="/terms" className="underline">
+                Terms and Conditions
+              </Link>
             </p>
           </div>
         )}

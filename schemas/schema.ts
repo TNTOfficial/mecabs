@@ -34,6 +34,29 @@ export const NewPasswordSchema = z.object({
   }),
 });
 
+export const PhoneSchema = z.object({
+  phoneNumber: z.string().regex(/^\+[1-9]\d{1,14}$/, {
+    message:
+      "Please enter a valid phone number in international format (e.g., +1234567890)",
+  }),
+});
+
+export const PhoneVerificationSchema = z.object({
+  code: z.string().length(6, "Verification code must be 6 digits"),
+  phoneNumber: z.string(),
+});
+
+export const PhoneRegistrationSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email(),
+  phoneNumber: z.string(),
+});
+
+export const LeadSchema = z.object({
+  email: z.string().email(),
+  leadId: z.string().optional(),
+});
+
 const CoordinatesSchema = z.object({
   lat: z.number(),
   lng: z.number(),
@@ -42,7 +65,9 @@ const CoordinatesSchema = z.object({
 export const BookingSchema = z.object({
   bookingType: z.enum(["booking", "hourly", "parcel"]),
   bookingMode: z.enum(["now", "later"]),
-  status: z.enum(["active", "completed", "cancelled"]).default("active"),
+  status: z
+    .enum(["active", "completed", "cancelled", "dismissed"])
+    .default("active"),
   // Customer details
   passengerName: z.string().min(1, "Passenger name is required"),
   phoneNumber: z.string().min(2, "Valid phone number is required"),
@@ -57,7 +82,14 @@ export const BookingSchema = z.object({
 
   pickupDateTime: z.date().nullable(),
   hours: z.number().min(3).max(24).optional().nullable(),
-  vehicleType: z.enum(["sedan", "premium", "maxi", "suv", "wheelchair", ""]),
+  vehicleType: z.enum([
+    "sedan",
+    "premium",
+    "maxi",
+    "suv",
+    "wheelchair",
+    "anyavailable",
+  ]),
   babySeat: z.boolean().default(false),
   flightNumber: z.string().optional().nullable(),
 

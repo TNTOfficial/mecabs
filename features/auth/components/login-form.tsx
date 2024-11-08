@@ -21,7 +21,7 @@ import {
 } from "@/schemas/schema";
 import { CardWrapper } from "./card-wrapper";
 import { FormError } from "@/components/form-error";
-import { CiMail } from "react-icons/ci";
+import { CiMail, CiMobile1 } from "react-icons/ci";
 import { FormSuccess } from "@/components/form-success";
 import { Button } from "@/components/ui/button";
 import { login } from "@/actions/auth/login";
@@ -30,6 +30,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { newVerification } from "@/actions/auth/new-verification";
 import { reset } from "@/actions/auth/reset";
 import { useSession } from "next-auth/react";
+import { PhoneAuthForm } from "./phone-auth-form";
 
 interface LoginFormProps {
   formType?: "login" | "register";
@@ -47,6 +48,7 @@ export const LoginForm = ({
   );
   const [error, setError] = useState<string | undefined>("");
   const [showFields, setShowFields] = useState<boolean>(false);
+  const [showPhoneAuth, setShowPhoneAuth] = useState<boolean>(false);
   const [showVerification, setShowVerification] = useState<boolean>(false);
   const [showReset, setShowReset] = useState<boolean>(false);
   const [success, setSuccess] = useState<string | undefined>("");
@@ -214,13 +216,15 @@ export const LoginForm = ({
       backButtonHref="/login"
       showSocial={["google", "facebook"]}
       showFields={showFields}
+      showPhoneAuth={showPhoneAuth}
     >
-      {showFields && (
+      {showFields && !showPhoneAuth && (
         <>
           <Button
             variant="link"
             onClick={() => {
               setShowFields(false);
+              setShowPhoneAuth(false);
               setShowVerification(false);
               setShowReset(false);
             }}
@@ -236,6 +240,27 @@ export const LoginForm = ({
           </div>
         </>
       )}
+      {showPhoneAuth && (
+        <>
+          <Button
+            variant="link"
+            onClick={() => {
+              setShowPhoneAuth(false);
+              setShowVerification(false);
+              setShowReset(false);
+            }}
+          >
+            <IoIosArrowRoundBack className="text-[1.4rem]" />
+            Back
+          </Button>
+
+          <div>
+            <p className="text-xl text-center font-semibold">
+              Continue with your Phone
+            </p>
+          </div>
+        </>
+      )}
 
       {!showVerification && !showReset && (
         <Form {...form}>
@@ -244,42 +269,64 @@ export const LoginForm = ({
             className="space-y-6 pt-4"
           >
             <div className="space-y-4">
-              {!showFields && (
+              {!showFields && !showPhoneAuth && (
                 <Button
                   size="lg"
                   className="w-full"
                   variant="outline"
                   onClick={() => {
                     setShowFields(true);
+                    setShowPhoneAuth(false);
                   }}
                 >
                   <CiMail className="h-5 w-5" />
                   <p className="p-2">Continue with email</p>
                 </Button>
               )}
-
-              {currentFormType === "register" && showFields && (
-                <div>
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem className="relative">
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            disabled={isPending}
-                            placeholder="Your Name"
-                            type="text"
-                          />
-                        </FormControl>
-                        <FormMessage className="absolute top-[90%] left-0" />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+              {!showPhoneAuth && !showFields && (
+                <Button
+                  size="lg"
+                  className="w-full"
+                  variant="outline"
+                  onClick={() => {
+                    setShowPhoneAuth(true);
+                  }}
+                >
+                  <CiMobile1 className="h-5 w-5" />
+                  <p className="p-2">Continue with phone</p>
+                </Button>
               )}
+              {showPhoneAuth && (
+                <PhoneAuthForm
+                  isModal={isModal}
+                  onCloseDialog={onCloseDialog}
+                />
+              )}
+
+              {currentFormType === "register" &&
+                showFields &&
+                !showPhoneAuth && (
+                  <div>
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem className="relative">
+                          <FormLabel>Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              disabled={isPending}
+                              placeholder="Your Name"
+                              type="text"
+                            />
+                          </FormControl>
+                          <FormMessage className="absolute top-[90%] left-0" />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
 
               {showFields && (
                 <>

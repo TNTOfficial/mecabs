@@ -12,3 +12,14 @@ export const getUserByEmail = async (email: string) => {
     return null;
   }
 };
+
+export const getUserByPhone = async (phoneNumber: string) => {
+  try {
+    const user = await db.user.findFirst({
+      where: { phoneNumber },
+    });
+    return user;
+  } catch {
+    return null;
+  }
+};

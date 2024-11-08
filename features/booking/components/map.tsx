@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useCallback } from "react";
 import { Map as GoogleMap, useMap } from "@vis.gl/react-google-maps";
 import { Card } from "@/components/ui/card";
-import { Clock, Navigation2 } from "lucide-react";
+// import { Clock, Navigation2 } from "lucide-react";
 import { useDirections } from "@/features/booking/hooks/use-directions";
 
 interface MapProps {
@@ -83,37 +83,37 @@ const RoutePolyline: React.FC<{
       draggable: false,
     });
 
-    const infoWindow = new google.maps.InfoWindow({
-      content: `
-        <div class="p-2">
-          <div class="flex items-center gap-2">
-            <span>${distance}</span> • <span>${duration}</span>
-          </div>
-        </div>
-      `,
-    });
+    // const infoWindow = new google.maps.InfoWindow({
+    //   content: `
+    //     <div class="p-2">
+    //       <div class="flex items-center gap-2">
+    //         <span>${distance}</span> • <span>${duration}</span>
+    //       </div>
+    //     </div>
+    //   `,
+    // });
 
     // Add hover effects for the route
-    polyline.addListener(
-      "mouseover",
-      (e: { latLng: google.maps.LatLngLiteral }) => {
-        const position = e.latLng;
-        if (position) {
-          infoWindow.setPosition(position);
-          infoWindow.open(map);
-        }
-      }
-    );
+    // polyline.addListener(
+    //   "mouseover",
+    //   (e: { latLng: google.maps.LatLngLiteral }) => {
+    //     const position = e.latLng;
+    //     if (position) {
+    //       infoWindow.setPosition(position);
+    //       infoWindow.open(map);
+    //     }
+    //   }
+    // );
 
-    polyline.addListener("mouseout", () => {
-      infoWindow.close();
-    });
+    // polyline.addListener("mouseout", () => {
+    //   infoWindow.close();
+    // });
 
     polyline.setMap(map);
 
     return () => {
       polyline.setMap(null);
-      infoWindow.close();
+      // infoWindow.close();
     };
   }, [map, path, pickup, dropoff, distance, duration]);
 
@@ -229,7 +229,7 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
         )}
       </GoogleMap>
 
-      {distance && duration && (
+      {/* {distance && duration && (
         <Card className="absolute top-4 right-4 p-4 bg-white/90 backdrop-blur shadow-lg">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
@@ -242,7 +242,7 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
             </div>
           </div>
         </Card>
-      )}
+      )} */}
 
       {error && (
         <Card className="absolute top-4 left-4 p-4 bg-red-50 text-red-600">

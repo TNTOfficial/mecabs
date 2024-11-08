@@ -27,6 +27,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // preventing sign In without email verification
       const existingUser = await getUserById(user.id!);
 
+      //for phone number allowing user without email verification
+      if (existingUser?.phoneNumber) return true;
+      
       if (!existingUser || !existingUser.emailVerified) {
         return false;
       }
@@ -43,6 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.name = token.name;
         session.user.email = token.email!;
         session.user.isOAuth = token.isOAuth as boolean;
+        session.user.phoneNumber = token.phoneNumber as string;
       }
 
       return session;
@@ -61,6 +65,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       token.name = existingUser.name;
       token.email = existingUser.email;
       token.role = existingUser.role;
+      token.phoneNumber = existingUser.phoneNumber;
       return token;
     },
   },

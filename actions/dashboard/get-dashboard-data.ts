@@ -130,7 +130,7 @@ export const getDashboardData = cache(async (): Promise<DashboardResponse> => {
       const [userBookings, userSpending, bookingStats] = await Promise.all([
         db.booking.findMany({
           where: {
-            userId: user.id,
+            OR: [{ userId: user?.id }, { phoneNumber: user?.phoneNumber }],
             pickupDateTime: { gte: monthStart, lte: monthEnd },
           },
           orderBy: { pickupDateTime: "asc" },

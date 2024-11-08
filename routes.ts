@@ -8,7 +8,6 @@ export const publicRoutes = [
   "/booking",
   "/policy",
   "/terms",
-  "/google-map",
   "/test",
 ];
 
@@ -16,6 +15,7 @@ export const protectedRoutes = [
   "/settings",
   "/dashboard",
   "/dashboard/user-bookings",
+  "/dashboard/leads",
   // ... other protected routes
 ];
 /**
