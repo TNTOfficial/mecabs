@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/lib/db";
 import { Prisma } from "@prisma/client";
 import {
@@ -57,7 +59,7 @@ export const getBookings = async ({
     }
 
     const where: Prisma.BookingWhereInput = {
-      ...((user.role !== "ADMIN" && { userId }) && { phoneNumber }),
+      ...(user.role !== "ADMIN" && { userId } && { phoneNumber }),
       ...(filters.search && {
         OR: [
           {

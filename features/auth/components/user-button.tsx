@@ -7,7 +7,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOut } from "next-auth/react";
@@ -35,11 +34,13 @@ export const UserButton = () => {
               {name?.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <span className="text-sm text-gray-700">Hi, <strong> {name || "User"}</strong></span>
+          <span className="text-sm text-gray-700">
+            Hi, <strong> {name || "User"}</strong>
+          </span>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
-        {!pathname.startsWith("/dashboard") && (
+        {user && user?.phoneNumber && !pathname.startsWith("/dashboard") && (
           <DropdownMenuItem className="py-2">
             <LayoutDashboard className="h-4 w-4 mr-2" />
             <Link href="/dashboard">Dashboard</Link>
