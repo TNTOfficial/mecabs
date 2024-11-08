@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: "Booking", href: "/booking" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Contact Us", href: "/contact" },
   ];
   const { user } = useCurrentUser();
 

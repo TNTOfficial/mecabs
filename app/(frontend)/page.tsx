@@ -22,7 +22,7 @@ import bgshap from "@/public/bgshap.png";
 // import AOS from "aos";
 
 import "aos/dist/aos.css";
-import { IoCarOutline } from "react-icons/io5";
+import { IoCarOutline, IoCheckmark } from "react-icons/io5";
 import { PiUsersDuotone } from "react-icons/pi";
 import LandingSlider from "./components/landingSlider";
 import { AiOutlineSafety } from "react-icons/ai";
@@ -584,26 +584,54 @@ export default function Home() {
       <section className="faq py-[100px] border-t border-zinc-300">
         <div className="container">
           <div className="max-w-screen-md mx-auto">
-            <div className="section_title text-center mb-14">
-              <h3 className="text-[3rem] text-black font-medium">
-                Frequently Asked Questions
-              </h3>
-            </div>
-            <div className="acordians">
-              <ul className="list-none">
-                <li className="pb-6 border-b border-zinc-400">
-                  <h3 className="text-black text-[1.5rem] font-semibold flex justify-between items-center">
-                    <span>How do I create an account?</span>{" "}
-                    <CiCirclePlus className="text-black text-[1.5rem]" />
-                  </h3>
-                  <p className="text-[1rem] text-black font-normal pt-3">
-                    Serenity Is Multi-Faceted Blockchain Based Ecosystem, Energy
-                    Retailer For The People, Focusing On The Promotion Of
-                    Sustainable Living, Renewable Energy Production And Smart
-                    Energy Grid Utility Services.
-                  </p>
-                </li>
-              </ul>
+
+            <div className="bg-white px-6">
+              <h2 className="text-3xl font-extrabold text-blue-700 mb-10">Frequently Asked Questions</h2>
+              <div className="space-y-8 max-w-4xl">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                   <IoCheckmark className="text-blue-700 text-[1.3rem]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#333]">How can I create an account?</h3>
+                    <p className="text-sm text-[#333] mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                   <IoCheckmark className="text-blue-700 text-[1.3rem]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#333]">How can I reset my password?</h3>
+                    <p className="text-sm text-[#333] mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua.</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                   <IoCheckmark className="text-blue-700 text-[1.3rem]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#333]">How do I update my account information?</h3>
+                    <p className="text-sm text-[#333] mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                   <IoCheckmark className="text-blue-700 text-[1.3rem]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#333]">Is there a mobile app available?</h3>
+                    <p className="text-sm text-[#333] mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua Sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

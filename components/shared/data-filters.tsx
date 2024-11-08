@@ -178,8 +178,8 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
 
   return (
     <div className="space-y-4 px-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-stretch space-x-2">
+      <div className="flex items-center justify-center">
+        <div className="flex w-full max-w-[600px] items-stretch justify-center space-x-2">
           <Input
             placeholder="Search..."
             value={filters.search || ""}

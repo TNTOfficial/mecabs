@@ -698,7 +698,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
       <div
         className={cn(
-          "lg:absolute top-4 left-4 bg-white rounded-lg lg:w-[400px] w-full lg:shadow-lg transition-all duration-100 lg:overflow-x-hidden lg:overflow-y-auto",
+          "lg:absolute z-10 top-4 left-4 bg-white rounded-lg lg:w-[400px] w-full lg:shadow-lg transition-all duration-100 lg:overflow-x-hidden lg:overflow-y-auto",
           isFormMinimized ? "h-16" : "h-[96%]"
         )}
       >
@@ -1166,6 +1166,22 @@ export const BookingForm: React.FC<BookingFormProps> = ({
           </div>
         )}
       </div>
+
+      <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => {
+          setShowSuccessModal(false);
+        }}
+        bookingType={activeTab}
+        onReturnBooking={() => {
+          handleReturnBooking(parentBookingId!);
+        }}
+        pickupLocation={form.getValues("pickupLocation")!}
+        dropoffLocation={form.getValues("dropoffLocation")!}
+        isReturnBooking={isReturnBooking}
+        onReset={resetForm}
+      />
     </div>
   );
 };
