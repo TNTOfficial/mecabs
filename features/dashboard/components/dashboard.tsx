@@ -62,22 +62,28 @@ export const Dashboard = () => {
           <DashboardMetrics data={adminData.metrics} isLoading={isLoading} />
         </Suspense>
 
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          <Suspense
-            fallback={<VehicleDistribution data={[]} isLoading={true} />}
-          >
-            <VehicleDistribution
-              data={adminData.vehicleDistribution}
-              isLoading={isLoading}
-            />
-          </Suspense>
+        <div className="flex justify-center items-stretch flex-wrap gap-5 mb-6">
+          <div className="w-full lg:w-[calc(30%_-_20px)]">
+            <Suspense
+              fallback={<VehicleDistribution data={[]} isLoading={true} />}
+            >
+              <VehicleDistribution
+                data={adminData.vehicleDistribution}
+                isLoading={isLoading}
+              />
+            </Suspense>
 
-          <Suspense fallback={<BookingChart data={[]} isLoading={true} />}>
-            <BookingChart
-              data={adminData.bookingTrends}
-              isLoading={isLoading}
-            />
-          </Suspense>
+          </div>
+          <div className="w-full lg:w-[calc(70%_-_20px)]">
+            <Suspense fallback={<BookingChart data={[]} isLoading={true} />}>
+              <BookingChart
+                data={adminData.bookingTrends}
+                isLoading={isLoading}
+              />
+            </Suspense>
+          </div>
+
+
         </div>
 
         <Suspense fallback={<RevenueChart data={[]} isLoading={true} />}>

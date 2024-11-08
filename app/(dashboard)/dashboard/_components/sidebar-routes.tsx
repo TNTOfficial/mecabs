@@ -5,6 +5,7 @@ import { BookMarked } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
 import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { Separator } from "@radix-ui/react-dropdown-menu";
 
 export const SidebarRoutes = () => {
   const pathname = usePathname();
@@ -20,11 +21,10 @@ export const SidebarRoutes = () => {
           />
         </ul>
       </div>
-      {/* <div className="px-3">
+      <div className="px-3">
         <Separator />
-      </div> */}
-      <div className="mt-3">
-        <h6 className="text-blue-600 text-sm font-bold px-4">Information</h6>
+      </div>
+      <div>
         <ul className="flex flex-col gap-y-1 ">
           <SidebarItem
             href="/dashboard/user-bookings"

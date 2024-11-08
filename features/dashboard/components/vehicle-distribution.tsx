@@ -7,7 +7,7 @@ interface VehicleDistributionProps {
   isLoading?: boolean;
 }
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ["#2563eb", "#00C49F", "#FFBB28", "#FF8042"];
 
 export const VehicleDistribution: React.FC<VehicleDistributionProps> = ({
   data,
@@ -15,11 +15,11 @@ export const VehicleDistribution: React.FC<VehicleDistributionProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <Card className="col-span-2">
+      <Card className="col-span-2 p-5">
         <CardHeader>
           <CardTitle>Vehicle Distribution</CardTitle>
         </CardHeader>
-        <CardContent className="h-[300px] animate-pulse bg-gray-100" />
+        <CardContent className="h-[400px] animate-pulse bg-gray-100" />
       </Card>
     );
   }
@@ -27,11 +27,11 @@ export const VehicleDistribution: React.FC<VehicleDistributionProps> = ({
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <Card className="col-span-2">
+    <Card className="col-span-2 p-5 h-full">
       <CardHeader>
-        <CardTitle>Vehicle Distribution</CardTitle>
+        <CardTitle className="text-[1.1rem] text-blue-600 font-bold">Vehicle Distribution</CardTitle>
       </CardHeader>
-      <CardContent className="h-[300px]">
+      <CardContent className="h-[400px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie

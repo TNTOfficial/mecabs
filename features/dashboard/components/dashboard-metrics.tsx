@@ -62,16 +62,16 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
       {stats.map((stat) => (
-        <Card key={stat.title}>
+        <Card key={stat.title} className="p-5">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-            <stat.icon className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-[1.1rem] text-zinc-900 font-bold">{stat.title}</CardTitle>
+            <stat.icon className="h-8 w-8 text-blue-600 " />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stat.value}</div>
-            <p className="text-xs text-muted-foreground">{stat.description}</p>
+          <CardContent className="mt-0">
+            <div className="text-[2rem] font-bold">{stat.value}</div>
+            <p className="text-[0.8rem] text-zinc-900 font-medium">{stat.description}</p>
             <div
               className={`text-xs ${
                 stat.trend === "up" ? "text-green-500" : "text-red-500"

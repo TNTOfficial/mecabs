@@ -22,7 +22,7 @@ export const SidebarItem = ({
       <div
         className={cn(
           "text-black hover:text-blue-600 text-base flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all",
-          isActive && "bg-blue-800 text-white"
+          isActive && "bg-blue-600 text-white"
         )}
       >
         <Icon className="text-[1.7rem] mr-3" />

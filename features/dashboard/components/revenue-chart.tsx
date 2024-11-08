@@ -5,7 +5,6 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
 
@@ -27,17 +26,17 @@ export const RevenueChart = ({ data, isLoading }: RevenueChartProps) => {
   }
 
   return (
-    <Card className="col-span-2">
+    <Card className="col-span-2 p-5">
       <CardHeader>
         <CardTitle>Revenue Analysis</CardTitle>
       </CardHeader>
-      <CardContent className="p-4">
-        <ResponsiveContainer width="100%" height={300}>
+      <CardContent>
+        <ResponsiveContainer width="100%" height={400}>
           <BarChart
             data={data}
             margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <XAxis dataKey="month" tick={{ fill: "#333" }} />
             <YAxis tick={{ fill: "#333" }} />
             <Tooltip
@@ -50,8 +49,8 @@ export const RevenueChart = ({ data, isLoading }: RevenueChartProps) => {
             />
             <defs>
               <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#8884d8" stopOpacity={0.8} />
-                <stop offset="100%" stopColor="#82ca9d" stopOpacity={0.6} />
+                <stop offset="0%" stopColor="#2563eb" stopOpacity={0.8} />
+                <stop offset="100%" stopColor="#2563eb  " stopOpacity={0.6} />
               </linearGradient>
             </defs>
           </BarChart>

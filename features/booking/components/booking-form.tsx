@@ -628,7 +628,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         "relative w-full",
         isEditBooking
           ? "min-h-full p-4"
-          : "max-lg:min-h-[calc(100dvh_-_70.52px)] min-h-full h-[calc(100dvh_-_70.52px)]"
+          : "min-h-[calc(100dvh_-_70.52px)] h-full lg:h-[calc(100dvh_-_70.52px)]"
       )}
     >
    
