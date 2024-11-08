@@ -1,7 +1,5 @@
 import React from 'react'
 import banner1 from "@/public/banner4.jpg";
-import whatapp from "@/public/whatsapp.jpg";
-import Image from 'next/image';
 import Link from 'next/link';
 import { IoMailOutline } from 'react-icons/io5';
 import { LuFacebook } from 'react-icons/lu';
@@ -76,8 +74,8 @@ const page = () => {
       <section className='formSection bg-gradient-to-t from-gray-50 via-gray-50 to-gray-200 py-[100px]'>
         <div className="grid sm:grid-cols-2 items-start gap-16 p-4 mx-auto max-w-4xl bg-white rounded-xl shadow">
           <div>
-            <h1 className="text-gray-800 text-3xl font-extrabold">Let's Talk</h1>
-            <p className="text-sm text-gray-500 mt-4">Have some big idea or brand to develop and need help? Then reach out we'd love to hear about your project  and provide help.</p>
+            <h1 className="text-gray-800 text-3xl font-extrabold">Let&apos;s Talk</h1>
+            <p className="text-sm text-gray-500 mt-4">Have some big idea or brand to develop and need help? Then reach out we would love to hear about your project  and provide help.</p>
 
             <div className="mt-12">
               <h2 className="text-gray-800 text-base font-bold">Email</h2>

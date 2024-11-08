@@ -33,7 +33,6 @@ import { Mousewheel, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
-import { CiCirclePlus } from "react-icons/ci";
 import Link from "next/link";
 import { FiPhoneCall } from "react-icons/fi";
 
