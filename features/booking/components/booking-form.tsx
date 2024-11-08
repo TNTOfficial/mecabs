@@ -631,9 +631,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
           : "max-lg:min-h-[calc(100dvh_-_70.52px)] min-h-full h-[calc(100dvh_-_70.52px)]"
       )}
     >
-      {!isEditBooking && (
-        <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
-      )}
+   
       <SuccessModal
         isOpen={showSuccessModal}
         onClose={() => {
