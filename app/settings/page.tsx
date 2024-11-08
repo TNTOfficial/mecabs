@@ -2,12 +2,12 @@
 
 import React from "react";
 import signbg from "@/public/signbg.jpg";
-import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
+// import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
 import { Button } from "@/components/ui/button";
 import Link from "next/link"
 
 const SettingsPage = () => {
-  const user = useCurrentUser()
+  // const user = useCurrentUser()
 
   // return 
   return (
@@ -24,8 +24,8 @@ const SettingsPage = () => {
           <Button variant="link" asChild>
             <Link href="/" className="underline">  Back to home page</Link>
           </Button>
-          <h3 className="text-[2rem] font-bold">{user?.name}</h3>
-          <h6 className="text-[1rem] font-medium">{user?.email}</h6>
+          {/* <h3 className="text-[2rem] font-bold">{user?.name}</h3>
+          <h6 className="text-[1rem] font-medium">{user?.email}</h6> */}
 
 
         </div>
