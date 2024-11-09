@@ -62,8 +62,8 @@ export const Dashboard = () => {
           <DashboardMetrics data={adminData.metrics} isLoading={isLoading} />
         </Suspense>
 
-        <div className="flex justify-center items-stretch flex-wrap gap-5 mb-6">
-          <div className="w-full lg:w-[calc(30%_-_20px)]">
+        <div className="flex justify-between items-stretch flex-wrap gap-5 mb-6">
+          <div className="w-full lg:w-[calc(30%_-_10px)] basis-[300px] grow shrink-0">
             <Suspense
               fallback={<VehicleDistribution data={[]} isLoading={true} />}
             >
@@ -74,7 +74,7 @@ export const Dashboard = () => {
             </Suspense>
 
           </div>
-          <div className="w-full lg:w-[calc(70%_-_20px)]">
+          <div className="w-full lg:w-[calc(70%_-_10px)] basis-[300px] grow-[4] shrink-0">
             <Suspense fallback={<BookingChart data={[]} isLoading={true} />}>
               <BookingChart
                 data={adminData.bookingTrends}

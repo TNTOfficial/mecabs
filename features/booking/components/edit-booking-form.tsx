@@ -26,9 +26,9 @@ export const EditBookingForm: React.FC<EditBookingFormProps> = ({
 }) => {
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="sm:max-w-[800px] w-full p-0 flex flex-col h-full">
+      <SheetContent className="sm:max-w-[400px] w-full p-0 flex flex-col h-full">
         <SheetHeader className="p-4 bg-gray-50 border-b shrink-0">
-          <div className="flex items-center justify-between">
+          <div className="flex items-end justify-between">
             <div>
               <SheetTitle className="text-lg font-semibold">
                 Edit Booking
@@ -62,7 +62,7 @@ export const EditBookingForm: React.FC<EditBookingFormProps> = ({
           </div>
         </SheetHeader>
 
-        <div className="flex-1 overflow-auto p-4">
+        <div className="flex-1 overflow-auto p-0">
           <BookingForm
             isEditBooking={true}
             booking={booking}

@@ -55,8 +55,8 @@ export const BookingChart = ({
   }
 
   return (
-    <Card className="col-span-4 p-5">
-      <CardHeader>
+    <Card className="col-span-4">
+      <CardHeader className="p-5">
         <CardTitle className="text-[1.1rem] text-blue-600 font-bold">Booking Overview</CardTitle>
       </CardHeader>
       <CardContent>

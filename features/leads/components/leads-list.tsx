@@ -26,32 +26,32 @@ export const LeadsTable: React.FC<LeadsTableProps> = ({ leads }) => {
   return (
     <RoleGuard allowedRoles={["ADMIN"]}>
       <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Customer Leads</CardTitle>
+        <CardHeader className="p-4 pb-0">
+          <CardTitle className="text-[1.4rem]">Customer Leads</CardTitle>
           <CardDescription>
             Manage and track all customer leads and their associated bookings
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pb-6">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Contact Info</TableHead>
-                <TableHead>Created</TableHead>
+                <TableHead className="py-2 px-8">Contact Info</TableHead>
+                <TableHead className="py-2 px-8 ps-0">Created</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {leads.map((lead) => (
                 <TableRow key={lead.id}>
-                  <TableCell>
+                  <TableCell className="py-2 px-8">
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
-                        <Phone className="h-4 w-4 text-muted-foreground" />
+                        <Phone className="h-5 w-5 text-green-500" />
                         <span>{lead.phoneNumber}</span>
                       </div>
                       {lead.email && (
                         <div className="flex items-center space-x-2">
-                          <Mail className="h-4 w-4 text-muted-foreground" />
+                          <Mail className="h-5 w-5 text-red-500" />
                           <span>{lead.email}</span>
                         </div>
                       )}

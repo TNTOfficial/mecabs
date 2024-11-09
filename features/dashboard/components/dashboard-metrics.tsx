@@ -48,11 +48,11 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
 
   if (isLoading) {
     return (
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="gap-4 flex justify-center items-stretch flex-wrap">
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <Card key={i} className="animate-pulse">
+            <Card key={i} className="animate-pulse basis-[300px] grow shrink-0 ">
               <CardHeader className="h-20 bg-gray-200" />
               <CardContent className="h-24 bg-gray-100" />
             </Card>
@@ -62,9 +62,9 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
+    <div className="gap-4 flex justify-center items-stretch flex-wrap mb-6">
       {stats.map((stat) => (
-        <Card key={stat.title} className="p-5">
+        <Card key={stat.title} className="p-5 basis-[280px] grow shrink-0 ">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-[1.1rem] text-zinc-900 font-bold">{stat.title}</CardTitle>
             <stat.icon className="h-8 w-8 text-blue-600 " />

@@ -26,8 +26,8 @@ export const RevenueChart = ({ data, isLoading }: RevenueChartProps) => {
   }
 
   return (
-    <Card className="col-span-2 p-5">
-      <CardHeader>
+    <Card className="col-span-2">
+      <CardHeader className="p-5">
         <CardTitle>Revenue Analysis</CardTitle>
       </CardHeader>
       <CardContent>
@@ -49,8 +49,8 @@ export const RevenueChart = ({ data, isLoading }: RevenueChartProps) => {
             />
             <defs>
               <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#2563eb" stopOpacity={0.8} />
-                <stop offset="100%" stopColor="#2563eb  " stopOpacity={0.6} />
+                <stop offset="0%" stopColor="#9f9f9f" stopOpacity={0.8} />
+                <stop offset="100%" stopColor="#efefef  " stopOpacity={0.6} />
               </linearGradient>
             </defs>
           </BarChart>

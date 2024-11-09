@@ -41,14 +41,16 @@ export const UserButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
         {user && user?.phoneNumber && !pathname.startsWith("/dashboard") && (
-          <DropdownMenuItem className="py-2">
-            <LayoutDashboard className="h-4 w-4 mr-2" />
-            <Link href="/dashboard">Dashboard</Link>
+          <DropdownMenuItem className="p-0">
+            <Link href="/dashboard" className="py-2 px-3 flex justify-start items-center w-full">
+              <LayoutDashboard className="h-4 w-4 mr-2" />
+              <span>Dashboard</span>
+            </Link>
           </DropdownMenuItem>
         )}
         {/* <DropdownMenuSeparator /> */}
         <DropdownMenuItem
-          className="py-2"
+          className="py-2 px-3 w-full cursor-pointer"
           onClick={() => {
             signOut({
               redirectTo: "/",

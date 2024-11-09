@@ -27,8 +27,8 @@ export const VehicleDistribution: React.FC<VehicleDistributionProps> = ({
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <Card className="col-span-2 p-5 h-full">
-      <CardHeader>
+    <Card className="col-span-2 h-full">
+      <CardHeader className="p-5">
         <CardTitle className="text-[1.1rem] text-blue-600 font-bold">Vehicle Distribution</CardTitle>
       </CardHeader>
       <CardContent className="h-[400px]">
