@@ -80,7 +80,7 @@ export const SuccessModal = ({
         )}
 
         <DialogFooter className="sm:justify-start">
-          <Button type="button" variant="secondary" onClick={handleClose}>
+          <Button className="w-full" type="button" variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </DialogFooter>

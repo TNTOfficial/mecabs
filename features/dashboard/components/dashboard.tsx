@@ -9,7 +9,7 @@ import { VehicleDistribution } from "./vehicle-distribution";
 import { RevenueChart } from "./revenue-chart";
 import { useDashboardData } from "../hooks/use-dashboard-data";
 import { UserBookings } from "./user-bookings";
-import { UserSpendingChart } from "./user-spendings-chart";
+// import { UserSpendingChart } from "./user-spendings-chart";
 import { BookingStats } from "./booking-stats";
 import { TotalSpendings } from "./total-spending";
 export const Dashboard = () => {
@@ -99,13 +99,13 @@ export const Dashboard = () => {
     const userData = data as UserDashboardResponse;
     return (
       <RoleGuard allowedRoles={["USER"]}>
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          <Suspense fallback={<UserSpendingChart data={[]} isLoading={true} />}>
+        <div className="flex justify-center items-stretch mb-6">
+          {/* <Suspense fallback={<UserSpendingChart data={[]} isLoading={true} />}>
             <UserSpendingChart
               data={userData.userSpending}
               isLoading={isLoading}
             />
-          </Suspense>
+          </Suspense> */}
 
           <Suspense
             fallback={

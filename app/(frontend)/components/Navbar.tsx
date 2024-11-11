@@ -30,7 +30,7 @@ export default function Navbar() {
   };
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-600 border-t border-transparent dark:border-white sticky top-0 z-50 shadow-sm shadow-zinc-200">
+      <nav className="bg-white border-gray-200 dark:bg-gray-600 border-t border-transparent dark:border-white sticky top-[-1px] z-50 shadow-sm shadow-zinc-200">
         <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href="/" className="flex gap-3 items-center">
             <Image

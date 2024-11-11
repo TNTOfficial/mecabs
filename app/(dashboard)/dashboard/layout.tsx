@@ -11,7 +11,7 @@ const DashbaordLayout: React.FC<DashbaordLayoutProps> = ({ children }) => {
   return (
     <div className=" bg-[#f5f7fa] dark:bg-gray-600 min-h-[100dvh]">
       <Sidebar />
-      <div className="w-full pl-[300px]">
+      <div className="w-full lg:pl-[300px]">
         <Navbar />
         <main className="flex-1 overflow-auto p-4">
           <Toaster />

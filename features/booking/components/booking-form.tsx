@@ -711,6 +711,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           {!isEditBooking && (
             <Button
+             className="max-lg:hidden"
               variant="ghost"
               size="sm"
               onClick={() => setIsFormMinimized(!isFormMinimized)}

@@ -43,8 +43,8 @@ export const LeadsTable: React.FC<LeadsTableProps> = ({ leads }) => {
             <TableBody>
               {leads.map((lead) => (
                 <TableRow key={lead.id}>
-                  <TableCell className="py-2 px-8">
-                    <div className="space-y-1">
+                  <TableCell className="py-3 px-8">
+                    <div className="space-y-2">
                       <div className="flex items-center space-x-2">
                         <Phone className="h-5 w-5 text-green-500" />
                         <span>{lead.phoneNumber}</span>

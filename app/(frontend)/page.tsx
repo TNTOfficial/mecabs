@@ -267,7 +267,6 @@ export default function Home() {
               clickable: true,
             }}
             speed={1000}
-            mousewheel={true}
             modules={[Pagination, Mousewheel]}
             breakpoints={{
               639: {
@@ -416,7 +415,6 @@ export default function Home() {
               clickable: true,
             }}
             speed={1000}
-            mousewheel={true}
             loop={true}
             modules={[Pagination, Mousewheel]}
             className="mySwiper pb-12"
