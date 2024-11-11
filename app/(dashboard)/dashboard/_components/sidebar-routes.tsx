@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, User } from "lucide-react";
+import { Globe, LayoutDashboard, User } from "lucide-react";
 import { BookMarked } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
@@ -38,6 +38,12 @@ export const SidebarRoutes = () => {
               icon={User}
               label="Leads"
               isActive={pathname === "/dashboard/leads"}
+            />
+            <SidebarItem
+              href="/dashboard/ip-trackings"
+              icon={Globe}
+              label="Ip Trackings"
+              isActive={pathname === "/dashboard/ip-trackings"}
             />
           </RoleGuard>
         </ul>

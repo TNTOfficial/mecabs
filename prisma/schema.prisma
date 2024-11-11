@@ -141,6 +141,17 @@ model AuditLog {
   createdAt  DateTime @default(now())
 }
 
+model IpTrack {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  ip         String
+  sessionId  String
+  path       String
+  userAgent  String?
+  visitCount Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
 enum BookingTypes {
   booking
   hourly
