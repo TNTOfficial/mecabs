@@ -6,6 +6,7 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  CartesianGrid,
 } from "recharts";
 import { BookingTrend } from "../types";
 
@@ -55,8 +56,8 @@ export const BookingChart = ({
 
   return (
     <Card className="col-span-4">
-      <CardHeader>
-        <CardTitle>Booking Overview</CardTitle>
+      <CardHeader className="p-5">
+        <CardTitle className="text-[1.1rem] text-blue-600 font-bold">Booking Overview</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={400}>
@@ -64,6 +65,8 @@ export const BookingChart = ({
             data={formattedData} // Use the formatted data here
             margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
           >
+            <CartesianGrid strokeDasharray="5 5" />
+
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />

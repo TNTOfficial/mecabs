@@ -17,7 +17,7 @@ export const BookingStats: React.FC<BookingStatsProps> = ({
   if (isLoading) {
     return (
       <Card>
-        <CardHeader>
+        <CardHeader className="p-5">
           <CardTitle>Booking Statistics</CardTitle>
         </CardHeader>
         <CardContent className="h-[300px] animate-pulse bg-gray-100" />
@@ -34,8 +34,8 @@ export const BookingStats: React.FC<BookingStatsProps> = ({
   const total = stats.completed + stats.cancelled + stats.active;
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="flex-1">
+      <CardHeader className="p-5">
         <CardTitle>Booking Statistics</CardTitle>
       </CardHeader>
       <CardContent className="h-[300px]">

@@ -13,8 +13,8 @@ export const UserBookings: React.FC<UserBookingsProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <Card>
-        <CardHeader>
+      <Card >
+        <CardHeader className="p-5">
           <CardTitle>Recent Bookings</CardTitle>
         </CardHeader>
         <CardContent className="animate-pulse space-y-4">
@@ -42,8 +42,8 @@ export const UserBookings: React.FC<UserBookingsProps> = ({
   };
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="p-5">
+      <CardHeader className="p-5">
         <CardTitle>Recent Bookings</CardTitle>
       </CardHeader>
       <CardContent>

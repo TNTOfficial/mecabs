@@ -48,7 +48,7 @@ export const SuccessModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-sm">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-green-600">
             <CheckCircle2 className="w-6 h-6" />
@@ -80,7 +80,7 @@ export const SuccessModal = ({
         )}
 
         <DialogFooter className="sm:justify-start">
-          <Button type="button" variant="secondary" onClick={handleClose}>
+          <Button className="w-full" type="button" variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </DialogFooter>

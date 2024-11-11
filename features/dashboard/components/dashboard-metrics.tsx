@@ -48,11 +48,11 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
 
   if (isLoading) {
     return (
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="gap-4 flex justify-center items-stretch flex-wrap">
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <Card key={i} className="animate-pulse">
+            <Card key={i} className="animate-pulse basis-[300px] grow shrink-0 ">
               <CardHeader className="h-20 bg-gray-200" />
               <CardContent className="h-24 bg-gray-100" />
             </Card>
@@ -62,16 +62,16 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="gap-4 flex justify-center items-stretch flex-wrap mb-6">
       {stats.map((stat) => (
-        <Card key={stat.title}>
+        <Card key={stat.title} className="p-5 basis-[280px] grow shrink-0 ">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-            <stat.icon className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-[1.1rem] text-zinc-900 font-bold">{stat.title}</CardTitle>
+            <stat.icon className="h-8 w-8 text-blue-600 " />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stat.value}</div>
-            <p className="text-xs text-muted-foreground">{stat.description}</p>
+          <CardContent className="mt-0">
+            <div className="text-[2rem] font-bold">{stat.value}</div>
+            <p className="text-[0.8rem] text-zinc-900 font-medium">{stat.description}</p>
             <div
               className={`text-xs ${
                 stat.trend === "up" ? "text-green-500" : "text-red-500"

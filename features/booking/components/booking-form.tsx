@@ -137,7 +137,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       dropoffCoordinates: undefined,
     },
   });
+//   useEffect(() => {
 
+//     setShowEmailModal(true)
+// },[])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const vehicleTypes = [
     {
@@ -627,11 +630,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       className={cn(
         "relative w-full",
         isEditBooking
-          ? "min-h-full p-4"
-          : "max-lg:min-h-[calc(100dvh_-_70.52px)] min-h-full h-[calc(100dvh_-_70.52px)]"
+          ? "min-h-full py-4 px-0"
+          : "min-h-[calc(100dvh_-_70.52px)] h-full lg:h-[calc(100dvh_-_70.52px)]"
       )}
     >
-   
+
       <SuccessModal
         isOpen={showSuccessModal}
         onClose={() => {
@@ -696,8 +699,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
       <div
         className={cn(
-          "lg:absolute z-10 top-4 left-4 bg-white rounded-lg lg:w-[400px] w-full lg:shadow-lg transition-all duration-100 lg:overflow-x-hidden lg:overflow-y-auto",
-          isFormMinimized ? "h-16" : "h-[96%]"
+          "lg:absolute z-10 bg-white rounded-lg w-full lg:shadow-lg transition-all duration-100 lg:overflow-x-hidden lg:overflow-y-auto",
+          isFormMinimized ? "h-16" : "h-[96%]",
+          isEditBooking ? "w-full top-0 left-0" : "lg:w-[400px] top-4 left-4"
         )}
       >
         <div className="flex justify-between items-center p-4">
@@ -707,6 +711,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           {!isEditBooking && (
             <Button
+             className="max-lg:hidden"
               variant="ghost"
               size="sm"
               onClick={() => setIsFormMinimized(!isFormMinimized)}
@@ -744,11 +749,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            {isEditBooking && (
-              <div className=" h-[200px] w-[200px]">
+            {/* {isEditBooking && (
+              <div className=" h-[400px] w-full">
                 <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
               </div>
-            )}
+            )} */}
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -850,8 +855,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 )}
                 {(activeTab === bookingTypes.HOURLY ||
                   form.watch("bookingMode") === "later") && (
-                  <>
-                    {/* <FormField
+                    <>
+                      {/* <FormField
                         control={form.control}
                         name="pickupDateTime"
                         render={({ field }) => (
@@ -895,34 +900,34 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           </FormItem>
                         )}
                       /> */}
-                    <FormField
-                      control={form.control}
-                      name="pickupDateTime"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Pickup Date & Time</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="datetime-local"
-                              value={
-                                field.value
-                                  ? format(field.value, "yyyy-MM-dd'T'HH:mm")
-                                  : ""
-                              }
-                              onChange={(e) => {
-                                const value = e.target.value
-                                  ? new Date(e.target.value)
-                                  : null;
-                                field.onChange(value);
-                              }}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </>
-                )}
+                      <FormField
+                        control={form.control}
+                        name="pickupDateTime"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Pickup Date & Time</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="datetime-local"
+                                value={
+                                  field.value
+                                    ? format(field.value, "yyyy-MM-dd'T'HH:mm")
+                                    : ""
+                                }
+                                onChange={(e) => {
+                                  const value = e.target.value
+                                    ? new Date(e.target.value)
+                                    : null;
+                                  field.onChange(value);
+                                }}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  )}
 
                 {activeTab === bookingTypes.HOURLY && (
                   <FormField
@@ -1146,8 +1151,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   {isPending
                     ? "Submitting..."
                     : isEditBooking
-                    ? "Update Booking"
-                    : "Request Booking"}
+                      ? "Update Booking"
+                      : "Request Booking"}
                 </Button>
               </form>
             </Form>
