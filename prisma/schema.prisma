@@ -144,7 +144,8 @@ model AuditLog {
 model IpTrack {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   ip         String
-  sessionId  String
+  sessionId  String?
+  visitId    String?
   path       String
   userAgent  String?
   visitCount Int      @default(0)

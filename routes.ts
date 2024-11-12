@@ -16,6 +16,7 @@ export const protectedRoutes = [
   "/dashboard",
   "/dashboard/user-bookings",
   "/dashboard/leads",
+  "/dashboard/ip-trackings",
   // ... other protected routes
 ];
 /**

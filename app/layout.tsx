@@ -2,10 +2,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { DM_Sans } from "next/font/google";
-import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import { GoogleMapProvider } from "@/features/booking/components/google-map-provider";
-import { IpTracker } from "@/features/ip-track/components/ip-tracker";
+import { Providers } from "./providers";
 
 const dm = DM_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -25,16 +23,13 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   return (
-    <SessionProvider session={session}>
-      <html lang="en" className={dm.className}>
-        <body
-          suppressHydrationWarning={true}
-          className="font-body bg-white dark:bg-gray-500 text-black dark:text-white"
-        >
-          <IpTracker />
-          <GoogleMapProvider>{children}</GoogleMapProvider>
-        </body>
-      </html>
-    </SessionProvider>
+    <html lang="en" className={dm.className}>
+      <body
+        suppressHydrationWarning={true}
+        className="font-body bg-white dark:bg-gray-500 text-black dark:text-white"
+      >
+        <Providers session={session}>{children}</Providers>
+      </body>
+    </html>
   );
 }
