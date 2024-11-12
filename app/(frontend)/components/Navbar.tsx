@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Link from "next/link";
 import logo from "@/public/logo.png";
@@ -28,6 +28,10 @@ export default function Navbar() {
   const toggleClass = () => {
     setDisplay(!display);
   };
+
+  useEffect(() => {
+    setDisplay(false);
+  }, [pathname]);
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-600 border-t border-transparent dark:border-white sticky top-[-1px] z-50 shadow-sm shadow-zinc-200">
