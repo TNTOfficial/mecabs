@@ -72,7 +72,7 @@ const LandingSlider = () => {
             data-swiper-parallax="1152"
           >
             <div className="container">
-              <div className="max-w-screen-xl px-3 mx-auto h-[calc(90dvh_-_64px)] py-[100px] flex justify-evelnly items-start flex-col">
+              <div className="max-w-screen-xl px-3 mx-auto lg:h-[calc(90dvh_-_64px)] py-[50px] lg:py-[100px] flex justify-evelnly items-start flex-col">
                 <div className="sectionHeading pb-[100px] w-full max-w-[525px]">
                   <div className="flex gap-3 mb-10">
                     <div
