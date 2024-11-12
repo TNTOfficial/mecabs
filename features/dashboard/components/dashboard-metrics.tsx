@@ -52,7 +52,7 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <Card key={i} className="animate-pulse basis-[300px] grow shrink-0 ">
+            <Card key={i} className="animate-pulse basis-[300px] grow shrink-0">
               <CardHeader className="h-20 bg-gray-200" />
               <CardContent className="h-24 bg-gray-100" />
             </Card>
@@ -64,17 +64,17 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
   return (
     <div className="gap-4 flex justify-center items-stretch flex-wrap mb-6">
       {stats.map((stat) => (
-        <Card key={stat.title} className="p-5 basis-[280px] grow shrink-0 ">
+        <Card key={stat.title} className="p-5 basis-[280px] overflow-hidden bg-blue-600 grow shrink-0  relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-[url(@/public/curvy4.jpg)] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-10 odd:before:rotate-180 even:bg-gray-700">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-[1.1rem] text-zinc-900 font-bold">{stat.title}</CardTitle>
-            <stat.icon className="h-8 w-8 text-blue-600 " />
+            <CardTitle className="text-[1.1rem] text-zinc-50 font-bold">{stat.title}</CardTitle>
+            <stat.icon className="h-8 w-8 text-blue-50 " />
           </CardHeader>
           <CardContent className="mt-0">
-            <div className="text-[2rem] font-bold">{stat.value}</div>
-            <p className="text-[0.8rem] text-zinc-900 font-medium">{stat.description}</p>
+            <h4 className="text-[2rem] text-white font-bold">{stat.value}</h4>
+            <p className="text-[0.8rem] text-zinc-100 font-medium">{stat.description}</p>
             <div
               className={`text-xs ${
-                stat.trend === "up" ? "text-green-500" : "text-red-500"
+                stat.trend === "up" ? "text-green-300" : "text-red-300"
               }`}
             >
               {stat.change >= 0 ? "+" : ""}
