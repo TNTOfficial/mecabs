@@ -19,52 +19,52 @@ interface TrackedIpListProps {
 export const TrackedIpList: React.FC<TrackedIpListProps> = ({ data }) => {
   return (
     <RoleGuard allowedRoles={["ADMIN"]}>
-      <div className="p-6 space-y-6">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
+      <div className=" space-y-5">
+        <div className="gap-4 flex justify-center items-center flex-wrap">
+          <Card className="p-10 basis-[200px] flex justify-between items-center overflow-hidden grow shrink bg-blue-500 relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-[url(@/public/curvy1.png)] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-35">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-[1.8rem] font-bold text-white">
                 Total Visitors
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{data?.todayVisitors}</div>
+              <h3 className="text-[2.5rem] text-white font-bold">{data?.todayVisitors}</h3>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="p-10 basis-[200px] flex justify-between items-center overflow-hidden grow shrink bg-green-500 relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-[url(@/public/curvy1.png)] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-35 before:rotate-180">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-[1.8rem] font-bold text-white">
                 Today&apos;s Visitors
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{data?.totalVisitors}</div>
+              <h3 className="text-[2.5rem] text-white font-bold">{data?.totalVisitors}</h3>
             </CardContent>
           </Card>
         </div>
 
         <Card>
-          <CardHeader>
+          <CardHeader className="p-5">
             <CardTitle>Recent Visits</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>IP Address</TableHead>
-                  <TableHead>Visit Count</TableHead>
-                  <TableHead>First Visit</TableHead>
-                  <TableHead>Last Visit</TableHead>
+                  <TableHead className="px-6">IP Address</TableHead>
+                  <TableHead className="px-6">Visit Count</TableHead>
+                  <TableHead className="px-6">First Visit</TableHead>
+                  <TableHead className="px-6">Last Visit</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {data?.visits.map((visit) => (
                   <TableRow key={visit.id}>
-                    <TableCell>{visit.ip}</TableCell>
-                    <TableCell>{visit.visitCount}</TableCell>
-                    <TableCell>{format(visit.createdAt, "PPp")}</TableCell>
-                    <TableCell>{format(visit.updatedAt, "PPp")}</TableCell>
+                    <TableCell className="px-6 py-3">{visit.ip}</TableCell>
+                    <TableCell className="px-6 py-3">{visit.visitCount}</TableCell>
+                    <TableCell className="px-6 py-3">{format(visit.createdAt, "PPp")}</TableCell>
+                    <TableCell className="px-6 py-3">{format(visit.updatedAt, "PPp")}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
