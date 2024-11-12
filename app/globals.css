@@ -227,3 +227,11 @@ td {
 .gm-style-iw-chr{
   @apply hidden !important;
 }
+
+
+.dashcardbg::before{
+background-image: url(/curvy4.jpg);
+}
+.iptrackcards::before{
+background-image: url(/curvy1.png);
+}

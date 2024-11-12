@@ -64,7 +64,7 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
   return (
     <div className="gap-4 flex justify-center items-stretch flex-wrap mb-6">
       {stats.map((stat) => (
-        <Card key={stat.title} className="p-5 basis-[280px] overflow-hidden bg-blue-600 grow shrink-0  relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-[url(@/public/curvy4.jpg)] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-10 odd:before:rotate-180 even:bg-gray-700">
+        <Card key={stat.title} className="dashcardbg p-5 basis-[280px] overflow-hidden bg-blue-600 grow shrink-0  relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1]  before:bg-no-repeat before:bg-center before:bg-cover before:opacity-10 odd:before:rotate-180 even:bg-gray-700">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-[1.1rem] text-zinc-50 font-bold">{stat.title}</CardTitle>
             <stat.icon className="h-8 w-8 text-blue-50 " />
