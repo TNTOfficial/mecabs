@@ -42,7 +42,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+  .scrollHide::-webkit-scrollbar {
+  display: none;
+  }
+  .scrollHide {
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  }
+  }
 
 .show {
   animation: show 0.2s 1 forwards;

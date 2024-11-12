@@ -52,7 +52,7 @@ export default function Navbar() {
               }
               id="navbar-default"
             >
-              <ul className="font-medium flex max-lg:w-full flex-col p-4 lg:p-0 lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-600">
+              <ul className="font-medium flex max-lg:w-full flex-col p-4 lg:p-0 lg:flex-row lg:space-x-2 rtl:space-x-reverse lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-600">
                 {links.map((link) => {
                   return (
                     <li key={link.name}>
@@ -77,7 +77,7 @@ export default function Navbar() {
               </ul>
 
               <div className="nav_contact max-lg:w-full  max-lg:flex-col flex justify-center items-center gap-3 max-lg:gap-y-9">
-                <div className="flex justify-center items-center gap-3 max-lg:w-full">
+                <div className="xl:flex justify-center items-center gap-3 max-lg:w-full hidden">
                   <Link
                     href="tel: +91 0000000000"
                     className="no-underline text-black flex justify-center items-center gap-2"
@@ -121,6 +121,15 @@ export default function Navbar() {
             <span className="sr-only">Open main menu</span>
             <MdMenuOpen className="text-[3rem]" />
           </button>
+
+          <div
+            className={
+              display
+                ? "sideLayer fixed top-0 h-[100dvh] w-screen bg-black bg-opacity-0 z-40 transition-all duration-300 right-0"
+                : "sideLayer fixed top-0 h-[100dvh] w-screen bg-black bg-opacity-0 z-40 transition-all duration-300 right-[-100vw]"
+            }
+            onClick={toggleClass}></div>
+
         </div>
       </nav>
     </>

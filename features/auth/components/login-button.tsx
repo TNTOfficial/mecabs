@@ -31,7 +31,7 @@ export const LoginButton = ({
     return (
       <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
-        <DialogContent className="p-0 bg-transparent border-0 lg:max-w-screen-lg  flex justify-center items-center overflow-y-auto h-fit shadow-none">
+        <DialogContent className="p-0 bg-transparent border-0 lg:max-w-screen-lg  flex justify-center items-center  max-h-[100dvh] scrollHide  overflow-y-auto py-4 h-fit shadow-none">
           <div className="flex m-auto flex-wrap justify-center items-stretch rounded-3xl lg:min-h-[730px] bg-white overflow-hidden lg:max-w-screen-lg  max-w-full ">
             <div className="lg:w-[calc(100%_/_2)] w-[calc(100%_/_1)] max-lg:hidden">
               <div
