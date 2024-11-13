@@ -145,7 +145,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const vehicleTypes = [
     {
       type: "Any Available",
-      imageUrl: "/sedan_icon.png",
+      imageUrl: "/sedan_icon.webp",
       sitting: "1 - 4 seater",
       selected: true,
       value: "anyavailable",
@@ -153,7 +153,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     },
     {
       type: "Sedan",
-      imageUrl: "/sedan_icon.png",
+      imageUrl: "/sedan_icon.webp",
       sitting: "1 - 4 seater",
       selected: true,
       value: "sedan",
@@ -161,7 +161,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     },
     {
       type: "Premium",
-      imageUrl: "/premium_icon.png",
+      imageUrl: "/premium_icon.webp",
       sitting: "1 - 4 seater",
       selected: false,
       value: "premium",
@@ -169,7 +169,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     },
     {
       type: "SUV",
-      imageUrl: "/suv_icon.png",
+      imageUrl: "/suv_icon.webp",
       sitting: "1 - 6 seater",
       selected: false,
       value: "suv",
@@ -177,7 +177,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     },
     {
       type: "Maxi Taxi",
-      imageUrl: "/maxi_icon.png",
+      imageUrl: "/maxi_icon.webp",
       sitting: "1 - 9 seater",
       selected: false,
       value: "maxi",
@@ -185,7 +185,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     },
     {
       type: "Wheelchair Accessible Taxi",
-      imageUrl: "/wheelchair.png",
+      imageUrl: "/wheelchair.webp",
       sitting: "2 wheelchair",
       selected: false,
       value: "wheelchair",

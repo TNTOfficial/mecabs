@@ -1,5 +1,5 @@
 import React from "react";
-import banner5 from "@/public/banner5.jpg";
+import banner5 from "@/public/banner5.webp";
 const page = () => {
   const terms = [
     {

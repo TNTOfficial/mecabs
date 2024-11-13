@@ -2,9 +2,9 @@
 
 import React, { useRef } from "react";
 
-import bg1 from "@/public/bg_slide1.jpg";
-import bg2 from "@/public/bg_slide2.jpg";
-import bg3 from "@/public/bg_slide3.jpg";
+import bg1 from "@/public/bg_slide1.webp";
+import bg2 from "@/public/bg_slide2.webp";
+import bg3 from "@/public/bg_slide3.webp";
 // Swiper components, modules and styles
 import { Autoplay, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";

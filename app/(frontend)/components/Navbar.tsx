@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Link from "next/link";
-import logo from "@/public/logo.png";
+import logo from "@/public/logo.webp";
 
 import { MdMenuOpen } from "react-icons/md";
 import { usePathname } from "next/navigation";

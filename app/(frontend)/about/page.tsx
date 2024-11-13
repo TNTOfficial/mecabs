@@ -1,6 +1,6 @@
 import React from "react";
-import banner1 from "@/public/banner1.jpg";
-import bg4 from "@/public/bg4.png";
+import banner1 from "@/public/banner1.webp";
+import bg4 from "@/public/bg4.webp";
 import { CiCalendar } from "react-icons/ci";
 import {
   IoCarOutline,
@@ -10,7 +10,7 @@ import {
 import { AiOutlineSafety, AiOutlineSafetyCertificate } from "react-icons/ai";
 import { BsLuggageFill } from "react-icons/bs";
 import { MdWorkspacePremium } from "react-icons/md";
-import bgshap from "@/public/bgshap.png";
+import bgshap from "@/public/bgshap.webp";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 export default async function About() {

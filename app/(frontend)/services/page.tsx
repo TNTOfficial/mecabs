@@ -1,11 +1,11 @@
 import React from "react";
-import banner3 from "@/public/banner3.jpg";
+import banner3 from "@/public/banner3.webp";
 import Image from "next/image";
-import s1 from "@/public/01.jpg";
-import s2 from "@/public/02.jpg";
-import s3 from "@/public/03.jpg";
-import s4 from "@/public/04.jpg";
-import s5 from "@/public/05.jpg";
+import s1 from "@/public/01.webp";
+import s2 from "@/public/02.webp";
+import s3 from "@/public/03.webp";
+import s4 from "@/public/04.webp";
+import s5 from "@/public/05.webp";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 
 export default function ServicesPage() {

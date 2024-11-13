@@ -13,7 +13,7 @@ export const Logo = () => {
     <Link href="/">
       <div className="flex items-center gap-x-2 hover:opacity-65 transition  px-4">
         <div className="w-[70%] mx-auto h-[70px] relative">
-          <Image src="/logo.png" alt="Image AI" fill className="w-full h-full object-contain" />
+          <Image src="/logo.webp" alt="Image AI" fill className="w-full h-full object-contain" />
         </div>
         {/* <h1 className={cn(font.className, "text-xl font-bold pt-2")}>
           Melbourne Cabs

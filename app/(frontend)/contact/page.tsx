@@ -1,5 +1,5 @@
 import React from 'react'
-import banner1 from "@/public/banner4.jpg";
+import banner1 from "@/public/banner4.webp";
 import Link from 'next/link';
 import { IoMailOutline } from 'react-icons/io5';
 import { LuFacebook } from 'react-icons/lu';

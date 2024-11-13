@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import signbg from "@/public/signbg.jpg";
+import signbg from "@/public/signbg.webp";
 // import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
 import { Button } from "@/components/ui/button";
 import Link from "next/link"

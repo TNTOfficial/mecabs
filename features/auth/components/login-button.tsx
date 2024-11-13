@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LoginForm } from "./login-form";
 import { IoMdCheckmark } from "react-icons/io";
 
-import signcard from "@/public/signcard5.jpg";
+import signcard from "@/public/signcard5.webp";
 import { useState } from "react";
 interface LoginButtonProps {
   children: React.ReactNode;
