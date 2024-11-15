@@ -13,7 +13,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { searchBlogs } from "@/actions/blog/search-blog";
 import { Blog } from "@/features/admin/blog/types";
-import banner6 from '@/public/banner6.webp'
+// import banner6 from '@/public/banner6.webp'
 
 interface BlogsProps {
   initialBlogs: Blog[];
