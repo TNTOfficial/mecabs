@@ -1,7 +1,7 @@
 "use client";
 
-import { GoogleMapProvider } from "@/features/booking/components/google-map-provider";
-import { IpTracker } from "@/features/ip-track/components/ip-tracker";
+import { GoogleMapProvider } from "@/features/admin/booking/components/google-map-provider";
+import { IpTracker } from "@/features/admin/ip-track/components/ip-tracker";
 import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import React from "react";

@@ -9,10 +9,10 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { FiPhoneCall } from "react-icons/fi";
 import Image from "next/image";
-import { LoginButton } from "@/features/auth/components/login-button";
+import { LoginButton } from "@/features/admin/auth/components/login-button";
 import { Button } from "@/components/ui/button";
-import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
-import { UserButton } from "@/features/auth/components/user-button";
+import { useCurrentUser } from "@/features/admin/auth/hooks/use-current-user";
+import { UserButton } from "@/features/admin/auth/components/user-button";
 export default function Navbar() {
   const pathname = usePathname();
   const [display, setDisplay] = useState(false);
@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: "Booking", href: "/booking" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Blogs", href: "/blogs" },
     { name: "Contact Us", href: "/contact" },
   ];
   const { user } = useCurrentUser();
@@ -128,8 +129,8 @@ export default function Navbar() {
                 ? "sideLayer fixed top-0 h-[100dvh] w-screen bg-black bg-opacity-0 z-40 transition-all duration-300 right-0"
                 : "sideLayer fixed top-0 h-[100dvh] w-screen bg-black bg-opacity-0 z-40 transition-all duration-300 right-[-100vw]"
             }
-            onClick={toggleClass}></div>
-
+            onClick={toggleClass}
+          ></div>
         </div>
       </nav>
     </>

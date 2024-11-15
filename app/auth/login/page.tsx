@@ -1,4 +1,4 @@
-import { LoginForm } from "@/features/auth/components/login-form";
+import { LoginForm } from "@/features/admin/auth/components/login-form";
 import React from "react";
 import { IoMdCheckmark } from "react-icons/io";
 import signcard from "@/public/signcard5.webp";

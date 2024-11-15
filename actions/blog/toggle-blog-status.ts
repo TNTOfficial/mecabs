@@ -1,6 +1,6 @@
 "use server";
 
-import { BlogStatus } from "@/features/blog/types";
+import { BlogStatus } from "@/features/admin/blog/types";
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 

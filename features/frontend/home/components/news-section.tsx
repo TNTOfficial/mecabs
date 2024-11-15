@@ -1,12 +1,14 @@
 "use client";
 
 import { getBlogs } from "@/actions/blog/get-blogs";
-import { Blog, BlogStatus } from "@/features/blog/types";
+import { Blog, BlogStatus } from "@/features/admin/blog/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 
 export const NewsSection = () => {
+  const router = useRouter();
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
@@ -19,6 +21,9 @@ export const NewsSection = () => {
     fetchBlogs();
   }, []);
 
+  const handleBlogClick = (blogId: string) => {
+    router.push(`/blogs/${blogId}`);
+  };
   const formatDate = (date: Date) => {
     const d = new Date(date);
     return {
@@ -46,7 +51,12 @@ export const NewsSection = () => {
                 className="lg:w-[calc(100%_/_3_-_20px)] sm:w-[calc(100%_/_2_-_20px)] w-[calc(100%_/_1_-_20px)]"
               >
                 <div className="card p-2 [&_img]:hover:scale-110 cursor-pointer [&_.cardImage]:hover:before:top-0 [&_.cardImage]:hover:before:opacity-100">
-                  <div className="cardImage w-full h-[300px] rounded-xl overflow-hidden relative z-0 before:z-10 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-[#00f4] before:to-[#0000ff11] before:transition-all before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-25 after:z-[8]">
+                  <div
+                    className="cardImage w-full h-[300px] rounded-xl overflow-hidden relative z-0 before:z-10 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-[#00f4] before:to-[#0000ff11] before:transition-all before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-25 after:z-[8]"
+                    onClick={() => {
+                      handleBlogClick(blog.id);
+                    }}
+                  >
                     {blog.imagePath ? (
                       <Image
                         src={blog.imagePath}

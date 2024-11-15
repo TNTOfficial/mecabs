@@ -8,13 +8,24 @@ import {
 } from "@/routes";
 import { NextResponse } from "next/server";
 
+// Helper function to check if a path matches a dynamic route pattern
+const matchDynamicRoute = (path: string, pattern: string) => {
+  // Convert the pattern into a regex
+  // Replace [param] with a regex group that matches any characters except '/'
+  const regexPattern = pattern.replace(/\[.*?\]/g, "([^/]+)");
+  const regex = new RegExp(`^${regexPattern}$`);
+  return regex.test(path);
+};
+
 const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isPublicRoute =
+    publicRoutes.includes(nextUrl.pathname) ||
+    matchDynamicRoute(nextUrl.pathname, "/blogs/[blogId]");
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
   //Handling api auth routes

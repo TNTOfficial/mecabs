@@ -1,6 +1,6 @@
 "use server";
 
-import { BlogFormResponseType, BlogStatus } from "@/features/blog/types";
+import { BlogFormResponseType, BlogStatus } from "@/features/admin/blog/types";
 import { db } from "@/lib/db";
 
 export const getBlogs = async (

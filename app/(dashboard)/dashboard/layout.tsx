@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Sidebar } from "./_components/sidebar";
 import { Navbar } from "./_components/navbar";
-import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 import { Toaster } from "@/components/ui/sonner";
 
 interface DashbaordLayoutProps {

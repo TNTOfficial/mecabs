@@ -47,7 +47,7 @@ import { handleBooking } from "@/actions/bookings/handle-booking";
 import { BookingActionModal } from "./booking-action-modal";
 import { EditBookingForm } from "./edit-booking-form";
 import { MobileIcon } from "@radix-ui/react-icons";
-import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 
 const ITEMS_PER_PAGE = 10;
 

@@ -1,6 +1,6 @@
 "use client";
-import { RoleGuard } from "@/features/auth/guard/role-guard";
-import { useRoleCheck } from "@/features/auth/hooks/use-role-check";
+import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
+import { useRoleCheck } from "@/features/admin/auth/hooks/use-role-check";
 import React from "react";
 
 const TestClientPage = () => {

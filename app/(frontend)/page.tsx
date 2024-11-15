@@ -35,7 +35,7 @@ import "swiper/css/pagination";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import Link from "next/link";
 import { FiPhoneCall } from "react-icons/fi";
-import { NewsSection } from "@/features/home/components/news-section";
+import { NewsSection } from "@/features/frontend/home/components/news-section";
 
 import {
   Accordion,

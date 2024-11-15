@@ -1,6 +1,6 @@
 "use server";
 
-import { BlogFormSchema, BlogFormType } from "@/features/blog/types";
+import { BlogFormSchema, BlogFormType } from "@/features/admin/blog/types";
 import { db } from "@/lib/db";
 import { saveToDisk } from "@/lib/image-save";
 import { revalidatePath } from "next/cache";
