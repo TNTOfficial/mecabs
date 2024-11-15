@@ -53,9 +53,9 @@ export const Blogs: React.FC<BlogsProps> = ({ initialBlogs }) => {
   };
   return (
     <>
-      <div className="relative before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-0 before:z-10">
+      <div className="relative z-0 before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-0 before:z-10">
         {/* <Image src={banner6} alt="Banner Image" className="absolute inset-0 w-full h-full object-cover object-bottom" /> */}
-        <div className="min-h-[400px] relative z-50 h-full max-w-4xl mx-auto flex flex-col justify-center items-center text-center px-6 pt-12 pb-4">
+        <div className="min-h-[400px] relative z-10 h-full max-w-4xl mx-auto flex flex-col justify-center items-center text-center px-6 pt-12 pb-4">
           <div className="max-w-7xl mx-auto text-center">
             <h3 className="text-black md:text-5xl text-4xl font-bold">Our Blog Posts</h3>
             <p className="text-gray-700 text-sm mt-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio fugiat reprehenderit totam placeat itaque blanditiis cum, in laudantium obcaecati dolor natus ratione et ut quisquam saepe, amet consectetur consequuntur hic!</p>
