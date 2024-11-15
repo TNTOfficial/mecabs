@@ -1,4 +1,4 @@
-import { NotificationPayload } from "@/features/booking/types";
+import { NotificationPayload } from "@/features/admin/booking/types";
 import twilio from "twilio";
 
 const client = twilio(

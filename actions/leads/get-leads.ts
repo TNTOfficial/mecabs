@@ -1,6 +1,6 @@
 "use server";
 
-import { Lead } from "@/features/leads/types";
+import { Lead } from "@/features/admin/leads/types";
 import { db } from "@/lib/db";
 
 export const getLeads = async (): Promise<Lead[]> => {

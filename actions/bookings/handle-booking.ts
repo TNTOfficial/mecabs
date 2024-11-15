@@ -1,6 +1,6 @@
 "use server";
 
-import { BookingAction } from "@/features/booking/types";
+import { BookingAction } from "@/features/admin/booking/types";
 import { checkUserAccess } from "@/lib/auth-gaurd";
 import { db } from "@/lib/db";
 import { BookingStatus } from "@prisma/client";

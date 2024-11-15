@@ -3,7 +3,7 @@
 import { currentUser } from "@/lib/auth";
 import { getBookings } from "./get-bookings";
 import { BookingTypes } from "@prisma/client";
-import { BookingsResponse, BookingFilters } from "@/features/booking/types";
+import { BookingsResponse, BookingFilters } from "@/features/admin/booking/types";
 
 export async function getUserBookings(
   page: number = 1,

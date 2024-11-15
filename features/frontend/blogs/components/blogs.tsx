@@ -14,14 +14,14 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { searchBlogs } from "@/actions/blog/search-blog";
-import { BlogClient } from "../types";
+import { Blog } from "@/features/admin/blog/types";
 
 interface BlogsProps {
-  initialBlogs: BlogClient[];
+  initialBlogs: Blog[];
 }
 export const Blogs: React.FC<BlogsProps> = ({ initialBlogs }) => {
   const router = useRouter();
-  const [blogs, setBlogs] = useState<BlogClient[]>(initialBlogs);
+  const [blogs, setBlogs] = useState<Blog[]>(initialBlogs);
   const [searchTerm, setSearchTerm] = useState<string | undefined>("");
   const [loading, setLoading] = useState<boolean>(false);
 

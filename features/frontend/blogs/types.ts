@@ -3,7 +3,7 @@ export interface BlogClient {
   title: string;
   content: string;
   description: string;
-  imagePath?: string;
+  imagePath: string;
   createdAt: Date;
   updatedAt?: Date;
 }
