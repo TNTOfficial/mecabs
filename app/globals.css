@@ -242,3 +242,7 @@ background-image: url(/curvy4.webp);
 .iptrackcards::before{
 background-image: url(/curvy1.webp);
 }
+
+.swiper-slide{
+  height: auto !important;
+}

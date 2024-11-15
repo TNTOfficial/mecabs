@@ -54,7 +54,7 @@ export const BlogList = () => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 bg-white p-4 rounded-lg ">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Blog Posts</h2>
         <Dialog open={IsDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -64,7 +64,7 @@ export const BlogList = () => {
               New Blog Post
             </Button>
           </DialogTrigger>
-          <DialogContent className="w-full sm:w-[600px] max-h-[90vh] overflow-y-auto">
+          <DialogContent className="w-full lg:max-w-screen-sm max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
                 {selectedBlog ? "Edit Blog Post" : "Create New Blog Post"}

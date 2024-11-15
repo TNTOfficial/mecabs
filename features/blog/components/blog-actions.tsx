@@ -93,6 +93,7 @@ export const BlogActions = ({
           <DropdownMenuItem
             onClick={handleToggleStatus}
             disabled={isUpdatingStatus}
+            className="py-2 cursor-pointer"
           >
             {blog.status === BlogStatus.ACTIVE ? (
               <>
@@ -108,28 +109,26 @@ export const BlogActions = ({
               </>
             )}
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="py-0">
             <Button
               variant="ghost"
               size="sm"
               onClick={onEdit}
-              className="hover:bg-gray-100"
+              className="hover:bg-gray-100 px-0 gap-2 w-full justify-start"
             >
               <Edit className="h-4 w-4" />
               <p>Edit</p>
             </Button>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="py-0">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowDeleteDialog(true)}
-              className="hover:bg-red-50"
+              className="hover:bg-red-50 px-0 w-full justify-start gap-2"
             >
-              <div className="flex flex-row">
                 <Trash className="h-4 w-4 text-red-500" />
                 <p className="text-black">Delete</p>
-              </div>
             </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
