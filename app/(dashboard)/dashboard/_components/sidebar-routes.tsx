@@ -4,7 +4,7 @@ import { Globe, LayoutDashboard, User } from "lucide-react";
 import { BookMarked } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
-import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 
 export const SidebarRoutes = () => {

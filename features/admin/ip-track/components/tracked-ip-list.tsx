@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { format } from "date-fns";
 import { IpTrackResponse } from "../types";
-import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 
 interface TrackedIpListProps {
   data?: IpTrackResponse;

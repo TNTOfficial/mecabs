@@ -1,6 +1,6 @@
 "use server";
 
-import { IpTrackResponse } from "@/features/ip-track/types";
+import { IpTrackResponse } from "@/features/admin/ip-track/types";
 import { db } from "@/lib/db";
 
 export const getTrackedIp = async (): Promise<IpTrackResponse | null> => {

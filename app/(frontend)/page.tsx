@@ -38,8 +38,7 @@ import "swiper/css/pagination";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import Link from "next/link";
 import { FiPhoneCall } from "react-icons/fi";
-import { Star } from "lucide-react";
-import { NewsSection } from "@/features/home/components/news-section";
+import { NewsSection } from "@/features/frontend/home/components/news-section";
 
 import {
   Accordion,
@@ -47,6 +46,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Star } from "lucide-react";
 
 export default function Home() {
   // useEffect(() => {
@@ -442,9 +442,9 @@ export default function Home() {
               },
             }}
           >
-            {servicePost.map((service) => {
+            {servicePost.map((service, idx) => {
               return (
-                <SwiperSlide key={service.title} className="pb-16">
+                <SwiperSlide key={idx} className="pb-16">
                   <div className="relative z-0 overflow-hidden rounded-2xl [&_.cardBody]:hover:bottom-0 before:absolute before:opacity-0 before:top-full before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-blue-700 before:to-[#0000ff11] before:hover:top-0 before:hover:opacity-100 before:transition-all  before:duration-300 cursor-grab after:bg-black after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-opacity-25 after:z-[8]">
                     <div className="card_img w-full h-[400px] rounded-2xl overflow-hidden">
                       <Image
@@ -488,8 +488,8 @@ export default function Home() {
             </h2>
             <p className="text-sm mt-4 leading-relaxed text-gray-800">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
-              praesentium consectetur vero maxime, quod nemo eum debitis
-              Odit deserunt vero placeat voluptatum assumenda!
+              praesentium consectetur vero maxime, quod nemo eum debitis Odit
+              deserunt vero placeat voluptatum assumenda!
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton } from "@/features/auth/components/user-button";
+import { UserButton } from "@/features/admin/auth/components/user-button";
 import { RiMenuFold3Line } from "react-icons/ri";
 
 interface NavbarProps {

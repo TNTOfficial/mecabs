@@ -18,7 +18,7 @@ import {
 import { format } from "date-fns";
 import { Phone, Mail, Calendar } from "lucide-react";
 import { Lead } from "../types";
-import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 
 interface LeadsTableProps {
   leads: Lead[];

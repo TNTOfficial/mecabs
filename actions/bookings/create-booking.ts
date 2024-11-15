@@ -7,7 +7,7 @@ import { currentUser } from "@/lib/auth";
 import { getUserByPhone } from "@/utils/user";
 import { BookingStatus, Prisma, VehicleType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { NotificationPayload } from "@/features/booking/types";
+import { NotificationPayload } from "@/features/admin/booking/types";
 import { sendSMSNotification } from "@/lib/twilio";
 
 // Updated type to match schema requirements

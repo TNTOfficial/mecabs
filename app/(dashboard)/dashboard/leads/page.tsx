@@ -1,5 +1,5 @@
 import { getLeads } from "@/actions/leads/get-leads";
-import { LeadsTable } from "@/features/leads/components/leads-list";
+import { LeadsTable } from "@/features/admin/leads/components/leads-list";
 
 export default async function LeadsPage() {
   const leads = await getLeads();

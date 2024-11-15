@@ -1,6 +1,6 @@
 "use server";
 
-import { NotificationPayload } from "@/features/booking/types";
+import { NotificationPayload } from "@/features/admin/booking/types";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { sendSMSNotification } from "@/lib/twilio";

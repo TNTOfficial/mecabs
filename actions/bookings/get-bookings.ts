@@ -6,7 +6,7 @@ import {
   BookingsResponse,
   BookingFilters,
   Booking,
-} from "@/features/booking/types";
+} from "@/features/admin/booking/types";
 import { checkUserAccess } from "@/lib/auth-gaurd";
 import { Coordinates } from "@/schemas/schema";
 

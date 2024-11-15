@@ -14,7 +14,6 @@ import bgshap from "@/public/bgshap.webp";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 const page = () => {
-
   const makeTrip = [
     {
       title: "Safety First",
@@ -96,7 +95,6 @@ const page = () => {
     { cityName: "Yaraville" },
   ];
 
-
   return (
     <>
       {/* About Page Landing section Start */}
@@ -127,29 +125,37 @@ const page = () => {
           <div className="flex flex-wrap justify-center gap-5 items-stretch">
             <div className="">
               <div className="text">
-                <h5 className="text-[1.3rem] text-blue-600 font-bold">POPULAR AREAS WE SERVE</h5>
+                <h5 className="text-[1.3rem] text-blue-600 font-bold">
+                  POPULAR AREAS WE SERVE
+                </h5>
                 <h4 className="text-black mb-5 dark:text-white text-[3rem] font-bold ">
                   Seamless Travel Across Melbourne and Beyond.
                 </h4>
 
                 <p className="text-[1rem] text-gray-600 dark:text-white font-normal">
-                  Whether you are heading to Flinders Street or the Melbourne Convention and Exhibition Centre, the CBD or St Kilda Beach, our dependable fleet and experienced drivers are ready to fulfill all your transportation needs in Melbourne and its surrounding areas. Regardless of your destination or plans, count on us for a smooth and classy ride.
+                  Whether you are heading to Flinders Street or the Melbourne
+                  Convention and Exhibition Centre, the CBD or St Kilda Beach,
+                  our dependable fleet and experienced drivers are ready to
+                  fulfill all your transportation needs in Melbourne and its
+                  surrounding areas. Regardless of your destination or plans,
+                  count on us for a smooth and classy ride.
                 </p>
                 <ul className="list-none mt-5 flex gap-3 sm:gap-6 justify-between items-center flex-wrap">
-                  {cites.map((city) => {
+                  {cites.map((city, idx) => {
                     return (
-                      <li className="flex-[1_1_160px] max-sm:flex-[1_1_120px]">
+                      <li
+                        className="flex-[1_1_160px] max-sm:flex-[1_1_120px]"
+                        key={idx}
+                      >
                         <div className="flex justify-start mb-3 items-center gap-3">
                           <IoCheckmarkCircleSharp className="text-blue-300 dark:text-white text-[1.3rem]" />
                           <span className="tetx-gray-600 dark:text-white text-[1rem] font-light text-nowrap">
                             {city.cityName}
                           </span>
-                        </div> 
+                        </div>
                       </li>
-                    )
-
+                    );
                   })}
-
                 </ul>
               </div>
             </div>
@@ -408,6 +414,6 @@ const page = () => {
       </section>
     </>
   );
-}
+};
 
-export default page
+export default page;

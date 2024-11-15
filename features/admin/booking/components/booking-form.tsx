@@ -55,7 +55,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Image from "next/image";
 import { createBooking } from "@/actions/bookings/create-booking";
-import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
+import { useCurrentUser } from "@/features/admin/auth/hooks/use-current-user";
 // import { Modal } from "@/components/modal";
 // import { LoginForm } from "@/features/auth/components/login-form";
 import { SuccessModal } from "./success-modal";

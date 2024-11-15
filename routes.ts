@@ -7,8 +7,11 @@ export const publicRoutes = [
   "/about",
   "/booking",
   "/policy",
+  "/services",
+  "/contact",
   "/terms",
   "/test",
+  "/blogs",
 ];
 
 export const protectedRoutes = [

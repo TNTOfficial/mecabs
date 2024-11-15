@@ -9,7 +9,7 @@ import {
   DashboardMetrics,
   AdminDashboardResponse,
   UserDashboardResponse,
-} from "@/features/dashboard/types";
+} from "@/features/admin/dashboard/types";
 
 export const getDashboardData = cache(async (): Promise<DashboardResponse> => {
   try {

@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { AdminDashboardResponse, UserDashboardResponse } from "../types";
-import { RoleGuard } from "@/features/auth/guard/role-guard";
+import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 import { DashboardMetrics } from "./dashboard-metrics";
 import { BookingChart } from "./booking-chart";
 import { VehicleDistribution } from "./vehicle-distribution";

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useCallback } from "react";
 import { Map as GoogleMap, useMap } from "@vis.gl/react-google-maps";
 import { Card } from "@/components/ui/card";
 // import { Clock, Navigation2 } from "lucide-react";
-import { useDirections } from "@/features/booking/hooks/use-directions";
+import { useDirections } from "@/features/admin/booking/hooks/use-directions";
 
 interface MapProps {
   pickup: google.maps.LatLngLiteral | null;
@@ -79,7 +79,7 @@ const RoutePolyline: React.FC<{
       geodesic: true,
       strokeColor: "#0000ff",
       strokeOpacity: 1.0,
-      strokeWeight: 7, 
+      strokeWeight: 7,
       draggable: false,
     });
 
@@ -212,10 +212,10 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
         defaultCenter={defaultCenter}
         defaultZoom={DEFAULT_ZOOM}
         disableDefaultUI={true}
-      // streetViewControl={false}
-      // zoomControl={true}
-      // mapTypeControl={true}
-      // fullscreenControl={true}
+        // streetViewControl={false}
+        // zoomControl={true}
+        // mapTypeControl={true}
+        // fullscreenControl={true}
       >
         <AdvancedMarkers pickup={pickup} dropoff={dropoff} />
         {route && pickup && dropoff && (
