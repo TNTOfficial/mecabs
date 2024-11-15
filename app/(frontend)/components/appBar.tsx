@@ -7,7 +7,7 @@ import { IoMdCall } from 'react-icons/io'
 const AppBar = () => {
     return (
         <>
-            <nav className=' lg:hidden block appbarNav  fixed bottom-0 z-[1999] py-3 bg-white shadow w-full '>
+            <nav className=' lg:hidden block appbarNav  fixed bottom-0 z-40 py-3 bg-white shadow w-full '>
                 <div className="icons w-full flex justify-evenly items-center gap-5">
                     <Link href="/booking" className='transition-all duration-300 flex text-center activeBarTab  justify-start px-1  py-2 rounded-full  items-center overflow-hidden bg-blue-600 text-white w-[150px] ps-3 [&_svg]:text-white [&_.cirdle]:outline-white [&_.cirdle]:border-white'>
                         <div className="cirdle outline outline-1 outline-zinc-900 transition-all duration-300 outline-offset-2 border-black border h-10 w-full min-w-10 max-w-10 rounded-full flex justify-center items-center ">

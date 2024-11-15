@@ -9,6 +9,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onSidebarToggle }) => {
   return (
+    <>
     <nav className="w-full border-l bg-white sticky top-0 z-20 flex justify-end max-lg:justify-between items-center p-4 h-[68px]">
       <div
         className="collapsBtn cursor-pointer lg:hidden"
@@ -20,5 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSidebarToggle }) => {
         <UserButton />
       </div>
     </nav>
+    
+    </>
   );
 };

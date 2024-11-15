@@ -1,8 +1,8 @@
 import { LoginForm } from "@/features/auth/components/login-form";
 import React from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import signcard from "@/public/signcard5.jpg";
-import signbg from "@/public/signbg.jpg";
+import signcard from "@/public/signcard5.webp";
+import signbg from "@/public/signbg.webp";
 
 const LoginPage = () => {
   return (

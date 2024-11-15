@@ -1,6 +1,6 @@
 import React from "react";
 
-import banner4 from "@/public/banner4.jpg";
+import banner4 from "@/public/banner4.webp";
 const page = () => {
   const policy: {
     title: string;

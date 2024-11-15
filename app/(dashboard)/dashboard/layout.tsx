@@ -17,7 +17,7 @@ const DashbaordLayout: React.FC<DashbaordLayoutProps> = ({ children }) => {
   };
   return (
     <div className=" bg-[#f5f7fa] dark:bg-gray-600 min-h-[100dvh]">
-      <Sidebar isOpen={isSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen}  onSidebarToggle={toggleSidebar}/>
       <div className="w-full lg:pl-[300px]">
         <Navbar onSidebarToggle={toggleSidebar} />
         <main className="flex-1 overflow-auto p-4">

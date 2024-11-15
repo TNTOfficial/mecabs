@@ -22,7 +22,7 @@ export const TrackedIpList: React.FC<TrackedIpListProps> = ({ data }) => {
     <RoleGuard allowedRoles={["ADMIN"]}>
       <div className=" space-y-5">
         <div className="gap-4 flex justify-center items-center flex-wrap">
-          <Card className="p-10 basis-[200px] flex justify-between items-center overflow-hidden grow shrink bg-blue-700 relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-[url(@/public/curvy1.png)] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-35">
+          <Card className="p-10 iptrackcards basis-[200px] flex justify-between items-center overflow-hidden grow shrink bg-blue-700 relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-35">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-[1.8rem] font-bold text-white">
                 Total Visitors
@@ -33,7 +33,7 @@ export const TrackedIpList: React.FC<TrackedIpListProps> = ({ data }) => {
             </CardContent>
           </Card>
 
-          <Card className="p-10 basis-[200px] flex justify-between items-center overflow-hidden grow shrink bg-gray-700 relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-[url(@/public/curvy1.png)] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-35 before:rotate-180">
+          <Card className="p-10 iptrackcards basis-[200px] flex justify-between items-center overflow-hidden grow shrink bg-gray-700 relative z-0 before:absolute before:h-full before:w-full before:top-0 before:left-0 before:z-[-1] before:bg-no-repeat before:bg-center before:bg-cover before:opacity-35 before:rotate-180">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-[1.8rem] font-bold text-white">
                 Today&apos;s Visitors

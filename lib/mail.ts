@@ -24,8 +24,8 @@ const getBaseEmailTemplate = (content: string) => `
 
 // const getDefaultAttachment = () => [
 //   {
-//     filename: "logo.png",
-//     path: path.join( "./public/logo.png"),
+//     filename: "logo.webp",
+//     path: path.join( "./public/logo.webp"),
 //     cid: "logo",
 //   },
 // ];

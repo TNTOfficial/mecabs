@@ -30,7 +30,7 @@ export const Dashboard = () => {
 
   if (!data) {
     return (
-      <div className="grid gap-4 p-4">
+      <div className="space-y-5">
         <DashboardMetrics
           data={{
             totalBookings: 0,

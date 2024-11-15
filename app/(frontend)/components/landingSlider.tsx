@@ -2,9 +2,9 @@
 
 import React, { useRef } from "react";
 
-import bg1 from "@/public/bg_slide1.jpg";
-import bg2 from "@/public/bg_slide2.jpg";
-import bg3 from "@/public/bg_slide3.jpg";
+import bg1 from "@/public/bg_slide1.webp";
+import bg2 from "@/public/bg_slide2.webp";
+import bg3 from "@/public/bg_slide3.webp";
 // Swiper components, modules and styles
 import { Autoplay, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -72,7 +72,7 @@ const LandingSlider = () => {
             data-swiper-parallax="1152"
           >
             <div className="container">
-              <div className="max-w-screen-xl px-3 mx-auto h-[calc(90dvh_-_64px)] py-[100px] flex justify-evelnly items-start flex-col">
+              <div className="max-w-screen-xl px-3 mx-auto lg:h-[calc(90dvh_-_64px)] py-[50px] lg:py-[100px] flex justify-evelnly items-start flex-col">
                 <div className="sectionHeading pb-[100px] w-full max-w-[525px]">
                   <div className="flex gap-3 mb-10">
                     <div
