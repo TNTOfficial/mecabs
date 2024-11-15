@@ -26,7 +26,7 @@ export const BlogDetail: React.FC<BlogDetailProps> = ({ blog }) => {
     notFound();
   }
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="max-w-screen-lg mx-auto px-4 py-8">
       <Link href="/blogs" className="inline-block mb-8">
         <Button variant="ghost">
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -41,13 +41,13 @@ export const BlogDetail: React.FC<BlogDetailProps> = ({ blog }) => {
               fill={true}
               src={blog.imagePath}
               alt={blog.title}
-              className="w-full h-full object-cover rounded-t-lg"
+              className="w-full h-full object-cover object-[0px_-100px] rounded-t-lg"
             />
           </div>
         )}
-        <CardHeader>
+        <CardHeader className="px-4 mt-6">
           <div className="flex justify-between items-center mb-4">
-            <CardTitle className="text-4xl font-bold">{blog.title}</CardTitle>
+            <CardTitle className="text-4xl font-bold capitalize">{blog.title}</CardTitle>
           </div>
           <div className="flex gap-4 text-gray-600">
             <div className="flex items-center">
@@ -56,7 +56,7 @@ export const BlogDetail: React.FC<BlogDetailProps> = ({ blog }) => {
             </div>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pb-4 px-4">
           <HtmlContent content={blog.content} />
         </CardContent>
       </Card>
