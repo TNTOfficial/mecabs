@@ -11,5 +11,8 @@ module.exports = {
         ".json",
       ],
     },
+    serverActions: {
+      bodySizeLimit: "2mb",
+    },
   },
 };

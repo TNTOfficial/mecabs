@@ -39,6 +39,14 @@ import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import Link from "next/link";
 import { FiPhoneCall } from "react-icons/fi";
 import { Star } from "lucide-react";
+import { NewsSection } from "@/features/home/components/news-section";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Home() {
   // useEffect(() => {
@@ -468,7 +476,7 @@ export default function Home() {
       {/* Our Service End */}
 
       {/* News Start */}
-      <section className="news bg-black py-[100px]">
+      {/* <section className="news bg-black py-[100px]">
         <div className="container max-w-screen-xl">
           <div className="sectionHeading mb-6">
             <h3 className="text-white text-[2.8rem] font-semibold">
@@ -578,7 +586,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <NewsSection />
       {/* News end */}
 
       {/* Testimonials Start */}
@@ -703,6 +712,14 @@ export default function Home() {
       {/* Testimonials End */}
       {/* FAQ Start */}
       <section className="faq py-[100px]">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
         <div className="container">
           <div className="max-w-screen-md mx-auto">
             <div className="bg-white px-6">

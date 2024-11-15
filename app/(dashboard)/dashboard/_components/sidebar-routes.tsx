@@ -45,6 +45,12 @@ export const SidebarRoutes = () => {
               label="Ip Trackings"
               isActive={pathname === "/dashboard/ip-trackings"}
             />
+            <SidebarItem
+              href="/dashboard/blogs"
+              icon={Globe}
+              label="Blogs"
+              isActive={pathname === "/dashboard/blogs"}
+            />
           </RoleGuard>
         </ul>
       </div>

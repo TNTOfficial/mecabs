@@ -74,6 +74,7 @@ export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
         hours: validatedFields.data.hours,
         recipientName: validatedFields.data.recipientName,
         parentBookingId: validatedFields.data.parentBookingId,
+        email: validatedFields.data.email,
       };
 
       const booking = await tx.booking.create({

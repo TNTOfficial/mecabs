@@ -65,6 +65,7 @@ const CoordinatesSchema = z.object({
 export const BookingSchema = z.object({
   bookingType: z.enum(["booking", "hourly", "parcel"]),
   bookingMode: z.enum(["now", "later"]),
+  email: z.string().email().optional(),
   status: z
     .enum(["active", "completed", "cancelled", "dismissed"])
     .default("active"),
@@ -91,6 +92,7 @@ export const BookingSchema = z.object({
     "anyavailable",
   ]),
   babySeat: z.boolean().default(false),
+  airportPickup: z.boolean().default(false),
   flightNumber: z.string().optional().nullable(),
 
   // payment details

@@ -13,6 +13,7 @@ export interface Coordinates {
 export interface Booking {
   id: string;
   userId: string;
+  email: string;
   passengerName: string;
   vehicleType: VehicleType;
   bookingMode: BookingMode;

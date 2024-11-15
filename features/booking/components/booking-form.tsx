@@ -95,6 +95,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [error, setError] = useState<string | undefined>();
+
   const [success, setSuccess] = useState<string | undefined>();
   // const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
   const [parentBookingId, setParentBookingId] = useState<string | null>(null);
@@ -103,6 +104,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [leadId, setLeadId] = useState<string | undefined>("");
 
   const [isReturnBooking, setIsReturnBooking] = useState<boolean>(false);
+  //new states for airport pickup
+  const [isAirportPickup, setIsAirportPickup] = useState<boolean>(false);
+  const [showAirportOption, setShowAirportOption] = useState<boolean>(false);
 
   // const [skipLogin, setSkipLogin] = useState<boolean>(false);
   const pickupInputRef = useRef<AutoCompleteInputRef>(null);
@@ -123,6 +127,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       vehicleType: activeTab === "parcel" ? "anyavailable" : "sedan",
       pickupLocation: "",
       dropoffLocation: "",
+      email: "",
       pickupDateTime: new Date(),
       notes: "",
       passengerName: "",
@@ -137,10 +142,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       dropoffCoordinates: undefined,
     },
   });
-  //   useEffect(() => {
 
-  //     setShowEmailModal(true)
-  // },[])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const vehicleTypes = [
     {
@@ -194,38 +196,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     },
   ];
 
-  // useEffect(() => {
-  //   if (booking && isEditBooking) {
-  //     form.reset({
-  //       ...booking,
-  //       dropoffLocation: booking.dropoffLocation || undefined,
-  //       pickupDateTime: new Date(booking.pickupDateTime),
-  //     });
-  //     if (booking.bookingType) {
-  //       setActiveTab(booking.bookingType);
-  //     }
-  //     form.setValue("hours", booking.hours);
-  //     console.log(form.getValues("hours"));
-
-  //     // Set coordinates
-  //     if (booking.pickupCoordinates) {
-  //       setPickupCoordinates(booking.pickupCoordinates);
-  //     }
-  //     if (booking.dropoffCoordinates) {
-  //       setDropoffCoordinates(booking.dropoffCoordinates);
-  //     }
-  //     //setting initial locations for the autocomplete input
-  //     if (pickupInputRef.current) {
-  //       pickupInputRef.current.setValue(booking.pickupLocation);
-  //     }
-  //     if (dropoffInputRef.current && booking.dropoffLocation) {
-  //       dropoffInputRef.current.setValue(booking.dropoffLocation);
-  //     }
-  //   }
-  // }, [booking, isEditBooking, form, activeTab]);
-
-  // Update your handleReturnBooking function
-
   // Initialize form with booking data if in edit mode
   useEffect(() => {
     if (booking && isEditBooking) {
@@ -251,6 +221,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       }
     }
   }, [booking, isEditBooking, form]);
+
   const handleReturnBooking = (bookingId: string) => {
     // Get current values
     const pickupValue = pickupInputRef.current?.getValue() || "";
@@ -286,26 +257,41 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
   const calculatePrice = useCallback(
     (distanceInMeters: number, vehicleType: string) => {
-      // Base price per kilometer
-      const basePrice = 2.5;
+      // Base fixed fare
+      let totalPrice = 15;
 
-      // Find the selected vehicle's quality factor
-      const vehicle = vehicleTypes.find((v) => v.value === vehicleType);
-      const qualityFactor = vehicle?.qualityFactor || 1.0;
-
-      // Convert meters to kilometers
       const distanceInKm = distanceInMeters / 1000;
+      console.log(distanceInKm);
 
-      // Calculate final price
-      const price = basePrice * distanceInKm * qualityFactor;
-      // Add minimum fare of $10
-      let approxPrice = Math.max(10, Math.round(price * 100) / 100);
-      if (form.getValues("babySeat")) {
-        approxPrice += Number(25);
+      totalPrice += 2.4 * distanceInKm;
+
+      // vehicle-specific surcharges
+      switch (vehicleType) {
+        case "premium":
+          totalPrice += 11;
+          break;
+        case "suv":
+          totalPrice += 10;
+          break;
+        case "maxi":
+          totalPrice += 15;
+          break;
+        case "wheelchair":
+          break;
       }
-      return approxPrice;
+
+      // Add baby seat charge if applicable
+      //  if (form.getValues("babySeat")) {
+      //   totalPrice += 25;
+      // }
+
+      //add airport pickup charge if applicable
+      if (isAirportPickup) {
+        totalPrice += 35;
+      }
+      return Math.round(totalPrice * 100) / 100;
     },
-    [form, vehicleTypes]
+    [isAirportPickup]
   );
 
   // Calculating hourly price
@@ -418,6 +404,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         bookingType: booking?.bookingType || activeTab,
         bookingMode: booking?.bookingMode || "now",
         babySeat: booking?.babySeat || false,
+        email: booking.email || "",
         vehicleType:
           booking?.vehicleType || activeTab === "parcel"
             ? "anyavailable"
@@ -464,6 +451,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     }
   };
 
+  //fn to check if the location includes airport
+  const checkIfAirport = (location: string) => {
+    const airportKeywords = [
+      "airport",
+      "terminal",
+      "domestic",
+      "international",
+    ];
+    return airportKeywords.some((keyword) =>
+      location.toLowerCase().includes(keyword)
+    );
+  };
+
   const handlePlaceSelect = (
     setter: React.Dispatch<
       React.SetStateAction<google.maps.LatLngLiteral | null>
@@ -485,6 +485,15 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             shouldValidate: true,
             shouldDirty: true,
           });
+
+          //checking if pickup location includes airport
+          if (fieldName === "pickupCoordinates") {
+            const isAirport = checkIfAirport(results[0].formatted_address);
+            setShowAirportOption(isAirport);
+            if (!isAirport) {
+              setIsAirportPickup(false);
+            }
+          }
         }
       });
     };
@@ -1040,6 +1049,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 />
                 <FormField
                   control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
                   name="phoneNumber"
                   render={({ field }) => (
                     <FormItem>
@@ -1064,7 +1086,39 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     </FormItem>
                   )}
                 />
-
+                {showAirportOption && (
+                  <div className="flex flex-row items-start justify-between">
+                    <FormField
+                      control={form.control}
+                      name="airportPickup"
+                      render={({ field }) => (
+                        <FormItem className="flex items-center gap-2">
+                          <FormLabel>Inside Airport Pickup?</FormLabel>
+                          <FormControl>
+                            <Switch
+                              checked={isAirportPickup}
+                              onCheckedChange={(checked) => {
+                                setIsAirportPickup(checked);
+                                field.onChange(checked);
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Info className="h-5 w-5" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Extra $35 is charged for inside airport pickup.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                )}
                 {activeTab === bookingTypes.PARCEL && (
                   <FormField
                     control={form.control}
@@ -1125,13 +1179,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     </FormItem>
                   )}
                 />
-                {/* {distance && duration && (
+                {distance && (
                   <div className="mt-4 p-4 bg-muted rounded-lg space-y-2">
                     <p className="text-sm text-gray-600">
                       Estimated Distance: {distance}
                     </p>
                     <p className="text-sm text-gray-600">
-                      Estimated Duration: {duration}
+                      {/* Estimated Duration: {duration} */}
                     </p>
                     {estimatedPrice && (
                       <p className="text-lg font-semibold">
@@ -1139,7 +1193,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                       </p>
                     )}
                   </div>
-                )} */}
+                )}
 
                 {/* Add rest of the form fields... */}
 
