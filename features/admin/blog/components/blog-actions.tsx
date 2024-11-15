@@ -134,7 +134,7 @@ export const BlogActions = ({
         </DropdownMenuContent>
       </DropdownMenu>
       <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <DialogContent>
+        <DialogContent className="max-w-screen-sm w-auto">
           <DialogHeader>
             <DialogTitle>Delete Blog Post</DialogTitle>
           </DialogHeader>
