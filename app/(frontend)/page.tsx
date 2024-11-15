@@ -37,6 +37,13 @@ import Link from "next/link";
 import { FiPhoneCall } from "react-icons/fi";
 import { NewsSection } from "@/features/home/components/news-section";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 export default function Home() {
   // useEffect(() => {
   //   AOS.init({
@@ -581,6 +588,14 @@ export default function Home() {
 
       {/* FAQ Start */}
       <section className="faq py-[100px] border-t border-zinc-300">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
         <div className="container">
           <div className="max-w-screen-md mx-auto">
             <div className="bg-white px-6">
