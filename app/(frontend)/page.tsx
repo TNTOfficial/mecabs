@@ -46,6 +46,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Star } from "lucide-react";
 
 export default function Home() {
   // useEffect(() => {
