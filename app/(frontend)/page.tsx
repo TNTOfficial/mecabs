@@ -15,6 +15,9 @@ import s2 from "@/public/02.webp";
 import s3 from "@/public/03.webp";
 import s4 from "@/public/04.webp";
 import s5 from "@/public/05.webp";
+import user1 from "@/public/user1.webp";
+import user2 from "@/public/user2.webp";
+import user3 from "@/public/user3.webp";
 import bg5 from "@/public/bg5.webp";
 import bgshap from "@/public/bgshap.webp";
 
@@ -171,7 +174,7 @@ export default function Home() {
               className="no-underline text-black flex justify-center items-center gap-2"
             >
               <FiPhoneCall className="text-black text-[1rem]" />{" "}
-              <span className="font-extrabold text-black text-[0.9rem]">
+              <span className="font-extrabold text-black text-[.9rem]">
                 +91 00000XXXXX
               </span>
             </Link>
@@ -297,7 +300,7 @@ export default function Home() {
                       <h4 className="text-[1.2rem] font-semibold text-zinc-800 mb-3">
                         {car.title}
                       </h4>
-                      <p className="text-[0.9rem] text-zinc-700 font-normal">
+                      <p className="text-[.9rem] text-zinc-700 font-normal">
                         {car.subTitle}
                       </p>
                     </div>
@@ -496,7 +499,7 @@ export default function Home() {
                 </div>
 
                 <div className="cardBody pt-5 px-1">
-                  <h4 className="cardTitle text-[0.9rem] text-white font-normal mb-3">
+                  <h4 className="cardTitle text-[.9rem] text-white font-normal mb-3">
                     Car Rent
                   </h4>
 
@@ -529,7 +532,7 @@ export default function Home() {
                 </div>
 
                 <div className="cardBody pt-5 px-1">
-                  <h4 className="cardTitle text-[0.9rem] text-white font-normal mb-3">
+                  <h4 className="cardTitle text-[.9rem] text-white font-normal mb-3">
                     Car Rent
                   </h4>
 
@@ -562,7 +565,7 @@ export default function Home() {
                 </div>
 
                 <div className="cardBody pt-5 px-1">
-                  <h4 className="cardTitle text-[0.9rem] text-white font-normal mb-3">
+                  <h4 className="cardTitle text-[.9rem] text-white font-normal mb-3">
                     Car Rent
                   </h4>
 
@@ -586,8 +589,128 @@ export default function Home() {
       <NewsSection />
       {/* News end */}
 
+      {/* Testimonials Start */}
+      <section className="testimonials pt-[100px]">
+        <div className="my-6 max-w-6xl mx-auto">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-extrabold text-gray-800">
+              What our happy client say
+            </h2>
+            <p className="text-sm mt-4 leading-relaxed text-gray-800">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
+              praesentium consectetur vero maxime, quod nemo eum debitis
+              Odit deserunt vero placeat voluptatum assumenda!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-md:gap-12 max-md:justify-center text-center max-md:max-w-lg mx-auto mt-16">
+            <div className="rounded-md">
+              <div className="flex flex-col items-center">
+                <Image
+                  src={user3}
+                  className="w-24 h-24 rounded-full shadow-xl border-2 border-white object-cover"
+                  alt="Testimonial user1"
+                />
+                <div className="mt-4">
+                  <h4 className="text-sm font-extrabold text-gray-800">
+                    John Doe
+                  </h4>
+                  <p className="text-xs text-blue-600 font-bold mt-1">
+                    CEO, Company
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <p className="text-sm leading-relaxed text-gray-800">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
+                  praesentium consectetur vero maxime, quod nemo eum debitis
+                  Odit deserunt vero placeat voluptatum assumenda!
+                </p>
+              </div>
+
+              <div className="flex justify-center space-x-1 mt-4">
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-gray-600" />
+              </div>
+            </div>
+
+            <div className="rounded-md">
+              <div className="flex flex-col items-center">
+                <Image
+                  src={user1}
+                  className="w-24 h-24 rounded-full shadow-xl border-2 border-white object-cover"
+                  alt="Testimonial user1"
+                />
+                <div className="mt-4">
+                  <h4 className="text-sm font-extrabold text-gray-800">
+                    Mark Adair
+                  </h4>
+                  <p className="text-xs text-blue-600 font-bold mt-1">
+                    CEO, Company
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <p className="text-sm leading-relaxed text-gray-800">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
+                  praesentium consectetur vero maxime, quod nemo eum debitis
+                  Odit deserunt vero placeat voluptatum assumenda!
+                </p>
+              </div>
+
+              <div className="flex justify-center space-x-1 mt-4">
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+              </div>
+            </div>
+
+            <div className="rounded-md">
+              <div className="flex flex-col items-center">
+                <Image
+                  src={user2}
+                  className="w-24 h-24 rounded-full shadow-xl border-2 border-white object-cover"
+                  alt="Testimonial user1"
+                />
+                <div className="mt-4">
+                  <h4 className="text-sm font-extrabold text-gray-800">
+                    Simon Konecki
+                  </h4>
+                  <p className="text-xs text-blue-600 font-bold mt-1">
+                    CEO, Company
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <p className="text-sm leading-relaxed text-gray-800">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
+                  praesentium consectetur vero maxime, quod nemo eum debitis
+                  Odit deserunt vero placeat voluptatum assumenda!
+                </p>
+              </div>
+
+              <div className="flex justify-center space-x-1 mt-4">
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-blue-600" />
+                <Star className="h-4 w-4 text-gray-600" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Testimonials End */}
       {/* FAQ Start */}
-      <section className="faq py-[100px] border-t border-zinc-300">
+      <section className="faq py-[100px]">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -599,7 +722,7 @@ export default function Home() {
         <div className="container">
           <div className="max-w-screen-md mx-auto">
             <div className="bg-white px-6">
-              <h2 className="text-3xl font-extrabold text-blue-700 mb-10">
+              <h2 className="text-3xl font-extrabold text-black text-center mb-10">
                 Frequently Asked Questions
               </h2>
               <div className="space-y-8 max-w-4xl">

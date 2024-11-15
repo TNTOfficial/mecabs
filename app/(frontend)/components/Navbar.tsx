@@ -23,6 +23,7 @@ export default function Navbar() {
     { name: "Services", href: "/services" },
     { name: "Blogs", href: "/blogs" },
     { name: "Contact Us", href: "/contact" },
+    { name: "Areas We Serve", href: "/areas-we-serve" },
   ];
   const { user } = useCurrentUser();
 
