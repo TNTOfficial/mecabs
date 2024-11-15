@@ -80,7 +80,7 @@ export const Blogs: React.FC<BlogsProps> = ({ initialBlogs }) => {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {blogs.map((blog) => (
             <Card
               key={blog.id}
@@ -99,14 +99,14 @@ export const Blogs: React.FC<BlogsProps> = ({ initialBlogs }) => {
                   />
                 </div>
               )}
-              <CardHeader>
-                <CardTitle className="line-clamp-2">{blog.title}</CardTitle>
+              <CardHeader className="px-3 pt-3">
+                <CardTitle className="line-clamp-2 capitalize">{blog.title}</CardTitle>
                 <CardDescription></CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="px-3">
                 <p className="text-gray-600 line-clamp-3">{blog.description}</p>
               </CardContent>
-              <CardFooter className="flex justify-between">
+              <CardFooter className="flex justify-between px-3 pb-3">
                 {blog.updatedAt && (
                   <span className="text-sm text-gray-500">
                     {formatDate(blog.updatedAt)}
