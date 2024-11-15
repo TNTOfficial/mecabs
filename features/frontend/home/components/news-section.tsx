@@ -16,10 +16,14 @@ import "swiper/css/pagination";
 import { HiMiniArrowSmallLeft, HiMiniArrowSmallRight } from "react-icons/hi2";
 import SwiperCore from "swiper";
 import { Swiper as SwiperType } from "swiper";
+import { useRouter } from "next/navigation";
 SwiperCore.use([Parallax]);
 export const NewsSection = () => {
+  const router = useRouter()
   const [blogs, setBlogs] = useState<Blog[]>([]);
-
+  const handleBlogClick = (blogId: string) => {
+    router.push(`/blogs/${blogId}`);
+  };
   const swiperRef = useRef<SwiperType | null>(null);
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -96,6 +100,7 @@ export const NewsSection = () => {
               >
                 <div
                   key={blog.id}
+                  onClick={()=>{handleBlogClick(blog.id)}}
                   className="flex-[1_1_300px] h-full"
                 >
                   <div className="card rounded-2xl h-full p-2 [&_img]:hover:scale-110 cursor-pointer [&_.cardImage]:hover:before:top-0 [&_.cardImage]:hover:before:opacity-100 bg-gray-800">
