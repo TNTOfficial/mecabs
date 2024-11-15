@@ -53,7 +53,7 @@ const config: Config = {
         },
       },
       container: {
-        center: "true",
+        center: true,
         padding: "2rem",
       },
       fontFamily: {
