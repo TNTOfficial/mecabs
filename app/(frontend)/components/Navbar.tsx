@@ -22,6 +22,7 @@ export default function Navbar() {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Contact Us", href: "/contact" },
+    { name: "Areas We Serve", href: "/areas-we-serve" },
   ];
   const { user } = useCurrentUser();
 

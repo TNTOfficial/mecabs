@@ -57,7 +57,7 @@ const LandingSlider = () => {
         }
       }}
       autoplay={{
-        delay: 2000,
+        delay: 200000,
         disableOnInteraction: false,
       }}
       modules={[Autoplay, Pagination]}
@@ -68,12 +68,12 @@ const LandingSlider = () => {
           <SwiperSlide
             key={slide.title}
             style={{ backgroundImage: ` url(${slide.bgImg.src})` }}
-            className=" bg-no-repeat bg-cover bg-left relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0 h-full slide-bg"
+            className=" bg-no-repeat bg-cover max-lg:even:bg-left-top bg-left relative z-0 before:h-full before:w-full before:bg-slate-900 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0 h-full slide-bg"
             data-swiper-parallax="1152"
           >
             <div className="container">
-              <div className="max-w-screen-xl px-3 mx-auto lg:h-[calc(90dvh_-_64px)] py-[50px] lg:py-[100px] flex justify-evelnly items-start flex-col">
-                <div className="sectionHeading pb-[100px] w-full max-w-[525px]">
+              <div className="max-w-screen-xl px-3 mx-auto lg:h-[calc(90dvh_-_64px)] h-full min-h-[60vh] py-[50px] lg:py-[100px] flex lg:justify-evenly justify-center items-start flex-col">
+                <div className="sectionHeading lg:pb-[100px] w-full max-w-[525px]">
                   <div className="flex gap-3 mb-10">
                     <div
                       onClick={() => swiperRef.current?.slidePrev()}
@@ -96,7 +96,7 @@ const LandingSlider = () => {
                   </h4>
                   <h1
                     data-swiper-parallax="-2000"
-                    className="text-white text-[3rem] font-extrabold"
+                    className="text-white lg:text-[3rem] text-[2rem] font-extrabold"
                   >
                     {slide.subtitle}
                   </h1>
