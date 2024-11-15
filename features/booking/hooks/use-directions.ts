@@ -28,6 +28,7 @@ export const useDirections = (
     }
 
     const directionService = new routesLib.DirectionsService();
+
     directionService.route(
       {
         origin: pickUp,

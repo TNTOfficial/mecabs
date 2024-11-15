@@ -105,6 +105,7 @@ export const getBookings = async ({
       passengerName: booking.passengerName,
       bookingMode: booking.bookingMode,
       phoneNumber: booking.phoneNumber,
+      email: booking.email ?? "",
       babySeat: booking.babySeat,
       vehicleType: booking.vehicleType,
       bookingType: booking.bookingType,
@@ -122,6 +123,7 @@ export const getBookings = async ({
       returnBookings: booking.returnBookings?.map((returnBooking) => ({
         id: returnBooking.id,
         userId: returnBooking.userId ?? "",
+        email: returnBooking.email ?? "",
         hours: booking.hours ?? undefined,
         passengerName: returnBooking.passengerName,
         bookingMode: returnBooking.bookingMode,

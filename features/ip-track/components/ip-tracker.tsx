@@ -23,19 +23,26 @@ const getStorageItem = (key: string): string => {
 export const IpTracker = () => {
   const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
+  const [sessionId, setSessionId] = useState("");
+  const [visitId, setVisitId] = useState("");
 
   useEffect(() => {
-    // Mark when component is mounted on the client side
     setIsClient(true);
   }, []);
 
   useEffect(() => {
     if (isClient) {
-      const sessionId = getStorageItem("session-id");
-      const visitId = getStorageItem("visit-id");
-      trackIp(pathname, sessionId, visitId);
+      // Update sessionId and visitId only when they change
+      const newSessionId = getStorageItem("session-id");
+      const newVisitId = getStorageItem("visit-id");
+
+      if (newSessionId !== sessionId || newVisitId !== visitId) {
+        setSessionId(newSessionId);
+        setVisitId(newVisitId);
+        trackIp(pathname, newSessionId, newVisitId);
+      }
     }
-  }, [isClient, pathname]);
+  }, [isClient, pathname, sessionId, visitId]);
 
   return null;
 };
