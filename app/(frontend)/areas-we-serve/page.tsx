@@ -133,7 +133,7 @@ const page = () => {
                 </h4>
 
                 <p className="text-[1rem] text-gray-600 dark:text-white font-normal">
-                  Whether you're heading to Flinders Street or the Melbourne Convention and Exhibition Centre, the CBD or St Kilda Beach, our dependable fleet and experienced drivers are ready to fulfill all your transportation needs in Melbourne and its surrounding areas. Regardless of your destination or plans, count on us for a smooth and classy ride.
+                  Whether you are heading to Flinders Street or the Melbourne Convention and Exhibition Centre, the CBD or St Kilda Beach, our dependable fleet and experienced drivers are ready to fulfill all your transportation needs in Melbourne and its surrounding areas. Regardless of your destination or plans, count on us for a smooth and classy ride.
                 </p>
                 <ul className="list-none mt-5 flex gap-3 sm:gap-6 justify-between items-center flex-wrap">
                   {cites.map((city) => {
