@@ -601,20 +601,25 @@ export default function Home() {
       {/* Testimonials End */}
       {/* FAQ Start */}
       <section className="faq py-[100px]">
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>Is it accessible?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+
         <div className="container">
           <div className="max-w-screen-md mx-auto">
             <div className="bg-white px-6">
               <h2 className="text-3xl font-extrabold text-black text-center mb-10">
                 Frequently Asked Questions
               </h2>
+
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-lg font-semibold text-[#333] no-underline">
+                    <span>How can I create an account?</span> </AccordionTrigger>
+                  <AccordionContent>
+                    Yes. It adheres to the WAI-ARIA design pattern.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
+
               <div className="space-y-8 max-w-4xl">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
