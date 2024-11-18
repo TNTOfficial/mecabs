@@ -33,7 +33,7 @@ const AdvancedMarkers: React.FC<{
         position: pickup,
         title: "Pickup Location",
         icon: {
-          url: "https://maps.google.com/mapfiles/ms/icons/green-dot.webp",
+          url: "https://cdn-icons-png.flaticon.com/128/14035/14035502.png",
           scaledSize: new google.maps.Size(40, 40),
         },
         animation: google.maps.Animation.DROP,
@@ -47,7 +47,7 @@ const AdvancedMarkers: React.FC<{
         position: dropoff,
         title: "Dropoff Location",
         icon: {
-          url: "https://maps.google.com/mapfiles/ms/icons/red-dot.webp",
+          url: "https://cdn-icons-png.flaticon.com/128/14034/14034747.png",
           scaledSize: new google.maps.Size(40, 40),
         },
         animation: google.maps.Animation.DROP,
