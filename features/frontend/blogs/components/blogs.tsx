@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { searchBlogs } from "@/actions/blog/search-blog";
 import { Blog } from "@/features/admin/blog/types";
+import { Clock } from "lucide-react";
 // import banner6 from '@/public/banner6.webp'
 
 interface BlogsProps {
@@ -37,7 +38,7 @@ export const Blogs: React.FC<BlogsProps> = ({ initialBlogs }) => {
       } else {
         setBlogs(initialBlogs);
       }
-    }, 300);
+    }, 6);
     return () => clearTimeout(timeoutId);
   }, [searchTerm, initialBlogs]);
 
@@ -100,7 +101,7 @@ export const Blogs: React.FC<BlogsProps> = ({ initialBlogs }) => {
             {blogs.map((blog) => (
               <Card
                 key={blog.id}
-                className="cursor-pointer hover:shadow-lg transition-shadow duration-200"
+                className="cursor-pointer hover:shadow-lg transition-shadow duration-200 relative before:absolute before:bottom-3 before:right-3 before:h-5 before:aspect-square odd:before:bg-gray-600 before:bg-blue-600 odd:before:bg-opacity-35 before:bg-opacity-35 before:z-[1] before:rounded-full  after:absolute after:bottom-4 after:right-4 after:h-10 after:aspect-square odd:after:bg-blue-600 after:bg-gray-600 odd:after:bg-opacity-35 after:bg-opacity-35 after:z-[1] after:rounded-full"
                 onClick={() => {
                   handleBlogClick(blog.id);
                 }}
@@ -116,16 +117,16 @@ export const Blogs: React.FC<BlogsProps> = ({ initialBlogs }) => {
                   </div>
                 )}
                 <CardHeader className="px-3 pt-3">
-                  <CardTitle className="line-clamp-2 capitalize">{blog.title}</CardTitle>
+                  <CardTitle className="line-clamp-[1.4] text-[1.3rem] capitalize">{blog.title}</CardTitle> 
                   <CardDescription></CardDescription>
                 </CardHeader>
-                <CardContent className="px-3">
+                <CardContent className="px-3 m-0">
                   <p className="text-gray-600 line-clamp-3">{blog.description}</p>
                 </CardContent>
-                <CardFooter className="flex justify-between px-3 pb-3">
+                <CardFooter className="flex justify-between px-3 pb-3 pt-5">
                   {blog.updatedAt && (
-                    <span className="text-sm text-gray-500">
-                      {formatDate(blog.updatedAt)}
+                    <span className="text-[0.8rem] text-gray-700 bg-blue-500 bg-opacity-15 p-2 rounded-lg flex justify-center items-center gap-2">
+                     <Clock className="h-4 w-4" />  {formatDate(blog.updatedAt)}
                     </span>
                   )}
                 </CardFooter>

@@ -31,25 +31,25 @@
 .container {
   @apply mx-auto;
 }
-html {
-  font-size: clamp(12px, 3vw, 16px);
-}
-body {
-  color: rgb(var(--foreground-rgb));
-}
 
 @layer utilities {
+  html {
+    @apply text-[clamp(13px,_2vw,_16px)];
+  }
+  body {
+    color: rgb(var(--foreground-rgb));
+  }
   .text-balance {
     text-wrap: balance;
   }
   .scrollHide::-webkit-scrollbar {
-  display: none;
+    display: none;
   }
   .scrollHide {
-  -ms-overflow-style: none;
-  scrollbar-width: none; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  }
+}
 
 .show {
   animation: show 0.2s 1 forwards;
@@ -230,19 +230,17 @@ td {
   text-wrap: nowrap;
 }
 
-
-.gm-style-iw-chr{
+.gm-style-iw-chr {
   @apply hidden !important;
 }
 
-
-.dashcardbg::before{
-background-image: url(/curvy4.webp);
+.dashcardbg::before {
+  background-image: url(/curvy4.webp);
 }
-.iptrackcards::before{
-background-image: url(/curvy1.webp);
+.iptrackcards::before {
+  background-image: url(/curvy1.webp);
 }
 
-.swiper-slide{
+.swiper-slide {
   height: auto !important;
 }
