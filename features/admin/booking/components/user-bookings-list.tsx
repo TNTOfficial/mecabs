@@ -48,6 +48,7 @@ import { BookingActionModal } from "./booking-action-modal";
 import { EditBookingForm } from "./edit-booking-form";
 import { MobileIcon } from "@radix-ui/react-icons";
 import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
+import { updateLuggagePickup } from "@/actions/bookings/update-luggage-pickup";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -141,18 +142,34 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
 
     try {
       setIsLoading(true);
-      const result = await handleBooking({
-        bookingId: selectedBookingId,
-        action: actionType,
-        remarks,
-      });
+      if (actionType === "luggage") {
+        const result = await updateLuggagePickup({
+          bookingId: selectedBookingId,
+          isLuggagePicked: true,
+          luggageRemarks: remarks,
+        });
 
-      if (result.success) {
-        toast.success(result.message);
-        setSelectedBooking(null);
-        await fetchBookings();
+        if (result.success) {
+          toast.success(result.success);
+          setSelectedBooking(null);
+          await fetchBookings();
+        } else {
+          toast.error(result.error);
+        }
       } else {
-        toast.error(result.error);
+        const result = await handleBooking({
+          bookingId: selectedBookingId,
+          action: actionType,
+          remarks,
+        });
+
+        if (result.success) {
+          toast.success(result.message);
+          setSelectedBooking(null);
+          await fetchBookings();
+        } else {
+          toast.error(result.error);
+        }
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "An error occurred");
@@ -297,6 +314,21 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
+                          {!booking.isLuggagePicked &&
+                            booking.pickupLocation
+                              .toLowerCase()
+                              .startsWith("airport") && (
+                              <DropdownMenuItem
+                                onClick={() => {
+                                  setSelectedBookingId(booking.id);
+                                  setActionType("luggage");
+                                  setShowActionDialog(true);
+                                }}
+                                className="text-red-500"
+                              >
+                                Update Luggage Info
+                              </DropdownMenuItem>
+                            )}
                           <DropdownMenuItem
                             onClick={() => setSelectedBooking(booking)}
                           >
@@ -326,6 +358,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                               >
                                 Cancel Booking
                               </DropdownMenuItem>
+
                               <RoleGuard allowedRoles={["ADMIN"]}>
                                 <DropdownMenuItem
                                   onClick={() => {

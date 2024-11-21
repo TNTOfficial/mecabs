@@ -1,5 +1,3 @@
-"semi working booking page code";
-
 "use client";
 
 import React, {
@@ -17,6 +15,7 @@ import { Info, X } from "lucide-react";
 import { useGeolocation } from "../hooks/use-geolocation";
 import { useDirections } from "../hooks/use-directions";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import * as z from "zod";
 import { BookingSchema } from "@/schemas/schema";
 import {
@@ -64,6 +63,7 @@ import { Booking } from "../types";
 import { updateBooking } from "@/actions/bookings/update-booking";
 import { EmailModal } from "./email-modal";
 import { updateLeadEmail } from "@/actions/leads/update-lead-email";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const bookingTypes = {
   BOOKING: "booking",
@@ -101,7 +101,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [parentBookingId, setParentBookingId] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
+  const [isHourlyBooking, setIsHourlyBooking] = useState<boolean>(false);
   const [leadId, setLeadId] = useState<string | undefined>("");
+  const [bookingMode, setBookingMode] = useState<"now" | "later">("now");
 
   const [isReturnBooking, setIsReturnBooking] = useState<boolean>(false);
   //new states for airport pickup
@@ -111,7 +113,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   // const [skipLogin, setSkipLogin] = useState<boolean>(false);
   const pickupInputRef = useRef<AutoCompleteInputRef>(null);
   const dropoffInputRef = useRef<AutoCompleteInputRef>(null);
-  const { distance, resetDirections } = useDirections(
+  const { distance, resetDirections, tollCount } = useDirections(
     pickupCoordinates,
     dropoffCoordinates
   );
@@ -127,7 +129,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       vehicleType: activeTab === "parcel" ? "anyavailable" : "sedan",
       pickupLocation: "",
       dropoffLocation: "",
-      email: "",
+      email: user?.email || "",
       pickupDateTime: new Date(),
       notes: "",
       passengerName: "",
@@ -140,6 +142,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       status: "active",
       pickupCoordinates: undefined,
       dropoffCoordinates: undefined,
+      priceMode: "fixedfare",
     },
   });
 
@@ -256,14 +259,48 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   };
 
   const calculatePrice = useCallback(
-    (distanceInMeters: number, vehicleType: string) => {
+    (
+      distanceInMeters: number,
+      vehicleType: string,
+      bookingType: BookingType,
+      tollCount: number = 0,
+      priceMode: string = "fixedfare"
+    ) => {
+      console.log("price mode", priceMode);
+
+      // Return 0 for meter fare or hourly booking
+      if (priceMode === "meterfare" || bookingType === "hourly") {
+        return 0;
+      }
+
+      // Special pricinf for Rialto Towers to airport within 4 kms
+
+      // const isRialtoTowersPickup = checkSpecialLocationPickup(
+      //   form.getValues("pickupLocation")!
+      // );
+      // const isAirportDropoff = checkIfAirport(
+      //   form.getValues("dropoffLocation")!
+      // );
+
+      // if(isRialtoTowersPickup && isAirportDropoff ){
+      // }
+
       // Base fixed fare
       let totalPrice = 15;
 
       const distanceInKm = distanceInMeters / 1000;
-      console.log(distanceInKm);
 
       totalPrice += 2.4 * distanceInKm;
+      console.log("price before toll", totalPrice);
+
+      if (tollCount > 1 && tollCount <= 3) {
+        totalPrice += 3;
+      } else if (tollCount == 5) {
+        totalPrice += 5;
+      } else {
+        totalPrice += 10;
+      }
+      console.log("price after toll", totalPrice);
 
       // vehicle-specific surcharges
       switch (vehicleType) {
@@ -289,27 +326,67 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       if (isAirportPickup) {
         totalPrice += 35;
       }
-      return Math.round(totalPrice * 100) / 100;
+      totalPrice = Math.max(40, Math.round(totalPrice * 100) / 100);
+      return totalPrice;
     },
     [isAirportPickup]
   );
 
-  // Calculating hourly price
-  const calculateHourlyPrice = useCallback(
-    (hours: number, vehicleType: string) => {
-      const baseHourlyRate = 85;
-      const vehicle = vehicleTypes.find((v) => v.value === vehicleType);
-      const qualityFactor = vehicle?.qualityFactor || 1.0;
-      return Math.round(baseHourlyRate * hours * qualityFactor);
-    },
-    [vehicleTypes]
-  );
+  const currentVehicleType = form.watch("vehicleType");
+  const currentPriceModeType = form.watch("priceMode");
+
+  // useEffect(() => {
+  //   // if (!user && !skipLogin) {
+  //   //   setShowLoginModal(true);
+  //   // }
+
+  //   if (error || success) {
+  //     const timer = setTimeout(() => {
+  //       setError(undefined);
+  //       setSuccess(undefined);
+  //     }, 2000);
+  //     return () => clearTimeout(timer);
+  //   }
+  //   if (activeTab === bookingTypes.HOURLY) {
+  //     setEstimatedPrice(0);
+  //     form.setValue("price", 0);
+  //   }
+  //   if (distance) {
+  //     const numericDistance =
+  //       parseFloat(distance.replace(/[^0-9.]/g, "")) * 1000; // Convert to meters
+  //     const currentPriceMode = form.getValues("priceMode");
+  //     const currentVehicleType = form.getValues("vehicleType");
+  //     const price = calculatePrice(
+  //       numericDistance,
+  //       currentVehicleType,
+  //       activeTab,
+  //       tollCount,
+  //       currentPriceMode
+  //     );
+  //     setEstimatedPrice(price);
+  //     form.setValue("price", estimatedPrice);
+  //   } else {
+  //     setEstimatedPrice(null);
+  //     form.setValue("price", null);
+  //   }
+  // }, [
+  //   calculatePrice,
+  //   distance,
+  //   form,
+  //   user,
+  //   // skipLogin,
+  //   activeTab,
+  //   estimatedPrice,
+  //   currentVehicleType,
+  //   currentPriceMode,
+  //   error,
+  //   success,
+  //   tollCount,
+  // ]);
+
+  //use effect for price calculation
 
   useEffect(() => {
-    // if (!user && !skipLogin) {
-    //   setShowLoginModal(true);
-    // }
-
     if (error || success) {
       const timer = setTimeout(() => {
         setError(undefined);
@@ -317,36 +394,45 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       }, 2000);
       return () => clearTimeout(timer);
     }
+
+    // Reset price for hourly bookings
     if (activeTab === bookingTypes.HOURLY) {
-      const hours = form.getValues("hours");
-      const vehicleType = form.getValues("vehicleType");
-      const hourlyPrice = calculateHourlyPrice(hours!, vehicleType);
-      setEstimatedPrice(hourlyPrice);
-      form.setValue("price", estimatedPrice);
+      setEstimatedPrice(0);
+      form.setValue("price", 0);
+      return;
     }
+
+    // Calculate price only if we have valid distance
     if (distance) {
       const numericDistance =
         parseFloat(distance.replace(/[^0-9.]/g, "")) * 1000; // Convert to meters
+      const currentPriceMode = form.getValues("priceMode");
+      const currentVehicleType = form.getValues("vehicleType");
+
+      // Calculate new price
       const price = calculatePrice(
         numericDistance,
-        form.getValues("vehicleType")
+        currentVehicleType,
+        activeTab,
+        tollCount,
+        currentPriceMode
       );
+
       setEstimatedPrice(price);
-      form.setValue("price", estimatedPrice);
+      form.setValue("price", price);
     } else {
       setEstimatedPrice(null);
+      form.setValue("price", null);
     }
   }, [
     calculatePrice,
     distance,
     form,
-    user,
-    // skipLogin,
     activeTab,
-    calculateHourlyPrice,
-    estimatedPrice,
+    tollCount,
     error,
     success,
+    currentPriceModeType,
   ]);
 
   // Update your resetForm function
@@ -383,17 +469,31 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     dropoffInputRef.current?.reset();
   }, [activeTab, form, resetDirections]);
 
-  // const handleTabChange = (newTab: BookingType) => {
-  //   console.log("Handletab is getting called");
+  useEffect(() => {
+    if (distance && currentVehicleType) {
+      const numericDistance =
+        parseFloat(distance.replace(/[^0-9.]/g, "")) * 1000;
+      const currentPriceMode = form.getValues("priceMode");
 
-  //   console.log("new tab", newTab);
-  //   setActiveTab(newTab);
-  //   console.log("new active tab", activeTab);
+      const price = calculatePrice(
+        numericDistance,
+        currentVehicleType,
+        activeTab,
+        tollCount,
+        currentPriceMode
+      );
 
-  //   resetForm();
-  //   console.log("calling reset form");
-  // };
-
+      setEstimatedPrice(price);
+      form.setValue("price", price);
+    }
+  }, [
+    currentVehicleType,
+    distance,
+    calculatePrice,
+    activeTab,
+    form,
+    tollCount,
+  ]);
   const handleTabChange = (newTab: BookingType) => {
     // First update the active tab
     setActiveTab(newTab);
@@ -426,6 +526,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         pickupCoordinates: booking?.pickupCoordinates || undefined,
         dropoffCoordinates: booking?.dropoffCoordinates || undefined,
         phoneNumber: booking?.phoneNumber || "",
+        priceMode: "fixedfare",
       });
       // setPickupCoordinates(null);
       // setDropoffCoordinates(null);
@@ -448,6 +549,25 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       if (dropoffInputRef.current) {
         dropoffInputRef.current.reset();
       }
+
+      // Force a price recalculation
+      if (distance) {
+        const numericDistance =
+          parseFloat(distance.replace(/[^0-9.]/g, "")) * 1000;
+        const currentVehicleType = form.getValues("vehicleType");
+        const currentPriceMode = form.getValues("priceMode");
+
+        const price = calculatePrice(
+          numericDistance,
+          currentVehicleType,
+          newTab,
+          tollCount,
+          currentPriceMode
+        );
+
+        setEstimatedPrice(price);
+        form.setValue("price", price);
+      }
     }
   };
 
@@ -463,6 +583,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       location.toLowerCase().includes(keyword)
     );
   };
+
+  //fn to check if pickup location is Rialto Towers
+  // const checkSpecialLocationPickup = (location: string) => {
+  //   const rialtoTowersKeywords = [
+  //     "rialto towers",
+  //     "rialto",
+  //     "525 collins street",
+  //     "collins street",
+  //   ];
+  //   return rialtoTowersKeywords.some((keyword) =>
+  //     location.toLowerCase().includes(keyword)
+  //   );
+  // };
 
   const handlePlaceSelect = (
     setter: React.Dispatch<
@@ -575,8 +708,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               setError(response.error);
             }
             if (response?.success) {
-              setSuccess(response.success);
-              setParentBookingId(response.bookingId);
+              if (response.bookingType === "hourly") {
+                setIsHourlyBooking(true);
+              } else if (
+                response.bookingType === "booking" &&
+                response.bookingMode === "later"
+              ) {
+                setIsAirportPickup(true);
+                setShowSuccessModal(true);
+                setBookingMode(response.bookingMode);
+              } else {
+                setSuccess(response.success);
+                setParentBookingId(response.bookingId);
+              }
               //Showing email modal if there is leadId
               if (response.leadId) {
                 console.log(response);
@@ -645,9 +789,12 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     >
       <SuccessModal
         isOpen={showSuccessModal}
+        isHourlyBooking={isHourlyBooking}
         onClose={() => {
           setShowSuccessModal(false);
         }}
+        isAirportPickup={isAirportPickup}
+        bookingMode={bookingMode}
         bookingType={activeTab}
         onReturnBooking={() => {
           handleReturnBooking(parentBookingId!);
@@ -1093,7 +1240,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                       name="airportPickup"
                       render={({ field }) => (
                         <FormItem className="flex items-center gap-2">
-                          <FormLabel>Inside Airport Pickup?</FormLabel>
+                          <FormLabel> Airport Inside Pickup?</FormLabel>
                           <FormControl>
                             <Switch
                               checked={isAirportPickup}
@@ -1134,7 +1281,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     )}
                   />
                 )}
-                {form.watch("bookingMode") === "later" &&
+                {/* {form.watch("bookingMode") === "later" &&
                   activeTab === bookingTypes.BOOKING && (
                     <div className="flex flex-row items-start justify-between ">
                       <FormField
@@ -1164,6 +1311,45 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                         </Tooltip>
                       </TooltipProvider>
                     </div>
+                  )} */}
+
+                {form.watch("bookingMode") === "later" &&
+                  form.watch("bookingType") === "booking" &&
+                  activeTab === "booking" && (
+                    <FormField
+                      control={form.control}
+                      name="priceMode"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel>Fare Type</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex flex-row space-x-4"
+                            >
+                              <FormItem className="flex items-center space-x-2">
+                                <FormLabel className="font-normal cursor-pointer">
+                                  Fixed Fare
+                                </FormLabel>
+                                <FormControl>
+                                  <RadioGroupItem value="fixedfare" />
+                                </FormControl>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-2">
+                                <FormControl>
+                                  <RadioGroupItem value="meterfare" />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer">
+                                  Meter Fare
+                                </FormLabel>
+                              </FormItem>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   )}
 
                 <FormField
@@ -1190,6 +1376,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     {estimatedPrice && (
                       <p className="text-lg font-semibold">
                         Estimated Price: ${estimatedPrice.toFixed(2)}
+                      </p>
+                    )}
+                    {tollCount > 0 && (
+                      <p className="text-sm text-gray-600">
+                        Toll Roads: {tollCount}
                       </p>
                     )}
                   </div>
@@ -1225,6 +1416,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
       <Map pickup={pickupCoordinates} dropoff={dropoffCoordinates} />
       <SuccessModal
+        isAirportPickup={isAirportPickup}
+        bookingMode={bookingMode}
+        isHourlyBooking={isHourlyBooking}
         isOpen={showSuccessModal}
         onClose={() => {
           setShowSuccessModal(false);

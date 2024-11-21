@@ -89,22 +89,25 @@ model Booking {
   dropoffCoordinates Json? // { lat: number, lng: number }
 
   // Booking details
-  pickupDateTime DateTime
-  hours          Int? // For hourly bookings
-  vehicleType    VehicleType
-  babySeat       Boolean     @default(false)
-  airportPickup  Boolean     @default(false)
-  flightNumber   String?
+  pickupDateTime  DateTime
+  hours           Int? // For hourly bookings
+  vehicleType     VehicleType
+  babySeat        Boolean     @default(false)
+  airportPickup   Boolean     @default(false)
+  isLuggagePicked Boolean     @default(false)
+  flightNumber    String?
 
   // Payment details
   price           Float?
+  priceMode       PriceMode
   paymentMethod   String?
   paymentStatus   String?
   paymentIntentId String?
 
   // Additional details
-  notes   String?
-  remarks String?
+  notes          String?
+  remarks        String?
+  luggageRemarks String?
 
   // Related bookings 
   isReturnBooking Boolean   @default(false)
@@ -191,4 +194,9 @@ enum VehicleType {
   suv
   wheelchair
   anyavailable
+}
+
+enum PriceMode {
+  fixedfare
+  meterfare
 }

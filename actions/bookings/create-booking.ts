@@ -9,6 +9,7 @@ import { BookingStatus, Prisma, VehicleType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { NotificationPayload } from "@/features/admin/booking/types";
 import { sendSMSNotification } from "@/lib/twilio";
+import { sendEmailNotification } from "@/lib/mail";
 
 // Updated type to match schema requirements
 type CreateBookingData = Omit<
@@ -75,6 +76,7 @@ export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
         recipientName: validatedFields.data.recipientName,
         parentBookingId: validatedFields.data.parentBookingId,
         email: validatedFields.data.email,
+        priceMode: validatedFields.data.priceMode,
       };
 
       const booking = await tx.booking.create({
@@ -130,8 +132,8 @@ export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
       return { booking, leadId };
     });
 
-    const notificationPayload: NotificationPayload = {
-      to: user?.phoneNumber || validatedFields.data.phoneNumber,
+    const phoneNotificationPayload: NotificationPayload = {
+      to: validatedFields.data.phoneNumber || (user?.phoneNumber as string),
       bookingId: booking.booking.id,
       passengerName: booking.booking.passengerName,
       pickupDateTime: booking.booking.pickupDateTime,
@@ -139,14 +141,42 @@ export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
       dropoffLocation: booking.booking.dropoffLocation || undefined,
       status: booking.booking.status,
       type: "create",
+      link: booking.booking.pickupLocation.toLowerCase().includes("airport")
+        ? `http://localhost:3000/manage-bookings`
+        : "",
     };
-    await sendSMSNotification(notificationPayload);
+
+    const emailNotificationPayload: NotificationPayload = {
+      to: validatedFields.data.email! || (user?.email as string),
+      bookingId: booking.booking.id,
+      passengerName: booking.booking.passengerName,
+      pickupDateTime: booking.booking.pickupDateTime,
+      pickupLocation: booking.booking.pickupLocation,
+      dropoffLocation: booking.booking.dropoffLocation || undefined,
+      status: booking.booking.status,
+      type: "create",
+      link: booking.booking.pickupLocation.toLowerCase().includes("airport")
+        ? "http://localhost:3000/manage-bookings"
+        : "",
+    };
+
+    if (booking.booking.phoneNumber.startsWith("+61")) {
+      await sendSMSNotification(phoneNotificationPayload);
+    } else {
+      await sendEmailNotification(emailNotificationPayload);
+    }
     revalidatePath("/bookings");
+
     // Return success with booking ID and lead ID for email prompt
     return {
       success: "Booking created successfully!",
       bookingId: booking.booking.id,
+      bookingType: booking.booking.bookingType,
+      bookingMode: booking.booking.bookingMode,
       leadId: leadId,
+      airportPickup: booking.booking.pickupLocation
+        .toLowerCase()
+        .includes("airport"),
     };
   } catch (error) {
     console.error("BOOKING_ERROR", error);

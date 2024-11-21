@@ -18,6 +18,9 @@ interface SuccessModalProps {
   pickupLocation: string;
   dropoffLocation: string;
   isReturnBooking: boolean;
+  isHourlyBooking: boolean;
+  isAirportPickup: boolean;
+  bookingMode: "now" | "later";
   onReset: () => void;
 }
 
@@ -31,6 +34,9 @@ export const SuccessModal = ({
   bookingId = "",
   isReturnBooking,
   onReset,
+  isHourlyBooking,
+  isAirportPickup,
+  bookingMode,
 }: SuccessModalProps) => {
   const handleClose = () => {
     onReset();
@@ -42,6 +48,9 @@ export const SuccessModal = ({
     onClose();
   };
 
+  console.log("insdie the modal", isAirportPickup);
+  console.log("insdie the modal",bookingMode);
+
   // Only show return booking option for regular bookings and when not already a return booking
   const showReturnOption =
     bookingType === "booking" && isReturnBooking === false;
@@ -52,18 +61,26 @@ export const SuccessModal = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-green-600">
             <CheckCircle2 className="w-6 h-6" />
-            {isReturnBooking
+            {isAirportPickup && bookingMode == "later"
+              ? "Thank you for choosing us"
+              : isHourlyBooking
+              ? "Thank you!"
+              : isReturnBooking
               ? "Return reserved successfully"
               : "Booking Successful"}
           </DialogTitle>
           <DialogDescription>
-            {isReturnBooking
+            {isAirportPickup && bookingMode == "later"
+              ? "Your booking has been successfully created.Please notify us when you have picked your luggage.We have sent you link inside a message."
+              : isHourlyBooking
+              ? "Thank you for contacting us. We will contact you shortly."
+              : isReturnBooking
               ? "Your return has been successfully created."
               : "Your booking has been successfully created. We will notify you once a driver accepts your booking."}
           </DialogDescription>
         </DialogHeader>
 
-        {showReturnOption && (
+        {showReturnOption && !isHourlyBooking && (
           <div className="p-4 bg-gray-50 rounded-lg">
             <h4 className="font-medium mb-2">
               Would you like to book a return?
@@ -80,7 +97,12 @@ export const SuccessModal = ({
         )}
 
         <DialogFooter className="sm:justify-start">
-          <Button className="w-full" type="button" variant="secondary" onClick={handleClose}>
+          <Button
+            className="w-full"
+            type="button"
+            variant="secondary"
+            onClick={handleClose}
+          >
             Close
           </Button>
         </DialogFooter>

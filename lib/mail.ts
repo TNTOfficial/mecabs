@@ -1,3 +1,4 @@
+import { NotificationPayload } from "@/features/admin/booking/types";
 import nodemailer from "nodemailer";
 // import path from "path";
 
@@ -64,4 +65,31 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
     <p>${resetLink}</p>
   `;
   await sendEmail(email, "Reset your password", htmlContent);
+};
+
+export const sendEmailNotification = async (payload: NotificationPayload) => {
+  const subject =
+    payload.type === "create"
+      ? `Booking Confirmation - ${payload.bookingId}`
+      : `Booking Update - ${payload.bookingId}`;
+
+  const htmlContent = `<h2>${
+    payload.type === "create" ? "Booking Confirmation" : "Booking Update"
+  }</h2>
+      <p>Hello ${payload.passengerName},</p>
+      <p>Your booking details are as follows:</p>
+      <ul>
+        <li>Booking ID: ${payload.bookingId}</li>
+        <li>Pickup Location: ${payload.pickupLocation}</li>
+        <li>Pickup Date/Time: ${payload.pickupDateTime.toLocaleString()}</li>
+        ${
+          payload.dropoffLocation
+            ? `<li>Dropoff Location: ${payload.dropoffLocation}</li>`
+            : ""
+        }
+        <li>Status: ${payload.status}</li>
+      </ul>
+      <p>Thank you for choosing our service!</p>`;
+
+  await sendEmail(payload.to, subject, htmlContent);
 };

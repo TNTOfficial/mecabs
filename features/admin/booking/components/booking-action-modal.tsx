@@ -31,6 +31,7 @@ export const BookingActionModal: React.FC<BookingActionModalProps> = ({
     cancel: { title: "Cancel Booking", action: "cancel" },
     complete: { title: "Complete Booking", action: "complete" },
     dismiss: { title: "Dismiss Booking", action: "dismiss" },
+    luggage: { title: "Update Luggage Info", action: "complete" },
   };
 
   const { title, action: actionText } = actionTexts[action];
@@ -46,7 +47,7 @@ export const BookingActionModal: React.FC<BookingActionModalProps> = ({
         <AlertDialogHeader>{title}</AlertDialogHeader>
         <AlertDialogDescription>
           Are you want to {actionText} this booking?
-          {action !== "dismiss" && "Please provide any relevent remarks."}
+          {action !== "dismiss" && " Please provide any relevent remarks."}
         </AlertDialogDescription>
 
         {action !== "dismiss" && (

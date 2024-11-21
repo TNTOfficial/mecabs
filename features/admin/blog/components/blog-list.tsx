@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { BlogStatusBadge } from "./blog-status-badge";
+import { RoleGuard } from "../../auth/guard/role-guard";
 
 export const BlogList = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -54,80 +55,82 @@ export const BlogList = () => {
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Blog Posts</h2>
-        <Dialog open={IsDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              New Blog Post
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="w-full sm:w-[600px] max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>
-                {selectedBlog ? "Edit Blog Post" : "Create New Blog Post"}
-              </DialogTitle>
-            </DialogHeader>
-            <div className="mt-4">
-              <BlogForm
-                blog={selectedBlog || undefined}
-                onSuccess={handleSuccess}
-                onClose={() => setIsDialogOpen(false)}
+    <RoleGuard allowedRoles={["ADMIN"]}>
+      <div className="space-y-4">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold">Blog Posts</h2>
+          <Dialog open={IsDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button>
+                <Plus className="h-4 w-4 mr-2" />
+                New Blog Post
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="w-full sm:w-[600px] max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>
+                  {selectedBlog ? "Edit Blog Post" : "Create New Blog Post"}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <BlogForm
+                  blog={selectedBlog || undefined}
+                  onSuccess={handleSuccess}
+                  onClose={() => setIsDialogOpen(false)}
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+
+        <div className="grid gap-4">
+          {blogs.map((blog) => (
+            <div
+              key={blog.id}
+              className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-between items-start"
+            >
+              <div className="flex space-x-4 flex-1">
+                {blog.imagePath && (
+                  <div className="relative h-24 w-24 flex-shrink-0">
+                    <Image
+                      src={blog.imagePath}
+                      alt={blog.title}
+                      fill
+                      className="rounded-md object-cover"
+                    />
+                  </div>
+                )}
+                <div className="space-y-2 flex-1">
+                  <div className="flex items-center space-x-2">
+                    <h3 className="text-lg font-semibold">{blog.title}</h3>
+                    <BlogStatusBadge status={blog.status as BlogStatus} />
+                  </div>
+                  <p className="text-sm text-gray-600 line-clamp-2">
+                    {blog.description}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {/* Created: {new Date(blog?.createdAt).toLocaleDateString()} */}
+                  </p>
+                </div>
+              </div>
+              <BlogActions
+                blog={blog}
+                onEdit={() => {
+                  setSelectedBlog(blog);
+                  setIsDialogOpen(true);
+                }}
+                onDelete={handleSuccess}
+                refetch={fetchBlogs}
               />
             </div>
-          </DialogContent>
-        </Dialog>
-      </div>
-
-      <div className="grid gap-4">
-        {blogs.map((blog) => (
-          <div
-            key={blog.id}
-            className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-between items-start"
-          >
-            <div className="flex space-x-4 flex-1">
-              {blog.imagePath && (
-                <div className="relative h-24 w-24 flex-shrink-0">
-                  <Image
-                    src={blog.imagePath}
-                    alt={blog.title}
-                    fill
-                    className="rounded-md object-cover"
-                  />
-                </div>
-              )}
-              <div className="space-y-2 flex-1">
-                <div className="flex items-center space-x-2">
-                  <h3 className="text-lg font-semibold">{blog.title}</h3>
-                  <BlogStatusBadge status={blog.status as BlogStatus} />
-                </div>
-                <p className="text-sm text-gray-600 line-clamp-2">
-                  {blog.description}
-                </p>
-                <p className="text-xs text-gray-400">
-                  {/* Created: {new Date(blog?.createdAt).toLocaleDateString()} */}
-                </p>
-              </div>
+          ))}
+          {blogs.length === 0 && (
+            <div className="text-center p-8 text-gray-500">
+              No blog posts found. Create your first post!
             </div>
-            <BlogActions
-              blog={blog}
-              onEdit={() => {
-                setSelectedBlog(blog);
-                setIsDialogOpen(true);
-              }}
-              onDelete={handleSuccess}
-              refetch={fetchBlogs}
-            />
-          </div>
-        ))}
-        {blogs.length === 0 && (
-          <div className="text-center p-8 text-gray-500">
-            No blog posts found. Create your first post!
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </RoleGuard>
   );
 };

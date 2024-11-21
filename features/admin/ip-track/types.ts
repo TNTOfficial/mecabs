@@ -1,4 +1,4 @@
-interface IpTrack {
+export interface IpTrack {
   id: string;
   ip: string;
   visitCount: number;

@@ -32,6 +32,7 @@ export interface Booking {
   pickupCoordinates?: Coordinates;
   dropoffCoordinates?: Coordinates;
   returnBookings?: ReturnBooking[];
+  isLuggagePicked?: boolean;
   notes?: string;
   updatedAt: Date;
 }
@@ -69,7 +70,7 @@ export interface BookingFilters {
   dateRange?: DateRange;
 }
 
-export type BookingAction = "cancel" | "complete" | "dismiss";
+export type BookingAction = "cancel" | "complete" | "dismiss" | "luggage";
 
 export type NotificationPayload = {
   to: string;
@@ -80,4 +81,5 @@ export type NotificationPayload = {
   dropoffLocation?: string;
   status: BookingStatus;
   type: "create" | "update";
+  link?: string;
 };

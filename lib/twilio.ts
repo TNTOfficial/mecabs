@@ -62,6 +62,8 @@ export const verifyCode = async (
 };
 
 export const sendSMSNotification = async (payload: NotificationPayload) => {
+  console.log("I'm getting calledd!", "in create booking");
+
   try {
     const message =
       payload.type === "create"
@@ -70,7 +72,12 @@ export const sendSMSNotification = async (payload: NotificationPayload) => {
           }) has been confirmed.\n\nPickup: ${
             payload.pickupLocation
           }\nDate/Time: ${payload.pickupDateTime.toLocaleString()}\n${
-            payload.dropoffLocation ? `Dropoff: ${payload.dropoffLocation}` : ""
+            payload.dropoffLocation
+              ? `Dropoff: ${payload.dropoffLocation}. ${
+                  payload?.link &&
+                  `Please notify us when you have picked your luggage by visiting this link. ${payload.link}`
+                }`
+              : ""
           }`
         : `Hello ${payload.passengerName}! Your booking (ID: ${
             payload.bookingId
@@ -78,7 +85,10 @@ export const sendSMSNotification = async (payload: NotificationPayload) => {
             payload.pickupLocation
           }\nNew Date/Time: ${payload.pickupDateTime.toLocaleString()}\n${
             payload.dropoffLocation
-              ? `New dropoff: ${payload.dropoffLocation}`
+              ? `New dropoff: ${payload.dropoffLocation} . ${
+                  payload?.link &&
+                  `Please notify us when you have picked your luggage by visiting this link. ${payload.link}`
+                }`
               : ""
           }`;
     client.messages.create({

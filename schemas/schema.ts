@@ -57,6 +57,14 @@ export const LeadSchema = z.object({
   leadId: z.string().optional(),
 });
 
+export const manageBookingSchema = z.object({
+  bookingId: z.string().min(1, "Booking ID is required"),
+  name: z.string().min(1, "Name is required"),
+});
+export const luggageUpdateSchema = z.object({
+  isLuggagePicked: z.boolean(),
+  luggageRemarks: z.string().optional(),
+});
 const CoordinatesSchema = z.object({
   lat: z.number(),
   lng: z.number(),
@@ -91,6 +99,7 @@ export const BookingSchema = z.object({
     "wheelchair",
     "anyavailable",
   ]),
+  priceMode: z.enum(["fixedfare", "meterfare"]),
   babySeat: z.boolean().default(false),
   airportPickup: z.boolean().default(false),
   flightNumber: z.string().optional().nullable(),

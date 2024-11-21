@@ -12,6 +12,8 @@ export const publicRoutes = [
   "/terms",
   "/test",
   "/blogs",
+  "/areas-we-serve",
+  "/manage-bookings",
 ];
 
 export const protectedRoutes = [
@@ -20,6 +22,7 @@ export const protectedRoutes = [
   "/dashboard/user-bookings",
   "/dashboard/leads",
   "/dashboard/ip-trackings",
+  "/dashboard/blogs",
   // ... other protected routes
 ];
 /**

@@ -169,6 +169,12 @@ export default function Home() {
             >
               Book Now
             </Link>
+            <Link
+              href="/manage-bookings"
+              className="text-white bg-black py-4 px-16 hover:scale-95 transition-all duration-300 hover:shadow-sm shadow-none hover:shadow-blue-700 inline-block text-nowrap border-none rounded-[50px]"
+            >
+              Manage Bookings
+            </Link>
 
             <Link
               href="tel: +91 0000000000"
