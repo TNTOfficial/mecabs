@@ -1,6 +1,5 @@
 "use server";
 
-import { BookingAction } from "@/features/admin/booking/types";
 import { checkUserAccess } from "@/lib/auth-gaurd";
 import { db } from "@/lib/db";
 import { BookingStatus } from "@prisma/client";
@@ -8,7 +7,7 @@ import { revalidatePath } from "next/cache";
 
 interface handleBookingParams {
   bookingId: string;
-  action: BookingAction;
+  action: "cancel" | "complete" | "dismiss";
   remarks?: string;
 }
 
