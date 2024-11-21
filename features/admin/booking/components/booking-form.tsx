@@ -93,6 +93,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [dropoffCoordinates, setDropoffCoordinates] =
     useState<google.maps.LatLngLiteral | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [error, setError] = useState<string | undefined>();
 
@@ -1365,13 +1366,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     </FormItem>
                   )}
                 />
-                {distance && (
+                {/* {distance && (
                   <div className="mt-4 p-4 bg-muted rounded-lg space-y-2">
                     <p className="text-sm text-gray-600">
                       Estimated Distance: {distance}
                     </p>
                     <p className="text-sm text-gray-600">
-                      {/* Estimated Duration: {duration} */}
+                      Estimated Duration: {duration}
                     </p>
                     {estimatedPrice && (
                       <p className="text-lg font-semibold">
@@ -1384,7 +1385,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                       </p>
                     )}
                   </div>
-                )}
+                )} */}
 
                 {/* Add rest of the form fields... */}
 

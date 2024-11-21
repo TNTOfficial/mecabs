@@ -112,7 +112,7 @@ export const BlogForm: React.FC<BlogFormProps> = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <FormField
           control={form.control}
           name="title"
@@ -207,7 +207,7 @@ export const BlogForm: React.FC<BlogFormProps> = ({
                 </FormControl>
               ) : (
                 <div className="relative">
-                  <div className="relative h-40 w-full">
+                  <div className="relative aspect-square w-full">
                     <Image
                       src={previewImage}
                       alt="Preview"
