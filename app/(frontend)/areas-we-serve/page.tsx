@@ -12,6 +12,7 @@ import { BsLuggageFill } from "react-icons/bs";
 import { MdWorkspacePremium } from "react-icons/md";
 import bgshap from "@/public/bgshap.webp";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import Link from "next/link";
 
 const page = () => {
   const makeTrip = [
@@ -33,66 +34,246 @@ const page = () => {
   ];
 
   const cites = [
-    { cityName: "Aintree" },
-    { cityName: "Altona" },
-    { cityName: "Berwick" },
-    { cityName: "Box hill" },
-    { cityName: "Brighton" },
-    { cityName: "Brunswick" },
-    { cityName: "Bundoora" },
-    { cityName: "Camberwell" },
-    { cityName: "Caroline springs" },
-    { cityName: "Coburg" },
-    { cityName: "Cranbourne" },
-    { cityName: "Craigieburn" },
-    { cityName: "Croydon" },
-    { cityName: "Dandenong" },
-    { cityName: "Derrimut" },
-    { cityName: "Docklands" },
-    { cityName: "Doncaster" },
-    { cityName: "Eltham" },
-    { cityName: "Epping" },
-    { cityName: "Essendon" },
-    { cityName: "Fitzroy" },
-    { cityName: "Footscray" },
-    { cityName: "Frankston" },
-    { cityName: "Glen iris" },
-    { cityName: "Glen waverley" },
-    { cityName: "Greensborough" },
-    { cityName: "Heidelberg" },
-    { cityName: "Hawthorn" },
-    { cityName: "Hoppers crossing" },
-    { cityName: "Kew" },
-    { cityName: "Keysborough" },
-    { cityName: "Lara" },
-    { cityName: "Laverton" },
-    { cityName: "Malvern" },
-    { cityName: "Melton" },
-    { cityName: "Moone ponds" },
-    { cityName: "Moorabbin" },
-    { cityName: "Morington" },
-    { cityName: "Mount eliza" },
-    { cityName: "Mount martha" },
-    { cityName: "Narre warren" },
-    { cityName: "Newport" },
-    { cityName: "Parkville" },
-    { cityName: "Pakenham" },
-    { cityName: "Point cook" },
-    { cityName: "Port melbourne" },
-    { cityName: "Prahran" },
-    { cityName: "Preston" },
-    { cityName: "Ricmond" },
-    { cityName: "Ringwood" },
-    { cityName: "South morang" },
-    { cityName: "South yarra" },
-    { cityName: "South Melbourne" },
-    { cityName: "South Bank" },
-    { cityName: "St kilda" },
-    { cityName: "Sunshine" },
-    { cityName: "Toorak" },
-    { cityName: "Tullamarine" },
-    { cityName: "Werribee" },
-    { cityName: "Yaraville" },
+    {
+      cityName: "Aintree",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Altona",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Berwick",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Box hill",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Brighton",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Brunswick",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Bundoora",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Camberwell",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Caroline springs",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Coburg",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Cranbourne",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Craigieburn",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Croydon",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Dandenong",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Derrimut",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Docklands",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Doncaster",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Eltham",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Epping",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Essendon",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Fitzroy",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Footscray",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Frankston",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Glen iris",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Glen waverley",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Greensborough",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Heidelberg",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Hawthorn",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Hoppers crossing",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Kew",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Keysborough",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Lara",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Laverton",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Malvern",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Melton",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Moone ponds",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Moorabbin",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Morington",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Mount eliza",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Mount martha",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Narre warren",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Newport",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Parkville",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Pakenham",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Point cook",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Port melbourne",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Prahran",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Preston",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Ricmond",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Ringwood",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "South morang",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "South yarra",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "South Melbourne",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "South Bank",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "St kilda",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Sunshine",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Toorak",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Tullamarine",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Werribee",
+      linkPath: "/areas-we-serve/aintree"
+    },
+    {
+      cityName: "Yaraville",
+      linkPath: "/areas-we-serve/aintree"
+    },
   ];
 
   return (
@@ -147,12 +328,13 @@ const page = () => {
                         className="flex-[1_1_160px] max-sm:flex-[1_1_120px]"
                         key={idx}
                       >
-                        <div className="flex justify-start mb-3 items-center gap-3">
+                        <Link
+                          href={city.linkPath} className="flex justify-start mb-3 items-center gap-3">
                           <IoCheckmarkCircleSharp className="text-blue-300 dark:text-white text-[1.3rem]" />
                           <span className="tetx-gray-600 dark:text-white text-[1rem] font-light text-nowrap">
                             {city.cityName}
                           </span>
-                        </div>
+                        </Link>
                       </li>
                     );
                   })}
