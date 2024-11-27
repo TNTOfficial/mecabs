@@ -249,6 +249,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     setParentBookingId(bookingId);
     form.setValue("isReturnBooking", true);
     form.setValue("parentBookingId", bookingId);
+    form.setValue("bookingMode", "later");
 
     // Swap locations
     setTimeout(() => {
@@ -876,7 +877,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       >
         <div className="flex justify-between items-center p-4">
           <h2 className="font-semibold">
-            {isEditBooking ? "Edit Booking" : "Book a Ride"}
+            {isEditBooking
+              ? "Edit Booking"
+              : isReturnBooking
+              ? "Return Booking Details"
+              : "Book a Ride"}
           </h2>
 
           {!isEditBooking && (
@@ -1075,7 +1080,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                       name="pickupDateTime"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Pickup Date & Time</FormLabel>
+                          <FormLabel>
+                            {isReturnBooking
+                              ? "Return Pickup Date & Time"
+                              : "Pickup Date & Time"}
+                          </FormLabel>
                           <FormControl>
                             <Input
                               type="datetime-local"
@@ -1413,22 +1422,22 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 />
                 {distance && (
                   <div className="mt-4 p-4 bg-muted rounded-lg space-y-2">
-                    <p className="text-sm text-gray-600">
+                    {/* <p className="text-sm text-gray-600">
                       Estimated Distance: {distance}
-                    </p>
+                    </p> */}
                     {/* <p className="text-sm text-gray-600">
                       Estimated Duration: {duration}
                     </p> */}
-                    {estimatedPrice && (
+                    {/* {estimatedPrice && (
                       <p className="text-lg font-semibold">
                         Estimated Price: ${estimatedPrice.toFixed(2)}
                       </p>
-                    )}
-                    {tollCount > 0 && (
+                    )} */}
+                    {/* {tollCount > 0 && (
                       <p className="text-sm text-gray-600">
                         Toll Roads: {tollCount}
                       </p>
-                    )}
+                    )} */}
                   </div>
                 )}
 
