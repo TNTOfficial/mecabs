@@ -61,8 +61,8 @@ import { SuccessModal } from "./success-modal";
 import Link from "next/link";
 import { Booking } from "../types";
 import { updateBooking } from "@/actions/bookings/update-booking";
-import { EmailModal } from "./email-modal";
-import { updateLeadEmail } from "@/actions/leads/update-lead-email";
+// import { EmailModal } from "./email-modal";
+// import { updateLeadEmail } from "@/actions/leads/update-lead-email";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const bookingTypes = {
@@ -108,9 +108,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   // const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
   const [parentBookingId, setParentBookingId] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
+  // const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
   const [isHourlyBooking, setIsHourlyBooking] = useState<boolean>(false);
-  const [leadId, setLeadId] = useState<string | undefined>("");
+  // const [leadId, setLeadId] = useState<string | undefined>("");
   const [bookingMode, setBookingMode] = useState<"now" | "later">("now");
 
   const [isReturnBooking, setIsReturnBooking] = useState<boolean>(false);
@@ -740,8 +740,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               //Showing email modal if there is leadId
               if (response.leadId) {
                 console.log(response);
-                setLeadId(response.leadId);
-                setShowEmailModal(true);
+                // setLeadId(response.leadId);
+                // setShowEmailModal(true);
               } else {
                 setShowSuccessModal(true);
               }
@@ -821,7 +821,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         onReset={resetForm}
       />
 
-      {showEmailModal && (
+      {/* {showEmailModal && (
         <EmailModal
           isOpen={showEmailModal}
           onClose={() => {
@@ -848,7 +848,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             });
           }}
         />
-      )}
+      )} */}
       {/* {showLoginModal && (
         <Modal
           open={showLoginModal}

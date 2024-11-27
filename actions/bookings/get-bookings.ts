@@ -16,6 +16,7 @@ interface GetBookingParams {
   filters: BookingFilters;
   userId?: string;
   phoneNumber: string;
+  email: string;
 }
 
 export const getBookings = async ({
@@ -24,6 +25,7 @@ export const getBookings = async ({
   filters,
   userId,
   phoneNumber,
+  email,
 }: GetBookingParams): Promise<BookingsResponse> => {
   try {
     const user = await checkUserAccess();
@@ -59,7 +61,7 @@ export const getBookings = async ({
     }
 
     const where: Prisma.BookingWhereInput = {
-      ...(user.role !== "ADMIN" && { userId } && { phoneNumber }),
+      ...(user.role !== "ADMIN" && { userId } && { phoneNumber } && { email }),
       ...(filters.search && {
         OR: [
           {
