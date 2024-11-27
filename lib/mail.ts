@@ -106,6 +106,8 @@ export const sendEmailNotification = async (payload: NotificationPayload) => {
 export const sendLuggageEmailNotification = async (
   payload: LuggageNotificationPayload
 ) => {
+  console.log("Sending luggage email");
+
   if (!payload.email) {
     throw new Error("Email is required for email notification");
   }

@@ -96,6 +96,7 @@ model Booking {
   babySeat        Boolean     @default(false)
   airportPickup   Boolean     @default(false)
   isLuggagePicked Boolean     @default(false)
+  isReminded      Boolean     @default(false)
   flightNumber    String?
 
   // Payment details

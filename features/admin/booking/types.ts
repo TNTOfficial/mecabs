@@ -37,6 +37,7 @@ export interface Booking {
   notes?: string;
   updatedAt: Date;
   code?: string;
+  isReminded: boolean;
 }
 
 export type ReturnBooking = Omit<Booking, "returnBookings">;
@@ -97,5 +98,3 @@ export type LuggageNotificationPayload = {
   phoneNumber?: string;
   email?: string;
 };
-
-
