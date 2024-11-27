@@ -93,10 +93,16 @@ interface UserBookingsListProps {
   initialData: BookingsResponse;
 }
 
+const LoadingSpinner = () => (
+  <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="w-12 h-12 border-4 border-t-blue-500 border-blue-200 rounded-full animate-spin"></div>
+  </div>
+);
 export const UserBookingsList: React.FC<UserBookingsListProps> = ({
   initialData,
 }) => {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [editSelectedBooking, setEditSelectedBooking] =
     useState<Booking | null>(null);
   const [bookings, setBookings] = useState<Booking[]>(
@@ -121,6 +127,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
 
   const fetchBookings = useCallback(async () => {
     try {
+      setIsPageLoading(true);
       const response = await getUserBookings(
         currentPage,
         ITEMS_PER_PAGE,
@@ -136,6 +143,8 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
     } catch (error) {
       console.error("Error fetching bookings:", error);
       toast.error("Failed to fetch bookings");
+    } finally {
+      setIsPageLoading(false);
     }
   }, [currentPage, filters]);
 
@@ -224,6 +233,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
   };
   return (
     <>
+      {(isPageLoading || isLoading) && <LoadingSpinner />}
       <div className="space-y-4">
         <DataFilters
           config={filterConfig}
