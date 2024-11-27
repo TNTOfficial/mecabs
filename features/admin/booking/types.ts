@@ -33,8 +33,10 @@ export interface Booking {
   dropoffCoordinates?: Coordinates;
   returnBookings?: ReturnBooking[];
   isLuggagePicked?: boolean;
+  flightNumber?: string;
   notes?: string;
   updatedAt: Date;
+  code?: string;
 }
 
 export type ReturnBooking = Omit<Booking, "returnBookings">;
@@ -82,4 +84,18 @@ export type NotificationPayload = {
   status: BookingStatus;
   type: "create" | "update";
   link?: string;
+  code?: string;
+  price?: number;
+  vehicleType?: string;
+  paymentMethod?: string;
+  notes?: string;
 };
+
+export type LuggageNotificationPayload = {
+  bookingId: string;
+  passengerName: string;
+  phoneNumber?: string;
+  email?: string;
+};
+
+

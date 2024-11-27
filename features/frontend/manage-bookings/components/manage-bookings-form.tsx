@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -57,7 +57,7 @@ export const ManageBookingsForm = () => {
   const manageBokingsForm = useForm<z.infer<typeof manageBookingSchema>>({
     resolver: zodResolver(manageBookingSchema),
     defaultValues: {
-      bookingId: "",
+      code: "",
       name: "",
     },
   });
@@ -70,6 +70,17 @@ export const ManageBookingsForm = () => {
       luggageRemarks: "",
     },
   });
+
+  useEffect(() => {
+    if (error || success) {
+      const timer = setTimeout(() => {
+        setError("");
+        setSuccess("");
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [error, success]);
 
   const onManageBookingsSubmit = (
     values: z.infer<typeof manageBookingSchema>
@@ -118,8 +129,13 @@ export const ManageBookingsForm = () => {
         }
 
         setIsLuggageDialogOpen(false);
+        // if (result.booking) {
+        //   setBooking(result.booking);
+        // }
         setSuccess(result.success || "Luggage pickup updated successfully");
-        setStep("hidden");
+        setTimeout(() => {
+          setStep("hidden");
+        }, 2000);
       } catch {
         setLuggageUpdateError("An unexpected error occurred");
       }
@@ -177,10 +193,7 @@ export const ManageBookingsForm = () => {
             <Button
               variant="default"
               onClick={() => {
-                setSuccess("");
-                setError("");
                 resetForm();
-                setStep("hidden");
               }}
             >
               Back
@@ -219,16 +232,16 @@ export const ManageBookingsForm = () => {
                     />
                     <FormField
                       control={manageBokingsForm.control}
-                      name="bookingId"
+                      name="code"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-blue-800">
-                            Booking ID
+                            Booking Code
                           </FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="Enter Booking ID"
+                              placeholder="Enter Booking Code"
                               className="focus:ring-2 focus:ring-blue-500"
                             />
                           </FormControl>
@@ -263,7 +276,6 @@ export const ManageBookingsForm = () => {
                 setStep("check");
                 setSuccess("");
                 setError("");
-                resetForm();
               }}
             >
               Back
@@ -274,57 +286,69 @@ export const ManageBookingsForm = () => {
           </div>
         )}
         {step === "update" && booking && !booking.isLuggagePicked && (
-          <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardHeader className="flex flex-row items-center justify-between border-b pb-3">
-              <CardTitle className="flex items-center space-x-2 text-xl text-blue-800">
-                <Truck className="h-6 w-6 text-blue-500" />
-                <span>Booking Details</span>
-              </CardTitle>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={resetForm}
-                className="text-gray-500 hover:text-red-500"
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Passenger</TableHead>
-                    <TableHead>Contact</TableHead>
-                    <TableHead>Action</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow key={booking.id}>
-                    <TableCell className="font-medium">
-                      {booking.passengerName}
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="h-4 w-4 text-green-500" />
-                        <span>{booking.phoneNumber}</span>
-                      </div>
-                    </TableCell>
-                    {!booking.isLuggagePicked && (
-                      <TableCell>
-                        <Button
-                          onClick={() => setIsLuggageDialogOpen(true)}
-                          className="bg-blue-600 hover:bg-blue-700 transition-colors"
-                        >
-                          Update Luggage Info
-                        </Button>
+          <>
+            <Button
+              variant="default"
+              onClick={() => {
+                setStep("check");
+                setSuccess("");
+                setError("");
+              }}
+            >
+              Back
+            </Button>
+            <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardHeader className="flex flex-row items-center justify-between border-b pb-3">
+                <CardTitle className="flex items-center space-x-2 text-xl text-blue-800">
+                  <Truck className="h-6 w-6 text-blue-500" />
+                  <span>Booking Details</span>
+                </CardTitle>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={resetForm}
+                  className="text-gray-500 hover:text-red-500"
+                >
+                  <X className="h-5 w-5" />
+                </Button>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Passenger</TableHead>
+                      <TableHead>Contact</TableHead>
+                      <TableHead>Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow key={booking.id}>
+                      <TableCell className="font-medium">
+                        {booking.passengerName}
                       </TableCell>
-                    )}
-                  </TableRow>
-                </TableBody>
-              </Table>
-              {success && <FormSuccess message={success} />}
-            </CardContent>
-          </Card>
+                      <TableCell>
+                        <div className="flex items-center space-x-2">
+                          <MapPin className="h-4 w-4 text-green-500" />
+                          <span>{booking.phoneNumber}</span>
+                        </div>
+                      </TableCell>
+                      {!booking.isLuggagePicked && (
+                        <TableCell>
+                          <Button
+                            onClick={() => setIsLuggageDialogOpen(true)}
+                            className="bg-blue-600 hover:bg-blue-700 transition-colors"
+                          >
+                            Update Luggage Info
+                          </Button>
+                        </TableCell>
+                      )}
+                    </TableRow>
+                  </TableBody>
+                </Table>
+                {success && <FormSuccess message={success} />}
+              </CardContent>
+            </Card>
+          </>
         )}
 
         {/* Luggage Pickup Update Dialog */}

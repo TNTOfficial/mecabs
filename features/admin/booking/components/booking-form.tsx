@@ -78,6 +78,13 @@ interface BookingFormProps {
   booking?: Booking;
   onEditSuccess?: () => void;
 }
+const generateRandomCode = (length: 5) => {
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += Math.floor(Math.random() * 10).toString(); // Random digit from 0-9
+  }
+  return result;
+};
 export const BookingForm: React.FC<BookingFormProps> = ({
   isEditBooking,
   booking,
@@ -144,6 +151,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       pickupCoordinates: undefined,
       dropoffCoordinates: undefined,
       priceMode: "fixedfare",
+      code: generateRandomCode(5),
+      flightNumber: "",
     },
   });
 
@@ -208,6 +217,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         dropoffLocation: booking.dropoffLocation || undefined,
 
         pickupDateTime: new Date(booking.pickupDateTime),
+        code: booking.code,
+        flightNumber: booking?.flightNumber,
       });
 
       if (booking.pickupCoordinates) {
@@ -528,6 +539,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         dropoffCoordinates: booking?.dropoffCoordinates || undefined,
         phoneNumber: booking?.phoneNumber || "",
         priceMode: "fixedfare",
+        flightNumber: booking?.flightNumber,
       });
       // setPickupCoordinates(null);
       // setDropoffCoordinates(null);
@@ -622,6 +634,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           //checking if pickup location includes airport
           if (fieldName === "pickupCoordinates") {
+            console.log(results[0]);
+
             const isAirport = checkIfAirport(results[0].formatted_address);
             setShowAirportOption(isAirport);
             if (!isAirport) {
@@ -1197,6 +1211,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 />
                 <FormField
                   control={form.control}
+                  name="code"
+                  defaultValue={generateRandomCode(5)}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input {...field} type="hidden" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
@@ -1235,37 +1262,55 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   )}
                 />
                 {showAirportOption && (
-                  <div className="flex flex-row items-start justify-between">
+                  <>
                     <FormField
                       control={form.control}
-                      name="airportPickup"
+                      name="flightNumber"
                       render={({ field }) => (
-                        <FormItem className="flex items-center gap-2">
-                          <FormLabel> Airport Inside Pickup?</FormLabel>
+                        <FormItem>
+                          <FormLabel>Flight Number</FormLabel>
                           <FormControl>
-                            <Switch
-                              checked={isAirportPickup}
-                              onCheckedChange={(checked) => {
-                                setIsAirportPickup(checked);
-                                field.onChange(checked);
-                              }}
-                            />
+                            <Input {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-5 w-5" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Extra $35 is charged for inside airport pickup.</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
+
+                    <div className="flex flex-row items-start justify-between">
+                      <FormField
+                        control={form.control}
+                        name="airportPickup"
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-2">
+                            <FormLabel> Airport Inside Pickup?</FormLabel>
+                            <FormControl>
+                              <Switch
+                                checked={isAirportPickup}
+                                onCheckedChange={(checked) => {
+                                  setIsAirportPickup(checked);
+                                  field.onChange(checked);
+                                }}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Info className="h-5 w-5" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>
+                              Extra $35 is charged for inside airport pickup.
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  </>
                 )}
                 {activeTab === bookingTypes.PARCEL && (
                   <FormField
@@ -1326,7 +1371,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
-                              defaultValue={field.value}
+                              defaultValue="fixedfare"
                               className="flex flex-row space-x-4"
                             >
                               <FormItem className="flex items-center space-x-2">
@@ -1366,14 +1411,14 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     </FormItem>
                   )}
                 />
-                {/* {distance && (
+                {distance && (
                   <div className="mt-4 p-4 bg-muted rounded-lg space-y-2">
                     <p className="text-sm text-gray-600">
                       Estimated Distance: {distance}
                     </p>
-                    <p className="text-sm text-gray-600">
+                    {/* <p className="text-sm text-gray-600">
                       Estimated Duration: {duration}
-                    </p>
+                    </p> */}
                     {estimatedPrice && (
                       <p className="text-lg font-semibold">
                         Estimated Price: ${estimatedPrice.toFixed(2)}
@@ -1385,7 +1430,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                       </p>
                     )}
                   </div>
-                )} */}
+                )}
 
                 {/* Add rest of the form fields... */}
 

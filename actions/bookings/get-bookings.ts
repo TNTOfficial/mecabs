@@ -120,7 +120,9 @@ export const getBookings = async ({
       status: booking.status,
       hours: booking.hours ?? undefined,
       price: booking.price,
+      code: booking.code ?? "",
       isLuggagePicked: booking.isLuggagePicked,
+      flightNumber: booking.flightNumber ?? "",
       returnBookings: booking.returnBookings?.map((returnBooking) => ({
         id: returnBooking.id,
         userId: returnBooking.userId ?? "",
@@ -143,6 +145,8 @@ export const getBookings = async ({
         status: returnBooking.status,
         price: returnBooking.price,
         isLuggagePicked: returnBooking.isLuggagePicked,
+        flightNumber: booking.flightNumber ?? "",
+        code: booking.code ?? "",
         updatedAt: returnBooking.updatedAt,
       })),
       notes: booking.notes ?? undefined,

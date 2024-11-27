@@ -13,17 +13,20 @@ export const getManageBookings = async (
       return { error: "Invalid fields" };
     }
 
-    const { bookingId } = validatedFields.data;
+    const { code } = validatedFields.data;
 
-    // Build dynamic where clause to handle potential null name
-
-    const booking = await db.booking.findUnique({
+    // Use findFirst instead of findUnique to allow for complex where conditions
+    const booking = await db.booking.findFirst({
       where: {
-        id: bookingId,
-        pickupLocation: {
-          startsWith: "airport",
-          mode: "insensitive",
-        },
+        AND: [
+          { code: code },
+          {
+            pickupLocation: {
+              startsWith: "airport",
+              mode: "insensitive",
+            },
+          },
+        ],
       },
       select: {
         id: true,
@@ -46,7 +49,6 @@ export const getManageBookings = async (
       passengerName: booking.passengerName,
       pickDateTime: booking.pickupDateTime,
       phoneNumber: booking.phoneNumber,
-      // Optional additional fields
       pickupLocation: booking.pickupLocation,
       isLuggagePicked: booking.isLuggagePicked,
       luggageRemarks: booking.luggageRemarks,

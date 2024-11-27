@@ -42,6 +42,7 @@ import {
   BookingAction,
   BookingFilters,
   BookingsResponse,
+  LuggageNotificationPayload,
 } from "../types";
 import { handleBooking } from "@/actions/bookings/handle-booking";
 import { BookingActionModal } from "./booking-action-modal";
@@ -49,6 +50,7 @@ import { EditBookingForm } from "./edit-booking-form";
 import { MobileIcon } from "@radix-ui/react-icons";
 import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 import { updateLuggagePickup } from "@/actions/bookings/update-luggage-pickup";
+import { sendLuggagePickupNotification } from "@/actions/bookings/luggage-pickup-notification";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -200,6 +202,26 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
     return <Badge className={variants[status]}>{status}</Badge>;
   };
 
+  const handleNotifyUser = async (booking: Booking) => {
+    console.log("I'm getting called");
+
+    try {
+      const payload: LuggageNotificationPayload = {
+        bookingId: booking.id,
+        passengerName: booking.passengerName,
+        phoneNumber: booking.phoneNumber,
+        email: booking.email,
+      };
+      const result = await sendLuggagePickupNotification(payload);
+      if (result.success) {
+        toast.success(result.success.success);
+      } else {
+        console.error("Failed to send notification:", result.error);
+      }
+    } catch (error) {
+      console.error("Error sending luggage notification:", error);
+    }
+  };
   return (
     <>
       <div className="space-y-4">
@@ -222,6 +244,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                   <TableHead>Pickup & Drop</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Price</TableHead>
+                  <TableHead>Luggage Info Status</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -304,6 +327,32 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                         "TBD"
                       )}
                     </TableCell>
+                    <TableCell>
+                      {!booking.isLuggagePicked &&
+                        booking.pickupLocation
+                          .toLowerCase()
+                          .startsWith("airport") && (
+                          <Button
+                            onClick={async () => {
+                              await handleNotifyUser(booking);
+                            }}
+                            className="text-red-500"
+                          >
+                            Update Luggage Info
+                          </Button>
+                        )}
+                      {booking.isLuggagePicked &&
+                        booking.pickupLocation
+                          .toLowerCase()
+                          .startsWith("airport") && (
+                          <h1>You have already notified about status</h1>
+                        )}
+
+                      {!booking.isLuggagePicked &&
+                        !booking.pickupLocation
+                          .toLowerCase()
+                          .startsWith("airport") && <h1>TBD</h1>}
+                    </TableCell>
 
                     {/* Actions cell */}
                     <TableCell>
@@ -320,13 +369,11 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                               .startsWith("airport") && (
                               <DropdownMenuItem
                                 onClick={() => {
-                                  setSelectedBookingId(booking.id);
-                                  setActionType("luggage");
-                                  setShowActionDialog(true);
+                                  handleNotifyUser(booking);
                                 }}
                                 className="text-red-500"
                               >
-                                Update Luggage Info
+                                Notify user about pickup
                               </DropdownMenuItem>
                             )}
                           <DropdownMenuItem
