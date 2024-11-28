@@ -1,19 +1,28 @@
 "use client";
 
-import { Suspense } from "react";
-import { AdminDashboardResponse, UserDashboardResponse } from "../types";
+import { Suspense, useEffect } from "react";
+import { AdminDashboardResponse } from "../types";
 import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 import { DashboardMetrics } from "./dashboard-metrics";
 import { BookingChart } from "./booking-chart";
 import { VehicleDistribution } from "./vehicle-distribution";
 import { RevenueChart } from "./revenue-chart";
 import { useDashboardData } from "../hooks/use-dashboard-data";
-import { UserBookings } from "./user-bookings";
+import { useRouter } from "next/navigation";
+import { useCurrentUser } from "../../auth/hooks/use-current-user";
+// import { UserBookings } from "./user-bookings";
 // import { UserSpendingChart } from "./user-spendings-chart";
-import { BookingStats } from "./booking-stats";
-import { TotalSpendings } from "./total-spending";
+// import { BookingStats } from "./booking-stats";
+// import { TotalSpendings } from "./total-spending";
 export const Dashboard = () => {
   const { data, isLoading, error, refetch } = useDashboardData();
+  const router = useRouter();
+  const { user } = useCurrentUser();
+  useEffect(() => {
+    if (user?.role === "USER") {
+      router.push("/dashboard/user-bookings");
+    }
+  }, [router, user]);
   if (error) {
     return (
       <div className="p-4 text-red-500">
@@ -72,7 +81,6 @@ export const Dashboard = () => {
                 isLoading={isLoading}
               />
             </Suspense>
-
           </div>
           <div className="w-full lg:w-[calc(70%_-_10px)] basis-[300px] grow-[4] shrink-0">
             <Suspense fallback={<BookingChart data={[]} isLoading={true} />}>
@@ -82,8 +90,6 @@ export const Dashboard = () => {
               />
             </Suspense>
           </div>
-
-
         </div>
 
         <Suspense fallback={<RevenueChart data={[]} isLoading={true} />}>
@@ -96,7 +102,7 @@ export const Dashboard = () => {
     );
   } else {
     // User dashboard
-    const userData = data as UserDashboardResponse;
+    // const userData = data as UserDashboardResponse;
     return (
       <RoleGuard allowedRoles={["USER"]}>
         <div className="flex justify-center items-stretch mb-6">
@@ -107,7 +113,7 @@ export const Dashboard = () => {
             />
           </Suspense> */}
 
-          <Suspense
+          {/* <Suspense
             fallback={
               <BookingStats
                 stats={{ completed: 0, cancelled: 0, active: 0 }}
@@ -116,19 +122,19 @@ export const Dashboard = () => {
             }
           >
             <BookingStats stats={userData.bookingStats} isLoading={isLoading} />
-          </Suspense>
+          </Suspense> */}
         </div>
 
-        <Suspense fallback={<TotalSpendings amount={0} isLoading={true} />}>
+        {/* <Suspense fallback={<TotalSpendings amount={0} isLoading={true} />}>
           <TotalSpendings amount={userData.totalSpent} isLoading={isLoading} />
-        </Suspense>
+        </Suspense> */}
 
-        <Suspense fallback={<UserBookings bookings={[]} isLoading={true} />}>
+        {/* <Suspense fallback={<UserBookings bookings={[]} isLoading={true} />}>
           <UserBookings
             bookings={userData.userBookings}
             isLoading={isLoading}
           />
-        </Suspense>
+        </Suspense> */}
       </RoleGuard>
     );
   }

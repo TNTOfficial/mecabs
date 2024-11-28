@@ -58,7 +58,7 @@ export const LeadSchema = z.object({
 });
 
 export const manageBookingSchema = z.object({
-  bookingId: z.string().min(1, "Booking ID is required"),
+  code: z.string().min(5, "Booking code is required"),
   name: z.string().min(1, "Name is required"),
 });
 export const luggageUpdateSchema = z.object({
@@ -81,6 +81,7 @@ export const BookingSchema = z.object({
   passengerName: z.string().min(1, "Passenger name is required"),
   phoneNumber: z.string().min(2, "Valid phone number is required"),
   recipientName: z.string().optional(),
+  code: z.string().optional(),
   // Location details
   pickupLocation: z.string().optional(),
   pickupCoordinates: CoordinatesSchema,
@@ -102,7 +103,7 @@ export const BookingSchema = z.object({
   priceMode: z.enum(["fixedfare", "meterfare"]),
   babySeat: z.boolean().default(false),
   airportPickup: z.boolean().default(false),
-  flightNumber: z.string().optional().nullable(),
+  flightNumber: z.string().optional(),
 
   // payment details
   price: z.number().optional().nullable(),
@@ -119,5 +120,21 @@ export const BookingSchema = z.object({
   parentBookingId: z.string().optional().nullable(),
 });
 
+export const contactFormSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be atleast of two characters",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  subject: z.string().min(5, {
+    message: "Subject must be at least 5 characters.",
+  }),
+  message: z.string().min(10, {
+    message: "Message must be at least 10 characters.",
+  }),
+});
+
 export type BookingFormData = z.infer<typeof BookingSchema>;
 export type Coordinates = z.infer<typeof CoordinatesSchema>;
+export type ContactFormValues = z.infer<typeof contactFormSchema>;

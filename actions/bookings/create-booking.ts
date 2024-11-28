@@ -8,7 +8,7 @@ import { getUserByPhone } from "@/utils/user";
 import { BookingStatus, Prisma, VehicleType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { NotificationPayload } from "@/features/admin/booking/types";
-import { sendSMSNotification } from "@/lib/twilio";
+import { sendSMSNotification, sendWhatsAppNotification } from "@/lib/twilio";
 import { sendEmailNotification } from "@/lib/mail";
 
 // Updated type to match schema requirements
@@ -20,6 +20,7 @@ type CreateBookingData = Omit<
 export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
   try {
     const validatedFields = BookingSchema.safeParse(values);
+    console.log(validatedFields);
 
     if (!validatedFields.success) {
       return { error: "Invalid fields" };
@@ -77,6 +78,7 @@ export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
         parentBookingId: validatedFields.data.parentBookingId,
         email: validatedFields.data.email,
         priceMode: validatedFields.data.priceMode,
+        code: validatedFields.data.code,
       };
 
       const booking = await tx.booking.create({
@@ -141,9 +143,39 @@ export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
       dropoffLocation: booking.booking.dropoffLocation || undefined,
       status: booking.booking.status,
       type: "create",
-      link: booking.booking.pickupLocation.toLowerCase().includes("airport")
-        ? `http://localhost:3000/manage-bookings`
-        : "",
+      link:
+        booking.booking.pickupLocation.toLowerCase().includes("airport") &&
+        booking.booking.bookingMode === "later"
+          ? `http://localhost:3000/manage-bookings`
+          : "",
+      code:
+        booking.booking.pickupLocation.toLowerCase().includes("airport") &&
+        booking.booking.bookingMode === "later"
+          ? booking.booking.code!
+          : "",
+    };
+    const whatsAppNotificationPayload: NotificationPayload = {
+      to: validatedFields.data.phoneNumber || (user?.phoneNumber as string),
+      bookingId: booking.booking.id,
+      passengerName: booking.booking.passengerName,
+      pickupDateTime: booking.booking.pickupDateTime,
+      pickupLocation: booking.booking.pickupLocation,
+      dropoffLocation: booking.booking.dropoffLocation || undefined,
+      status: booking.booking.status,
+      type: "create",
+      link:
+        booking.booking.pickupLocation.toLowerCase().includes("airport") &&
+        booking.booking.bookingMode === "later"
+          ? `http://localhost:3000/manage-bookings`
+          : "",
+      code:
+        booking.booking.pickupLocation.toLowerCase().includes("airport") &&
+        booking.booking.bookingMode === "later"
+          ? booking.booking.code!
+          : "",
+      price: booking.booking.price || undefined,
+      vehicleType: booking.booking.vehicleType,
+      notes: booking.booking.notes || undefined,
     };
 
     const emailNotificationPayload: NotificationPayload = {
@@ -155,11 +187,18 @@ export const createBooking = async (values: z.infer<typeof BookingSchema>) => {
       dropoffLocation: booking.booking.dropoffLocation || undefined,
       status: booking.booking.status,
       type: "create",
-      link: booking.booking.pickupLocation.toLowerCase().includes("airport")
-        ? "http://localhost:3000/manage-bookings"
-        : "",
+      link:
+        booking.booking.pickupLocation.toLowerCase().includes("airport") &&
+        booking.booking.bookingMode === "later"
+          ? "http://localhost:3000/manage-bookings"
+          : "",
+      code:
+        booking.booking.pickupLocation.toLowerCase().includes("airport") &&
+        booking.booking.bookingMode === "later"
+          ? booking.booking.code!
+          : "",
     };
-
+    await sendWhatsAppNotification(whatsAppNotificationPayload);
     if (booking.booking.phoneNumber.startsWith("+61")) {
       await sendSMSNotification(phoneNotificationPayload);
     } else {

@@ -13,6 +13,7 @@ export const publicRoutes = [
   "/test",
   "/blogs",
   "/areas-we-serve",
+  "/areas-we-serve/aintree",
   "/manage-bookings",
 ];
 

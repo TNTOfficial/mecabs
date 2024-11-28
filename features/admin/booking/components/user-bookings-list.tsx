@@ -42,6 +42,7 @@ import {
   BookingAction,
   BookingFilters,
   BookingsResponse,
+  LuggageNotificationPayload,
 } from "../types";
 import { handleBooking } from "@/actions/bookings/handle-booking";
 import { BookingActionModal } from "./booking-action-modal";
@@ -49,6 +50,7 @@ import { EditBookingForm } from "./edit-booking-form";
 import { MobileIcon } from "@radix-ui/react-icons";
 import { RoleGuard } from "@/features/admin/auth/guard/role-guard";
 import { updateLuggagePickup } from "@/actions/bookings/update-luggage-pickup";
+import { sendLuggagePickupNotification } from "@/actions/bookings/luggage-pickup-notification";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -91,10 +93,16 @@ interface UserBookingsListProps {
   initialData: BookingsResponse;
 }
 
+const LoadingSpinner = () => (
+  <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="w-12 h-12 border-4 border-t-blue-500 border-blue-200 rounded-full animate-spin"></div>
+  </div>
+);
 export const UserBookingsList: React.FC<UserBookingsListProps> = ({
   initialData,
 }) => {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [editSelectedBooking, setEditSelectedBooking] =
     useState<Booking | null>(null);
   const [bookings, setBookings] = useState<Booking[]>(
@@ -119,6 +127,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
 
   const fetchBookings = useCallback(async () => {
     try {
+      setIsPageLoading(true);
       const response = await getUserBookings(
         currentPage,
         ITEMS_PER_PAGE,
@@ -134,6 +143,8 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
     } catch (error) {
       console.error("Error fetching bookings:", error);
       toast.error("Failed to fetch bookings");
+    } finally {
+      setIsPageLoading(false);
     }
   }, [currentPage, filters]);
 
@@ -200,8 +211,29 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
     return <Badge className={variants[status]}>{status}</Badge>;
   };
 
+  const handleNotifyUser = async (booking: Booking) => {
+    console.log("I'm getting called");
+
+    try {
+      const payload: LuggageNotificationPayload = {
+        bookingId: booking.id,
+        passengerName: booking.passengerName,
+        phoneNumber: booking.phoneNumber,
+        email: booking.email,
+      };
+      const result = await sendLuggagePickupNotification(payload, booking.id);
+      if (result.success) {
+        toast.success(result.success.success);
+      } else {
+        console.error("Failed to send notification:", result.error);
+      }
+    } catch (error) {
+      console.error("Error sending luggage notification:", error);
+    }
+  };
   return (
     <>
+      {(isPageLoading || isLoading) && <LoadingSpinner />}
       <div className="space-y-4">
         <DataFilters
           config={filterConfig}
@@ -222,172 +254,216 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                   <TableHead>Pickup & Drop</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Price</TableHead>
+                  <TableHead>Luggage Info Status</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {bookings.map((booking) => (
-                  <TableRow key={booking.id}>
-                    {/* Booking details cell */}
-                    <TableCell>
-                      <div className="space-y-1">
-                        <p className="font-medium">{booking.passengerName}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {booking.vehicleType} • {booking.bookingType} •
-                          {booking.bookingMode}
-                        </p>
-                        {booking.returnBookings &&
-                          booking.returnBookings.length > 0 && (
-                            <Badge variant="outline">
-                              Return Bookings available
-                            </Badge>
+                {bookings.length > 0 ? (
+                  bookings.map((booking) => (
+                    <TableRow key={booking.id}>
+                      {/* Booking details cell */}
+                      <TableCell>
+                        <div className="space-y-1">
+                          <p className="font-medium">{booking.passengerName}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {booking.vehicleType} • {booking.bookingType} •
+                            {booking.bookingMode}
+                          </p>
+                          {booking.returnBookings &&
+                            booking.returnBookings.length > 0 && (
+                              <Badge variant="outline">
+                                Return Bookings available
+                              </Badge>
+                            )}
+                        </div>
+                      </TableCell>
+
+                      {/* Pickup & Drop cell */}
+                      <TableCell>
+                        <div className="space-y-1">
+                          <div className="flex items-center space-x-2">
+                            <Calendar className="h-5 w-5 text-blue-500" />
+                            <span className="text-sm">
+                              {format(new Date(booking.pickupDateTime), "PPP")}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Clock className="h-4 w-4 text-orange-500" />
+                            <span className="text-sm">
+                              {format(new Date(booking.pickupDateTime), "p")}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <MapPin className="h-4 w-4 text-green-500" />
+                            <span className="text-sm">
+                              {booking.pickupLocation}
+                            </span>
+                          </div>
+                          {booking.dropoffLocation ? (
+                            <div className="flex items-center space-x-2">
+                              <MapPin className="h-4 w-4 text-red-500" />
+                              <span className="text-sm">
+                                {booking.dropoffLocation}
+                              </span>
+                            </div>
+                          ) : (
+                            ""
                           )}
-                      </div>
-                    </TableCell>
-
-                    {/* Pickup & Drop cell */}
-                    <TableCell>
-                      <div className="space-y-1">
-                        <div className="flex items-center space-x-2">
-                          <Calendar className="h-5 w-5 text-blue-500" />
-                          <span className="text-sm">
-                            {format(new Date(booking.pickupDateTime), "PPP")}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Clock className="h-4 w-4 text-orange-500" />
-                          <span className="text-sm">
-                            {format(new Date(booking.pickupDateTime), "p")}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <MapPin className="h-4 w-4 text-green-500" />
-                          <span className="text-sm">
-                            {booking.pickupLocation}
-                          </span>
-                        </div>
-                        {booking.dropoffLocation ? (
                           <div className="flex items-center space-x-2">
-                            <MapPin className="h-4 w-4 text-red-500" />
+                            <MobileIcon className="h-4 w-4 text-red-500" />
                             <span className="text-sm">
-                              {booking.dropoffLocation}
+                              {booking.phoneNumber}
                             </span>
                           </div>
+                          {booking.bookingType === "hourly" && (
+                            <div className="flex items-center space-x-2">
+                              <TimerIcon className="h-4 w-4 text-red-500" />
+                              <span className="text-sm">
+                                {booking.hours} hours
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </TableCell>
+
+                      {/* Status cell */}
+                      <TableCell>{getStatusBadge(booking.status)}</TableCell>
+
+                      {/* Price cell */}
+                      <TableCell>
+                        {booking.price ? (
+                          <span className="font-medium">
+                            ${booking?.price?.toFixed(2)}
+                          </span>
                         ) : (
-                          ""
+                          "TBD"
                         )}
-                        <div className="flex items-center space-x-2">
-                          <MobileIcon className="h-4 w-4 text-red-500" />
-                          <span className="text-sm">{booking.phoneNumber}</span>
-                        </div>
-                        {booking.bookingType === "hourly" && (
-                          <div className="flex items-center space-x-2">
-                            <TimerIcon className="h-4 w-4 text-red-500" />
-                            <span className="text-sm">
-                              {booking.hours} hours
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </TableCell>
+                      </TableCell>
+                      <TableCell>
+                        {!booking.isLuggagePicked &&
+                          booking.pickupLocation
+                            .toLowerCase()
+                            .startsWith("airport") && (
+                            <Button
+                              onClick={() => {
+                                setSelectedBookingId(booking.id);
+                                setActionType("luggage");
+                                setShowActionDialog(true);
+                              }}
+                              className="text-red-500"
+                            >
+                              Update Luggage Info
+                            </Button>
+                          )}
+                        {booking.isLuggagePicked &&
+                          booking.pickupLocation
+                            .toLowerCase()
+                            .startsWith("airport") && (
+                            <h1> Already updated luggage info</h1>
+                          )}
 
-                    {/* Status cell */}
-                    <TableCell>{getStatusBadge(booking.status)}</TableCell>
+                        {!booking.isLuggagePicked &&
+                          !booking.pickupLocation
+                            .toLowerCase()
+                            .startsWith("airport") && <h1>Not Required</h1>}
+                      </TableCell>
 
-                    {/* Price cell */}
-                    <TableCell>
-                      {booking.price ? (
-                        <span className="font-medium">
-                          ${booking?.price?.toFixed(2)}
-                        </span>
-                      ) : (
-                        "TBD"
-                      )}
-                    </TableCell>
+                      {/* Actions cell */}
+                      <TableCell>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="sm">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent>
+                            <RoleGuard allowedRoles={["ADMIN"]}>
+                              {!booking.isLuggagePicked &&
+                                booking.pickupLocation
+                                  .toLowerCase()
+                                  .startsWith("airport") &&
+                                !booking.isReminded && (
+                                  <DropdownMenuItem
+                                    onClick={() => {
+                                      handleNotifyUser(booking);
+                                    }}
+                                    className="text-red-500"
+                                  >
+                                    Notify user about pickup
+                                  </DropdownMenuItem>
+                                )}
 
-                    {/* Actions cell */}
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          {!booking.isLuggagePicked &&
-                            booking.pickupLocation
-                              .toLowerCase()
-                              .startsWith("airport") && (
+                              {booking.isReminded && (
+                                <DropdownMenuItem>
+                                  Already notified about luggage
+                                </DropdownMenuItem>
+                              )}
+                            </RoleGuard>
+                            <DropdownMenuItem
+                              onClick={() => setSelectedBooking(booking)}
+                            >
+                              View Details
+                            </DropdownMenuItem>
+                            {!["completed", "cancelled", "dismissed"].includes(
+                              booking.status
+                            ) && (
                               <DropdownMenuItem
                                 onClick={() => {
-                                  setSelectedBookingId(booking.id);
-                                  setActionType("luggage");
-                                  setShowActionDialog(true);
+                                  setEditSelectedBooking(booking);
+                                  setShowEditDialog(true);
                                 }}
-                                className="text-red-500"
                               >
-                                Update Luggage Info
+                                Edit Booking
                               </DropdownMenuItem>
                             )}
-                          <DropdownMenuItem
-                            onClick={() => setSelectedBooking(booking)}
-                          >
-                            View Details
-                          </DropdownMenuItem>
-                          {!["completed", "cancelled", "dismissed"].includes(
-                            booking.status
-                          ) && (
-                            <DropdownMenuItem
-                              onClick={() => {
-                                setEditSelectedBooking(booking);
-                                setShowEditDialog(true);
-                              }}
-                            >
-                              Edit Booking
-                            </DropdownMenuItem>
-                          )}
-                          {booking.status === BookingStatus.active && (
-                            <>
-                              <DropdownMenuItem
-                                onClick={() => {
-                                  setSelectedBookingId(booking.id);
-                                  setActionType("cancel");
-                                  setShowActionDialog(true);
-                                }}
-                                className="text-red-500"
-                              >
-                                Cancel Booking
-                              </DropdownMenuItem>
+                            {booking.status === BookingStatus.active && (
+                              <>
+                                <DropdownMenuItem
+                                  onClick={() => {
+                                    setSelectedBookingId(booking.id);
+                                    setActionType("cancel");
+                                    setShowActionDialog(true);
+                                  }}
+                                  className="text-red-500"
+                                >
+                                  Cancel Booking
+                                </DropdownMenuItem>
 
-                              <RoleGuard allowedRoles={["ADMIN"]}>
-                                <DropdownMenuItem
-                                  onClick={() => {
-                                    setSelectedBookingId(booking.id);
-                                    setActionType("complete");
-                                    setShowActionDialog(true);
-                                  }}
-                                  className="text-green-500"
-                                >
-                                  Complete Booking
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                  onClick={() => {
-                                    setSelectedBookingId(booking.id);
-                                    setActionType("dismiss");
-                                    setShowActionDialog(true);
-                                  }}
-                                  className="text-orange-500"
-                                >
-                                  Dismiss Booking
-                                </DropdownMenuItem>
-                              </RoleGuard>
-                            </>
-                          )}
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                                <RoleGuard allowedRoles={["ADMIN"]}>
+                                  <DropdownMenuItem
+                                    onClick={() => {
+                                      setSelectedBookingId(booking.id);
+                                      setActionType("complete");
+                                      setShowActionDialog(true);
+                                    }}
+                                    className="text-green-500"
+                                  >
+                                    Complete Booking
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem
+                                    onClick={() => {
+                                      setSelectedBookingId(booking.id);
+                                      setActionType("dismiss");
+                                      setShowActionDialog(true);
+                                    }}
+                                    className="text-orange-500"
+                                  >
+                                    Dismiss Booking
+                                  </DropdownMenuItem>
+                                </RoleGuard>
+                              </>
+                            )}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <div className="flex items-center justify-center font-bold text-2xl">
+                    No Bookings Found!
+                  </div>
+                )}
               </TableBody>
             </Table>
           </CardContent>

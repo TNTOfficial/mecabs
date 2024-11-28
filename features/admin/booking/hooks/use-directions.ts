@@ -53,7 +53,7 @@ export const useDirections = (
         origin: pickUp,
         destination: dropoff,
         travelMode: google.maps.TravelMode.DRIVING,
-        avoidTolls: false,
+        avoidTolls: true,
         optimizeWaypoints: true,
         provideRouteAlternatives: true,
       },

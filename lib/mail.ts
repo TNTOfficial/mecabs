@@ -1,4 +1,8 @@
-import { NotificationPayload } from "@/features/admin/booking/types";
+import { LUGGAGE_PICKUP_MESSAGE } from "@/features/admin/booking/constants/luggage-constants";
+import {
+  LuggageNotificationPayload,
+  NotificationPayload,
+} from "@/features/admin/booking/types";
 import nodemailer from "nodemailer";
 // import path from "path";
 
@@ -87,9 +91,36 @@ export const sendEmailNotification = async (payload: NotificationPayload) => {
             ? `<li>Dropoff Location: ${payload.dropoffLocation}</li>`
             : ""
         }
+        ${
+          payload.pickupLocation.toLowerCase().includes("airport")
+            ? `Please enter this code to verify your luggage status ${payload.code}`
+            : ""
+        }
         <li>Status: ${payload.status}</li>
       </ul>
       <p>Thank you for choosing our service!</p>`;
 
   await sendEmail(payload.to, subject, htmlContent);
+};
+
+export const sendLuggageEmailNotification = async (
+  payload: LuggageNotificationPayload
+) => {
+  console.log("Sending luggage email");
+
+  if (!payload.email) {
+    throw new Error("Email is required for email notification");
+  }
+
+  const subject = `Luggage Pickup Notification - Booking ${payload.bookingId}`;
+  const htmlContent = `
+   <h2>Luggage Pickup Notification</h2>
+    <p>Hello ${payload.passengerName},</p>
+    <p>${LUGGAGE_PICKUP_MESSAGE}</p>
+    <p>Booking ID: ${payload.bookingId}</p>
+    <p>Thank you for choosing our service!</p>
+  `;
+
+  await sendEmail(payload.email, subject, htmlContent);
+  return { success: "Email send successfully!" };
 };

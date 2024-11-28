@@ -16,6 +16,7 @@ interface GetBookingParams {
   filters: BookingFilters;
   userId?: string;
   phoneNumber: string;
+  email: string;
 }
 
 export const getBookings = async ({
@@ -24,6 +25,7 @@ export const getBookings = async ({
   filters,
   userId,
   phoneNumber,
+  email,
 }: GetBookingParams): Promise<BookingsResponse> => {
   try {
     const user = await checkUserAccess();
@@ -59,7 +61,7 @@ export const getBookings = async ({
     }
 
     const where: Prisma.BookingWhereInput = {
-      ...(user.role !== "ADMIN" && { userId } && { phoneNumber }),
+      ...(user.role !== "ADMIN" && { userId } && { phoneNumber } && { email }),
       ...(filters.search && {
         OR: [
           {
@@ -120,7 +122,10 @@ export const getBookings = async ({
       status: booking.status,
       hours: booking.hours ?? undefined,
       price: booking.price,
+      code: booking.code ?? "",
       isLuggagePicked: booking.isLuggagePicked,
+      isReminded: booking.isReminded,
+      flightNumber: booking.flightNumber ?? "",
       returnBookings: booking.returnBookings?.map((returnBooking) => ({
         id: returnBooking.id,
         userId: returnBooking.userId ?? "",
@@ -143,6 +148,9 @@ export const getBookings = async ({
         status: returnBooking.status,
         price: returnBooking.price,
         isLuggagePicked: returnBooking.isLuggagePicked,
+        flightNumber: booking.flightNumber ?? "",
+        code: booking.code ?? "",
+        isReminded: booking.isReminded,
         updatedAt: returnBooking.updatedAt,
       })),
       notes: booking.notes ?? undefined,

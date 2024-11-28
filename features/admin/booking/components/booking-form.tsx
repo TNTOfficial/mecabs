@@ -61,8 +61,8 @@ import { SuccessModal } from "./success-modal";
 import Link from "next/link";
 import { Booking } from "../types";
 import { updateBooking } from "@/actions/bookings/update-booking";
-import { EmailModal } from "./email-modal";
-import { updateLeadEmail } from "@/actions/leads/update-lead-email";
+// import { EmailModal } from "./email-modal";
+// import { updateLeadEmail } from "@/actions/leads/update-lead-email";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const bookingTypes = {
@@ -78,6 +78,13 @@ interface BookingFormProps {
   booking?: Booking;
   onEditSuccess?: () => void;
 }
+const generateRandomCode = (length: 5) => {
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += Math.floor(Math.random() * 10).toString(); // Random digit from 0-9
+  }
+  return result;
+};
 export const BookingForm: React.FC<BookingFormProps> = ({
   isEditBooking,
   booking,
@@ -101,9 +108,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   // const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
   const [parentBookingId, setParentBookingId] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
+  // const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
   const [isHourlyBooking, setIsHourlyBooking] = useState<boolean>(false);
-  const [leadId, setLeadId] = useState<string | undefined>("");
+  // const [leadId, setLeadId] = useState<string | undefined>("");
   const [bookingMode, setBookingMode] = useState<"now" | "later">("now");
 
   const [isReturnBooking, setIsReturnBooking] = useState<boolean>(false);
@@ -144,6 +151,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       pickupCoordinates: undefined,
       dropoffCoordinates: undefined,
       priceMode: "fixedfare",
+      code: generateRandomCode(5),
+      flightNumber: "",
     },
   });
 
@@ -208,6 +217,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         dropoffLocation: booking.dropoffLocation || undefined,
 
         pickupDateTime: new Date(booking.pickupDateTime),
+        code: booking.code,
+        flightNumber: booking?.flightNumber,
       });
 
       if (booking.pickupCoordinates) {
@@ -238,6 +249,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     setParentBookingId(bookingId);
     form.setValue("isReturnBooking", true);
     form.setValue("parentBookingId", bookingId);
+    form.setValue("bookingMode", "later");
 
     // Swap locations
     setTimeout(() => {
@@ -528,6 +540,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         dropoffCoordinates: booking?.dropoffCoordinates || undefined,
         phoneNumber: booking?.phoneNumber || "",
         priceMode: "fixedfare",
+        flightNumber: booking?.flightNumber,
       });
       // setPickupCoordinates(null);
       // setDropoffCoordinates(null);
@@ -622,6 +635,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
           //checking if pickup location includes airport
           if (fieldName === "pickupCoordinates") {
+            console.log(results[0]);
+
             const isAirport = checkIfAirport(results[0].formatted_address);
             setShowAirportOption(isAirport);
             if (!isAirport) {
@@ -725,8 +740,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               //Showing email modal if there is leadId
               if (response.leadId) {
                 console.log(response);
-                setLeadId(response.leadId);
-                setShowEmailModal(true);
+                // setLeadId(response.leadId);
+                // setShowEmailModal(true);
               } else {
                 setShowSuccessModal(true);
               }
@@ -806,7 +821,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         onReset={resetForm}
       />
 
-      {showEmailModal && (
+      {/* {showEmailModal && (
         <EmailModal
           isOpen={showEmailModal}
           onClose={() => {
@@ -833,7 +848,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             });
           }}
         />
-      )}
+      )} */}
       {/* {showLoginModal && (
         <Modal
           open={showLoginModal}
@@ -862,7 +877,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       >
         <div className="flex justify-between items-center p-4">
           <h2 className="font-semibold">
-            {isEditBooking ? "Edit Booking" : "Book a Ride"}
+            {isEditBooking
+              ? "Edit Booking"
+              : isReturnBooking
+              ? "Return Booking Details"
+              : "Book a Ride"}
           </h2>
 
           {!isEditBooking && (
@@ -1056,34 +1075,38 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           </FormItem>
                         )}
                       /> */}
-                      <FormField
-                        control={form.control}
-                        name="pickupDateTime"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Pickup Date & Time</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="datetime-local"
-                                value={
-                                  field.value
-                                    ? format(field.value, "yyyy-MM-dd'T'HH:mm")
-                                    : ""
-                                }
-                                onChange={(e) => {
-                                  const value = e.target.value
-                                    ? new Date(e.target.value)
-                                    : null;
-                                  field.onChange(value);
-                                }}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </>
-                  )}
+                    <FormField
+                      control={form.control}
+                      name="pickupDateTime"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            {isReturnBooking
+                              ? "Return Pickup Date & Time"
+                              : "Pickup Date & Time"}
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              type="datetime-local"
+                              value={
+                                field.value
+                                  ? format(field.value, "yyyy-MM-dd'T'HH:mm")
+                                  : ""
+                              }
+                              onChange={(e) => {
+                                const value = e.target.value
+                                  ? new Date(e.target.value)
+                                  : null;
+                                field.onChange(value);
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </>
+                )}
 
                 {activeTab === bookingTypes.HOURLY && (
                   <FormField
@@ -1197,6 +1220,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 />
                 <FormField
                   control={form.control}
+                  name="code"
+                  defaultValue={generateRandomCode(5)}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input {...field} type="hidden" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
@@ -1235,37 +1271,55 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   )}
                 />
                 {showAirportOption && (
-                  <div className="flex flex-row items-start justify-between">
+                  <>
                     <FormField
                       control={form.control}
-                      name="airportPickup"
+                      name="flightNumber"
                       render={({ field }) => (
-                        <FormItem className="flex items-center gap-2">
-                          <FormLabel> Airport Inside Pickup?</FormLabel>
+                        <FormItem>
+                          <FormLabel>Flight Number</FormLabel>
                           <FormControl>
-                            <Switch
-                              checked={isAirportPickup}
-                              onCheckedChange={(checked) => {
-                                setIsAirportPickup(checked);
-                                field.onChange(checked);
-                              }}
-                            />
+                            <Input {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-5 w-5" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Extra $35 is charged for inside airport pickup.</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
+
+                    <div className="flex flex-row items-start justify-between">
+                      <FormField
+                        control={form.control}
+                        name="airportPickup"
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-2">
+                            <FormLabel> Airport Inside Pickup?</FormLabel>
+                            <FormControl>
+                              <Switch
+                                checked={isAirportPickup}
+                                onCheckedChange={(checked) => {
+                                  setIsAirportPickup(checked);
+                                  field.onChange(checked);
+                                }}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Info className="h-5 w-5" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>
+                              Extra $35 is charged for inside airport pickup.
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  </>
                 )}
                 {activeTab === bookingTypes.PARCEL && (
                   <FormField
@@ -1326,7 +1380,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
-                              defaultValue={field.value}
+                              defaultValue="fixedfare"
                               className="flex flex-row space-x-4"
                             >
                               <FormItem className="flex items-center space-x-2 space-y-0">

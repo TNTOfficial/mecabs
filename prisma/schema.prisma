@@ -76,6 +76,7 @@ model Booking {
   bookingType BookingTypes
   bookingMode BookingMode   @default(now)
   status      BookingStatus @default(active)
+  code        String?
 
   // Customer details
   passengerName String
@@ -95,6 +96,7 @@ model Booking {
   babySeat        Boolean     @default(false)
   airportPickup   Boolean     @default(false)
   isLuggagePicked Boolean     @default(false)
+  isReminded      Boolean     @default(false)
   flightNumber    String?
 
   // Payment details
@@ -167,6 +169,19 @@ model Blog {
   imagePath   String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  subject   String
+  message   String
+  viewed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([viewed])
 }
 
 enum BookingTypes {

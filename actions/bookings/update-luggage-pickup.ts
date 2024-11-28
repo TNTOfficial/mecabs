@@ -3,15 +3,11 @@
 import { db } from "@/lib/db"; // Adjust the import path as needed
 import { z } from "zod";
 import { luggageUpdateSchema } from "@/schemas/schema";
-
-interface UpdateLuggagePickupResult {
-  success?: string;
-  error?: string;
-}
+import { ManageBookingResponse } from "@/features/frontend/manage-bookings/types";
 
 export const updateLuggagePickup = async (
   data: z.infer<typeof luggageUpdateSchema> & { bookingId: string }
-): Promise<UpdateLuggagePickupResult> => {
+): Promise<ManageBookingResponse> => {
   try {
     // Validate input
     const validatedData = luggageUpdateSchema.safeParse(data);
@@ -23,7 +19,7 @@ export const updateLuggagePickup = async (
     }
 
     // Update booking in the database
-    await db.booking.update({
+    const booking = await db.booking.update({
       where: { id: data.bookingId },
       data: {
         isLuggagePicked: validatedData.data.isLuggagePicked,
@@ -31,8 +27,19 @@ export const updateLuggagePickup = async (
       },
     });
 
+    const formattedBooking = {
+      id: booking.id,
+      passengerName: booking.passengerName,
+      pickDateTime: booking.pickupDateTime,
+      phoneNumber: booking.phoneNumber,
+      pickupLocation: booking.pickupLocation,
+      isLuggagePicked: booking.isLuggagePicked,
+      luggageRemarks: booking.luggageRemarks,
+    };
+
     return {
       success: "Luggage pickup information updated successfully",
+      booking: formattedBooking,
     };
   } catch (error) {
     console.error("Error updating luggage pickup:", error);

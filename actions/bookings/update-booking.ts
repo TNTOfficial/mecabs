@@ -3,7 +3,8 @@
 import { NotificationPayload } from "@/features/admin/booking/types";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { sendSMSNotification } from "@/lib/twilio";
+import { sendEmailNotification } from "@/lib/mail";
+import { sendSMSNotification, sendWhatsAppNotification } from "@/lib/twilio";
 import { BookingSchema } from "@/schemas/schema";
 import { Booking } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -86,8 +87,8 @@ export const updateBooking = async (
     });
 
     //sending notification
-    const notificationPayload: NotificationPayload = {
-      to: user.phoneNumber || validatedFields.data.phoneNumber,
+    const phoneNotificationPayload: NotificationPayload = {
+      to: validatedFields.data.phoneNumber || (user?.phoneNumber as string),
       bookingId: updatedBooking.id,
       passengerName: updatedBooking.passengerName,
       pickupDateTime: updatedBooking.pickupDateTime,
@@ -95,8 +96,53 @@ export const updateBooking = async (
       dropoffLocation: updatedBooking.dropoffLocation || undefined,
       status: updatedBooking.status,
       type: "update",
+      // price: updatedBooking.price || undefined,
+      // vehicleType: updatedBooking.vehicleType,
+      // notes: updatedBooking.notes || undefined,
     };
-    await sendSMSNotification(notificationPayload);
+    const whatsAppNotificationPayload: NotificationPayload = {
+      to: validatedFields.data.phoneNumber || (user?.phoneNumber as string),
+      bookingId: updatedBooking.id,
+      passengerName: updatedBooking.passengerName,
+      pickupDateTime: updatedBooking.pickupDateTime,
+      pickupLocation: updatedBooking.pickupLocation,
+      dropoffLocation: updatedBooking.dropoffLocation || undefined,
+      status: updatedBooking.status,
+      type: "update",
+      price: updatedBooking.price || undefined,
+      vehicleType: updatedBooking.vehicleType,
+      notes: updatedBooking.notes || undefined,
+    };
+    const emailNotificationPayload: NotificationPayload = {
+      to: validatedFields.data.email! || (user?.email as string),
+      bookingId: updatedBooking.id,
+      passengerName: updatedBooking.passengerName,
+      pickupDateTime: updatedBooking.pickupDateTime,
+      pickupLocation: updatedBooking.pickupLocation,
+      dropoffLocation: updatedBooking.dropoffLocation || undefined,
+      status: updatedBooking.status,
+      type: "create",
+      link:
+        updatedBooking.pickupLocation.toLowerCase().includes("airport") &&
+        updatedBooking.bookingMode === "later"
+          ? "http://localhost:3000/manage-bookings"
+          : "",
+      code:
+        updatedBooking.pickupLocation.toLowerCase().includes("airport") &&
+        updatedBooking.bookingMode === "later"
+          ? updatedBooking.code!
+          : "",
+      // price: updatedBooking.price || undefined,
+      // vehicleType: updatedBooking.vehicleType,
+      // notes: updatedBooking.notes || undefined,
+    };
+
+    await sendWhatsAppNotification(whatsAppNotificationPayload);
+    if (updatedBooking.phoneNumber.startsWith("+61")) {
+      await sendSMSNotification(phoneNotificationPayload);
+    } else {
+      await sendEmailNotification(emailNotificationPayload);
+    }
     // Revalidate related paths
     revalidatePath("/bookings");
     return {
