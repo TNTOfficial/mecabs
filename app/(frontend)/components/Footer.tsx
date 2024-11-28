@@ -21,7 +21,7 @@ export default function Footer() {
     { name: "Services", href: "/services" },
     { name: "Booking", href: "/booking" },
     { name: "Privacy Policy", href: "/policy" },
-    { name: "Terms and Conditions", href: "/terms" },
+    { name: "Terms & Conditions", href: "/terms" },
   ];
   return (
     <>

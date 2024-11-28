@@ -92,12 +92,12 @@ export const TrackedIpList: React.FC<TrackedIpListProps> = ({ data }) => {
           </Card>
         </div>
 
-        <Card>
-          <CardHeader className="p-5">
+        <Card className="px-2">
+          <CardHeader className="pt-3">
             <CardTitle>Recent Visits</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center justify-between py-4">
+            <div className="flex items-center justify-between pb-4">
               <Input
                 placeholder="Filter IP addresses..."
                 value={

@@ -206,8 +206,8 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
       </div>
 
       {showFilters && (
-        <Card className="p-4 border-0 border-t rounded">
-          <CardContent className="flex flex-wrap justify-center items-center w-full gap-4 p-4">
+        <Card className="border-0 border-t rounded">
+          <CardContent className="flex mt-0 flex-wrap justify-center items-center w-full gap-4 p-2">
             {config.map((filter) => {
               if (filter.type === "select" && filter.options) {
                 return (

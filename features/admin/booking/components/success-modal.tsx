@@ -86,7 +86,7 @@ export const SuccessModal = ({
               Would you like to book a return?
             </h4>
             <p className="text-sm text-gray-600 mb-4">
-              From: {dropoffLocation}
+              <strong>From:</strong> {dropoffLocation}
               <br />
               To: {pickupLocation}
             </p>
