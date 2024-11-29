@@ -33,8 +33,8 @@ const ContactPage = () => {
 
       {/* Contact with mail section Start */}
       <section className="mailSection">
-        <div className="px-6 py-[100px] bg-gradient-to-t from-gray-200 via-gray-50 to-gray-50">
-          <div className="text-center max-w-3xl max-md:max-w-md mx-auto">
+        <div className="px-6 py-[100px]">
+          <div className="text-center max-w-screen-lg max-md:max-w-md mx-auto">
             <p className="text-sm font-bold text-blue-600 mb-4">
               <span className="rotate-90 inline-block mr-2">|</span> Contact Us
             </p>
@@ -50,9 +50,10 @@ const ContactPage = () => {
               </p>
             </div>
 
-            <div className="bg-white mt-12 flex px-1 py-1.5  shadow-[0_5px_22px_-8px_rgba(93,96,127,0.2)] md:max-w-screen-lg mx-auto overflow-hidden">
+            <div className="mt-6">
               <Button
                 variant="default"
+                className="mb-6"
                 onClick={() => {
                   setShowForm(!showForm);
                 }}

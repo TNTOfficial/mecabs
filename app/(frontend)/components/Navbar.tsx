@@ -81,13 +81,13 @@ export default function Navbar() {
               <div className="nav_contact max-lg:w-full  max-lg:flex-col flex justify-center items-center gap-3 max-lg:gap-y-9">
                 {/* <div className="xl:flex justify-center items-center gap-3 max-lg:w-full hidden">
                   <Link
-                    href="tel: +91 0000000000"
+                    href="tel: +61 1300012018"
                     className="no-underline text-black flex justify-center items-center gap-2"
                   >
                     {" "}
                     <FiPhoneCall className="text-black text-[1rem]" />{" "}
                     <span className="font-extrabold text-black text-[0.9rem]">
-                      +91 00000XXXXX
+                      +61 1300012018
                     </span>
                   </Link>
                 </div> */}

@@ -35,13 +35,13 @@ export default function Footer() {
                 className="w-[200px] h-auto object-contain"
               />
               <Link
-                href="tel: +91 0000000000"
+                href="tel: +61 1300012018"
                 className="no-underline text-black flex justify-center items-center gap-2"
               >
                 {" "}
                 <FiPhoneCall className="text-black text-[1.8rem]" />{" "}
                 <span className="font-extrabold text-black text-[1.2rem]">
-                  +91 00000XXXXX
+                  +61 1300012018
                 </span>
               </Link>
             </div>

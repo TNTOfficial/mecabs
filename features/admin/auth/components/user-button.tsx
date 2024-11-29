@@ -41,8 +41,7 @@ export const UserButton = () => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
-        {(user && user?.phoneNumber) ||
-          (user?.email && !pathname.startsWith("/dashboard") && (
+        {user && (user?.phoneNumber || user?.email) && !pathname.startsWith("/dashboard") && (
             <DropdownMenuItem className="p-0">
               <RoleGuard allowedRoles={["ADMIN"]}>
                 <Link
@@ -63,7 +62,7 @@ export const UserButton = () => {
                 </Link>
               </RoleGuard>
             </DropdownMenuItem>
-          ))}
+          )}
         {/* <DropdownMenuSeparator /> */}
         <DropdownMenuItem
           className="py-2 px-3 w-full cursor-pointer"

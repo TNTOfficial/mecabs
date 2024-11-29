@@ -71,7 +71,7 @@ export const SuccessModal = ({
           </DialogTitle>
           <DialogDescription>
             {isAirportPickup && bookingMode == "later"
-              ? "Your booking has been successfully created.Please notify us when you have picked your luggage.We have sent you link inside a message."
+              ? "Your booking has been successfully created. Please notify us when you have picked your luggage.We have sent you link inside a message."
               : isHourlyBooking
               ? "Thank you for contacting us. We will contact you shortly."
               : isReturnBooking
@@ -88,7 +88,7 @@ export const SuccessModal = ({
             <p className="text-sm text-gray-600 mb-4">
               <strong>From:</strong> {dropoffLocation}
               <br />
-              To: {pickupLocation}
+              <strong>To:</strong> {pickupLocation}
             </p>
             <Button onClick={handleReturnPress} className="w-full">
               Book Return Trip
@@ -98,9 +98,8 @@ export const SuccessModal = ({
 
         <DialogFooter className="sm:justify-start">
           <Button
-            className="w-full"
+            className="w-full bg-red-100 hover:bg-red-600 font-semibold hover:text-white text-black"
             type="button"
-            variant="secondary"
             onClick={handleClose}
           >
             Close

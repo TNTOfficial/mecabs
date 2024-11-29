@@ -177,12 +177,12 @@ export default function Home() {
             </Link>
 
             <Link
-              href="tel: +61 137992"
+              href="tel: +61 1300012018"
               className="no-underline text-black flex justify-center items-center gap-2"
             >
               <FiPhoneCall className="text-black text-[1rem]" />{" "}
               <span className="font-extrabold text-black text-[.9rem]">
-                +61 137992
+                +61 1300012018
               </span>
             </Link>
           </div>
