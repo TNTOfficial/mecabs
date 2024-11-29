@@ -7,7 +7,6 @@ import logo from "@/public/logo.webp";
 import { MdMenuOpen } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { FiPhoneCall } from "react-icons/fi";
 import Image from "next/image";
 import { LoginButton } from "@/features/admin/auth/components/login-button";
 import { Button } from "@/components/ui/button";
