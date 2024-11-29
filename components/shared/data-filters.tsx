@@ -26,18 +26,16 @@ import {
 import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// Define proper types for date ranges
 interface DateRange {
   startDate: Date;
   endDate: Date;
   key: string;
 }
 
-// Update BookingFilters interface to handle nullable fields properly
 interface BookingFilters {
   search?: string;
   status?: BookingStatus;
-  vehicleType?: VehicleType
+  vehicleType?: VehicleType;
   bookingType?: BookingTypes;
   date?: Date;
   dateRange?: {
@@ -77,7 +75,6 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
     dateTypes.SINGLE
   );
 
-  // Initialize filters with proper type handling
   const [filters, setFilters] = useState<BookingFilters>(() => {
     const initialState: BookingFilters = {
       search: "",
@@ -89,7 +86,6 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
       ...initialFilters,
     };
 
-    // Convert date strings to Date objects if they exist
     if (initialFilters.date) {
       initialState.date = new Date(initialFilters.date);
     }
@@ -109,12 +105,10 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
   ) => {
     const newFilters: BookingFilters = { ...filters, [key]: value };
 
-    // When setting a single date, clear the date range
     if (key === "date" && value) {
       newFilters.dateRange = undefined;
     }
 
-    // When setting a date range, clear the single date
     if (key === "dateRange" && value) {
       newFilters.date = undefined;
     }
@@ -138,6 +132,25 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
     setDateFilterType(dateTypes.SINGLE);
   };
 
+  const handleSingleFilterReset = (key: keyof BookingFilters) => {
+    const newFilters = { ...filters };
+
+    if (key === "date" || key === "dateRange") {
+      newFilters.date = undefined;
+      newFilters.dateRange = undefined;
+      setDateFilterType(dateTypes.SINGLE);
+    } else {
+      newFilters[key] = undefined;
+    }
+
+    if (key === "search") {
+      newFilters.search = "";
+    }
+
+    setFilters(newFilters);
+    onFilterChange(newFilters);
+  };
+
   const handleDateSelect = (date: Date) => {
     handleFilterChange("date", date);
     setShowDatePicker(false);
@@ -151,16 +164,10 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
         handleFilterChange("dateRange", {
           startDate: new Date(startDate),
           endDate: new Date(endDate),
-          key: "selection", // Include the key property
+          key: "selection",
         });
       }
     }
-  };
-
-  const clearDateFilter = () => {
-    handleFilterChange("date", undefined);
-    handleFilterChange("dateRange", undefined);
-    handleFiltersReset();
   };
 
   const getDisplayDate = () => {
@@ -176,15 +183,35 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
     return "Pick a date";
   };
 
+  const isFilterActive = (key: keyof BookingFilters): boolean => {
+    if (key === "search") return !!filters.search;
+    if (key === "date" || key === "dateRange")
+      return !!(filters.date || filters.dateRange);
+    return !!filters[key];
+  };
+
   return (
     <div className="space-y-4 px-4">
       <div className="flex items-center justify-end">
         <div className="flex w-full max-w-[600px] items-stretch justify-center space-x-2">
-          <Input
-            placeholder="Search..."
-            value={filters.search || ""}
-            onChange={(e) => handleFilterChange("search", e.target.value)}
-          />
+          <div className="relative flex-grow">
+            <Input
+              placeholder="Search..."
+              value={filters.search || ""}
+              onChange={(e) => handleFilterChange("search", e.target.value)}
+              className="pr-8"
+            />
+            {isFilterActive("search") && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => handleSingleFilterReset("search")}
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-6 w-6 p-0"
+              >
+                <X className="h-3 w-3" />
+              </Button>
+            )}
+          </div>
 
           <Button
             className="h-auto flex justify-center items-center"
@@ -196,11 +223,11 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
           </Button>
 
           <Button
-            className="h-auto py-3 mx-4"
+            className="h-auto py-3"
             variant="outline"
             onClick={handleFiltersReset}
           >
-            Reset Filter
+            Reset All
           </Button>
         </div>
       </div>
@@ -211,87 +238,100 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
             {config.map((filter) => {
               if (filter.type === "select" && filter.options) {
                 return (
-                  <Select
-                    key={filter.key}
-                    value={filters[filter.key]?.toString() || ""}
-                    onValueChange={(value) =>
-                      handleFilterChange(filter.key, value)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder={filter.label} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {filter.options.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <div key={filter.key} className="relative">
+                    <Select
+                      value={filters[filter.key]?.toString() || ""}
+                      onValueChange={(value) =>
+                        handleFilterChange(filter.key, value)
+                      }
+                    >
+                      <SelectTrigger className="pr-8">
+                        <SelectValue placeholder={filter.label} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {filter.options.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {isFilterActive(filter.key) && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleSingleFilterReset(filter.key)}
+                        className="absolute right-1 top-1/2 -translate-y-1/2 h-6 w-6 p-0"
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                    )}
+                  </div>
                 );
               }
               return null;
             })}
 
-            <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
-              <PopoverTrigger asChild>
+            <div className="relative">
+              <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="h-full py-3 basis-[200px] grow shrink-0 justify-start pr-8"
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {getDisplayDate()}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Tabs
+                    defaultValue={dateFilterType}
+                    onValueChange={(value) =>
+                      setDateFilterType(value as DateType)
+                    }
+                    className="w-full"
+                  >
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value={dateTypes.SINGLE}>
+                        Single Date
+                      </TabsTrigger>
+                      <TabsTrigger value={dateTypes.RANGE}>
+                        Date Range
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value={dateTypes.SINGLE} className="p-0">
+                      <Calendar
+                        date={filters.date}
+                        onChange={(date) => date && handleDateSelect(date)}
+                      />
+                    </TabsContent>
+                    <TabsContent value={dateTypes.RANGE} className="p-0">
+                      <DateRangeComponent
+                        ranges={[
+                          {
+                            startDate:
+                              filters.dateRange?.startDate || new Date(),
+                            endDate: filters.dateRange?.endDate || new Date(),
+                            key: "selection",
+                          },
+                        ]}
+                        onChange={handleDateRangeSelect}
+                      />
+                    </TabsContent>
+                  </Tabs>
+                </PopoverContent>
+              </Popover>
+              {isFilterActive("date") && (
                 <Button
-                  variant="outline"
-                  className="h-full py-3 basis-[200px] grow shrink-0 justify-start"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleSingleFilterReset("date")}
+                  className="absolute right-1 top-1/2 -translate-y-1/2 h-6 w-6 p-0"
                 >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {getDisplayDate()}
+                  <X className="h-3 w-3" />
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <Tabs
-                  defaultValue={dateFilterType}
-                  onValueChange={(value) =>
-                    setDateFilterType(value as DateType)
-                  }
-                  className="w-full"
-                >
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value={dateTypes.SINGLE}>
-                      Single Date
-                    </TabsTrigger>
-                    <TabsTrigger value={dateTypes.RANGE}>
-                      Date Range
-                    </TabsTrigger>
-                  </TabsList>
-                  <TabsContent value={dateTypes.SINGLE} className="p-0">
-                    <Calendar
-                      date={filters.date}
-                      onChange={(date) => date && handleDateSelect(date)}
-                    />
-                  </TabsContent>
-                  <TabsContent value={dateTypes.RANGE} className="p-0">
-                    <DateRangeComponent
-                      ranges={[
-                        {
-                          startDate: filters.dateRange?.startDate || new Date(),
-                          endDate: filters.dateRange?.endDate || new Date(),
-                          key: "selection",
-                        },
-                      ]}
-                      onChange={handleDateRangeSelect}
-                    />
-                  </TabsContent>
-                </Tabs>
-              </PopoverContent>
-            </Popover>
-
-            {(filters.date || filters.dateRange) && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={clearDateFilter}
-                className="h-10 w-10"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            )}
+              )}
+            </div>
           </CardContent>
         </Card>
       )}

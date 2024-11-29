@@ -49,7 +49,7 @@ export const SuccessModal = ({
   };
 
   console.log("insdie the modal", isAirportPickup);
-  console.log("insdie the modal",bookingMode);
+  console.log("insdie the modal", bookingMode);
 
   // Only show return booking option for regular bookings and when not already a return booking
   const showReturnOption =
@@ -73,14 +73,14 @@ export const SuccessModal = ({
             {isAirportPickup && bookingMode == "later"
               ? "Your booking has been successfully created. Please notify us when you have picked your luggage.We have sent you link inside a message."
               : isHourlyBooking
-              ? "Thank you for contacting us. We will contact you shortly."
+              ? "Thank you for contacting us. We will contact you shortly.We will notify you once a driver accepts your booking"
               : isReturnBooking
               ? "Your return has been successfully created."
               : "Your booking has been successfully created. We will notify you once a driver accepts your booking."}
           </DialogDescription>
         </DialogHeader>
 
-        {showReturnOption && !isHourlyBooking && (
+        {showReturnOption && !isHourlyBooking && bookingMode !== "later" && (
           <div className="p-4 bg-gray-50 rounded-lg">
             <h4 className="font-medium mb-2">
               Would you like to book a return?

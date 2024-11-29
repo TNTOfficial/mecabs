@@ -205,7 +205,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       selected: false,
       value: "wheelchair",
       qualityFactor: 1.3,
-      hidden: true,
+      hidden: false,
     },
   ];
 
@@ -730,7 +730,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 response.bookingType === "booking" &&
                 response.bookingMode === "later"
               ) {
-                setIsAirportPickup(true);
+                setIsAirportPickup(response.airportPickup);
                 setShowSuccessModal(true);
                 setBookingMode(response.bookingMode);
               } else {
