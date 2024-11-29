@@ -75,6 +75,7 @@ const filterConfig: FilterConfig[] = [
       { label: "Any Available", value: "anyavailable" },
       { label: "Premium", value: "premium" },
       { label: "Maxi Taxi", value: "maxi" },
+      { label: "Wheel Chair", value: "wheelchair" },
     ],
   },
   {
