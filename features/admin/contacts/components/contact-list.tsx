@@ -31,6 +31,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { columns } from "./columns";
 import { Contact } from "../types";
+import { Card } from "@/components/ui/card";
 
 interface ContactListProps {
   data: Contact[];
@@ -59,7 +60,7 @@ export const ContactList: React.FC<ContactListProps> = ({ data }) => {
 
   return (
     <RoleGuard allowedRoles={["ADMIN"]}>
-      <div>
+      <Card className="p-2">
         <div className="flex items-center py-4">
           <Input
             placeholder="Filter by name..."
@@ -117,9 +118,9 @@ export const ContactList: React.FC<ContactListProps> = ({ data }) => {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id}>
+                  <TableRow key={row.id} className="align-top">
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell className="align-top" key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -134,7 +135,7 @@ export const ContactList: React.FC<ContactListProps> = ({ data }) => {
                     colSpan={columns.length}
                     className="h-24 text-center"
                   >
-                    No results.
+                    <strong className="text-[1.6rem]">No results.</strong>
                   </TableCell>
                 </TableRow>
               )}
@@ -159,7 +160,7 @@ export const ContactList: React.FC<ContactListProps> = ({ data }) => {
             Next
           </Button>
         </div>
-      </div>
+      </Card>
     </RoleGuard>
   );
 };

@@ -39,9 +39,13 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Truck, X } from "lucide-react";
+import { ArrowBigLeft, MapPin, Truck, X } from "lucide-react";
 import { ManageBooking } from "../types";
 import { Switch } from "@/components/ui/switch";
+import Link from "next/link";
+import { FiPhoneCall } from "react-icons/fi";
+
+import bgbanner from '@/public/09.webp'
 
 export const ManageBookingsForm = () => {
   const router = useRouter();
@@ -155,53 +159,77 @@ export const ManageBookingsForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+    <section style={{ backgroundImage: `url(${bgbanner.src})` }} className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 relative z-0 before:h-full before:w-full before:bg-slate-950 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0">
       <div className="w-full max-w-xl space-y-4">
         {/* Initial Step */}
         {step === "hidden" && (
-          <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6 space-y-4">
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-bold text-blue-800">
-                  Manage Your Booking
-                </h2>
-                <p className="text-gray-600 mt-2">
-                  Choose how you want to access your booking
-                </p>
-              </div>
-              <div className="space-y-4">
+          <>
+            <Card className="w-full shadow-none bg-transparent border-none self-start">
+              <CardContent className="p-6 space-y-4">
+                <div className="text-center mb-4">
+                  <h1 className="text-[4rem] font-bold text-white">
+                    Manage Your Booking
+                  </h1>
+                  <p className="text-white mt-2 text-[1rem ]">
+                    Choose how you want to access your booking
+                  </p>
+                </div>
+                <div className="space-y-4">
+
+
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="max-w-screen-xl w-full px-3 mx-auto absolute 2xl:bottom-[200px] bottom-[40px] left-[50%] translate-x-[-50%] z-10">
+              <div className="continueForm bg-white rounded-[50px] w-full px-16 py-3  shadow-lg border-t flex md:justify-between justify-center items-center flex-wrap gap-4">
+                {/* <h3 className="text-[1.6rem] font-bold">Start Your Journey</h3> */}
                 <Button
                   onClick={handleLoginClick}
-                  className="w-full bg-blue-600 hover:bg-blue-700 transition-colors"
+                  className="text-white bg-black py-4 px-16 hover:scale-95 h-auto transition-all duration-300 hover:shadow-sm shadow-none hover:shadow-zinc-700 inline-block text-nowrap border-none rounded-[50px]"
                 >
                   Continue with Login
                 </Button>
                 <Button
                   onClick={() => setStep("check")}
-                  className="w-full bg-green-600 hover:bg-green-700 transition-colors"
+                  className="text-white bg-black py-4 px-16 hover:scale-95 h-auto transition-all duration-300 hover:shadow-sm shadow-none hover:shadow-zinc-700 inline-block text-nowrap border-none rounded-[50px]"
                 >
                   Continue with Booking ID
                 </Button>
+
+                <Link
+                  href="tel: +61 1300012018"
+                  className="no-underline text-black flex justify-center items-center gap-2"
+                >
+                  <FiPhoneCall className="text-black text-[1rem]" />{" "}
+                  <span className="font-extrabold text-black text-[.9rem]">
+                    +61 1300012018
+                  </span>
+                </Link>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+
+          </>
         )}
 
         {/* Booking Search Step */}
         {step === "check" && (
           <>
-            <Button
-              variant="default"
-              onClick={() => {
-                resetForm();
-              }}
-            >
-              Back
-            </Button>
-            <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+
+            <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300  p-5">
               <CardHeader className="flex flex-row items-center justify-between border-b pb-3">
-                <CardTitle className="text-xl text-blue-800">
-                  Find Your Booking
+                <CardTitle className="text-xl text-zinc-800 flex justify-between w-full items-center">
+                  <span>Find Your Booking</span>
+
+                  <Button
+                    variant="default"
+                    className="px-2"
+                    onClick={() => {
+                      resetForm();
+                    }}
+                  >
+                    <ArrowBigLeft className="me-1" />  <span>Back</span>
+                  </Button>
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
@@ -218,12 +246,12 @@ export const ManageBookingsForm = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-800">Name</FormLabel>
+                          <FormLabel className="text-zinc-800">Name</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               placeholder="Enter your name"
-                              className="focus:ring-2 focus:ring-blue-500"
+                              className="focus:ring-2 focus:ring-zinc-500"
                             />
                           </FormControl>
                           <FormMessage />
@@ -235,14 +263,14 @@ export const ManageBookingsForm = () => {
                       name="code"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-800">
+                          <FormLabel className="text-zinc-800">
                             Booking Code
                           </FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               placeholder="Enter Booking Code"
-                              className="focus:ring-2 focus:ring-blue-500"
+                              className="focus:ring-2 focus:ring-zinc-500"
                             />
                           </FormControl>
                           <FormMessage />
@@ -254,7 +282,7 @@ export const ManageBookingsForm = () => {
                     <div className="space-y-4">
                       <Button
                         type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 transition-colors"
+                        className="w-full bg-zinc-600 hover:bg-zinc-700 transition-colors"
                         disabled={isPending}
                       >
                         {isPending ? "Searching..." : "Find Booking"}
@@ -269,50 +297,54 @@ export const ManageBookingsForm = () => {
 
         {/* Booking Details Step */}
         {step === "update" && booking && booking.isLuggagePicked && (
-          <div>
+          <div className="p-5 bg-white rounded-xl flex justify-start items-start flex-col gap-5">
+            <h3 className="text-[1.5rem] font-semibold">
+              You have already notify about status. We will reach you shortly <span className="text-green-600">!</span>
+            </h3>
             <Button
               variant="default"
+              className="px-2 self-end"
               onClick={() => {
                 setStep("check");
                 setSuccess("");
                 setError("");
               }}
             >
-              Back
+              <ArrowBigLeft className="me-1" />  <span>Back</span>
             </Button>
-            <h1>
-              You have already notify about status. We will reach you shortly!
-            </h1>
+
           </div>
         )}
         {step === "update" && booking && !booking.isLuggagePicked && (
           <>
-            <Button
-              variant="default"
-              onClick={() => {
-                setStep("check");
-                setSuccess("");
-                setError("");
-              }}
-            >
-              Back
-            </Button>
-            <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="flex flex-row items-center justify-between border-b pb-3">
-                <CardTitle className="flex items-center space-x-2 text-xl text-blue-800">
-                  <Truck className="h-6 w-6 text-blue-500" />
-                  <span>Booking Details</span>
+
+            <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300 px-5 py-2">
+              <CardHeader className="flex flex-row items-center justify-between border-b pb-3 gap-x-2 space-y-0">
+                <CardTitle className="text-xl text-zinc-800 flex justify-between w-full items-center">
+                  <div>  <Truck className="h-6 w-6 text-zinc-500" />
+                    <span>Booking Details</span></div>
+                  <Button
+                    variant="default"
+                    className="px-2"
+                    onClick={() => {
+                      setStep("check");
+                      setSuccess("");
+                      setError("");
+                    }}
+                  >
+                    <ArrowBigLeft className="me-1" />  <span>Back</span>
+                  </Button>
                 </CardTitle>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={resetForm}
-                  className="text-gray-500 hover:text-red-500"
+                  className="text-gray-500 hover:text-red-500 bg-gray-300 mt-0"
                 >
                   <X className="h-5 w-5" />
                 </Button>
               </CardHeader>
-              <CardContent className="pt-6">
+              <CardContent className="pt-0">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -336,7 +368,7 @@ export const ManageBookingsForm = () => {
                         <TableCell>
                           <Button
                             onClick={() => setIsLuggageDialogOpen(true)}
-                            className="bg-blue-600 hover:bg-blue-700 transition-colors"
+                            className="bg-zinc-600 hover:bg-zinc-700 transition-colors"
                           >
                             Update Luggage Info
                           </Button>
@@ -356,12 +388,12 @@ export const ManageBookingsForm = () => {
           open={isLuggageDialogOpen}
           onOpenChange={setIsLuggageDialogOpen}
         >
-          <DialogContent>
+          <DialogContent className="max-w-screen-md">
             <DialogHeader>
-              <DialogTitle className="text-blue-800">
+              <DialogTitle className="text-zinc-800 text-[1.4rem] font-medium">
                 Update Luggage Pickup
               </DialogTitle>
-              <DialogDescription>
+              <DialogDescription className="text-[1.1rem] text-gray-800 font-normal">
                 Add any special instructions or remarks for luggage pickup.
               </DialogDescription>
             </DialogHeader>
@@ -379,7 +411,7 @@ export const ManageBookingsForm = () => {
                     name="isLuggagePicked"
                     render={({ field }) => (
                       <FormItem className="flex items-center gap-4">
-                        <FormLabel className="text-blue-800">
+                        <FormLabel className="text-zinc-800">
                           Is luggage picked?
                         </FormLabel>
                         <FormControl>
@@ -398,7 +430,7 @@ export const ManageBookingsForm = () => {
                   name="luggageRemarks"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-blue-800">
+                      <FormLabel className="text-zinc-800">
                         Luggage Pickup Remarks
                       </FormLabel>
                       <FormControl>
@@ -406,7 +438,7 @@ export const ManageBookingsForm = () => {
                           {...field}
                           placeholder="Enter any special instructions for luggage pickup"
                           rows={4}
-                          className="focus:ring-2 focus:ring-blue-500"
+                          className="focus:ring-2 focus:ring-zinc-500"
                         />
                       </FormControl>
                       <FormMessage />
@@ -429,7 +461,7 @@ export const ManageBookingsForm = () => {
                   <Button
                     type="submit"
                     disabled={isPending}
-                    className="bg-blue-600 hover:bg-blue-700 transition-colors"
+                    className="bg-zinc-600 hover:bg-zinc-700 transition-colors"
                   >
                     {isPending ? "Updating..." : "Update Luggage Info"}
                   </Button>
@@ -439,7 +471,7 @@ export const ManageBookingsForm = () => {
           </DialogContent>
         </Dialog>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -46,7 +46,7 @@ export const ContactForm = () => {
   }
   return (
     <div className="grid sm:grid-cols-2 items-start gap-16 p-4 mx-auto max-w-4xl bg-white rounded-xl shadow-xl border-t">
-      <div>
+      <div className="text-start">
         <h1 className="text-gray-800 text-3xl font-extrabold">
           Let&apos;s Talk
         </h1>
@@ -55,7 +55,7 @@ export const ContactForm = () => {
           we would love to hear about your project and provide help.
         </p>
 
-        <div className="mt-12">
+        <div className="mt-6">
           <h2 className="text-gray-800 text-base font-bold">Email</h2>
           <ul className="mt-4">
             <li className="flex items-center">
@@ -73,7 +73,7 @@ export const ContactForm = () => {
           </ul>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-6">
           <h2 className="text-gray-800 text-base font-bold">Socials</h2>
 
           <ul className="flex mt-4 space-x-4">

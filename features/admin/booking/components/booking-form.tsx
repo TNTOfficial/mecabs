@@ -1030,8 +1030,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 )}
                 {(activeTab === bookingTypes.HOURLY ||
                   form.watch("bookingMode") === "later") && (
-                  <>
-                    {/* <FormField
+                    <>
+                      {/* <FormField
                         control={form.control}
                         name="pickupDateTime"
                         render={({ field }) => (
@@ -1383,15 +1383,16 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                               defaultValue="fixedfare"
                               className="flex flex-row space-x-4"
                             >
-                              <FormItem className="flex items-center space-x-2">
-                                <FormLabel className="font-normal cursor-pointer">
-                                  Fixed Fare
-                                </FormLabel>
+                              <FormItem className="flex items-center space-x-2 space-y-0">
                                 <FormControl>
                                   <RadioGroupItem value="fixedfare" />
                                 </FormControl>
+                                <FormLabel className="font-normal cursor-pointer">
+                                  Fixed Fare
+                                </FormLabel>
+
                               </FormItem>
-                              <FormItem className="flex items-center space-x-2">
+                              <FormItem className="flex items-center space-x-2 space-y-0">
                                 <FormControl>
                                   <RadioGroupItem value="meterfare" />
                                 </FormControl>
@@ -1420,26 +1421,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     </FormItem>
                   )}
                 />
-                {distance && (
-                  <div className="mt-4 p-4 bg-muted rounded-lg space-y-2">
-                    {/* <p className="text-sm text-gray-600">
-                      Estimated Distance: {distance}
-                    </p> */}
-                    {/* <p className="text-sm text-gray-600">
-                      Estimated Duration: {duration}
-                    </p> */}
-                    {/* {estimatedPrice && (
-                      <p className="text-lg font-semibold">
-                        Estimated Price: ${estimatedPrice.toFixed(2)}
-                      </p>
-                    )} */}
-                    {/* {tollCount > 0 && (
-                      <p className="text-sm text-gray-600">
-                        Toll Roads: {tollCount}
-                      </p>
-                    )} */}
-                  </div>
-                )}
+
 
                 {/* Add rest of the form fields... */}
 
@@ -1450,8 +1432,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   {isPending
                     ? "Submitting..."
                     : isEditBooking
-                    ? "Update Booking"
-                    : "Request Booking"}
+                      ? "Update Booking"
+                      : "Request Booking"}
                 </Button>
               </form>
             </Form>

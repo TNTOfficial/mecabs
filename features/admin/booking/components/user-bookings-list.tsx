@@ -251,7 +251,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
               {/* Table header and body remain the same */}
               <TableHeader>
                 <TableRow>
-                  <TableHead>Booking Details</TableHead>
+                  <TableHead className="ps-9">Booking Details</TableHead>
                   <TableHead>Pickup & Drop</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Price</TableHead>
@@ -264,7 +264,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                   bookings.map((booking) => (
                     <TableRow key={booking.id}>
                       {/* Booking details cell */}
-                      <TableCell>
+                      <TableCell className="ps-9">
                         <div className="space-y-1">
                           <p className="font-medium">{booking.passengerName}</p>
                           <p className="text-sm text-muted-foreground">
@@ -352,7 +352,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                                 setActionType("luggage");
                                 setShowActionDialog(true);
                               }}
-                              className="text-red-500"
+                              className="text-red-500 bg-gray-200 hover:bg-gray-100"
                             >
                               Update Luggage Info
                             </Button>
@@ -409,15 +409,15 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                             {!["completed", "cancelled", "dismissed"].includes(
                               booking.status
                             ) && (
-                              <DropdownMenuItem
-                                onClick={() => {
-                                  setEditSelectedBooking(booking);
-                                  setShowEditDialog(true);
-                                }}
-                              >
-                                Edit Booking
-                              </DropdownMenuItem>
-                            )}
+                                <DropdownMenuItem
+                                  onClick={() => {
+                                    setEditSelectedBooking(booking);
+                                    setShowEditDialog(true);
+                                  }}
+                                >
+                                  Edit Booking
+                                </DropdownMenuItem>
+                              )}
                             {booking.status === BookingStatus.active && (
                               <>
                                 <DropdownMenuItem
@@ -461,9 +461,11 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                     </TableRow>
                   ))
                 ) : (
-                  <div className="flex items-center justify-center font-bold text-2xl">
-                    No Bookings Found!
-                  </div>
+                  <TableCell colSpan={1000}>
+                    <div className="flex items-center justify-center font-bold text-2xl py-20 text-center mx-auto">
+                      No Bookings Found!
+                    </div>
+                  </TableCell>
                 )}
               </TableBody>
             </Table>

@@ -15,25 +15,19 @@ import {
 import { format } from "date-fns";
 import { MoreHorizontal, Check, ArrowUpDown } from "lucide-react";
 import { markContactAsViewed } from "@/actions/contact/mark-contact-view";
+import { cn } from "@/lib/utils";
 
 // Create a proper React component for the message cell
 const MessageCell = ({ message }: { message: string }) => {
   const [hoveredMessage, setHoveredMessage] = useState<string | null>(null);
 
   return (
-    <div className="relative">
-      <div
-        className="max-w-md truncate cursor-pointer"
-        onMouseEnter={() => setHoveredMessage(message)}
-        onMouseLeave={() => setHoveredMessage(null)}
-      >
-        {message}
-      </div>
-      {hoveredMessage === message && (
-        <div className="absolute z-50 p-4 bg-white border rounded-md shadow-lg max-w-lg">
-          {message}
-        </div>
+    <div
+      className={cn(
+        "truncate max-w-lg cursor-pointer  text-wrap",
       )}
+    >
+      {message}
     </div>
   );
 };
