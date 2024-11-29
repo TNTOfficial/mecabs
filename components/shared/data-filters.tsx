@@ -233,12 +233,12 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
       </div>
 
       {showFilters && (
-        <Card className="border-none rounded  shadow-none">
-          <CardContent className="flex mt-0 flex-wrap justify-center items-center w-full gap-4 p-0 border-none">
+        <Card className="p-4 border-none rounded shadow-none">
+          <CardContent className="flex flex-wrap justify-center items-center w-full gap-4 p-4">
             {config.map((filter) => {
               if (filter.type === "select" && filter.options) {
                 return (
-                  <div key={filter.key} className="relative">
+                  <div key={filter.key} className="relative  basis-[190px] grow shrink-0">
                     <Select
                       value={filters[filter.key]?.toString() || ""}
                       onValueChange={(value) =>
@@ -272,12 +272,12 @@ export const DataFilters: React.FC<DataFiltersProps> = ({
               return null;
             })}
 
-            <div className="relative">
+            <div className="relative  basis-[190px] grow shrink-0">
               <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    className="h-full py-3 basis-[200px] grow shrink-0 justify-start pr-8"
+                    className="h-full py-3 w-full justify-start pr-8"
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {getDisplayDate()}

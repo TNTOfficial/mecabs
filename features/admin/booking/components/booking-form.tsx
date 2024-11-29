@@ -1087,6 +1087,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           </FormLabel>
                           <FormControl>
                             <Input
+                            className="w-full block"
                               type="datetime-local"
                               value={
                                 field.value
