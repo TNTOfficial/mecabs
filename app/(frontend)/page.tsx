@@ -10,6 +10,10 @@ import car3 from "@/public/car3.webp";
 import car4 from "@/public/car4.webp";
 import car5 from "@/public/car5.webp";
 import car6 from "@/public/car6.webp";
+import car11 from "@/public/car11.webp";
+import car12 from "@/public/car12.webp";
+import car13 from "@/public/car13.webp";
+import car14 from "@/public/car14.webp";
 import s1 from "@/public/01.webp";
 import s2 from "@/public/02.webp";
 import s3 from "@/public/03.webp";
@@ -79,14 +83,14 @@ export default function Home() {
     {
       title: "The BMW 7 Series Sedan",
       subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
-      carImage: car1,
+      carImage: car12,
       passenger: 4,
       luggage: 3,
     },
     {
       title: "The BMW 7 Series Sedan",
       subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
-      carImage: car2,
+      carImage: car13,
       passenger: 4,
       luggage: 3,
     },
@@ -94,7 +98,7 @@ export default function Home() {
     {
       title: "The BMW 7 Series Sedan",
       subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
-      carImage: car3,
+      carImage: car14,
       passenger: 4,
       luggage: 3,
     },

@@ -40,11 +40,11 @@ const page = () => {
     },
     {
       cityName: "Altona",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/altona"
     },
     {
       cityName: "Berwick",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/berwick"
     },
     {
       cityName: "Box hill",
