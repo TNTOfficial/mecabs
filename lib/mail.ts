@@ -72,11 +72,15 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 };
 
 export const sendEmailNotification = async (payload: NotificationPayload) => {
+  console.log("payload", payload);
+
+  // Construct the email subject based on notification type
   const subject =
     payload.type === "create"
       ? `Booking Confirmation - ${payload.bookingId}`
       : `Booking Update - ${payload.bookingId}`;
 
+  // Build the HTML content with improved structure and the management link
   const htmlContent = `<h2>${
     payload.type === "create" ? "Booking Confirmation" : "Booking Update"
   }</h2>
@@ -93,11 +97,14 @@ export const sendEmailNotification = async (payload: NotificationPayload) => {
         }
         ${
           payload.pickupLocation.toLowerCase().includes("airport")
-            ? `Please enter this code to verify your luggage status ${payload.code}`
+            ? `<li>Luggage Verification Code: ${payload.code}</li>`
             : ""
         }
         <li>Status: ${payload.status}</li>
       </ul>
+      <p>You can manage your booking at any time by clicking <a href="${
+        payload.link
+      }">here</a>.</p>
       <p>Thank you for choosing our service!</p>`;
 
   await sendEmail(payload.to, subject, htmlContent);

@@ -45,7 +45,7 @@ import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
 import { FiPhoneCall } from "react-icons/fi";
 
-import bgbanner from '@/public/09.webp'
+import bgbanner from "@/public/09.webp";
 
 export const ManageBookingsForm = () => {
   const router = useRouter();
@@ -159,7 +159,10 @@ export const ManageBookingsForm = () => {
   };
 
   return (
-    <section style={{ backgroundImage: `url(${bgbanner.src})` }} className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 relative z-0 before:h-full before:w-full before:bg-slate-950 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0">
+    <section
+      style={{ backgroundImage: `url(${bgbanner.src})` }}
+      className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 relative z-0 before:h-full before:w-full before:bg-slate-950 before:bg-opacity-30 before:z-[-1] before:absolute before:top-0 before:start-0"
+    >
       <div className="w-full max-w-xl space-y-4">
         {/* Initial Step */}
         {step === "hidden" && (
@@ -174,10 +177,7 @@ export const ManageBookingsForm = () => {
                     Choose how you want to access your booking
                   </p>
                 </div>
-                <div className="space-y-4">
-
-
-                </div>
+                <div className="space-y-4"></div>
               </CardContent>
             </Card>
 
@@ -208,14 +208,12 @@ export const ManageBookingsForm = () => {
                 </Link>
               </div>
             </div>
-
           </>
         )}
 
         {/* Booking Search Step */}
         {step === "check" && (
           <>
-
             <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300  p-5">
               <CardHeader className="flex flex-row items-center justify-between border-b pb-3">
                 <CardTitle className="text-xl text-zinc-800 flex justify-between w-full items-center">
@@ -228,7 +226,7 @@ export const ManageBookingsForm = () => {
                       resetForm();
                     }}
                   >
-                    <ArrowBigLeft className="me-1" />  <span>Back</span>
+                    <ArrowBigLeft className="me-1" /> <span>Back</span>
                   </Button>
                 </CardTitle>
               </CardHeader>
@@ -299,7 +297,8 @@ export const ManageBookingsForm = () => {
         {step === "update" && booking && booking.isLuggagePicked && (
           <div className="p-5 bg-white rounded-xl flex justify-start items-start flex-col gap-5">
             <h3 className="text-[1.5rem] font-semibold">
-              You have already notify about status. We will reach you shortly <span className="text-green-600">!</span>
+              You have already notify about status. We will reach you shortly{" "}
+              <span className="text-green-600">!</span>
             </h3>
             <Button
               variant="default"
@@ -310,19 +309,20 @@ export const ManageBookingsForm = () => {
                 setError("");
               }}
             >
-              <ArrowBigLeft className="me-1" />  <span>Back</span>
+              <ArrowBigLeft className="me-1" /> <span>Back</span>
             </Button>
-
           </div>
         )}
         {step === "update" && booking && !booking.isLuggagePicked && (
           <>
-
             <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300 px-5 py-2">
               <CardHeader className="flex flex-row items-center justify-between border-b pb-3 gap-x-2 space-y-0">
                 <CardTitle className="text-xl text-zinc-800 flex justify-between w-full items-center">
-                  <div>  <Truck className="h-6 w-6 text-zinc-500" />
-                    <span>Booking Details</span></div>
+                  <div>
+                    {" "}
+                    <Truck className="h-6 w-6 text-zinc-500" />
+                    <span>Booking Details</span>
+                  </div>
                   <Button
                     variant="default"
                     className="px-2"
@@ -332,7 +332,7 @@ export const ManageBookingsForm = () => {
                       setError("");
                     }}
                   >
-                    <ArrowBigLeft className="me-1" />  <span>Back</span>
+                    <ArrowBigLeft className="me-1" /> <span>Back</span>
                   </Button>
                 </CardTitle>
                 <Button

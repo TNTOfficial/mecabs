@@ -100,7 +100,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [dropoffCoordinates, setDropoffCoordinates] =
     useState<google.maps.LatLngLiteral | null>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [error, setError] = useState<string | undefined>();
 
@@ -283,6 +282,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
       // Return 0 for meter fare or hourly booking
       if (priceMode === "meterfare" || bookingType === "hourly") {
+        setEstimatedPrice(0);
         return 0;
       }
 
@@ -465,6 +465,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       phoneNumber: "",
       hours: null,
       recipientName: "",
+      airportPickup: false,
+      flightNumber: "",
       isReturnBooking: false,
       parentBookingId: null,
     });
@@ -1030,8 +1032,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 )}
                 {(activeTab === bookingTypes.HOURLY ||
                   form.watch("bookingMode") === "later") && (
-                    <>
-                      {/* <FormField
+                  <>
+                    {/* <FormField
                         control={form.control}
                         name="pickupDateTime"
                         render={({ field }) => (
@@ -1087,7 +1089,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           </FormLabel>
                           <FormControl>
                             <Input
-                            className="w-full block"
+                              className="w-full block"
                               type="datetime-local"
                               value={
                                 field.value
@@ -1391,7 +1393,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                                 <FormLabel className="font-normal cursor-pointer">
                                   Fixed Fare
                                 </FormLabel>
-
                               </FormItem>
                               <FormItem className="flex items-center space-x-2 space-y-0">
                                 <FormControl>
@@ -1423,7 +1424,32 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   )}
                 />
 
-
+                {form.watch("bookingMode") === "later" &&
+                  form.watch("bookingType") === "booking" &&
+                  activeTab === "booking" &&
+                  distance && (
+                    <div className="mt-4 p-4 bg-muted rounded-lg space-y-2">
+                      {/* <p className="text-sm text-gray-600">
+                      Estimated Distance: {distance}
+                    </p> */}
+                      {/* <p className="text-sm text-gray-600">
+                      Estimated Duration: {duration}
+                    </p> */}
+                      {estimatedPrice !== 0 && (
+                        <p className="text-lg font-semibold">
+                          Price: ${estimatedPrice?.toFixed(2)}
+                        </p>
+                      )}
+                      {estimatedPrice === 0 && (
+                        <p className="text-lg font-semibold">Price: ${0}</p>
+                      )}
+                      {/* {tollCount > 0 && (
+                      <p className="text-sm text-gray-600">
+                        Toll Roads: {tollCount}
+                      </p>
+                    )} */}
+                    </div>
+                  )}
                 {/* Add rest of the form fields... */}
 
                 <FormError message={error} />
@@ -1433,8 +1459,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   {isPending
                     ? "Submitting..."
                     : isEditBooking
-                      ? "Update Booking"
-                      : "Request Booking"}
+                    ? "Update Booking"
+                    : "Request Booking"}
                 </Button>
               </form>
             </Form>

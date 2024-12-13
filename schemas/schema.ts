@@ -100,7 +100,7 @@ export const BookingSchema = z.object({
     "wheelchair",
     "anyavailable",
   ]),
-  priceMode: z.enum(["fixedfare", "meterfare"]),
+  priceMode: z.enum(["fixedfare", "meterfare"]).default("fixedfare"),
   babySeat: z.boolean().default(false),
   airportPickup: z.boolean().default(false),
   flightNumber: z.string().optional(),
