@@ -4,13 +4,9 @@ import React from "react";
 
 import Image from "next/image";
 import { BsLuggageFill } from "react-icons/bs";
-import car1 from "@/public/car1.webp";
-import car2 from "@/public/car2.webp";
-import car3 from "@/public/car3.webp";
 import car4 from "@/public/car4.webp";
 import car5 from "@/public/car5.webp";
 import car6 from "@/public/car6.webp";
-import car11 from "@/public/car11.webp";
 import car12 from "@/public/car12.webp";
 import car13 from "@/public/car13.webp";
 import car14 from "@/public/car14.webp";
@@ -611,7 +607,6 @@ export default function Home() {
       {/* Testimonials End */}
       {/* FAQ Start */}
       <section className="faq py-[100px]">
-
         <div className="container">
           <div className="max-w-screen-md mx-auto">
             <div className="bg-white px-6">
@@ -622,13 +617,13 @@ export default function Home() {
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1">
                   <AccordionTrigger className="text-lg font-semibold text-[#333] no-underline">
-                    <span>How can I create an account?</span> </AccordionTrigger>
+                    <span>How can I create an account?</span>{" "}
+                  </AccordionTrigger>
                   <AccordionContent>
                     Yes. It adheres to the WAI-ARIA design pattern.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-
 
               <div className="space-y-8 max-w-4xl">
                 <div className="flex items-start">

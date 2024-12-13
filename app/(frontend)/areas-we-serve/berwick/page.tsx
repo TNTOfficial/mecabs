@@ -26,7 +26,7 @@ const page = () => {
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
             Living in <strong>Berwick</strong> or visiting the area? When it
             comes to getting around town or catching a flight, look no further
-            than <strong>ME CABS'</strong>
+            than <strong>ME CABS</strong>
             reliable and convenient <strong>taxi service</strong>. We offer a
             stress-free travel experience, ensuring you reach your destination
             on time and in comfort.
@@ -44,7 +44,7 @@ const page = () => {
             </h2>
             <p className="text-[1.1rem] text-zinc-700">
               Whether you<span>&apos;</span>re a Berwick resident needing a lift
-              to a doctor's appointment or a tourist exploring the local
+              to a doctor&apos;s appointment or a tourist exploring the local
               wineries, we are here for you. We cater to a wide range of needs,
               including:
             </p>
@@ -66,9 +66,9 @@ const page = () => {
                     Local Trips
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Need a ride to the shops, the cinema, or even a friend's
-                    place across town? We<span>&apos;</span>ll get you there
-                    safely and efficiently
+                    Need a ride to the shops, the cinema, or even a
+                    friend&apos;s place across town? We<span>&apos;</span>ll get
+                    you there safely and efficiently
                   </p>
                 </div>
               </div>
@@ -191,7 +191,8 @@ const page = () => {
                     24/7 Availability
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
-                  Need a taxi at 3 am? No problem! We operate 24/7 to ensure you have reliable transportation whenever you need it most.
+                    Need a taxi at 3 am? No problem! We operate 24/7 to ensure
+                    you have reliable transportation whenever you need it most.
                   </p>
                 </div>
                 <div className="articalText">

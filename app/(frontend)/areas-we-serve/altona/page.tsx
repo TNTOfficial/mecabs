@@ -112,7 +112,7 @@ const page = () => {
                   <p className="text-[1rem] text-zinc-700 font-normal">
                     Enjoying a night out in Altona or venturing into Melbourne<span>&apos;</span>s
                     bustling nightlife scene? Leave the car at home and let ME
-                    CABS be your designated driver. We'll ensure a safe and
+                    CABS be your designated driver. We&apos;ll ensure a safe and
                     comfortable ride between bars, restaurants, and your final
                     destination in Altona or surrounding areas.
                   </p>
