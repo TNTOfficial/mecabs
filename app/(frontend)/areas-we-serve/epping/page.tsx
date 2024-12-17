@@ -24,7 +24,7 @@ const page = () => {
             Reliable Epping Taxi Service
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
-            Need a reliable and comfortable <strong>taxi in Epping?</strong>{" "}
+            Need a reliable and comfortable <strong>taxi in Epping?</strong>
             Look no further than ME CABS! We are your one-stop shop for all your
             local and long-distance travel needs. Whether you're heading to the
             airport, a night out on the town, or simply across Epping, we offer

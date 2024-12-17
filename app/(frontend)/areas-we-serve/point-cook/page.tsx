@@ -21,7 +21,7 @@ const page = () => {
             Reliable Taxi Service in Point Cook <span>&minus;</span> Me Cabs
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
-            For anyone seeking a{" "}
+            For anyone seeking a
             <strong>reliable taxi in Point Cook, Me Cabs</strong> offers a
             service that combines convenience, safety, and professionalism. Our
             dedicated cab service is designed to get you where you need to
@@ -55,7 +55,7 @@ const page = () => {
                   </h2>
                   <p className="text-[1rem] text-zinc-800">
                     At <strong>Me Cabs</strong>, we believe that every journey
-                    should be smooth and enjoyable. Our{" "}
+                    should be smooth and enjoyable. Our
                     <strong>cab service in Point Cook</strong> is equipped with
                     comfortable, clean vehicles and experienced drivers familiar
                     with the area. Whether you<span>&apos;</span>re commuting to
@@ -76,7 +76,7 @@ const page = () => {
                     Stress-Free Airport Transfers
                   </h2>
                   <p className="text-[1rem] text-zinc-800">
-                    Need to catch a flight? Our{" "}
+                    Need to catch a flight? Our
                     <strong>airport transfer service in Point Cook</strong> is
                     here to make your travel experience seamless. We offer
                     reliable pickups and drop-offs to Melbourne Airport,
@@ -120,7 +120,7 @@ const page = () => {
                     Why Choose Me Cabs in Point Cook?
                   </h3>
                   <p className="text-[1rem] text-zinc-800 mb-5">
-                    Choosing <strong>Me Cabs</strong> means choosing a{" "}
+                    Choosing <strong>Me Cabs</strong> means choosing a
                     <strong>taxi service in Point Cook</strong>
                     that is customer-focused and committed to excellence. We are
                     known for our attention to detail and commitment to

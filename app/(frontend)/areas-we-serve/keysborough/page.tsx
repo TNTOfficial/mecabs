@@ -23,7 +23,7 @@ const page = () => {
             Keysborough Taxis: Reliable Rides at Your Doorstep with ME CABS
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
-            Need a <strong>taxi in Keysborough?</strong> Look no further than{" "}
+            Need a <strong>taxi in Keysborough?</strong> Look no further than
             <strong>ME CABS!</strong> We offer prompt, reliable taxi services to
             Glen Keysborough and surrounding areas. Whether you're commuting for
             work, heading out for a night on the town, or catching a flight, ME

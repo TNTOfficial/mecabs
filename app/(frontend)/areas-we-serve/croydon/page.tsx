@@ -21,7 +21,7 @@ const page = () => {
             Dependable Taxi Service in Croydon <span>&minus;</span> Me Cabs
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
-            When you<span>&apos;</span>re searching for a reliable{" "}
+            When you<span>&apos;</span>re searching for a reliable
             <strong>taxi in Croydon</strong>, ME CABS is the name you can trust.
             Offering top-notch taxi services across Croydon, we ensure every
             ride is convenient, safe, and comfortable. Whether you need a ride
@@ -53,7 +53,7 @@ const page = () => {
                     Professional Taxi Service
                   </h2>
                   <p className="text-[1rem] text-zinc-800 mb-5">
-                    <strong>ME CABS</strong> takes pride in delivering a{" "}
+                    <strong>ME CABS</strong> takes pride in delivering a
                     <strong>premium taxi service</strong>, tailored to suit the
                     diverse transportation needs of our customers. Our
                     experienced drivers are knowledgeable about the local area
@@ -83,7 +83,7 @@ const page = () => {
                     We know how critical it is to get to the airport on time,
                     and our team is here to make that happen. Our drivers are
                     trained to plan the best routes and monitor your flight
-                    schedules, ensuring prompt pickups and drop-offs. With{" "}
+                    schedules, ensuring prompt pickups and drop-offs. With
                     <strong>ME CABS</strong>, your airport journey is guaranteed
                     to be smooth and worry-free, allowing you to focus on your
                     travels.

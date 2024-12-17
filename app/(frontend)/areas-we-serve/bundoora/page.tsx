@@ -21,7 +21,7 @@ const page = () => {
             Reliable Taxi Service in Bundoora <span>&minus;</span> Me Cabs
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
-            When you need a trusted and convenient{" "}
+            When you need a trusted and convenient
             <strong>taxi in Bundoora</strong>, ME CABS is here to deliver
             exceptional transportation services. Whether it<span>&apos;</span>s
             a quick trip around town, a longer journey, or a ride to the
@@ -54,7 +54,7 @@ const page = () => {
                   </h2>
                   <p className="text-[1rem] text-zinc-800 mb-5">
                     At <strong>ME CABS</strong>, we take pride in offering a
-                    dependable <strong>taxi service in Bundoora</strong>{" "}
+                    dependable <strong>taxi service in Bundoora</strong>
                     tailored to meet the diverse needs of our customers. Our
                     well-maintained fleet and experienced drivers ensure a
                     smooth journey, no matter your destination. Whether it’s for

@@ -75,7 +75,7 @@ const page = () => {
                     Hassle-Free Airport Transfers in Ringwood
                   </h2>
                   <p className="text-[1rem] text-zinc-800">
-                    For those in need of{" "}
+                    For those in need of
                     <strong>reliable airport transfers in Ringwood,</strong>
                     Me Cabs offers timely and comfortable airport taxi services.
                     We know how stressful airport travel can be, and our service
@@ -146,7 +146,7 @@ const page = () => {
 
             <p className="block max-w-2xl mt-4 text-gray-500">
               Me Cabs believes in providing quality service at competitive
-              rates, making us an affordable option for those seeking a{" "}
+              rates, making us an affordable option for those seeking a
               <strong> cab in Ringwood</strong>. Our user-friendly booking
               system makes it easy to reserve a taxi at your convenience. Book
               online or call us to secure your ride, and enjoy a hassle-free
