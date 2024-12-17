@@ -20,13 +20,15 @@ const page = () => {
       >
         <div className="sectionMainHeading text-center text-white max-w-screen-lg">
           <h1 className="text-[3rem] font-bold">
-            Navigate Altona with Ease: Reliable Taxi Service from ME CABS
+            Take the Stress Out of Travel with ME CABS <span>&minus;</span> Your
+            Reliable Epping Taxi Service
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
-            Need a convenient and reliable way to get around Altona? Look no
-            further than ME CABS! We offer a comprehensive
-            <strong>taxi service</strong> that caters to all your Altona travel
-            needs, ensuring a stress-free and comfortable journey every time.
+            Need a reliable and comfortable <strong>taxi in Epping?</strong>{" "}
+            Look no further than ME CABS! We are your one-stop shop for all your
+            local and long-distance travel needs. Whether you're heading to the
+            airport, a night out on the town, or simply across Epping, we offer
+            a prompt, efficient, and stress-free taxi service you can count on.
           </p>
         </div>
       </section>
@@ -37,15 +39,8 @@ const page = () => {
         <div className="container">
           <div className="sectionHeading text-center max-w-screen-md mx-auto space-y-6 mb-16">
             <h2 className="text-[2rem] text-zinc-900 font-bold">
-              Your Go-To Taxi Service
+              Experience the ME CABS Difference:
             </h2>
-            <p className="text-[1.1rem] text-zinc-700">
-              Whether you<span>&apos;</span>re a resident of Altona or simply
-              visiting the vibrant area, <strong>ME CABS</strong> is your one
-              <span>&minus;</span>
-              stop solution for a hassle-free travel experience. We cater to a
-              wide range of needs, including:
-            </p>
           </div>
 
           {/* trusted cards */}
@@ -61,13 +56,14 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Local Trips
+                    Convenience
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Need a ride to the Altona Community Centre, a grocery run at
-                    Woolworths, or visiting friends across town? Our taxis will
-                    get you there efficiently and safely, allowing you to focus
-                    on enjoying your time.
+                    We take the hassle out of finding a taxi. With ME CABS, you
+                    can book your ride online, through our app, or simply by
+                    giving us a call. Our friendly and helpful staff will take
+                    care of everything, ensuring a smooth and seamless
+                    experience.
                   </p>
                 </div>
               </div>
@@ -83,15 +79,13 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Airport Transfers
+                    24/7 Availability
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Catching a flight from Melbourne Airport? Don
-                    <span>&apos;</span>t sweat the logistics. Our reliable
-                    airport taxi service guarantees a smooth and stress-free
-                    transition. We<span>&apos;</span>ll monitor your flight
-                    arrival time and be readily waiting for you upon landing,
-                    ready to whisk you back to your Altona destination.
+                    Life doesn't wait, and neither do we! ME CABS operates 24
+                    hours a day, 7 days a week. Whether you need a late-night
+                    pickup or an early morning ride, we're always here to get
+                    you where you need to be on time.
                   </p>
                 </div>
               </div>
@@ -107,14 +101,13 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Seamless Nightlife Transportation
+                    Safety & Comfort
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Enjoying a night out in Altona or venturing into Melbourne<span>&apos;</span>s
-                    bustling nightlife scene? Leave the car at home and let ME
-                    CABS be your designated driver. We&apos;ll ensure a safe and
-                    comfortable ride between bars, restaurants, and your final
-                    destination in Altona or surrounding areas.
+                    Your safety is our top priority. Our vehicles are
+                    meticulously maintained and fully insured. Our professional
+                    drivers are experienced, courteous, and committed to
+                    providing a safe and comfortable journey.
                   </p>
                 </div>
               </div>
@@ -130,13 +123,12 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Special Occasions
+                    Competitive Rates
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Need a touch of class for a wedding or formal event? Our
-                    taxi service offers a stylish and comfortable way to arrive
-                    in style. Make a memorable entrance that complements your
-                    special occasion.
+                    We offer competitive fares without compromising on quality.
+                    Get a transparent quote upfront with no hidden fees, so you
+                    can relax knowing exactly how much your ride will cost.
                   </p>
                 </div>
               </div>
@@ -151,11 +143,12 @@ const page = () => {
         <div className="container">
           <div className="sectionHeading text-center max-w-screen-md mx-auto space-y-6 mb-16">
             <h2 className="text-[2rem] text-zinc-900 font-bold">
-              ME CABS: Trusted Taxi Provider
+              More Than Just Epping Taxi Cabs
             </h2>
             <p className="text-[1.1rem] text-zinc-700">
-              Beyond our comprehensive service offerings, here
-              <span>&apos;</span>s what sets ME CABS apart:
+              <strong>ME CABS</strong> is your complete Epping transportation
+              solution. We offer a variety of services to cater to your specific
+              needs
             </p>
           </div>
 
@@ -168,56 +161,36 @@ const page = () => {
               />
             </div>
             <div className="flex-[1_1_300px]">
-              <div className="card text-start h-full rounded-lg bg-gray-50 p-5 space-y-6">
+              <div className="card text-start h-full rounded-lg bg-gray-50 p-5 space-y-6 flex justify-center ic flex-col">
                 <div className="articalText">
                   <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Modern Fleet
+                    Airport Transfer
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
-                    We maintain a fleet of well-maintained, late-model vehicles
-                    to ensure a comfortable and enjoyable ride. Each taxi is
-                    clean, spacious, and equipped for a smooth journey.
+                    Take the worry out of airport travel with our reliable and
+                    efficient airport transfer service. We'll monitor your
+                    flight arrival time and ensure a stress-free transition from
+                    the airport to your destination in Epping.
                   </p>
                 </div>
                 <div className="articalText">
                   <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Experienced Drivers
+                    Local Trips
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
-                    Our team of professional and courteous drivers is familiar
-                    with Altona<span>&apos;</span>s streets and surrounding
-                    suburbs. They prioritize safe and efficient journeys,
-                    ensuring you reach your destination on time.
+                    Need a ride across town? ME CABS is here for your local
+                    trips, from shopping excursions to doctor's appointments and
+                    everything in between.
                   </p>
                 </div>
                 <div className="articalText">
                   <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    24/7 Availability
+                    Special Events
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
-                    Need a taxi at any hour? ME CABS operates 24/7, offering
-                    reliable transportation whenever you need it most, day or
-                    night.
-                  </p>
-                </div>
-                <div className="articalText">
-                  <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Competitive Rates
-                  </h4>
-                  <p className="text-[1rem] text-zinc-800">
-                    We offer transparent and competitive fares, ensuring you get
-                    the best value for money. You<span>&apos;</span>ll know the
-                    cost upfront, allowing for stress-free budgeting.
-                  </p>
-                </div>
-                <div className="articalText">
-                  <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Convenient Booking
-                  </h4>
-                  <p className="text-[1rem] text-zinc-800">
-                    Book your taxi quickly and easily using our user-friendly
-                    app or by calling our 24/7 hotline. Our booking process is
-                    simple and efficient, saving you valuable time.
+                    Make a grand entrance or ensure a safe return home from a
+                    special event. ME CABS is your designated driver for
+                    weddings, concerts, nights out, or any other occasion.
                   </p>
                 </div>
               </div>
@@ -232,16 +205,31 @@ const page = () => {
         <div className="container flex flex-col items-center px-4 py-12 mx-auto xl:flex-row">
           <div className="flex flex-col items-center mt-6 xl:items-start xl:w-1/2 xl:mt-0">
             <h3 className="text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl">
-              Experience the Difference
+              Ride with Confidence with ME CABS
             </h3>
 
+            <p className="block max-w-2xl mt-4 text-gray-500 mb-6">
+              We understand that choosing a taxi service is a matter of trust.
+              We are committed to exceeding your expectations with our
+              dedication to
+            </p>
+
+            <p className="block max-w-2xl mt-4 text-gray-500 mb-4">
+              <strong className="text-black">Punctuality:</strong> We value your time and will arrive
+              promptly for your scheduled pick-up.
+            </p>
+            <p className="block max-w-2xl mt-4 text-gray-500 mb-4">
+              <strong className="text-black">Reliability:</strong> You can count on us to get you to
+              your destination safely and efficiently.
+            </p>
+            <p className="block max-w-2xl mt-4 text-gray-500 mb-4">
+              <strong className="text-black">Professionalism:</strong> Our drivers are courteous,
+              helpful, and committed to providing a positive experience.
+            </p>
+
             <p className="block max-w-2xl mt-4 text-gray-500">
-              Ditch the stress of driving, parking, and navigating unfamiliar
-              routes. With ME CABS, you can relax, unwind, and leave the driving
-              to our experienced professionals. Whether you<span>&apos;</span>re
-              a local resident or a visitor exploring Altona, we
-              <span>&apos;</span>re committed to providing a seamless and
-              enjoyable travel experience.
+              Let ME CABS be your go-to Epping taxi service. Choose comfort,
+              convenience, and peace of mind with your next ride.
             </p>
           </div>
           <div className="flex justify-center xl:w-1/2">

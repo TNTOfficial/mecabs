@@ -38,8 +38,8 @@ export default function Footer() {
                 href="tel: +61 1300012018"
                 className="no-underline text-black flex justify-center items-center gap-2"
               >
-                {" "}
-                <FiPhoneCall className="text-black text-[1.8rem]" />{" "}
+                
+                <FiPhoneCall className="text-black text-[1.8rem]" />
                 <span className="font-extrabold text-black text-[1.2rem]">
                   +61 1300012018
                 </span>
@@ -47,7 +47,7 @@ export default function Footer() {
             </div>
             <div className="xl:w-[calc(100%_/_3_-_20px)] w-full">
               <strong className="text-nowrap text-[1.1rem] w-full inline-block">
-                Payment with:{" "}
+                Payment with:
               </strong>
               <div className="flex gap-4 justify-start max-sm:justify-center items-center flex-nowrap max-sm:flex-wrap">
                 <Image
@@ -74,7 +74,7 @@ export default function Footer() {
             </div>
             <div className="social text-black flex justify-end max-sm:justify-center items-center gap-2 xl:w-[calc(100%_/_3_-_20px)] w-full">
               <strong className="text-[1.3rem] font-bold text-whtie">
-                Follow Us:{" "}
+                Follow Us:
               </strong>
 
               <div className="icons flex justify-center items-center gap-3">
@@ -120,7 +120,7 @@ export default function Footer() {
             </div>
             <div className="develop text-center">
               <span className="text-black">
-                Developed By:{" "}
+                Developed By:
                 <Link
                   href="https://www.topntech.com/"
                   className="text-black font-bold"

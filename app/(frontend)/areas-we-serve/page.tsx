@@ -60,7 +60,7 @@ const page = () => {
     },
     {
       cityName: "Bundoora",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/bundoora"
     },
     {
       cityName: "Camberwell",
@@ -84,7 +84,7 @@ const page = () => {
     },
     {
       cityName: "Croydon",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/croydon"
     },
     {
       cityName: "Dandenong",
@@ -108,7 +108,7 @@ const page = () => {
     },
     {
       cityName: "Epping",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/epping "
     },
     {
       cityName: "Essendon",
@@ -132,7 +132,7 @@ const page = () => {
     },
     {
       cityName: "Glen waverley",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/glen-waverley"
     },
     {
       cityName: "Greensborough",
@@ -156,7 +156,7 @@ const page = () => {
     },
     {
       cityName: "Keysborough",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/keysborough"
     },
     {
       cityName: "Lara",
@@ -172,7 +172,7 @@ const page = () => {
     },
     {
       cityName: "Melton",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/melton "
     },
     {
       cityName: "Moone ponds",
@@ -212,7 +212,7 @@ const page = () => {
     },
     {
       cityName: "Point cook",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/point-cook"
     },
     {
       cityName: "Port melbourne",
@@ -232,7 +232,7 @@ const page = () => {
     },
     {
       cityName: "Ringwood",
-      linkPath: "/areas-we-serve/aintree"
+      linkPath: "/areas-we-serve/ringwood"
     },
     {
       cityName: "South morang",

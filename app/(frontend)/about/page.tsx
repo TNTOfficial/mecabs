@@ -65,32 +65,40 @@ export default async function About() {
               </h1>
 
               <p className="text-[1rem] text-gray-600 dark:text-white font-normal mb-6">
-                Welcome to <strong className="text-black">ME CABS,</strong> your trusted{" "}
-                <strong className="text-black">taxi service</strong> provider in
-                <strong className="text-black">Melbourne and the surrounding areas</strong>. We pride
-                ourselves on delivering reliable, comfortable, and affordable
-                transportation solutions for all your travel needs. Whether
-                you’re heading to the <strong className="text-black">airport</strong>, commuting to
-                work, or planning a <strong className="text-black">night out</strong>, we ensure a
+                Welcome to <strong className="text-black">ME CABS,</strong> your
+                trusted <strong className="text-black">taxi service</strong>
+                provider in
+                <strong className="text-black">
+                  Melbourne and the surrounding areas
+                </strong>
+                . We pride ourselves on delivering reliable, comfortable, and
+                affordable transportation solutions for all your travel needs.
+                Whether you’re heading to the
+                <strong className="text-black">airport</strong>, commuting to
+                work, or planning a
+                <strong className="text-black">night out</strong>, we ensure a
                 smooth and stress-free journey every time
               </p>
 
               <p className="text-[1rem] text-gray-600 dark:text-white font-normal mb-6">
-                At <strong className="text-black">ME CABS</strong>, our team of professional and
-                courteous drivers is committed to providing exceptional
-                service. With extensive local knowledge and a dedication to
-                punctuality, we guarantee that you’ll reach your destination
-                safely and on time. Our fleet of well-maintained vehicles is
-                designed for your comfort, offering a pleasant ride regardless
-                of the distance.
+                At <strong className="text-black">ME CABS</strong>, our team of
+                professional and courteous drivers is committed to providing
+                exceptional service. With extensive local knowledge and a
+                dedication to punctuality, we guarantee that you’ll reach your
+                destination safely and on time. Our fleet of well-maintained
+                vehicles is designed for your comfort, offering a pleasant ride
+                regardless of the distance.
               </p>
               <p className="text-[1rem] text-gray-600 dark:text-white font-normal mb-6">
                 We understand that every journey is unique, which is why we
                 tailor our services to meet your specific requirements. From
-                quick <strong className="text-black">city transfers to long-distance trips</strong>,
-                our flexible options ensure convenience and peace of mind.
-                Booking with us is easy – our user-friendly platform allows
-                you to schedule your ride in just a few clicks.
+                quick
+                <strong className="text-black">
+                  city transfers to long-distance trips
+                </strong>
+                , our flexible options ensure convenience and peace of mind.
+                Booking with us is easy – our user-friendly platform allows you
+                to schedule your ride in just a few clicks.
               </p>
               <p className="text-[1rem] text-gray-600 dark:text-white font-normal mb-6">
                 At the heart of our service is a commitment to excellence and
@@ -99,19 +107,19 @@ export default async function About() {
                 competitive pricing, and a focus on your comfort and safety.
               </p>
               <p className="text-[1rem] text-gray-600 dark:text-white font-normal mb-6">
-                Thank you for choosing <strong className="text-black">ME CABS</strong>. Let us be
-                your reliable partner for all your transportation needs in
-                Point Cook and beyond. Your journey matters to us, and we look
-                forward to serving you.
+                Thank you for choosing
+                <strong className="text-black">ME CABS</strong>. Let us be your
+                reliable partner for all your transportation needs in Point Cook
+                and beyond. Your journey matters to us, and we look forward to
+                serving you.
               </p>
-
             </div>
             <div className="aboutList">
               <ul className="list-none mt-5">
                 <li className="flex justify-start mb-3 items-center gap-3">
                   <IoCheckmarkCircleSharp className="text-gray-300 dark:text-white text-[20.8px]" />
                   <span className="tetx-gray-600 dark:text-white text-[17.6px] font-light">
-                    100% Luxurious Fleet
+                    Luxurious Fleet
                   </span>
                 </li>
                 <li className="flex justify-start mb-3 items-center gap-3">
@@ -140,7 +148,6 @@ export default async function About() {
                 </li>
               </ul>
             </div>
-
           </div>
 
           <div className="counter flex flex-wrap justify-center items-center  gap-5 mt-10">
@@ -151,7 +158,7 @@ export default async function About() {
                 </div>
                 <div className="num  flex justify-center items-center flex-col h-full w-[96%] border border-gray-300 dark:border-blue-500 rounded-full">
                   <span className="text-[40px] text-blue-500 dark:text-white font-extralight">
-                    120
+                    285+
                   </span>
                   <span className="text-[1rem] text-gray-400 dark:text-white">
                     Vehicles
@@ -166,40 +173,10 @@ export default async function About() {
                 </div>
                 <div className="num  flex justify-center items-center flex-col h-full w-[96%] border border-gray-300 dark:border-blue-500 rounded-full">
                   <span className="text-[40px] text-blue-500 dark:text-white font-extralight">
-                    25
+                    13K
                   </span>
                   <span className="text-[1rem] text-gray-400 dark:text-white">
-                    Countries Visited
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="xl:w-[calc(100%_/_4_-_1.25rem)] md:w-[calc(100%_/_3_-_1.25rem)] sm:w-[calc(100%_/_2_-_1.25rem)] w-[calc(100%_/_1_-_1.25rem)]">
-              <div className="card_circle h-[11.875rem] w-[11.875rem] rounded-full border border-gray-300 drak:border-blue-500 mx-auto flex justify-center items-center relative">
-                <div className="absolute top-2 right-1 h-12 w-12 flex justify-center items-center bg-gray-100 dark:bg-white rounded-full">
-                  <IoCheckmark className="text-gray-500 text-[24px]" />
-                </div>
-                <div className="num  flex justify-center items-center flex-col h-full w-[96%] border border-gray-300 dark:border-blue-500 rounded-full">
-                  <span className="text-[40px] text-blue-500 dark:text-white font-extralight">
-                    25
-                  </span>
-                  <span className="text-[1rem] text-gray-400 dark:text-white">
-                    Miles Traveled
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="xl:w-[calc(100%_/_4_-_1.25rem)] md:w-[calc(100%_/_3_-_1.25rem)] sm:w-[calc(100%_/_2_-_1.25rem)] w-[calc(100%_/_1_-_1.25rem)]">
-              <div className="card_circle h-[11.875rem] w-[11.875rem] rounded-full border border-gray-300 drak:border-blue-500 mx-auto flex justify-center items-center relative">
-                <div className="absolute top-2 right-1 h-12 w-12 flex justify-center items-center bg-gray-100 dark:bg-white rounded-full">
-                  <IoCheckmark className="text-gray-500 text-[24px]" />
-                </div>
-                <div className="num  flex justify-center items-center flex-col h-full w-[96%] border border-gray-300 dark:border-blue-500 rounded-full">
-                  <span className="text-[40px] text-blue-500 dark:text-white font-extralight">
-                    7
-                  </span>
-                  <span className="text-[1rem] text-gray-400 dark:text-white">
-                    Awards Won
+                    Happy Customer
                   </span>
                 </div>
               </div>
@@ -262,14 +239,7 @@ export default async function About() {
                         Vehicles
                       </h5>
                     </div>
-                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
-                      <h3 className="text-[3rem] text-white font-semibold">
-                        97
-                      </h3>
-                      <h5 className="text-[20.8px] text-white font-medium">
-                        Awards
-                      </h5>
-                    </div>
+
                     <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
                       <h3 className="text-[3rem] text-white font-semibold">
                         13 k
@@ -300,8 +270,7 @@ export default async function About() {
             <div className="text">
               <h4 className="text-black m2-5 text-[24px] font-medium">
                 For over a dozen years we have been providing the best transport
-                services. We offer bus, passenger transport and limousine
-                rental.
+                services.
               </h4>
 
               <p className="text-[17.6px] text-gray-600 font-normal mt-4">
