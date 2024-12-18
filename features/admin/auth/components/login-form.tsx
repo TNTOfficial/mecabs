@@ -41,7 +41,7 @@ interface LoginFormProps {
 export const LoginForm = ({
   formType = "login",
   onCloseDialog,
-  isModal,
+  isModal = false,
 }: LoginFormProps) => {
   const [currentFormType, setCurrentFormType] = useState<"login" | "register">(
     formType

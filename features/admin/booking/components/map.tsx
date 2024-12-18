@@ -3,6 +3,7 @@ import { Map as GoogleMap, useMap } from "@vis.gl/react-google-maps";
 import { Card } from "@/components/ui/card";
 // import { Clock, Navigation2 } from "lucide-react";
 import { useDirections } from "@/features/admin/booking/hooks/use-directions";
+import { useMapsConfig } from "../hooks/use-maps-config";
 
 interface MapProps {
   pickup: google.maps.LatLngLiteral | null;
@@ -21,7 +22,6 @@ const AdvancedMarkers: React.FC<{
   dropoff: google.maps.LatLngLiteral | null;
 }> = ({ pickup, dropoff }) => {
   const map = useMap();
-
   useEffect(() => {
     if (!map) return;
 
@@ -165,6 +165,7 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
   const defaultCenter = useMemo(() => ({ lat: -37.8136, lng: 144.9631 }), []);
   const { route, distance, duration, error } = useDirections(pickup, dropoff);
   const map = useMap();
+  const { config, error: configError } = useMapsConfig();
 
   const updateMapView = useCallback(() => {
     if (!map || !pickup || !dropoff) return;
@@ -205,10 +206,25 @@ export const Map: React.FC<MapProps> = ({ pickup, dropoff }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, [updateMapView]);
 
+  if (configError) {
+    return (
+      <Card className="p-4 bg-red-50 text-red-600">
+        <p className="text-sm">Error loading map configuration</p>
+      </Card>
+    );
+  }
+
+  if (!config) {
+    return (
+      <Card className="p-4">
+        <p className="text-sm">Loading map...</p>
+      </Card>
+    );
+  }
   return (
     <div className="relative w-full lg:h-full h-[400px]">
       <GoogleMap
-        mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID}
+        mapId={config.mapId}
         defaultCenter={defaultCenter}
         defaultZoom={DEFAULT_ZOOM}
         disableDefaultUI={true}
