@@ -25,7 +25,7 @@ const page = () => {
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
             Need a <strong>taxi in Keysborough?</strong> Look no further than
             <strong>ME CABS!</strong> We offer prompt, reliable taxi services to
-            Glen Keysborough and surrounding areas. Whether you're commuting for
+            Glen Keysborough and surrounding areas. Whether you&apos;re commuting for
             work, heading out for a night on the town, or catching a flight, ME
             CABS is your one-stop solution for comfortable and convenient taxi
             travel.
@@ -181,7 +181,7 @@ const page = () => {
                   <p className="text-[1rem] text-zinc-800">
                     Travel in comfort and style with our fleet of
                     well-maintained, clean taxis. We offer a variety of vehicles
-                    to suit your needs, whether you're a single passenger or a
+                    to suit your needs, whether you&apos;re a single passenger or a
                     group traveling together.
                   </p>
                 </div>
@@ -192,7 +192,7 @@ const page = () => {
                   <p className="text-[1rem] text-zinc-800">
                     Catching a flight from Melbourne Airport? Take the stress
                     out of your journey by pre-booking your airport transfer
-                    with ME CABS. We'll ensure you arrive at the airport on time
+                    with ME CABS. We&apos;ll ensure you arrive at the airport on time
                     and relaxed, ready for your flight.
                   </p>
                 </div>
@@ -202,7 +202,7 @@ const page = () => {
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
                     Our team of professional drivers are courteous, helpful, and
-                    local area experts. They'll get you where you need to go
+                    local area experts. They&apos;ll get you where you need to go
                     safely and efficiently, while providing a pleasant travel
                     experience
                   </p>
@@ -225,12 +225,12 @@ const page = () => {
             <p className="block max-w-2xl mt-4 text-gray-500 mb-5">
               We<span>&apos;</span>re committed to providing a comprehensive
               taxi service experience. Whether you need a taxi for a short trip
-              across town or a long-distance airport transfer, we're here to get
+              across town or a long-distance airport transfer, we&apos;re here to get
               you there comfortably and efficiently.
             </p>
 
             <p className="block max-w-2xl mt-4 text-gray-500">
-              Call us today for your Keysborough taxi needs! We're available
+              Call us today for your Keysborough taxi needs! We&apos;re available
               24/7 to take your call and get you on your way.
             </p>
           </div>

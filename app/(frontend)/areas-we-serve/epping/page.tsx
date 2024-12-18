@@ -26,9 +26,10 @@ const page = () => {
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
             Need a reliable and comfortable <strong>taxi in Epping?</strong>
             Look no further than ME CABS! We are your one-stop shop for all your
-            local and long-distance travel needs. Whether you're heading to the
-            airport, a night out on the town, or simply across Epping, we offer
-            a prompt, efficient, and stress-free taxi service you can count on.
+            local and long-distance travel needs. Whether you&apos;re heading to
+            the airport, a night out on the town, or simply across Epping, we
+            offer a prompt, efficient, and stress-free taxi service you can
+            count on.
           </p>
         </div>
       </section>
@@ -82,10 +83,10 @@ const page = () => {
                     24/7 Availability
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Life doesn't wait, and neither do we! ME CABS operates 24
-                    hours a day, 7 days a week. Whether you need a late-night
-                    pickup or an early morning ride, we're always here to get
-                    you where you need to be on time.
+                    Life doesn&apos;t wait, and neither do we! ME CABS operates
+                    24 hours a day, 7 days a week. Whether you need a late-night
+                    pickup or an early morning ride, we&apos;re always here to
+                    get you where you need to be on time.
                   </p>
                 </div>
               </div>
@@ -168,7 +169,7 @@ const page = () => {
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
                     Take the worry out of airport travel with our reliable and
-                    efficient airport transfer service. We'll monitor your
+                    efficient airport transfer service. We&apos;ll monitor your
                     flight arrival time and ensure a stress-free transition from
                     the airport to your destination in Epping.
                   </p>
@@ -179,8 +180,8 @@ const page = () => {
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
                     Need a ride across town? ME CABS is here for your local
-                    trips, from shopping excursions to doctor's appointments and
-                    everything in between.
+                    trips, from shopping excursions to doctor&apos;s
+                    appointments and everything in between.
                   </p>
                 </div>
                 <div className="articalText">
@@ -215,16 +216,17 @@ const page = () => {
             </p>
 
             <p className="block max-w-2xl mt-4 text-gray-500 mb-4">
-              <strong className="text-black">Punctuality:</strong> We value your time and will arrive
-              promptly for your scheduled pick-up.
+              <strong className="text-black">Punctuality:</strong> We value your
+              time and will arrive promptly for your scheduled pick-up.
             </p>
             <p className="block max-w-2xl mt-4 text-gray-500 mb-4">
-              <strong className="text-black">Reliability:</strong> You can count on us to get you to
-              your destination safely and efficiently.
+              <strong className="text-black">Reliability:</strong> You can count
+              on us to get you to your destination safely and efficiently.
             </p>
             <p className="block max-w-2xl mt-4 text-gray-500 mb-4">
-              <strong className="text-black">Professionalism:</strong> Our drivers are courteous,
-              helpful, and committed to providing a positive experience.
+              <strong className="text-black">Professionalism:</strong> Our
+              drivers are courteous, helpful, and committed to providing a
+              positive experience.
             </p>
 
             <p className="block max-w-2xl mt-4 text-gray-500">
