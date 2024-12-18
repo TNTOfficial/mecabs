@@ -20,7 +20,7 @@ const page = () => {
       >
         <div className="sectionMainHeading text-center text-white max-w-screen-lg">
           <h1 className="text-[3rem] font-bold">
-            Take the Stress Out of Travel with ME CABS<span>&apos;</span>{" "}
+            Take the Stress Out of Travel with ME CABS<span>&apos;</span>
             Berwick Taxi Service
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
@@ -152,7 +152,7 @@ const page = () => {
               ME CABS: More than Just a Berwick Taxi Service
             </h2>
             <p className="text-[1.1rem] text-zinc-700">
-              Beyond our comprehensive service offerings,{" "}
+              Beyond our comprehensive service offerings,
               <strong>ME CABS</strong> stands out for the following reasons:
             </p>
           </div>

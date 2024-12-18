@@ -4,12 +4,14 @@ import React from "react";
 
 import Image from "next/image";
 import { BsLuggageFill } from "react-icons/bs";
+
+import car1 from "@/public/car1.webp";
+import car2 from "@/public/car2.webp";
+import car3 from "@/public/car3.webp";
 import car4 from "@/public/car4.webp";
 import car5 from "@/public/car5.webp";
 import car6 from "@/public/car6.webp";
-import car12 from "@/public/car12.webp";
-import car13 from "@/public/car13.webp";
-import car14 from "@/public/car14.webp";
+import car7 from "@/public/car7.webp";
 import s1 from "@/public/01.webp";
 import s2 from "@/public/02.webp";
 import s3 from "@/public/03.webp";
@@ -61,64 +63,65 @@ export default function Home() {
     {
       title: "Safety First",
       icon: AiOutlineSafety,
-      para: "Both you and your shipments will travel with professionaldrivers. Always with the highest quality standards.",
+      para: "Your safety is our top priority. Our vehicles are regularly inspected and equipped with the latest safety features to ensure a secure ride every time.",
     },
     {
       title: "Prices With No Surprises",
       icon: RiMoneyDollarCircleLine,
-      para: "Both you and your shipments will travel with professional drivers. Always with the highest quality standards.",
+      para: "At our cab service, we believe in clear, upfront pricing with no hidden fees. Every ride comes with a transparent fare, so you will always know what to expect. .",
     },
     {
       title: "Private Travel Solutions",
       icon: IoCarOutline,
-      para: "Both you and your shipments will travel with professional drivers. Always with the highest quality standards.",
+      para: "Our private travel solutions offer a personalized, comfortable way to get where you need to go.",
     },
   ];
 
   const carPost = [
     {
-      title: "The BMW 7 Series Sedan",
-      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
-      carImage: car12,
+      title: "Lexus RX 350h",
+      carImage: car1,
       passenger: 4,
       luggage: 3,
     },
     {
-      title: "The BMW 7 Series Sedan",
-      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
-      carImage: car13,
-      passenger: 4,
-      luggage: 3,
-    },
-
-    {
-      title: "The BMW 7 Series Sedan",
-      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
-      carImage: car14,
+      title: "Highlander L SUV I4",
+      carImage: car2,
       passenger: 4,
       luggage: 3,
     },
 
     {
-      title: "The BMW 7 Series Sedan",
-      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "2025 Toyota Camry",
+      carImage: car3,
+      passenger: 4,
+      luggage: 3,
+    },
+
+    {
+      title: "Volkswagen Arteon SEL",
       carImage: car4,
       passenger: 4,
       luggage: 3,
     },
 
     {
-      title: "The BMW 7 Series Sedan",
-      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "Tesla Model Y | RACQ",
       carImage: car5,
       passenger: 4,
       luggage: 3,
     },
 
     {
-      title: "The BMW 7 Series Sedan",
-      subTitle: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "Mercedes Benz Limousine",
       carImage: car6,
+      passenger: 4,
+      luggage: 3,
+    },
+
+    {
+      title: "Lexus ES ",
+      carImage: car7,
       passenger: 4,
       luggage: 3,
     },
@@ -126,32 +129,140 @@ export default function Home() {
 
   const servicePost = [
     {
-      title: "The BMW 7 Series Sedan",
-      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "Taxi Service",
+      para: "You can book a taxi cab 24/7 and schedule your ride at any time of day or night. We also provide wheelchair accessible taxis and maxi taxis, ensuring that all our customers' transportation needs are met.",
       serviceImage: s1,
     },
     {
-      title: "The BMW 7 Series Sedan",
-      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "Airport Transfers",
+      para: "Ease your airport travel worries by reserving a trustworthy taxi with Melbourne Express Cabs. Whether you're landing or taking off, count on us to get you to your destination promptly and stress-free.",
       serviceImage: s2,
     },
 
     {
-      title: "The BMW 7 Series Sedan",
-      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "Airport Inside Pickup",
+      para: "We understand that jetting into town can be stressful, especially for frequent travelers. When booking your airport service, simply let us know you'd like to upgrade from curbside pick-up to inside pick-up.",
       serviceImage: s3,
     },
 
     {
-      title: "The BMW 7 Series Sedan",
-      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "Flight Tracking",
+      para: "Let us know your flight number the moment you book an airport pick-up service. We will be able to monitor your arrival time and provide a complimentary 60minute wait time, in case you experience a delay. ",
       serviceImage: s4,
     },
 
     {
-      title: "The BMW 7 Series Sedan",
-      para: "Mercedes-Benz V-CIass, Chevrolet Suburban, Cadillac",
+      title: "Corporate Travelling",
+      para: "Create a memorable impact with our corporate travel offerings. We deliver exceptional transportation solutions to your business needs, including meetings, conferences, and executive transfers.",
       serviceImage: s5,
+    },
+  ];
+
+  const faqs = [
+    {
+      title: "What is ME CABS?",
+      para: "ME CABS is a professional taxi service operating in Melbourne, Victoria, providing reliable transportation for airport transfers, parcel delivery, and hotel transfers.",
+    },
+    {
+      title: "Where does ME CABS operate?",
+      para: "ME CABS primarily operates in Melbourne, Victoria, and surrounding areas.",
+    },
+
+    {
+      title: "How can I book a ME CABS ride?",
+      para: "You can book a ride through our website, by calling us, or via partner hotels where our service is available.",
+    },
+    {
+      title: "Can I book a ME CABS ride in advance?",
+      para: "Yes, we accept advance bookings to ensure a hassle-free experience.",
+    },
+    {
+      title: "What payment methods does ME CABS accept?",
+      para: "We accept cash, Mastercard, Visa, AMEX, Cabcharge, and online payments.",
+    },
+    {
+      title: "Is there a cancellation fee for bookings?",
+      para: "No, ME CABS does not charge any cancellation fees. You can cancel your booking without any additional costs.",
+    },
+    {
+      title: "Do you provide quotes before booking?",
+      para: "Yes, we provide clear and upfront quotes, ensuring transparency in pricing.",
+    },
+    {
+      title: "Do you offer airport pickup and drop-off services?",
+      para: "Yes, we specialize in Melbourne airport transfers with timely pickups and smooth rides.",
+    },
+    {
+      title: "What happens if my flight is delayed?",
+      para: "Our drivers monitor flight timings and adjust the pickup schedule accordingly without extra charges.",
+    },
+    {
+      title: "Does ME CABS offer parcel delivery services?",
+      para: "Yes, ME CABS provides safe and reliable parcel delivery within Melbourne.",
+    },
+    {
+      title: "How do I track my parcel?",
+      para: "You will receive updates via SMS/email once your parcel is dispatched.",
+    },
+    {
+      title: "What kind of parcels do you deliver?",
+      para: "We deliver small to medium-sized parcels. For larger items, please contact us directly.",
+    },
+    {
+      title: "Do you work with hotels for guest transportation?",
+      para: "Yes, we partner with hotels to provide convenient guest transportation.",
+    },
+    {
+      title: "Can hotel guests request additional services like guided tours?",
+      para: "Yes, we offer personalized services such as city tours upon request.",
+    },
+    {
+      title: "Are your drivers professional and licensed?",
+      para: "Yes, all our drivers are fully licensed, experienced, and trained to provide excellent service.",
+    },
+    {
+      title: "Does ME CABS provide wheelchair-accessible taxis?",
+      para: "We strive to accommodate all needs; please inform us in advance to ensure we can provide suitable arrangements.",
+    },
+    {
+      title: "What safety measures does ME CABS follow?",
+      para: "All vehicles are regularly sanitized, and drivers adhere to safety protocols.",
+    },
+    {
+      title: "How do I contact ME CABS for assistance?",
+      para: "You can reach us via phone, email, or the contact form on our website.",
+    },
+    {
+      title: "What if I left something in the cab?",
+      para: "Contact us immediately, and we will assist you in retrieving your lost item.",
+    },
+    {
+      title: "Do you offer discounts for repeat customers?",
+      para: "Yes, we value our loyal customers and offer discounts for frequent riders.",
+    },
+    {
+      title: "Does ME CABS offer corporate transportation services?",
+      para: "Yes, ME CABS provides tailored transportation solutions for corporate clients, including employee commutes, executive travel, and event transportation.",
+    },
+    {
+      title: "Can businesses set up a corporate account with ME CABS?",
+      para: "Absolutely! ME CABS offers corporate accounts with flexible billing options, priority service, and exclusive benefits for regular bookings.",
+    },
+    {
+      title: "Do you provide transportation for corporate events or conferences",
+      para: "Yes, ME CABS specializes in managing transportation for corporate events, ensuring seamless coordination and punctual service.",
+    },
+    {
+      title: "Can ME CABS handle last-minute bookings for corporate clients?",
+      para: "Yes, ME CABS prioritizes corporate clients and can handle last-minute bookings based on availability."
+    },
+    {
+      title: "How does ME CABS ensure a professional experience for corporate clients?",
+      para: "Our professional drivers, premium vehicles, and punctual service are designed to meet the high standards of corporate clients."
+    },
+    {
+      title: "Can ME CABS provide flexible billing for corporate accounts?",
+      para: "Yes, ME CABS offers flexible billing options, including weekly or fortnightly invoices, to make payment and expense management simple and efficient for businesses."
     },
   ];
 
@@ -180,7 +291,7 @@ export default function Home() {
               href="tel: +61 1300012018"
               className="no-underline text-black flex justify-center items-center gap-2"
             >
-              <FiPhoneCall className="text-black text-[1rem]" />{" "}
+              <FiPhoneCall className="text-black text-[1rem]" />
               <span className="font-extrabold text-black text-[.9rem]">
                 +61 1300012018
               </span>
@@ -243,14 +354,14 @@ export default function Home() {
                         Vehicles
                       </h5>
                     </div>
-                    <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
+                    {/* <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
                       <h3 className="text-[3rem] text-white font-semibold">
                         97
                       </h3>
                       <h5 className="text-[1.3rem] text-white font-medium">
                         Awards
                       </h5>
-                    </div>
+                    </div> */}
                     <div className="count text-center  cursor-pointer hover:-translate-y-3 transition-all duration-500 ease-in-out">
                       <h3 className="text-[3rem] text-white font-semibold">
                         13 k
@@ -307,9 +418,6 @@ export default function Home() {
                       <h4 className="text-[1.2rem] font-semibold text-zinc-800 mb-3">
                         {car.title}
                       </h4>
-                      <p className="text-[.9rem] text-zinc-700 font-normal">
-                        {car.subTitle}
-                      </p>
                     </div>
 
                     <div className="card_img w-full h-[200px]">
@@ -371,8 +479,8 @@ export default function Home() {
                     Choose Vehicle For You
                   </h4>
                   <p className="text-white text-[1rem] font-normal">
-                    Enter your pickup & dropoff locations or the number of hours
-                    you wish to book a car and driver for
+                    Choose Vehicle For You! Easily book your perfect ride with
+                    just a few clicks. Select your preferred vehicle type
                   </p>
                 </div>
 
@@ -381,8 +489,7 @@ export default function Home() {
                     Enjoy The Journey
                   </h4>
                   <p className="text-white text-[1rem] font-normal">
-                    Enter your pickup & dropoff locations or the number of hours
-                    you wish to book a car and driver for
+                    let us handle the rest for a smooth and comfortable journey.
                   </p>
                 </div>
               </div>
@@ -461,12 +568,9 @@ export default function Home() {
                     </div>
                     <div className="cardBody bg-transparent p-5 flex flex-col justify-end items-start absolute z-30 bottom-[-30%] left-0 w-full transition-all duration-300">
                       <h3 className="text-white mb-5 text-[1.7rem]">
-                        Intercity Rides
+                        {service.title}
                       </h3>
-                      <p className="text-white mb-4">
-                        At the heart Of Wedding Class is a commitment to
-                        personalized service.
-                      </p>
+                      <p className="text-white mb-4">{service.para}</p>
 
                       <a href="#" className=" text-white">
                         <LuArrowUpRightFromCircle className="text-[2.5rem]" />
@@ -613,83 +717,23 @@ export default function Home() {
               <h2 className="text-3xl font-extrabold text-black text-center mb-10">
                 Frequently Asked Questions
               </h2>
-
-              <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-lg font-semibold text-[#333] no-underline">
-                    <span>How can I create an account?</span>{" "}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Yes. It adheres to the WAI-ARIA design pattern.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-
-              <div className="space-y-8 max-w-4xl">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0">
-                    <IoCheckmark className="text-blue-700 text-[1.3rem]" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-semibold text-[#333]">
-                      How can I create an account?
-                    </h3>
-                    <p className="text-sm text-[#333] mt-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="flex-shrink-0">
-                    <IoCheckmark className="text-blue-700 text-[1.3rem]" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-semibold text-[#333]">
-                      How can I reset my password?
-                    </h3>
-                    <p className="text-sm text-[#333] mt-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="flex-shrink-0">
-                    <IoCheckmark className="text-blue-700 text-[1.3rem]" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-semibold text-[#333]">
-                      How do I update my account information?
-                    </h3>
-                    <p className="text-sm text-[#333] mt-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="flex-shrink-0">
-                    <IoCheckmark className="text-blue-700 text-[1.3rem]" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-semibold text-[#333]">
-                      Is there a mobile app available?
-                    </h3>
-                    <p className="text-sm text-[#333] mt-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua Sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {faqs.map((faq, index) => {
+                return (
+                  <Accordion key={index} type="single" collapsible>
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger className="text-lg font-semibold text-[#333] no-underline">
+                        <div className="inline-flex gap-3 justify-start items-center">
+                          <IoCheckmark className="text-blue-700 text-[1.3rem]" />
+                          <span>{faq.title}</span>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="ps-7 text-[1rem] text-gray-700">
+                       {faq.para}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                );
+              })}
             </div>
           </div>
         </div>

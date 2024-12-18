@@ -20,13 +20,15 @@ const page = () => {
       >
         <div className="sectionMainHeading text-center text-white max-w-screen-lg">
           <h1 className="text-[3rem] font-bold">
-            Navigate Altona with Ease: Reliable Taxi Service from ME CABS
+            Keysborough Taxis: Reliable Rides at Your Doorstep with ME CABS
           </h1>
           <p className="text-justify text-[1.1rem] [text-align-last:center]">
-            Need a convenient and reliable way to get around Altona? Look no
-            further than ME CABS! We offer a comprehensive
-            <strong>taxi service</strong> that caters to all your Altona travel
-            needs, ensuring a stress-free and comfortable journey every time.
+            Need a <strong>taxi in Keysborough?</strong> Look no further than
+            <strong>ME CABS!</strong> We offer prompt, reliable taxi services to
+            Glen Keysborough and surrounding areas. Whether you're commuting for
+            work, heading out for a night on the town, or catching a flight, ME
+            CABS is your one-stop solution for comfortable and convenient taxi
+            travel.
           </p>
         </div>
       </section>
@@ -37,15 +39,8 @@ const page = () => {
         <div className="container">
           <div className="sectionHeading text-center max-w-screen-md mx-auto space-y-6 mb-16">
             <h2 className="text-[2rem] text-zinc-900 font-bold">
-              Your Go-To Taxi Service
+              Benefits of Choosing ME CABS for Your Taxi Needs
             </h2>
-            <p className="text-[1.1rem] text-zinc-700">
-              Whether you<span>&apos;</span>re a resident of Altona or simply
-              visiting the vibrant area, <strong>ME CABS</strong> is your one
-              <span>&minus;</span>
-              stop solution for a hassle-free travel experience. We cater to a
-              wide range of needs, including:
-            </p>
           </div>
 
           {/* trusted cards */}
@@ -61,13 +56,12 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Local Trips
+                    Competitive Rates
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Need a ride to the Altona Community Centre, a grocery run at
-                    Woolworths, or visiting friends across town? Our taxis will
-                    get you there efficiently and safely, allowing you to focus
-                    on enjoying your time.
+                    We offer competitive fares for all our taxi services,
+                    ensuring you get a safe and reliable ride without breaking
+                    the bank.
                   </p>
                 </div>
               </div>
@@ -83,15 +77,13 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Airport Transfers
+                    Safe & Secure Travel
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Catching a flight from Melbourne Airport? Don
-                    <span>&apos;</span>t sweat the logistics. Our reliable
-                    airport taxi service guarantees a smooth and stress-free
-                    transition. We<span>&apos;</span>ll monitor your flight
-                    arrival time and be readily waiting for you upon landing,
-                    ready to whisk you back to your Altona destination.
+                    Your safety is our priority. All ME CABS vehicles are
+                    regularly inspected and maintained to the highest standards.
+                    Our drivers undergo thorough background checks, ensuring a
+                    safe and secure journey.
                   </p>
                 </div>
               </div>
@@ -107,14 +99,12 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Seamless Nightlife Transportation
+                    Easy Booking
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Enjoying a night out in Altona or venturing into Melbourne<span>&apos;</span>s
-                    bustling nightlife scene? Leave the car at home and let ME
-                    CABS be your designated driver. We&apos;ll ensure a safe and
-                    comfortable ride between bars, restaurants, and your final
-                    destination in Altona or surrounding areas.
+                    Booking your taxi is simple and convenient. You can hail a
+                    cab on the street, call us directly, or book online through
+                    our user-friendly website.
                   </p>
                 </div>
               </div>
@@ -130,13 +120,11 @@ const page = () => {
                 </div>
                 <div className="cardBody border-t overflow-hidden border-l px-5 py-10  flex-[1_1_50%] relative z-0 before:absolute before:-top-[40px] before:-right-[40px] before:rounded-bl-xl before:h-20 before:min-w-20 before:max-w-20 before:w-full before:aspect-square before:rotate-[0deg] before:bg-blue-500 after:absolute after:-top-[5px] after:-right-[5px] after:rounded-bl-lg after:h-10 after:aspect-square after:rotate-[0deg] after:bg-white after:z-40 before:z-30">
                   <h4 className="text-[1.4rem] text-zinc-800 font-semibold">
-                    Special Occasions
+                    Multiple Payment Options
                   </h4>
                   <p className="text-[1rem] text-zinc-700 font-normal">
-                    Need a touch of class for a wedding or formal event? Our
-                    taxi service offers a stylish and comfortable way to arrive
-                    in style. Make a memorable entrance that complements your
-                    special occasion.
+                    Pay for your ride in a way that suits you. We accept cash,
+                    credit card, and debit card payments.
                   </p>
                 </div>
               </div>
@@ -151,12 +139,8 @@ const page = () => {
         <div className="container">
           <div className="sectionHeading text-center max-w-screen-md mx-auto space-y-6 mb-16">
             <h2 className="text-[2rem] text-zinc-900 font-bold">
-              ME CABS: Trusted Taxi Provider
+              Our Taxi Services
             </h2>
-            <p className="text-[1.1rem] text-zinc-700">
-              Beyond our comprehensive service offerings, here
-              <span>&apos;</span>s what sets ME CABS apart:
-            </p>
           </div>
 
           <div className="flex justify-center items-stretch flex-wrap gap-8">
@@ -171,53 +155,56 @@ const page = () => {
               <div className="card text-start h-full rounded-lg bg-gray-50 p-5 space-y-6">
                 <div className="articalText">
                   <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Modern Fleet
-                  </h4>
-                  <p className="text-[1rem] text-zinc-800">
-                    We maintain a fleet of well-maintained, late-model vehicles
-                    to ensure a comfortable and enjoyable ride. Each taxi is
-                    clean, spacious, and equipped for a smooth journey.
-                  </p>
-                </div>
-                <div className="articalText">
-                  <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Experienced Drivers
-                  </h4>
-                  <p className="text-[1rem] text-zinc-800">
-                    Our team of professional and courteous drivers is familiar
-                    with Altona<span>&apos;</span>s streets and surrounding
-                    suburbs. They prioritize safe and efficient journeys,
-                    ensuring you reach your destination on time.
-                  </p>
-                </div>
-                <div className="articalText">
-                  <h4 className="text-[1.3rem] text-blue-950 font-bold">
                     24/7 Availability
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
-                    Need a taxi at any hour? ME CABS operates 24/7, offering
-                    reliable transportation whenever you need it most, day or
-                    night.
+                    We operate 24 hours a day, 7 days a week, ensuring you can
+                    always get a taxi when you need it most. No more scrambling
+                    for a ride at odd hours <span>&minus;</span> ME CABS is
+                    there for you, day or night.
                   </p>
                 </div>
                 <div className="articalText">
                   <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Competitive Rates
+                    Fast & Efficient Service
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
-                    We offer transparent and competitive fares, ensuring you get
-                    the best value for money. You<span>&apos;</span>ll know the
-                    cost upfront, allowing for stress-free budgeting.
+                    Time is precious. Our experienced drivers know Keysborough
+                    and its surrounding suburbs well, minimizing travel time and
+                    getting you to your destination quickly.
                   </p>
                 </div>
                 <div className="articalText">
                   <h4 className="text-[1.3rem] text-blue-950 font-bold">
-                    Convenient Booking
+                    Modern & Clean Cabs
                   </h4>
                   <p className="text-[1rem] text-zinc-800">
-                    Book your taxi quickly and easily using our user-friendly
-                    app or by calling our 24/7 hotline. Our booking process is
-                    simple and efficient, saving you valuable time.
+                    Travel in comfort and style with our fleet of
+                    well-maintained, clean taxis. We offer a variety of vehicles
+                    to suit your needs, whether you're a single passenger or a
+                    group traveling together.
+                  </p>
+                </div>
+                <div className="articalText">
+                  <h4 className="text-[1.3rem] text-blue-950 font-bold">
+                    Airport Transfers
+                  </h4>
+                  <p className="text-[1rem] text-zinc-800">
+                    Catching a flight from Melbourne Airport? Take the stress
+                    out of your journey by pre-booking your airport transfer
+                    with ME CABS. We'll ensure you arrive at the airport on time
+                    and relaxed, ready for your flight.
+                  </p>
+                </div>
+                <div className="articalText">
+                  <h4 className="text-[1.3rem] text-blue-950 font-bold">
+                    Friendly & Professional Drivers
+                  </h4>
+                  <p className="text-[1rem] text-zinc-800">
+                    Our team of professional drivers are courteous, helpful, and
+                    local area experts. They'll get you where you need to go
+                    safely and efficiently, while providing a pleasant travel
+                    experience
                   </p>
                 </div>
               </div>
@@ -232,16 +219,19 @@ const page = () => {
         <div className="container flex flex-col items-center px-4 py-12 mx-auto xl:flex-row">
           <div className="flex flex-col items-center mt-6 xl:items-start xl:w-1/2 xl:mt-0">
             <h3 className="text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl">
-              Experience the Difference
+              More than just a Taxi Service
             </h3>
 
+            <p className="block max-w-2xl mt-4 text-gray-500 mb-5">
+              We<span>&apos;</span>re committed to providing a comprehensive
+              taxi service experience. Whether you need a taxi for a short trip
+              across town or a long-distance airport transfer, we're here to get
+              you there comfortably and efficiently.
+            </p>
+
             <p className="block max-w-2xl mt-4 text-gray-500">
-              Ditch the stress of driving, parking, and navigating unfamiliar
-              routes. With ME CABS, you can relax, unwind, and leave the driving
-              to our experienced professionals. Whether you<span>&apos;</span>re
-              a local resident or a visitor exploring Altona, we
-              <span>&apos;</span>re committed to providing a seamless and
-              enjoyable travel experience.
+              Call us today for your Keysborough taxi needs! We're available
+              24/7 to take your call and get you on your way.
             </p>
           </div>
           <div className="flex justify-center xl:w-1/2">

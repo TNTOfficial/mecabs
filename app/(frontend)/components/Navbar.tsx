@@ -83,8 +83,8 @@ export default function Navbar() {
                     href="tel: +61 1300012018"
                     className="no-underline text-black flex justify-center items-center gap-2"
                   >
-                    {" "}
-                    <FiPhoneCall className="text-black text-[1rem]" />{" "}
+                    
+                    <FiPhoneCall className="text-black text-[1rem]" />
                     <span className="font-extrabold text-black text-[0.9rem]">
                       +61 1300012018
                     </span>

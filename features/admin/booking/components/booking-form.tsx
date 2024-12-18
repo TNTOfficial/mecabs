@@ -903,24 +903,24 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             <Tabs
               defaultValue={activeTab}
               onValueChange={(v) => handleTabChange(v as BookingType)}
-              className="mb-4 "
+              className="mb-4"
             >
-              <TabsList className="w-full">
+              <TabsList className="w-full p-0 h-auto">
                 <TabsTrigger
                   value={bookingTypes.BOOKING}
-                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white"
+                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white h-9"
                 >
                   Booking
                 </TabsTrigger>
                 <TabsTrigger
                   value={bookingTypes.HOURLY}
-                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white"
+                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white h-9"
                 >
                   Hourly
                 </TabsTrigger>
                 <TabsTrigger
                   value={bookingTypes.PARCEL}
-                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white"
+                  className="flex-1 data-[state=active]:bg-blue-700 data-[state=active]:text-white h-9"
                 >
                   Parcel
                 </TabsTrigger>
@@ -1004,6 +1004,12 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                         <div className="flex gap-2">
                           <Button
                             type="button"
+                            className={cn(
+                              "",
+                              field.value === "now"
+                                ? "bg-blue-700 hover:bg-blue-700"
+                                : "bg-transparent"
+                            )}
                             variant={
                               field.value === "now" ? "default" : "outline"
                             }
@@ -1015,6 +1021,12 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           </Button>
                           <Button
                             type="button"
+                            className={cn(
+                              "",
+                              field.value === "later"
+                                ? "bg-blue-700 hover:bg-blue-700"
+                                : "bg-transparent"
+                            )}
                             variant={
                               field.value === "later" ? "default" : "outline"
                             }
@@ -1089,7 +1101,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           </FormLabel>
                           <FormControl>
                             <Input
-                              className="w-full block"
+                              className="w-full block border-gray-500  focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0"
                               type="datetime-local"
                               value={
                                 field.value
@@ -1124,7 +1136,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           }
                           value={field.value?.toString()} // Add this line to fix the value binding
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="w-full px-2 py-0 border  border-gray-500 focus-visible:outline-none focus:ring-0 rounded-md focus:border-blue-700">
                             <SelectValue placeholder="Select duration">
                               {field.value
                                 ? `${field.value} hours`
@@ -1162,7 +1174,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
-                            <SelectTrigger className="w-full px-2 py-0 border rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <SelectTrigger className="w-full px-2 py-0 border  border-gray-500 focus-visible:outline-none focus:ring-0 rounded-md focus:border-blue-700">
                               <SelectValue>
                                 {renderVehicleSelectValue(field.value)}
                               </SelectValue>
@@ -1215,7 +1227,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                           : "Passenger Name"}
                       </FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input
+                          {...field}
+                          className="border-gray-500   focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -1228,7 +1243,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input {...field} type="hidden" />
+                        <Input
+                          {...field}
+                          type="hidden"
+                          className="border-gray-500   focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -1241,7 +1260,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input
+                          {...field}
+                          className="border-gray-500   focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -1255,13 +1277,14 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                       <FormLabel>Phone Number</FormLabel>
                       <FormControl>
                         <PhoneInput
+                          className="border border-gray-500 rounded-md px-2 py-1 "
                           international
                           defaultCountry="AU"
                           value={field.value}
                           onChange={(phone) => field.onChange(phone)}
                           numberInputProps={{
                             className:
-                              "w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary",
+                              "w-full p-2 border-0 border-gray-500 rounded-md focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0 [.PhoneInput>.&]:bg-red-600",
                             required: true,
                           }}
                           containerClass="w-full"
@@ -1282,7 +1305,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                         <FormItem>
                           <FormLabel>Flight Number</FormLabel>
                           <FormControl>
-                            <Input {...field} />
+                            <Input
+                              {...field}
+                              className="border-gray-500   focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0"
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -1332,7 +1358,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                       <FormItem>
                         <FormLabel>Recipient Name</FormLabel>
                         <FormControl>
-                          <Input {...field} />
+                          <Input
+                            {...field}
+                            className="border-gray-500   focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -1417,7 +1446,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     <FormItem>
                       <FormLabel>Notes to Driver</FormLabel>
                       <FormControl>
-                        <Textarea {...field} />
+                        <Textarea
+                          {...field}
+                          className="border-gray-500   focus-visible:outline-none focus-visible:ring-0 focus:border-blue-700 focus:ring-0"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -1455,7 +1487,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 <FormError message={error} />
                 <FormSuccess message={success} />
 
-                <Button type="submit" className="w-full" disabled={isPending}>
+                <Button
+                  type="submit"
+                  className="w-full bg-blue-700"
+                  disabled={isPending}
+                >
                   {isPending
                     ? "Submitting..."
                     : isEditBooking
@@ -1465,11 +1501,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               </form>
             </Form>
             <p className="text-sm font-semibold text-muted-foreground mt-4">
-              I have read and agreed to the{" "}
+              I have read and agreed to the
               <Link href="/policy" className="underline">
                 Privacy Policy
-              </Link>{" "}
-              and{" "}
+              </Link>
+              and
               <Link href="/terms" className="underline">
                 Terms and Conditions
               </Link>

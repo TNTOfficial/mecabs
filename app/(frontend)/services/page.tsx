@@ -85,12 +85,12 @@ export default function ServicesPage() {
 
             <p className="text-[1rem] text-gray-600 font-normal">
               Welcome to <strong className="text-black">ME CABS</strong>, your
-              ultimate choice for reliable and efficient{" "}
+              ultimate choice for reliable and efficient
               <strong className="text-black">
                 corporate transportation services in Melbourne
               </strong>
-              . We specialize in offering{" "}
-              <strong className="text-black">premium corporate cabs</strong>{" "}
+              . We specialize in offering
+              <strong className="text-black">premium corporate cabs</strong>
               solutions tailored to meet the unique demands of professionals and
               businesses. Whether you need a seamless ride to a corporate
               meeting, a convenient airport transfer, or ongoing transport for
@@ -124,7 +124,7 @@ export default function ServicesPage() {
                   <li className="mb-6">
                     <h4>
                       <strong>Punctuality: </strong> We ensure on-time pickups
-                      and drop-offs, allowing you to focus on what matters most{" "}
+                      and drop-offs, allowing you to focus on what matters most
                       <span>&minus;</span> your work.
                     </h4>
                   </li>
@@ -251,7 +251,7 @@ export default function ServicesPage() {
                 </h3>
 
                 <p className="text-[1rem] text-gray-600 dark:text-white font-normal mb-6">
-                  Welcome to <strong className="text-black">ME CABS,</strong> your trusted{" "}
+                  Welcome to <strong className="text-black">ME CABS,</strong> your trusted
                   <strong className="text-black">taxi service</strong> provider in
                   <strong className="text-black">Melbourne and the surrounding areas</strong>. We pride
                   ourselves on delivering reliable, comfortable, and affordable
@@ -362,7 +362,7 @@ export default function ServicesPage() {
               popular service. Whether greeting you at the terminal upon arrival
               or picking you up from your doorstep for your journey to the
               airport, we ensure a hassle-free and reliable transportation
-              experience, every time{" "}
+              experience, every time
             </p>
           </div>
 

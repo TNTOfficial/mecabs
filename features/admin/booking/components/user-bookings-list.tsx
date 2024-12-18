@@ -507,7 +507,7 @@ export const UserBookingsList: React.FC<UserBookingsListProps> = ({
                         Vehicle Details
                       </h4>
                       <p>
-                        {selectedBooking.vehicleType} -{" "}
+                        {selectedBooking.vehicleType} -
                         {selectedBooking.bookingType}
                       </p>
                     </div>

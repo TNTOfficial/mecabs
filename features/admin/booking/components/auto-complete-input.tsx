@@ -122,7 +122,7 @@ export const AutoCompleteInput = forwardRef<
           }}
           placeholder={placeholder}
           name={name}
-          className="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary"
+          className="w-full p-2 border border-gray-500 rounded-md focus:border-blue-700 focus-visible:outline-none"
         />
         {showLocator && !inputValue && (
           <Button

@@ -120,35 +120,35 @@ export default function TabComponents() {
               <div className="border-2 border-[#EAECEE] dark:bg-gray-600 p-8">
                 <ul>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
@@ -180,35 +180,35 @@ export default function TabComponents() {
               <div className="border-2 border-[#EAECEE] dark:bg-gray-600 p-8">
                 <ul>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
@@ -240,35 +240,35 @@ export default function TabComponents() {
               <div className="border-2 border-[#EAECEE] dark:bg-gray-600 p-8">
                 <ul>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.
                     </span>
                   </li>
                   <li className="flex gap-5 items-center text-xl pb-3">
-                    <i className="ph ph-check text-[var(--theme)]"></i>{" "}
+                    <i className="ph ph-check text-[var(--theme)]"></i>
                     <span className="text=[#556677] dark:text-white font-light text-[1rem]">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Aut.

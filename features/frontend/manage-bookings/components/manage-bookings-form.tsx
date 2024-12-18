@@ -201,7 +201,7 @@ export const ManageBookingsForm = () => {
                   href="tel: +61 1300012018"
                   className="no-underline text-black flex justify-center items-center gap-2"
                 >
-                  <FiPhoneCall className="text-black text-[1rem]" />{" "}
+                  <FiPhoneCall className="text-black text-[1rem]" />
                   <span className="font-extrabold text-black text-[.9rem]">
                     +61 1300012018
                   </span>
@@ -297,7 +297,7 @@ export const ManageBookingsForm = () => {
         {step === "update" && booking && booking.isLuggagePicked && (
           <div className="p-5 bg-white rounded-xl flex justify-start items-start flex-col gap-5">
             <h3 className="text-[1.5rem] font-semibold">
-              You have already notify about status. We will reach you shortly{" "}
+              You have already notify about status. We will reach you shortly
               <span className="text-green-600">!</span>
             </h3>
             <Button
@@ -319,7 +319,7 @@ export const ManageBookingsForm = () => {
               <CardHeader className="flex flex-row items-center justify-between border-b pb-3 gap-x-2 space-y-0">
                 <CardTitle className="text-xl text-zinc-800 flex justify-between w-full items-center">
                   <div>
-                    {" "}
+                    
                     <Truck className="h-6 w-6 text-zinc-500" />
                     <span>Booking Details</span>
                   </div>
