@@ -19,7 +19,7 @@ export const MapsProvider: React.FC<MapsProviderProps> = ({ children }) => {
     return (
       <div className="h-[100dvh] flex flex-col items-center justify-center">
         <div>
-          <h1 className="font-bold text-[3rem]">Welcome to ME Cabs</h1>
+          <h1 className="font-bold lg:text-[3rem] text-[2rem] text-center">Welcome to <span className="text-blue-600">ME Cabs</span></h1>
         </div>
         <Image
           className="h-16 max-w-52 block mb-6"

@@ -24,7 +24,7 @@ const MessageCell = ({ message }: { message: string }) => {
   return (
     <div
       className={cn(
-        "truncate max-w-lg cursor-pointer  text-wrap",
+        "truncate max-lg:max-w-lg w-full cursor-pointer  text-wrap min-w-[700px]",
       )}
     >
       {message}

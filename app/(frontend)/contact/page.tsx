@@ -33,7 +33,7 @@ const ContactPage = () => {
 
       {/* Contact with mail section Start */}
       <section className="mailSection">
-        <div className="px-6 py-[100px]">
+        <div className="px-6 pb-[70px] pt-[100px]">
           <div className="text-center max-w-screen-lg max-md:max-w-md mx-auto">
             <p className="text-sm font-bold text-blue-600 mb-4">
               <span className="rotate-90 inline-block mr-2">|</span> Contact Us
@@ -69,7 +69,7 @@ const ContactPage = () => {
 
       {/* Contact with whatsapp app section Start */}
       <section className="whatsappSection">
-        <div className=" bg-white px-6 py-[100px] w-full rounded">
+        <div className=" bg-white px-6 pb-[100px] w-full rounded">
           <div className="max-w-2xl mx-auto text-center">
             <h1 className="text-gray-800 sm:text-5xl text-3xl font-extrabold">
               Contact us on Whatsapp
