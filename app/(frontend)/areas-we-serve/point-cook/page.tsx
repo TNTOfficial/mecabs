@@ -117,7 +117,7 @@ const page = () => {
               <div className="card text-start h-full rounded-lg bg-gray-50 p-5 space-y-6 flex justify-start items-center">
                 <div className="articalText">
                   <h3 className="text-[1.3rem] text-blue-950 font-bold">
-                    Why Choose Me Cabs in Point Cook?
+                    Why Choose ME CABSin Point Cook?
                   </h3>
                   <p className="text-[1rem] text-zinc-800 mb-5">
                     Choosing <strong>Me Cabs</strong> means choosing a

@@ -110,7 +110,7 @@ export default function TabComponents() {
                   might want to have a good time and not worry about driving
                 </h3>
                 <p className="text-[1.125rem] font-light text-[#556677]">
-                  Our very experienced chauffeurs will guide you through what
+                  Our very experienced Drivers will guide you through what
                   every city you are in. Point to point / day trips / long
                   distance, you name it.
                 </p>
@@ -170,7 +170,7 @@ export default function TabComponents() {
                   might want to have a good time and not worry about driving
                 </h3>
                 <p className="text-[1.125rem] font-light text-[#556677]">
-                  Our very experienced chauffeurs will guide you through what
+                  Our very experienced Drivers will guide you through what
                   every city you are in. Point to point / day trips / long
                   distance, you name it.
                 </p>
@@ -230,7 +230,7 @@ export default function TabComponents() {
                   might want to have a good time and not worry about driving
                 </h3>
                 <p className="text-[1.125rem] font-light text-[#556677]">
-                  Our very experienced chauffeurs will guide you through what
+                  Our very experienced Drivers will guide you through what
                   every city you are in. Point to point / day trips / long
                   distance, you name it.
                 </p>

@@ -5,7 +5,7 @@ import s1 from "@/public/01.webp";
 import s2 from "@/public/02.webp";
 import s3 from "@/public/03.webp";
 import s4 from "@/public/04.webp";
-import s5 from "@/public/05.webp";
+import s5 from "@/public/10.webp";
 import s6 from "@/public/06.webp";
 import s7 from "@/public/07.webp";
 import s8 from "@/public/08.webp";
@@ -107,7 +107,7 @@ export default function ServicesPage() {
         <div className="container">
           <div className="whyHeading max-w-screen-lg mx-auto text-center">
             <h2 className="text-[2.2rem] font-bold text-black">
-              Why Choose Me Cabs for Corporate Travel?
+              Why Choose ME CABS for Corporate Travel?
             </h2>
 
             <p className="text-[1rem] text-gray-600 font-normal">
@@ -253,7 +253,7 @@ export default function ServicesPage() {
                 <p className="text-[1rem] text-gray-600 dark:text-white font-normal mb-6">
                   Welcome to <strong className="text-black">ME CABS,</strong> your trusted
                   <strong className="text-black">taxi service</strong> provider in
-                  <strong className="text-black">Melbourne and the surrounding areas</strong>. We pride
+                  <strong className="text-black ps-1">Melbourne and the surrounding areas</strong>. We pride
                   ourselves on delivering reliable, comfortable, and affordable
                   transportation solutions for all your travel needs. Whether
                   you’re heading to the <strong className="text-black">airport</strong>, commuting to

@@ -270,7 +270,8 @@ export default async function About() {
             <div className="text">
               <h4 className="text-black m2-5 text-[24px] font-medium">
                 For over a dozen years we have been providing the best transport
-                services.
+                services. We offer Car, passenger transport and limousine
+                rental.
               </h4>
 
               <p className="text-[17.6px] text-gray-600 font-normal mt-4">
@@ -282,7 +283,7 @@ export default async function About() {
                 <li className="flex justify-start mb-3 items-center gap-3">
                   <IoCheckmarkCircleSharp className="text-blue-500 text-[20.8px]" />
                   <span className="text-gray-500 text-[19.2px] font-light">
-                    Professionally Trained Chauffeurs
+                    Professionally Trained Drivers
                   </span>
                 </li>
                 <li className="flex justify-start mb-3 items-center gap-3">

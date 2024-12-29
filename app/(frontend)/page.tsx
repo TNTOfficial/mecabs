@@ -15,7 +15,7 @@ import car7 from "@/public/car7.webp";
 import s1 from "@/public/01.webp";
 import s2 from "@/public/02.webp";
 import s3 from "@/public/03.webp";
-import s4 from "@/public/04.webp";
+import s4 from "@/public/10.webp";
 import s5 from "@/public/05.webp";
 import user1 from "@/public/user1.webp";
 import user2 from "@/public/user2.webp";
@@ -85,35 +85,35 @@ export default function Home() {
       luggage: 3,
     },
     {
-      title: "Highlander L SUV I4",
+      title: "Toyota Kluger",
       carImage: car2,
       passenger: 4,
       luggage: 3,
     },
 
     {
-      title: "2025 Toyota Camry",
+      title: "Toyota Camry",
       carImage: car3,
       passenger: 4,
       luggage: 3,
     },
 
     {
-      title: "Volkswagen Arteon SEL",
+      title: "Arteon",
       carImage: car4,
       passenger: 4,
       luggage: 3,
     },
 
     {
-      title: "Tesla Model Y | RACQ",
+      title: "Tesla Y ",
       carImage: car5,
       passenger: 4,
       luggage: 3,
     },
 
     {
-      title: "Mercedes Benz Limousine",
+      title: "Mercedes Series 300",
       carImage: car6,
       passenger: 4,
       luggage: 3,
@@ -470,7 +470,7 @@ export default function Home() {
                   </h4>
                   <p className="text-white text-[1rem] font-normal">
                     Enter your pickup & dropoff locations or the number of hours
-                    you wish to book a car and driver for
+                    you wish to book a Ride.
                   </p>
                 </div>
 

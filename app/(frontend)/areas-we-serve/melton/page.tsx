@@ -145,7 +145,7 @@ const page = () => {
         <div className="container flex flex-col items-center px-4 py-12 mx-auto xl:flex-row">
           <div className="flex flex-col items-center mt-6 xl:items-start xl:w-1/2 xl:mt-0">
             <h3 className="text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl">
-              Why Choose Me Cabs for Taxi Services in Melton?
+              Why Choose ME CABS for Taxi Services in Melton?
             </h3>
 
             <p className="block max-w-2xl mt-4 text-gray-500">

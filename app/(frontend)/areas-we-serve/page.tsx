@@ -500,7 +500,7 @@ const page = () => {
             <div className="text">
               <h4 className="text-black m2-5 text-[1.5rem] font-medium">
                 For over a dozen years we have been providing the best transport
-                services. We offer bus, passenger transport and limousine
+                services. We offer Car, passenger transport and limousine
                 rental.
               </h4>
 
@@ -513,7 +513,7 @@ const page = () => {
                 <li className="flex justify-start mb-3 items-center gap-3">
                   <IoCheckmarkCircleSharp className="text-blue-500 text-[1.3rem]" />
                   <span className="text-gray-500 text-[1.2rem] font-light">
-                    Professionally Trained Chauffeurs
+                    Professionally Trained Drivers
                   </span>
                 </li>
                 <li className="flex justify-start mb-3 items-center gap-3">
