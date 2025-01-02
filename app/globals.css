@@ -206,7 +206,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @layer utilities {
   /* Thin scrollbar */
   ::-webkit-scrollbar {
-    @apply w-2 h-2;
+    @apply w-2 h-1;
   }
 
   /* Gray track/bar */
